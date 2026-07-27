@@ -1,0 +1,16 @@
+# A CLI da Vercel NÃO usa o .gitignore — sem este arquivo o banco de
+# desenvolvimento sobe no pacote e o app lê dados velhos de um SQLite
+# read-only em vez de falhar claro apontando para a DATABASE_URL.
+*.db
+*.db-journal
+.env
+.env.*
+
+# não fazem parte do runtime
+docs/
+backend/tests/
+backend/.venv/
+backend/requirements-dev.txt
+node_modules/
+.pytest_cache/
+__pycache__/
