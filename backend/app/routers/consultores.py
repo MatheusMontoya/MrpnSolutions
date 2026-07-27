@@ -1,0 +1,280 @@
+from datetime import date, timedelta
+
+from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlmodel import Session, select
+
+from ..database import get_session
+from ..seguranca import exigir_gestor
+from ..models import HORAS_SEMANA_PADRAO, Alocacao, Apontamento, Ausencia, Consultor
+from ..services.receita import (
+    horas_alocadas_na_semana,
+    horas_ausentes_na_semana,
+    horas_previstas,
+    segunda_da_semana,
+    utilizacao_semanal,
+)
+
+router = APIRouter(prefix="/api/consultores", tags=["Consultores"])
+
+
+@router.get("", response_model=list[Consultor])
+def listar_consultores(session: Session = Depends(get_session)):
+    return session.exec(select(Consultor).order_by(Consultor.nome)).all()
+
+
+@router.post("", response_model=Consultor, status_code=201, dependencies=[Depends(exigir_gestor)])
+def criar_consultor(consultor: Consultor, session: Session = Depends(get_session)):
+    consultor.id = None
+    session.add(consultor)
+    session.commit()
+    session.refresh(consultor)
+    return consultor
+
+
+@router.get("/utilizacao")
+def utilizacao_heatmap(
+    inicio: date | None = Query(default=None, description="Qualquer dia da primeira semana; default = 4 semanas atrás"),
+    semanas: int = Query(default=12, ge=1, le=26),
+    session: Session = Depends(get_session),
+):
+    """Utilização semana a semana de todos os consultores (dados do heatmap)."""
+    hoje = date.today()
+    base = segunda_da_semana(inicio or (hoje - timedelta(weeks=4)))
+    segundas = [base + timedelta(weeks=i) for i in range(semanas)]
+    semana_corrente = segunda_da_semana(hoje)
+
+    consultores = session.exec(select(Consultor).order_by(Consultor.nome)).all()
+    resultado = []
+    for c in consultores:
+        alocacoes = session.exec(select(Alocacao).where(Alocacao.consultor_id == c.id)).all()
+        ausencias = session.exec(select(Ausencia).where(Ausencia.consultor_id == c.id)).all()
+        semanas_dados = []
+        for seg in segundas:
+            u = utilizacao_semanal(alocacoes, seg, ausencias)
+            u["semana"] = seg.isoformat()
+            u["corrente"] = seg == semana_corrente
+            semanas_dados.append(u)
+        resultado.append(
+            {
+                "consultor_id": c.id,
+                "nome": c.nome,
+                "senioridade": c.senioridade,
+                "modulo_sap": c.modulo_sap,
+                "taxa_hora_custo": c.taxa_hora_custo,
+                "taxa_hora_venda": c.taxa_hora_venda,
+                "semanas": semanas_dados,
+            }
+        )
+    return {"semanas": [s.isoformat() for s in segundas], "consultores": resultado}
+
+
+@router.get("/capacidade")
+def demanda_vs_capacidade(
+    inicio: date | None = Query(default=None, description="Qualquer dia da primeira semana; default = semana corrente"),
+    semanas: int = Query(default=12, ge=1, le=26),
+    session: Session = Depends(get_session),
+):
+    """Demanda (horas alocadas) × capacidade (jornada − ausências aprovadas) da
+    empresa inteira, semana a semana — antecipação de gargalos de equipe."""
+    hoje = date.today()
+    base = segunda_da_semana(inicio or hoje)
+    segundas = [base + timedelta(weeks=i) for i in range(semanas)]
+    semana_corrente = segunda_da_semana(hoje)
+
+    consultores = session.exec(select(Consultor)).all()
+    alocacoes_por_consultor = {
+        c.id: session.exec(select(Alocacao).where(Alocacao.consultor_id == c.id)).all()
+        for c in consultores
+    }
+    ausencias_por_consultor = {
+        c.id: session.exec(select(Ausencia).where(Ausencia.consultor_id == c.id)).all()
+        for c in consultores
+    }
+
+    serie = []
+    for seg in segundas:
+        demanda = sum(
+            horas_alocadas_na_semana(a, seg)
+            for alocs in alocacoes_por_consultor.values()
+            for a in alocs
+        )
+        capacidade = sum(
+            HORAS_SEMANA_PADRAO - horas_ausentes_na_semana(ausencias_por_consultor[c.id], seg)
+            for c in consultores
+        )
+        serie.append(
+            {
+                "semana": seg.isoformat(),
+                "demanda": round(demanda, 1),
+                "capacidade": round(capacidade, 1),
+                "corrente": seg == semana_corrente,
+                "gargalo": demanda > capacidade,
+            }
+        )
+    return {"consultores": len(consultores), "serie": serie}
+
+
+@router.get("/{consultor_id}/painel")
+def painel_consultor(consultor_id: int, session: Session = Depends(get_session)):
+    """Detalhe do consultor: taxas, KPIs (utilização média, horas/receita/margem do
+    mês) e alocações ativas cross-projeto."""
+    c = session.get(Consultor, consultor_id)
+    if not c:
+        raise HTTPException(404, "Consultor não encontrado")
+
+    hoje = date.today()
+    alocacoes = session.exec(select(Alocacao).where(Alocacao.consultor_id == consultor_id)).all()
+
+    # utilização média das últimas 12 semanas
+    base = segunda_da_semana(hoje - timedelta(weeks=11))
+    segundas = [base + timedelta(weeks=i) for i in range(12)]
+    utils = [utilizacao_semanal(alocacoes, s)["utilizacao"] for s in segundas]
+    utilizacao_media = sum(utils) / len(utils) if utils else 0.0
+
+    # mês atual (do dia 1 até hoje)
+    inicio_mes = hoje.replace(day=1)
+    apontamentos = [
+        ap
+        for a in alocacoes
+        for ap in a.apontamentos
+        if inicio_mes <= ap.data <= hoje
+    ]
+    horas_mes = sum(ap.horas for ap in apontamentos)
+    receita_mes = sum(ap.horas * ap.alocacao.taxa_hora_venda for ap in apontamentos)
+    custo_mes = horas_mes * c.taxa_hora_custo
+    margem_mes = (receita_mes - custo_mes) / receita_mes if receita_mes else 0.0
+
+    ativas = []
+    for a in alocacoes:
+        if a.data_fim < hoje:
+            continue
+        fase = a.fase
+        projeto = fase.projeto if fase else None
+        ativas.append(
+            {
+                "alocacao_id": a.id,
+                "projeto": projeto.nome if projeto else "",
+                "projeto_id": projeto.id if projeto else None,
+                "fase": fase.nome if fase else "",
+                "data_inicio": a.data_inicio.isoformat(),
+                "data_fim": a.data_fim.isoformat(),
+                "horas_semana": a.horas_semana,
+                "taxa_hora_venda": a.taxa_hora_venda,
+                "horas_previstas": round(horas_previstas(a.data_inicio, a.data_fim, a.horas_semana), 2),
+                "horas_realizadas": round(sum(ap.horas for ap in a.apontamentos), 2),
+            }
+        )
+
+    return {
+        "id": c.id,
+        "nome": c.nome,
+        "senioridade": c.senioridade,
+        "modulo_sap": c.modulo_sap,
+        "skills": c.skills,
+        "taxa_hora_custo": c.taxa_hora_custo,
+        "taxa_hora_venda": c.taxa_hora_venda,
+        "utilizacao_media": round(utilizacao_media, 4),
+        "horas_mes": round(horas_mes, 2),
+        "receita_mes": round(receita_mes, 2),
+        "margem_mes": round(margem_mes, 4),
+        "alocacoes_ativas": ativas,
+    }
+
+
+@router.get("/{consultor_id}/agenda")
+def agenda_do_consultor(
+    consultor_id: int,
+    mes: str = Query(default=None, description="YYYY-MM; default = mês corrente"),
+    session: Session = Depends(get_session),
+):
+    """Calendário mensal do consultor: alocações (h/dia), ausências aprovadas,
+    feriados do calendário corporativo e horas apontadas por dia."""
+    from ..models import Feriado, StatusAprovacao
+    from ..services.receita import eh_dia_util
+
+    consultor = session.get(Consultor, consultor_id)
+    if not consultor:
+        raise HTTPException(404, "Consultor não encontrado")
+
+    hoje = date.today()
+    if mes:
+        try:
+            ano, m = map(int, mes.split("-"))
+            primeiro = date(ano, m, 1)
+        except ValueError:
+            raise HTTPException(422, "mes deve estar no formato YYYY-MM")
+    else:
+        primeiro = hoje.replace(day=1)
+    proximo = (primeiro.replace(day=28) + timedelta(days=4)).replace(day=1)
+
+    alocacoes = session.exec(
+        select(Alocacao).where(Alocacao.consultor_id == consultor_id)
+    ).all()
+    ausencias = [
+        x for x in session.exec(
+            select(Ausencia).where(
+                Ausencia.consultor_id == consultor_id,
+                Ausencia.status == StatusAprovacao.aprovada,
+            )
+        ).all()
+        if x.data_inicio < proximo and x.data_fim >= primeiro
+    ]
+    feriados = {
+        f.data: f.nome for f in session.exec(select(Feriado)).all()
+        if primeiro <= f.data < proximo
+    }
+    ids = [a.id for a in alocacoes]
+    apontadas: dict[date, float] = {}
+    if ids:
+        for ap in session.exec(
+            select(Apontamento).where(
+                Apontamento.alocacao_id.in_(ids),
+                Apontamento.data >= primeiro,
+                Apontamento.data < proximo,
+            )
+        ).all():
+            apontadas[ap.data] = apontadas.get(ap.data, 0.0) + ap.horas
+
+    dias = []
+    d = primeiro
+    while d < proximo:
+        util = eh_dia_util(d)
+        ausencia = next((x.tipo for x in ausencias if x.data_inicio <= d <= x.data_fim), None)
+        aloc_dia = [{
+            "projeto": a.fase.projeto.nome if a.fase and a.fase.projeto else "",
+            "fase": a.fase.nome if a.fase else "",
+            "horas_dia": round(a.horas_semana / 5.0, 1),
+        } for a in alocacoes if a.data_inicio <= d <= a.data_fim] if util else []
+        dias.append({
+            "data": d.isoformat(),
+            "dia_semana": d.weekday(),  # 0 = segunda
+            "util": util,
+            "hoje": d == hoje,
+            "feriado": feriados.get(d),
+            "ausencia": ausencia,
+            "alocacoes": aloc_dia,
+            "horas_alocadas": round(sum(x["horas_dia"] for x in aloc_dia), 1) if not ausencia else 0.0,
+            "horas_apontadas": round(apontadas.get(d, 0.0), 1),
+        })
+        d += timedelta(days=1)
+
+    return {
+        "consultor_id": consultor_id,
+        "consultor": consultor.nome,
+        "mes": primeiro.isoformat()[:7],
+        "dias": dias,
+        "totais": {
+            "dias_uteis": sum(1 for x in dias if x["util"]),
+            "dias_ausente": sum(1 for x in dias if x["ausencia"] and x["util"]),
+            "horas_alocadas": round(sum(x["horas_alocadas"] for x in dias), 1),
+            "horas_apontadas": round(sum(x["horas_apontadas"] for x in dias), 1),
+        },
+    }
+
+
+@router.get("/{consultor_id}", response_model=Consultor)
+def obter_consultor(consultor_id: int, session: Session = Depends(get_session)):
+    consultor = session.get(Consultor, consultor_id)
+    if not consultor:
+        raise HTTPException(404, "Consultor não encontrado")
+    return consultor

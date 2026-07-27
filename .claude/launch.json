@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "psa-sap",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "uvicorn", "app.main:app", "--host", "127.0.0.1", "--port", "8000"],
+      "cwd": "C:\\Users\\mathe\\OneDrive\\Desktop\\00 Projetos\\PSA-SAP\\psa-sap\\backend",
+      "port": 8000
+    }
+  ]
+}

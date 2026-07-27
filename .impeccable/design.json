@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-23T00:00:00.000Z",
+  "title": "Design System: RunRate",
+  "extensions": {
+    "colorMeta": {
+      "azul-eletrico": {
+        "role": "primary",
+        "displayName": "Azul Elétrico",
+        "canonical": "#0a78f0",
+        "tonalRamp": ["#0b1a4d", "#12256e", "#183291", "#1e3fb8", "#0a78f0", "#5c80ff", "#93aaff", "#e8f2fe"]
+      },
+      "azure-assinatura": {
+        "role": "primary",
+        "displayName": "Azure Assinatura",
+        "canonical": "#3fa0ff",
+        "tonalRamp": ["#062744", "#0a3b66", "#0f5089", "#1673bd", "#3fa0ff", "#6bbaff", "#a5d5ff", "#e3f2ff"]
+      },
+      "grafite-profundo": {
+        "role": "neutral",
+        "displayName": "Grafite Profundo",
+        "canonical": "#1e2430",
+        "tonalRamp": ["#040c1f", "#071531", "#1e2430", "#12306f", "#1c4295", "#3663c4", "#7a97dc", "#ccd9f2"]
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Cinza Claro",
+        "canonical": "#f7f8fa",
+        "tonalRamp": ["#161c29", "#242d40", "#3a465f", "#5b6a87", "#8b93a1", "#c8cdd6", "#e3e6ec", "#f7f8fa"]
+      },
+      "verde-saudavel": {
+        "role": "tertiary",
+        "displayName": "Verde Saudável",
+        "canonical": "#07875a",
+        "tonalRamp": ["#032516", "#053a24", "#075533", "#0a6a41", "#07875a", "#33a874", "#7fcfa8", "#e6f5ef"]
+      },
+      "ambar-atencao": {
+        "role": "tertiary",
+        "displayName": "Âmbar Atenção",
+        "canonical": "#a3600a",
+        "tonalRamp": ["#2b1800", "#442600", "#5f3600", "#894c00", "#a3600a", "#d08d33", "#e8bd80", "#fbf1e0"]
+      },
+      "carmim-critico": {
+        "role": "tertiary",
+        "displayName": "Carmim Crítico",
+        "canonical": "#d62b4f",
+        "tonalRamp": ["#380516", "#560a22", "#7a0f31", "#a51740", "#d62b4f", "#e35a7f", "#f09cb3", "#fdeaee"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Título de página — um por tela." },
+      "title": { "displayName": "Title", "purpose": "Título de card/seção, sempre em sentence-case." },
+      "body": { "displayName": "Body", "purpose": "Texto corrente; descrições até ~70ch." },
+      "label": { "displayName": "Label", "purpose": "Rótulo de campo, cabeçalho de tabela, metadado." },
+      "dado": { "displayName": "Dado", "purpose": "Todo número comparável entre linhas (tabular-nums)." }
+    },
+    "shadows": [
+      { "name": "repouso", "value": "0 1px 2px rgba(30, 36, 48, 0.06)", "purpose": "Card assentado sobre o canvas; quase invisível." },
+      { "name": "levantado", "value": "0 8px 24px -12px rgba(30, 36, 48, 0.12)", "purpose": "Hover em superfície clicável." },
+      { "name": "flutuante", "value": "0 16px 40px -12px rgba(30, 36, 48, 0.28)", "purpose": "Menu, popover e modal — o que sai do plano." }
+    ],
+    "motion": [
+      { "name": "dur-1", "value": "130ms", "purpose": "Mudança de estado imediata (hover, foco, clique)." },
+      { "name": "dur-2", "value": "200ms", "purpose": "Transição de superfície (modal, gaveta, barra de progresso)." },
+      { "name": "ease-sair", "value": "cubic-bezier(0.22, 0.61, 0.36, 1)", "purpose": "Easing padrão de estado." },
+      { "name": "ease-fisico", "value": "cubic-bezier(0.32, 0.72, 0, 1)", "purpose": "Entrada de superfície (modal, gaveta)." }
+    ],
+    "breakpoints": [
+      { "name": "rail", "value": "1180px" },
+      { "name": "colapso", "value": "860px" },
+      { "name": "gaveta", "value": "760px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botão primário",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ação principal da tela. Azul elétrico chapado, texto branco.",
+      "html": "<button class=\"ds-btn-primary\">Novo projeto</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 7px; min-height: 38px; padding: 8px 16px; border: 1px solid transparent; border-radius: 12px; background: #0a78f0; color: #fff; font: 600 13.5px/1.4 'Figtree Variable', system-ui, sans-serif; cursor: pointer; transition: background 130ms cubic-bezier(0.22,0.61,0.36,1), transform 130ms cubic-bezier(0.22,0.61,0.36,1); } .ds-btn-primary:hover { background: #0968d4; } .ds-btn-primary:active { transform: translateY(1px) scale(0.99); } .ds-btn-primary:focus-visible { outline: 2px solid #0a78f0; outline-offset: 2px; }"
+    },
+    {
+      "name": "Botão secundário",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Ação não destrutiva; a escolha padrão fora da ação principal.",
+      "html": "<button class=\"ds-btn-secundario\">Status Report</button>",
+      "css": ".ds-btn-secundario { display: inline-flex; align-items: center; gap: 7px; min-height: 38px; padding: 8px 16px; border: 1px solid #b9d9fb; border-radius: 12px; background: #fff; color: #0a5cb8; font: 600 13.5px/1.4 'Figtree Variable', system-ui, sans-serif; cursor: pointer; transition: background 130ms cubic-bezier(0.22,0.61,0.36,1); } .ds-btn-secundario:hover { background: #e8f2fe; } .ds-btn-secundario:focus-visible { outline: 2px solid #0a78f0; outline-offset: 2px; }"
+    },
+    {
+      "name": "Item de navegação",
+      "kind": "nav",
+      "refersTo": "sidebar-item",
+      "description": "Linha da sidebar. Ativo vira pílula na lavagem do acento — nunca barra lateral.",
+      "html": "<a class=\"ds-nav-item ds-ativo\" href=\"#\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"M8 6h13\"/><path d=\"M8 12h13\"/><path d=\"M8 18h13\"/><path d=\"M3 6h.01\"/><path d=\"M3 12h.01\"/><path d=\"M3 18h.01\"/></svg><span>Projetos</span></a>",
+      "css": ".ds-nav-item { display: flex; align-items: center; gap: 10px; height: 36px; padding: 0 10px; border-radius: 11px; color: #5a6270; font: 500 13.5px/1.4 'Figtree Variable', system-ui, sans-serif; text-decoration: none; transition: background 130ms cubic-bezier(0.22,0.61,0.36,1); } .ds-nav-item svg { color: #8b93a1; } .ds-nav-item:hover { background: #f2f4f7; color: #1e2430; } .ds-nav-item.ds-ativo { background: #e8f2fe; color: #0a5cb8; font-weight: 650; } .ds-nav-item.ds-ativo svg { color: #0a78f0; }"
+    },
+    {
+      "name": "Campo de texto",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Controle único de formulário: 40px, borda fina, anel de foco no acento.",
+      "html": "<input class=\"ds-input\" placeholder=\"Nome do projeto\" />",
+      "css": ".ds-input { min-height: 40px; width: 260px; padding: 9px 12px; border: 1px solid #c8cdd6; border-radius: 12px; background: #fff; color: #1e2430; font: 400 13.5px/1.4 'Figtree Variable', system-ui, sans-serif; transition: border-color 130ms, box-shadow 130ms; } .ds-input::placeholder { color: #8b93a1; } .ds-input:hover { border-color: #8b93a1; } .ds-input:focus { outline: none; border-color: #0a78f0; box-shadow: 0 0 0 3px rgba(10, 120, 240, 0.16); }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Superfície branca de cantos macios sobre canvas frio. Nunca aninhado.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-titulo\">Valor agregado (EVM)</h3><p class=\"ds-card-texto\">SPI 1,02 · CPI 1,27</p></div>",
+      "css": ".ds-card { background: #fff; border: 1px solid #e3e6ec; border-radius: 22px; box-shadow: 0 1px 2px rgba(30,36,48,0.06); padding: 22px 24px; max-width: 320px; } .ds-card-titulo { margin: 0 0 6px; font: 700 18px/24px 'Figtree Variable', system-ui, sans-serif; letter-spacing: -0.015em; color: #1e2430; } .ds-card-texto { margin: 0; font: 500 13.5px/1.4 'Figtree Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; color: #5a6270; }"
+    },
+    {
+      "name": "Badge de estado",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Pílula pastel com texto saturado do mesmo matiz. Nunca usa o acento cheio.",
+      "html": "<span class=\"ds-badge ds-badge-verde\">OK</span> <span class=\"ds-badge ds-badge-carmim\">Superalocado</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 999px; font: 600 12px/1.4 'Figtree Variable', system-ui, sans-serif; white-space: nowrap; } .ds-badge-verde { background: #e6f5ef; color: #07875a; } .ds-badge-carmim { background: #fdeaee; color: #d62b4f; }"
+    },
+    {
+      "name": "Chip de barra de ferramentas",
+      "kind": "chip",
+      "refersTo": "toolbar-chip",
+      "description": "Filtro com contagem. Transparente em repouso, tingido quando ativo.",
+      "html": "<button class=\"ds-chip ds-ativo\">Ativos <span class=\"ds-contagem\">3</span></button>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 11px; border: 1px solid transparent; border-radius: 11px; background: transparent; color: #5a6270; font: 550 13px/1.4 'Figtree Variable', system-ui, sans-serif; cursor: pointer; transition: background 130ms, color 130ms; } .ds-chip:hover { background: #f2f4f7; color: #1e2430; } .ds-chip.ds-ativo { background: #e8f2fe; color: #0a5cb8; border-color: #b9d9fb; } .ds-contagem { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: #e7eaef; color: #5a6270; font: 600 11px/1 'Figtree Variable', system-ui, sans-serif; } .ds-chip.ds-ativo .ds-contagem { background: #0a78f0; color: #fff; }"
+    },
+    {
+      "name": "Anel de progresso",
+      "kind": "custom",
+      "refersTo": "anel",
+      "description": "Donut que responde 'estamos no alvo?'. Verde dentro da meta, âmbar abaixo.",
+      "html": "<span class=\"ds-anel\" style=\"--pct:54\"><span class=\"ds-anel-valor\">54%</span></span>",
+      "css": ".ds-anel { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: 50%; background: conic-gradient(#07875a calc(var(--pct) * 1%), #e7eaef 0); } .ds-anel::after { content: ''; position: absolute; inset: 6px; border-radius: 50%; background: #fff; } .ds-anel-valor { position: relative; z-index: 1; font: 700 11.5px/1 'Figtree Variable', system-ui, sans-serif; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; color: #1e2430; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Tudo se encaixa",
+    "overview": "O conceito vem do próprio símbolo: quatro peças — pessoas, processos, finanças e entrega — que só formam um quadrado quando se encaixam. A navegação inteira fica aberta numa coluna à esquerda, o canvas é um cinza claro quase imperceptível, e a única cor viva do sistema — o azul elétrico — só aparece onde existe ação ou seleção. A densidade é deliberadamente desigual: tabelas e grades de apontamento podem ser densas porque são o trabalho; tudo ao redor respira. Superfícies são planas, com cantos generosos e sombra quase imperceptível — a profundidade vem do espaço e da hierarquia tipográfica, não de camadas empilhadas.",
+    "keyCharacteristics": [
+      "Navegação global sempre visível, agrupada por domínio",
+      "Um acento só, usado com parcimônia (ação, seleção, estado)",
+      "Números sempre em monoespaçada tabular",
+      "Cantos macios (10 / 20 / 28px) e sombras mínimas",
+      "Dois temas com os mesmos componentes: só os valores dos tokens mudam"
+    ],
+    "rules": [
+      { "name": "A Regra do Acento Único", "body": "Se um elemento não é acionável, não está selecionado e não indica estado, ele não usa o azul da marca. Um badge informativo usa a lavagem (#e8f2fe) com texto em #0a5cb8 — nunca o acento cheio.", "section": "colors" },
+      { "name": "A Regra do Gradiente Raro", "body": "O gradiente da marca aparece em no máximo um lugar por tela, e sempre em superfície de identidade. Gradiente em texto é proibido.", "section": "colors" },
+      { "name": "A Regra do Sentence-case", "body": "Nenhum rótulo de seção, cabeçalho de card ou coluna usa caixa alta com tracking. A exceção são as siglas das 6 fases SAP Activate, onde funcionam como código.", "section": "typography" },
+      { "name": "A Regra do Número Monoespaçado", "body": "Qualquer dígito comparável entre linhas vai em JetBrains Mono com tabular-nums.", "section": "typography" },
+      { "name": "A Regra do Zero Overflow", "body": "Nenhuma tela pode ter rolagem horizontal no documento, em nenhuma largura. Conteúdo largo rola dentro do seu próprio container.", "section": "layout" },
+      { "name": "A Regra do Plano em Repouso", "body": "Superfície parada não tem sombra perceptível. Sombra é reação a estado, nunca decoração.", "section": "elevation" },
+      { "name": "A Regra da Borda Fina", "body": "Toda borda é 1px. Mais destaque se resolve com fundo tingido ou sombra — nunca borda grossa, e jamais borda colorida em um único lado.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do usar minmax(0, 1fr) em toda coluna de grid que possa receber tabela.",
+      "Do manter todo número em JetBrains Mono com tabular-nums.",
+      "Do escrever rótulo de seção e cabeçalho de coluna em sentence-case.",
+      "Do dar aos controles os sete estados (repouso, hover, foco, ativo, desabilitado, carregando, erro) antes de considerar um componente pronto.",
+      "Do trocar apenas VALORES de token ao mudar tema ou identidade — os componentes não conhecem cor.",
+      "Do revelar ações de linha no hover/focus-within, mantendo-as sempre visíveis em dispositivos sem ponteiro."
+    ],
+    "donts": [
+      "Don't usar border-left/border-right colorido como acento — em card, item de lista ou alerta.",
+      "Don't animar largura, altura ou margem; use transform e opacity.",
+      "Don't aplicar gradiente em texto (background-clip: text).",
+      "Don't usar MAIÚSCULAS com tracking como rótulo de seção.",
+      "Don't aninhar card dentro de card.",
+      "Don't introduzir uma segunda cor de marca: o sistema tem um acento e três semânticas de estado.",
+      "Don't deixar movimento que não comunique estado — inclusive borda animada."
+    ]
+  }
+}

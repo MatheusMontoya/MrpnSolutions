@@ -1,0 +1,7 @@
+# Runtime. A Vercel empacota só o que está aqui, então nada de ferramenta de teste
+# (essas vivem em requirements-dev.txt).
+fastapi>=0.115
+uvicorn[standard]>=0.30
+sqlmodel>=0.0.22
+httpx>=0.27
+psycopg2-binary>=2.9

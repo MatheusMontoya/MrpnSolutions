@@ -1,0 +1,7699 @@
+
+===== SLIDE 1 =====
+PSOffice
+Documentação de Telas & Mockups
+174 telas  •  18 contextos  •  dados fictícios
+
+===== SLIDE 2 =====
+Índice
+INTRODUÇÃO
+1. Visão Geral › Apresentação do PSOffice
+2. Visão Geral › Conceitos e Terminologia
+3. Visão Geral › Metodologias Suportadas (Preditivo, Ágil, Híbrido)
+4. Visão Geral › Fluxo de Trabalho Geral
+ACESSANDO
+5. Login › Tela de Login
+6. Login › Recuperação de Senha
+7. Login › Autenticação em Dois Fatores
+8. Perfil › Seleção de Perfil de Acesso
+9. Perfil › Configurações da Conta
+NAVEGANDO
+10. Layout › Barra Superior e Menu Principal
+11. Layout › Menu Lateral de Contextos
+12. Layout › Área de Trabalho e Widgets
+13. Layout › Notificações e Alertas
+14. Busca › Busca Global
+15. Busca › Filtros Avançados
+HOME
+16. Dashboard › Minha Página Inicial
+17. Dashboard › Indicadores Pessoais (KPIs)
+18. Dashboard › Gráfico de Alocação Semanal
+19. Dashboard › Atalhos e Favoritos
+20. Agenda › Calendário de Atividades
+21. Agenda › Próximos Compromissos
+22. Tarefas › Minhas Tarefas
+23. Tarefas › Tarefas Delegadas
+PORTFÓLIO
+24. Visão Geral › Painel de Portfólio
+25. Visão Geral › Mapa Estratégico
+26. Visão Geral › Priorização de Iniciativas
+27. Programas › Lista de Programas
+28. Programas › Detalhe do Programa
+29. Programas › Benefícios Esperados
+30. Investimentos › Distribuição de Investimentos
+31. Investimentos › ROI por Iniciativa
+32. Cenários › Simulação de Cenários
+33. Cenários › Comparativo de Cenários
+34. Roadmap › Roadmap de Portfólio
+PROPOSTAS
+
+===== SLIDE 3 =====
+Índice (cont.)
+35. Pipeline › Funil de Oportunidades
+36. Pipeline › Kanban de Prospecção
+37. Oportunidade › Cadastro de Oportunidade
+38. Oportunidade › Dados do Cliente
+39. Oportunidade › Qualificação (BANT)
+40. Proposta › Elaboração de Proposta
+41. Proposta › Escopo e Premissas
+42. Proposta › Precificação e Margem
+43. Proposta › Cronograma Macro
+44. Proposta › Aprovação da Proposta
+45. Contrato › Geração de Contrato
+46. Contrato › Assinatura e Fechamento
+PROJETOS
+47. Lista › Portfólio de Projetos
+48. Lista › Filtros e Agrupamentos
+49. Abertura › Termo de Abertura (TAP)
+50. Abertura › Objetivos e Escopo
+51. Abertura › Stakeholders
+52. Planejamento › Estrutura Analítica (EAP/WBS)
+53. Planejamento › Cronograma (Gantt)
+54. Planejamento › Marcos e Entregas
+55. Planejamento › Linha de Base
+56. Planejamento › Dependências entre Atividades
+57. Recursos › Plano de Recursos
+58. Recursos › Alocação da Equipe
+59. Custos › Orçamento do Projeto
+60. Custos › Curva S de Custos
+61. Riscos › Matriz de Riscos
+62. Riscos › Plano de Resposta a Riscos
+63. Qualidade › Plano de Qualidade
+64. Qualidade › Checklist de Entregáveis
+65. Comunicação › Plano de Comunicação
+66. Aquisições › Plano de Aquisições
+67. Execução › Apontamento de Progresso
+68. Execução › Registro de Ocorrências
+69. Execução › Solicitação de Mudança
+70. Monitoramento › Painel do Projeto (EVM)
+71. Monitoramento › Indicadores CPI/SPI
+72. Monitoramento › Status Report
+73. Encerramento › Lições Aprendidas
+
+===== SLIDE 4 =====
+Índice (cont.)
+74. Encerramento › Termo de Encerramento
+ÁGIL
+75. Backlog › Product Backlog
+76. Backlog › Priorização do Backlog
+77. Backlog › Refinamento (Grooming)
+78. Sprint › Planejamento da Sprint
+79. Sprint › Sprint Backlog
+80. Sprint › Quadro Kanban / Scrum
+81. Sprint › Daily / Impedimentos
+82. Sprint › Burndown Chart
+83. Sprint › Velocity Chart
+84. Sprint › Review da Sprint
+85. Sprint › Retrospectiva
+86. Histórias › Cadastro de User Story
+87. Histórias › Critérios de Aceite
+88. Histórias › Estimativa (Planning Poker)
+HÍBRIDO
+89. Configuração › Configuração de Metodologia Híbrida
+90. Configuração › Fases Preditivas x Ágeis
+91. Visão › Painel Integrado Híbrido
+92. Visão › Cronograma + Sprints
+ALOCAÇÕES
+93. Visão Geral › Mapa de Alocação de Recursos
+94. Visão Geral › Capacidade x Demanda
+95. Visão Geral › Heatmap de Ocupação
+96. Recurso › Ficha do Recurso
+97. Recurso › Competências e Skills
+98. Recurso › Disponibilidade
+99. Planejamento › Plano de Alocação
+100. Planejamento › Solicitação de Recurso
+101. Planejamento › Aprovação de Alocação
+102. Conflitos › Conflitos de Alocação
+103. Conflitos › Resolução de Superalocação
+APONTAMENTO
+104. Timesheet › Folha de Horas
+105. Timesheet › Lançamento por Atividade
+106. Timesheet › Aprovação de Horas
+107. Timesheet › Histórico de Apontamentos
+108. Despesas › Lançamento de Despesas
+109. Despesas › Reembolso
+
+===== SLIDE 5 =====
+Índice (cont.)
+PENDÊNCIAS
+110. Central › Central de Pendências
+111. Central › Aprovações Pendentes
+112. Central › Pendências por Tipo
+113. Workflow › Fluxo de Aprovação
+114. Workflow › Delegação de Pendências
+115. Workflow › Histórico de Decisões
+FINANCEIRO
+116. Visão Geral › Painel Financeiro
+117. Visão Geral › Fluxo de Caixa
+118. Visão Geral › Receita x Despesa
+119. Faturamento › Cronograma de Faturamento
+120. Faturamento › Emissão de Fatura
+121. Faturamento › Notas Fiscais
+122. Faturamento › Medição de Contrato
+123. Custos › Custos por Projeto
+124. Custos › Centro de Custos
+125. Custos › Rateio de Custos
+126. Contas › Contas a Receber
+127. Contas › Contas a Pagar
+128. Contas › Inadimplência
+129. Rentabilidade › Margem por Projeto
+130. Rentabilidade › Análise de Rentabilidade
+131. Orçamento › Orçamento Anual
+132. Orçamento › Realizado x Orçado
+RELATÓRIOS
+133. Painéis › Central de Relatórios
+134. Painéis › Dashboards Gerenciais
+135. Painéis › Indicadores Executivos
+136. Geração › Construtor de Relatórios
+137. Geração › Agendamento de Relatórios
+138. Geração › Exportação (PDF/Excel)
+139. Analytics › Análise Preditiva com IA
+140. Analytics › Alertas Inteligentes
+ADMINISTRAÇÃO
+141. Usuários › Gestão de Usuários
+142. Usuários › Cadastro de Usuário
+143. Usuários › Grupos e Equipes
+144. Permissões › Perfis de Acesso
+145. Permissões › Matriz de Permissões
+
+===== SLIDE 6 =====
+Índice (cont.)
+146. Permissões › Políticas de Segurança
+147. Configurações › Parâmetros Gerais
+148. Configurações › Configuração de Metodologias
+149. Configurações › Campos Customizados
+150. Configurações › Modelos de Projeto
+151. Configurações › Workflows e Aprovações
+152. Integrações › Integrações e APIs
+153. Integrações › Conectores (ERP, SSO)
+154. Integrações › Webhooks
+155. Auditoria › Log de Auditoria
+156. Auditoria › Trilha de Alterações
+157. Organização › Estrutura Organizacional
+158. Organização › Cadastro de Clientes
+159. Organização › Cadastro de Fornecedores
+160. Organização › Calendário Corporativo
+161. Organização › Feriados e Exceções
+ASSISTENTE IA
+162. Copiloto › Assistente Virtual PSOffice
+163. Copiloto › Sugestões de Planejamento
+164. Copiloto › Análise de Riscos por IA
+165. Copiloto › Geração Automática de Status Report
+166. Copiloto › Previsão de Prazos e Custos
+167. Copiloto › Recomendação de Alocação
+MOBILE
+168. App › Aplicativo Móvel - Home
+169. App › Apontamento Mobile
+170. App › Aprovações Mobile
+SUPORTE
+171. Ajuda › Central de Ajuda
+172. Ajuda › Tutoriais e Vídeos
+173. Ajuda › Abertura de Chamado
+174. Ajuda › Base de Conhecimento
+
+===== SLIDE 7 =====
+1. Apresentação do PSOffice
+Introdução  ›  Visão Geral
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Visão Geral  ›  Apresentação do PSOffice
+Tarefas Abertas
+30
+Pendências
+8
+Horas Semana
+30h
+Alertas
+0
+Registro
+REG-2025-031
+Responsável
+Bruno Martins
+Data
+14/03/2025
+Status
+Em andamento
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 8 =====
+2. Conceitos e Terminologia
+Introdução  ›  Visão Geral
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Visão Geral  ›  Conceitos e Terminologia
+Tarefas Abertas
+10
+Pendências
+5
+Horas Semana
+143h
+Alertas
+1
+Registro
+REG-2025-052
+Responsável
+Ana Beatriz Lima
+Data
+16/07/2025
+Status
+Em revisão
+Data/Hora
+Usuário
+Ação
+Módulo
+15/05/2025 21:40
+Pedro Henrique Rocha
+Aprovou
+Projetos
+18/01/2025 2:45
+Juliana Castro
+Criou
+Projetos
+23/06/2025 18:11
+Juliana Castro
+Excluiu
+Financeiro
+20/02/2025 21:11
+Camila Ferreira
+Aprovou
+Financeiro
+14/02/2025 19:43
+Bruno Martins
+Excluiu
+Usuários
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 9 =====
+3. Metodologias Suportadas (Preditivo, Ágil, Híbrido)
+Introdução  ›  Visão Geral
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Visão Geral  ›  Metodologias Suportadas (Preditivo, Ágil, Híbrido)
+Tarefas Abertas
+29
+Pendências
+10
+Horas Semana
+22h
+Alertas
+5
+Registro
+REG-2025-063
+Responsável
+Lucas Andrade
+Data
+01/04/2025
+Status
+Em andamento
+Data/Hora
+Usuário
+Ação
+Módulo
+22/09/2025 6:55
+Pedro Henrique Rocha
+Criou
+Usuários
+10/04/2025 5:20
+Lucas Andrade
+Excluiu
+Usuários
+19/02/2025 8:37
+Pedro Henrique Rocha
+Editou
+Usuários
+26/01/2025 13:19
+Rafael Teixeira
+Aprovou
+Financeiro
+17/10/2025 1:05
+Mariana Souza Alves
+Editou
+Usuários
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 10 =====
+4. Fluxo de Trabalho Geral
+Introdução  ›  Visão Geral
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Visão Geral  ›  Fluxo de Trabalho Geral
+Tarefas Abertas
+14
+Pendências
+5
+Horas Semana
+29h
+Alertas
+4
+Registro
+REG-2025-024
+Responsável
+Rafael Teixeira
+Data
+05/10/2025
+Status
+Pendente
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 11 =====
+5. Tela de Login
+Acessando  ›  Login
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Login  ›  Tela de Login
+Usuário
+ana.lima@empresa-ficticia.com
+Senha
+••••••••
+Lembrar-me
+☑
+Data/Hora
+Usuário
+Ação
+Módulo
+20/10/2025 2:52
+Juliana Castro
+Aprovou
+Usuários
+03/02/2025 12:05
+Juliana Castro
+Excluiu
+Usuários
+24/06/2025 11:11
+Fernanda Oliveira
+Excluiu
+Financeiro
+24/05/2025 1:06
+Ana Beatriz Lima
+Aprovou
+Financeiro
+02/06/2025 18:18
+Camila Ferreira
+Excluiu
+Projetos
+Entrar
+Esqueci a senha
+Ajuda
+
+===== SLIDE 12 =====
+6. Recuperação de Senha
+Acessando  ›  Login
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Login  ›  Recuperação de Senha
+Usuário
+ana.lima@empresa-ficticia.com
+Senha
+••••••••
+Lembrar-me
+☑
+Data/Hora
+Usuário
+Ação
+Módulo
+27/10/2025 13:17
+Bruno Martins
+Aprovou
+Projetos
+09/02/2025 5:52
+Pedro Henrique Rocha
+Aprovou
+Usuários
+07/06/2025 6:54
+Mariana Souza Alves
+Aprovou
+Financeiro
+17/09/2025 7:17
+Juliana Castro
+Editou
+Projetos
+15/10/2025 17:52
+Carlos Eduardo Nunes
+Excluiu
+Projetos
+Entrar
+Esqueci a senha
+Ajuda
+
+===== SLIDE 13 =====
+7. Autenticação em Dois Fatores
+Acessando  ›  Login
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Login  ›  Autenticação em Dois Fatores
+Usuário
+ana.lima@empresa-ficticia.com
+Senha
+••••••••
+Lembrar-me
+☑
+Data/Hora
+Usuário
+Ação
+Módulo
+17/07/2025 10:48
+Mariana Souza Alves
+Editou
+Financeiro
+07/02/2025 0:03
+Mariana Souza Alves
+Editou
+Usuários
+23/11/2025 16:44
+Lucas Andrade
+Criou
+Financeiro
+14/06/2025 14:42
+Juliana Castro
+Criou
+Financeiro
+26/02/2025 15:31
+Pedro Henrique Rocha
+Aprovou
+Financeiro
+Entrar
+Esqueci a senha
+Ajuda
+
+===== SLIDE 14 =====
+8. Seleção de Perfil de Acesso
+Acessando  ›  Perfil
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Perfil  ›  Seleção de Perfil de Acesso
+Perfil
+Visualizador
+Módulos
+Projetos, Financeiro, Portfólio
+Nível
+Edição
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 15 =====
+9. Configurações da Conta
+Acessando  ›  Perfil
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Perfil  ›  Configurações da Conta
+Registro
+REG-2025-028
+Responsável
+Mariana Souza Alves
+Data
+09/07/2025
+Status
+Em revisão
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 16 =====
+10. Barra Superior e Menu Principal
+Navegando  ›  Layout
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Layout  ›  Barra Superior e Menu Principal
+Registro
+REG-2025-048
+Responsável
+Carlos Eduardo Nunes
+Data
+25/04/2025
+Status
+Pendente
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 17 =====
+11. Menu Lateral de Contextos
+Navegando  ›  Layout
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Layout  ›  Menu Lateral de Contextos
+Registro
+REG-2025-031
+Responsável
+Juliana Castro
+Data
+27/11/2025
+Status
+Pendente
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 18 =====
+12. Área de Trabalho e Widgets
+Navegando  ›  Layout
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Layout  ›  Área de Trabalho e Widgets
+Registro
+REG-2025-055
+Responsável
+Ana Beatriz Lima
+Data
+02/03/2025
+Status
+Em revisão
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 19 =====
+13. Notificações e Alertas
+Navegando  ›  Layout
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Layout  ›  Notificações e Alertas
+Registro
+REG-2025-034
+Responsável
+Lucas Andrade
+Data
+23/01/2025
+Status
+Atrasado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 20 =====
+14. Busca Global
+Navegando  ›  Busca
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Busca  ›  Busca Global
+Registro
+REG-2025-028
+Responsável
+Lucas Andrade
+Data
+03/11/2025
+Status
+Atrasado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 21 =====
+15. Filtros Avançados
+Navegando  ›  Busca
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Busca  ›  Filtros Avançados
+Registro
+REG-2025-020
+Responsável
+Bruno Martins
+Data
+02/11/2025
+Status
+Aprovado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 22 =====
+16. Minha Página Inicial
+Home  ›  Dashboard
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Dashboard  ›  Minha Página Inicial
+Tarefas Abertas
+4
+Pendências
+4
+Horas Semana
+87h
+Alertas
+1
+Registro
+REG-2025-078
+Responsável
+Juliana Castro
+Data
+25/01/2025
+Status
+Em revisão
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 23 =====
+17. Indicadores Pessoais (KPIs)
+Home  ›  Dashboard
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Dashboard  ›  Indicadores Pessoais (KPIs)
+Tarefas Abertas
+26
+Pendências
+2
+Horas Semana
+58h
+Alertas
+3
+Registro
+REG-2025-082
+Responsável
+Rafael Teixeira
+Data
+26/10/2025
+Status
+Atrasado
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 24 =====
+18. Gráfico de Alocação Semanal
+Home  ›  Dashboard
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Dashboard  ›  Gráfico de Alocação Semanal
+Ocupação Média
+62%
+Recursos
+82
+Superalocados
+5
+Disponíveis
+20
+Registro
+REG-2025-077
+Responsável
+Lucas Andrade
+Data
+09/09/2025
+Status
+Pendente
+Recurso
+Cargo
+Projeto
+Alocação
+Período
+Mariana Souza Alves
+PMO
+PRJ-2025-022 App Mobile
+28%
+25/09/2025
+Ana Beatriz Lima
+Analista
+PRJ-2025-001 Portal Cliente
+41%
+09/11/2025
+Pedro Henrique Rocha
+Dev
+PRJ-2025-031 BI Corporativo
+48%
+20/01/2025
+Camila Ferreira
+PMO
+PRJ-2025-022 App Mobile
+18%
+18/10/2025
+Mariana Souza Alves
+Analista
+PRJ-2025-045 Migração Cloud
+22%
+18/12/2025
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 25 =====
+19. Atalhos e Favoritos
+Home  ›  Dashboard
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Dashboard  ›  Atalhos e Favoritos
+Tarefas Abertas
+6
+Pendências
+8
+Horas Semana
+8h
+Alertas
+5
+Registro
+REG-2025-076
+Responsável
+Lucas Andrade
+Data
+22/09/2025
+Status
+Pendente
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 26 =====
+20. Calendário de Atividades
+Home  ›  Agenda
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Agenda  ›  Calendário de Atividades
+Tarefas Abertas
+14
+Pendências
+0
+Horas Semana
+96h
+Alertas
+2
+Registro
+REG-2025-094
+Responsável
+Carlos Eduardo Nunes
+Data
+24/06/2025
+Status
+Atrasado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 27 =====
+21. Próximos Compromissos
+Home  ›  Agenda
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Agenda  ›  Próximos Compromissos
+Tarefas Abertas
+12
+Pendências
+6
+Horas Semana
+54h
+Alertas
+5
+Registro
+REG-2025-095
+Responsável
+Fernanda Oliveira
+Data
+05/11/2025
+Status
+Aprovado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 28 =====
+22. Minhas Tarefas
+Home  ›  Tarefas
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Tarefas  ›  Minhas Tarefas
+Tarefas Abertas
+21
+Pendências
+1
+Horas Semana
+16h
+Alertas
+3
+Registro
+REG-2025-047
+Responsável
+Pedro Henrique Rocha
+Data
+08/12/2025
+Status
+Concluído
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 29 =====
+23. Tarefas Delegadas
+Home  ›  Tarefas
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Tarefas  ›  Tarefas Delegadas
+Tarefas Abertas
+8
+Pendências
+1
+Horas Semana
+70h
+Alertas
+1
+Registro
+REG-2025-016
+Responsável
+Juliana Castro
+Data
+20/02/2025
+Status
+Atrasado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 30 =====
+24. Painel de Portfólio
+Portfólio  ›  Visão Geral
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Visão Geral  ›  Painel de Portfólio
+Iniciativas
+14
+Investimento Total
+R$ 126.549,41
+ROI Médio
+92%
+Benefício Realizado
+65%
+Registro
+REG-2025-034
+Responsável
+Fernanda Oliveira
+Data
+22/08/2025
+Status
+Concluído
+Iniciativa
+Investimento
+ROI
+Status
+Eficiência
+R$ 310.398,38
+95%
+Em revisão
+Eficiência
+R$ 106.180,15
+65%
+Em andamento
+Modernização
+R$ 47.835,85
+98%
+Em andamento
+Transformação Digital
+R$ 51.871,58
+27%
+Pendente
+Expansão
+R$ 157.734,22
+59%
+Concluído
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 31 =====
+25. Mapa Estratégico
+Portfólio  ›  Visão Geral
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Visão Geral  ›  Mapa Estratégico
+Iniciativas
+5
+Investimento Total
+R$ 106.200,08
+ROI Médio
+9%
+Benefício Realizado
+64%
+Registro
+REG-2025-098
+Responsável
+Mariana Souza Alves
+Data
+12/12/2025
+Status
+Planejado
+Iniciativa
+Investimento
+ROI
+Status
+Modernização
+R$ 107.397,19
+34%
+Aprovado
+Expansão
+R$ 459.996,48
+55%
+Planejado
+Eficiência
+R$ 210.551,29
+7%
+Em andamento
+Eficiência
+R$ 354.887,07
+82%
+Aprovado
+Expansão
+R$ 82.752,62
+94%
+Aprovado
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 32 =====
+26. Priorização de Iniciativas
+Portfólio  ›  Visão Geral
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Visão Geral  ›  Priorização de Iniciativas
+Iniciativas
+25
+Investimento Total
+R$ 355.310,74
+ROI Médio
+13%
+Benefício Realizado
+19%
+Registro
+REG-2025-093
+Responsável
+Mariana Souza Alves
+Data
+16/08/2025
+Status
+Concluído
+Iniciativa
+Investimento
+ROI
+Status
+Eficiência
+R$ 52.089,07
+18%
+Atrasado
+Transformação Digital
+R$ 245.720,28
+4%
+Pendente
+Expansão
+R$ 259.830,66
+76%
+Planejado
+Modernização
+R$ 171.347,33
+3%
+Atrasado
+Transformação Digital
+R$ 98.131,88
+19%
+Em revisão
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 33 =====
+27. Lista de Programas
+Portfólio  ›  Programas
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Programas  ›  Lista de Programas
+Registro
+REG-2025-075
+Responsável
+Juliana Castro
+Data
+01/04/2025
+Status
+Atrasado
+Iniciativa
+Investimento
+ROI
+Status
+Modernização
+R$ 248.798,00
+51%
+Aprovado
+Eficiência
+R$ 28.452,60
+80%
+Pendente
+Modernização
+R$ 292.516,37
+4%
+Atrasado
+Transformação Digital
+R$ 235.881,23
+72%
+Em andamento
+Eficiência
+R$ 403.484,24
+0%
+Concluído
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 34 =====
+28. Detalhe do Programa
+Portfólio  ›  Programas
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Programas  ›  Detalhe do Programa
+Registro
+REG-2025-012
+Responsável
+Rafael Teixeira
+Data
+13/08/2025
+Status
+Pendente
+Iniciativa
+Investimento
+ROI
+Status
+Transformação Digital
+R$ 348.974,26
+98%
+Atrasado
+Transformação Digital
+R$ 61.709,11
+86%
+Atrasado
+Eficiência
+R$ 340.465,57
+63%
+Pendente
+Expansão
+R$ 438.450,02
+64%
+Aprovado
+Eficiência
+R$ 274.869,58
+52%
+Pendente
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 35 =====
+29. Benefícios Esperados
+Portfólio  ›  Programas
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Programas  ›  Benefícios Esperados
+Registro
+REG-2025-091
+Responsável
+Fernanda Oliveira
+Data
+01/10/2025
+Status
+Atrasado
+Iniciativa
+Investimento
+ROI
+Status
+Modernização
+R$ 195.287,61
+30%
+Atrasado
+Expansão
+R$ 148.215,08
+17%
+Planejado
+Transformação Digital
+R$ 218.227,49
+54%
+Em revisão
+Expansão
+R$ 342.959,59
+43%
+Pendente
+Expansão
+R$ 168.620,31
+1%
+Planejado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 36 =====
+30. Distribuição de Investimentos
+Portfólio  ›  Investimentos
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Investimentos  ›  Distribuição de Investimentos
+Registro
+REG-2025-025
+Responsável
+Bruno Martins
+Data
+21/10/2025
+Status
+Pendente
+Iniciativa
+Investimento
+ROI
+Status
+Expansão
+R$ 38.031,81
+7%
+Em andamento
+Eficiência
+R$ 264.996,20
+57%
+Em andamento
+Eficiência
+R$ 284.548,23
+20%
+Em revisão
+Transformação Digital
+R$ 245.342,79
+26%
+Atrasado
+Modernização
+R$ 459.062,03
+40%
+Em andamento
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 37 =====
+31. ROI por Iniciativa
+Portfólio  ›  Investimentos
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Investimentos  ›  ROI por Iniciativa
+Registro
+REG-2025-037
+Responsável
+Juliana Castro
+Data
+08/03/2025
+Status
+Em revisão
+Iniciativa
+Investimento
+ROI
+Status
+Transformação Digital
+R$ 344.958,45
+41%
+Atrasado
+Transformação Digital
+R$ 440.064,31
+16%
+Planejado
+Expansão
+R$ 89.269,84
+16%
+Pendente
+Expansão
+R$ 162.811,01
+43%
+Aprovado
+Expansão
+R$ 486.758,90
+81%
+Aprovado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 38 =====
+32. Simulação de Cenários
+Portfólio  ›  Cenários
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Cenários  ›  Simulação de Cenários
+Registro
+REG-2025-055
+Responsável
+Ana Beatriz Lima
+Data
+08/06/2025
+Status
+Aprovado
+Iniciativa
+Investimento
+ROI
+Status
+Modernização
+R$ 452.717,75
+84%
+Aprovado
+Transformação Digital
+R$ 23.120,01
+89%
+Em revisão
+Expansão
+R$ 44.354,20
+62%
+Em andamento
+Transformação Digital
+R$ 155.491,99
+2%
+Atrasado
+Expansão
+R$ 18.360,13
+55%
+Atrasado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 39 =====
+33. Comparativo de Cenários
+Portfólio  ›  Cenários
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Cenários  ›  Comparativo de Cenários
+Registro
+REG-2025-071
+Responsável
+Camila Ferreira
+Data
+01/02/2025
+Status
+Planejado
+Iniciativa
+Investimento
+ROI
+Status
+Expansão
+R$ 189.793,65
+20%
+Pendente
+Expansão
+R$ 286.054,60
+89%
+Em andamento
+Expansão
+R$ 405.628,39
+71%
+Em revisão
+Eficiência
+R$ 28.850,37
+3%
+Planejado
+Transformação Digital
+R$ 216.452,56
+23%
+Atrasado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 40 =====
+34. Roadmap de Portfólio
+Portfólio  ›  Roadmap
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Roadmap  ›  Roadmap de Portfólio
+Registro
+REG-2025-071
+Responsável
+Bruno Martins
+Data
+14/07/2025
+Status
+Em revisão
+Iniciativa
+Investimento
+ROI
+Status
+Expansão
+R$ 158.949,75
+56%
+Concluído
+Eficiência
+R$ 390.653,08
+3%
+Em andamento
+Transformação Digital
+R$ 76.776,44
+33%
+Atrasado
+Eficiência
+R$ 482.370,70
+69%
+Pendente
+Modernização
+R$ 112.387,33
+42%
+Aprovado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 41 =====
+35. Funil de Oportunidades
+Propostas  ›  Pipeline
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Pipeline  ›  Funil de Oportunidades
+Cliente
+Helix Energia S.A.
+Oportunidade
+OPT-2025-017
+Responsável
+Juliana Castro
+Valor Estimado
+R$ 288.960,26
+Probabilidade
+49%
+Fase
+Negociação
+Oportunidade
+Cliente
+Valor
+Prob.
+Fase
+OPT-231
+Orion Indústria
+R$ 220.623,96
+10%
+Fechada
+OPT-331
+Vertex Consultoria
+R$ 309.718,75
+61%
+Proposta
+OPT-719
+Aurora Varejo ME
+R$ 131.153,87
+25%
+Negoc.
+OPT-118
+Helix Energia S.A.
+R$ 75.728,29
+60%
+Qualif.
+OPT-299
+Acme Serviços Ltda
+R$ 100.758,26
+69%
+Proposta
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 42 =====
+36. Kanban de Prospecção
+Propostas  ›  Pipeline
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Pipeline  ›  Kanban de Prospecção
+Cliente
+Nimbus Tecnologia S.A.
+Oportunidade
+OPT-2025-030
+Responsável
+Rafael Teixeira
+Valor Estimado
+R$ 82.170,83
+Probabilidade
+25%
+Fase
+Proposta
+Oportunidade
+Cliente
+Valor
+Prob.
+Fase
+OPT-667
+Nimbus Tecnologia S.A.
+R$ 149.138,29
+2%
+Proposta
+OPT-761
+Orion Indústria
+R$ 425.902,20
+15%
+Negoc.
+OPT-986
+Quantum Saúde
+R$ 315.714,42
+15%
+Proposta
+OPT-592
+Vertex Consultoria
+R$ 283.051,46
+23%
+Proposta
+OPT-598
+Vertex Consultoria
+R$ 26.655,08
+10%
+Qualif.
+Adicionar Item
+Iniciar Sprint
+Fechar Sprint
+
+===== SLIDE 43 =====
+37. Cadastro de Oportunidade
+Propostas  ›  Oportunidade
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Oportunidade  ›  Cadastro de Oportunidade
+Cliente
+Delta Logística Ltda
+Oportunidade
+OPT-2025-049
+Responsável
+Rafael Teixeira
+Valor Estimado
+R$ 311.522,82
+Probabilidade
+8%
+Fase
+Negociação
+Oportunidade
+Cliente
+Valor
+Prob.
+Fase
+OPT-653
+Nimbus Tecnologia S.A.
+R$ 334.873,64
+69%
+Proposta
+OPT-297
+Delta Logística Ltda
+R$ 265.438,12
+14%
+Proposta
+OPT-668
+Quantum Saúde
+R$ 325.727,20
+95%
+Negoc.
+OPT-558
+Nimbus Tecnologia S.A.
+R$ 239.319,08
+5%
+Negoc.
+OPT-342
+Aurora Varejo ME
+R$ 341.186,15
+87%
+Qualif.
+Salvar
+Salvar e Novo
+Cancelar
+
+===== SLIDE 44 =====
+38. Dados do Cliente
+Propostas  ›  Oportunidade
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Oportunidade  ›  Dados do Cliente
+Razão Social
+Vertex Consultoria
+CNPJ
+40.284.479/0001-33
+Contato
+Lucas Andrade
+E-mail
+carlos.eduardo@empresa-ficticia.com
+Situação
+Ativo
+Oportunidade
+Cliente
+Valor
+Prob.
+Fase
+OPT-771
+Nimbus Tecnologia S.A.
+R$ 149.660,17
+38%
+Fechada
+OPT-443
+Nimbus Tecnologia S.A.
+R$ 198.227,25
+36%
+Negoc.
+OPT-877
+Aurora Varejo ME
+R$ 57.031,99
+50%
+Proposta
+OPT-777
+Quantum Saúde
+R$ 150.473,65
+34%
+Negoc.
+OPT-251
+Aurora Varejo ME
+R$ 358.844,32
+42%
+Proposta
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 45 =====
+39. Qualificação (BANT)
+Propostas  ›  Oportunidade
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Oportunidade  ›  Qualificação (BANT)
+Cliente
+Helix Energia S.A.
+Oportunidade
+OPT-2025-020
+Responsável
+Rafael Teixeira
+Valor Estimado
+R$ 325.783,77
+Probabilidade
+83%
+Fase
+Qualificação
+Oportunidade
+Cliente
+Valor
+Prob.
+Fase
+OPT-653
+Delta Logística Ltda
+R$ 79.893,01
+14%
+Fechada
+OPT-983
+Vertex Consultoria
+R$ 432.760,00
+40%
+Proposta
+OPT-138
+Delta Logística Ltda
+R$ 194.234,46
+17%
+Fechada
+OPT-864
+Aurora Varejo ME
+R$ 362.075,97
+71%
+Fechada
+OPT-380
+Vertex Consultoria
+R$ 40.017,50
+30%
+Proposta
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 46 =====
+40. Elaboração de Proposta
+Propostas  ›  Proposta
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Proposta  ›  Elaboração de Proposta
+Cliente
+Orion Indústria
+Oportunidade
+OPT-2025-024
+Responsável
+Mariana Souza Alves
+Valor Estimado
+R$ 210.774,76
+Probabilidade
+20%
+Fase
+Negociação
+Oportunidade
+Cliente
+Valor
+Prob.
+Fase
+OPT-828
+Aurora Varejo ME
+R$ 171.413,37
+52%
+Negoc.
+OPT-989
+Delta Logística Ltda
+R$ 127.778,56
+42%
+Qualif.
+OPT-230
+Vertex Consultoria
+R$ 388.930,37
+59%
+Qualif.
+OPT-801
+Nimbus Tecnologia S.A.
+R$ 345.664,97
+61%
+Fechada
+OPT-863
+Quantum Saúde
+R$ 189.972,46
+50%
+Fechada
+Salvar
+Salvar e Novo
+Cancelar
+
+===== SLIDE 47 =====
+41. Escopo e Premissas
+Propostas  ›  Proposta
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Proposta  ›  Escopo e Premissas
+Cliente
+Delta Logística Ltda
+Oportunidade
+OPT-2025-082
+Responsável
+Pedro Henrique Rocha
+Valor Estimado
+R$ 382.379,76
+Probabilidade
+21%
+Fase
+Qualificação
+Oportunidade
+Cliente
+Valor
+Prob.
+Fase
+OPT-815
+Aurora Varejo ME
+R$ 258.055,35
+66%
+Fechada
+OPT-261
+Vertex Consultoria
+R$ 66.497,49
+52%
+Qualif.
+OPT-660
+Orion Indústria
+R$ 66.057,41
+50%
+Negoc.
+OPT-650
+Helix Energia S.A.
+R$ 382.842,33
+29%
+Qualif.
+OPT-813
+Nimbus Tecnologia S.A.
+R$ 468.280,24
+27%
+Proposta
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 48 =====
+42. Precificação e Margem
+Propostas  ›  Proposta
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Proposta  ›  Precificação e Margem
+Cliente
+Helix Energia S.A.
+Oportunidade
+OPT-2025-045
+Responsável
+Pedro Henrique Rocha
+Valor Estimado
+R$ 185.881,66
+Probabilidade
+28%
+Fase
+Qualificação
+Oportunidade
+Cliente
+Valor
+Prob.
+Fase
+OPT-473
+Quantum Saúde
+R$ 245.704,71
+2%
+Fechada
+OPT-803
+Vertex Consultoria
+R$ 110.439,24
+90%
+Negoc.
+OPT-234
+Quantum Saúde
+R$ 122.196,29
+3%
+Qualif.
+OPT-332
+Vertex Consultoria
+R$ 320.554,47
+51%
+Negoc.
+OPT-184
+Vertex Consultoria
+R$ 257.914,21
+31%
+Qualif.
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 49 =====
+43. Cronograma Macro
+Propostas  ›  Proposta
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Proposta  ›  Cronograma Macro
+Cliente
+Nimbus Tecnologia S.A.
+Oportunidade
+OPT-2025-082
+Responsável
+Ana Beatriz Lima
+Valor Estimado
+R$ 181.570,09
+Probabilidade
+54%
+Fase
+Proposta
+Oportunidade
+Cliente
+Valor
+Prob.
+Fase
+OPT-441
+Orion Indústria
+R$ 435.773,27
+8%
+Fechada
+OPT-315
+Nimbus Tecnologia S.A.
+R$ 242.362,63
+10%
+Fechada
+OPT-309
+Helix Energia S.A.
+R$ 297.109,28
+74%
+Fechada
+OPT-674
+Quantum Saúde
+R$ 380.127,21
+45%
+Fechada
+OPT-483
+Acme Serviços Ltda
+R$ 81.936,68
+40%
+Fechada
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 50 =====
+44. Aprovação da Proposta
+Propostas  ›  Proposta
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Proposta  ›  Aprovação da Proposta
+Cliente
+Helix Energia S.A.
+Oportunidade
+OPT-2025-012
+Responsável
+Lucas Andrade
+Valor Estimado
+R$ 385.421,47
+Probabilidade
+92%
+Fase
+Fechamento
+Tipo
+Origem
+Solicitante
+Data
+Ação
+Despesa
+PRJ-2025-022 App Mobile
+Lucas Andrade
+26/12/2025
+Aprovar / Rejeitar
+Alocação
+PRJ-2025-031 BI Corporativo
+Carlos Eduardo Nunes
+20/02/2025
+Aprovar / Rejeitar
+Despesa
+PRJ-2025-031 BI Corporativo
+Bruno Martins
+18/02/2025
+Aprovar / Rejeitar
+Horas
+PRJ-2025-001 Portal Cliente
+Lucas Andrade
+19/08/2025
+Aprovar / Rejeitar
+Alocação
+PRJ-2025-014 ERP Fase 2
+Pedro Henrique Rocha
+25/09/2025
+Aprovar / Rejeitar
+Aprovar
+Rejeitar
+Delegar
+Comentar
+
+===== SLIDE 51 =====
+45. Geração de Contrato
+Propostas  ›  Contrato
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Contrato  ›  Geração de Contrato
+Cliente
+Aurora Varejo ME
+Oportunidade
+OPT-2025-053
+Responsável
+Lucas Andrade
+Valor Estimado
+R$ 425.128,70
+Probabilidade
+3%
+Fase
+Negociação
+Oportunidade
+Cliente
+Valor
+Prob.
+Fase
+OPT-821
+Aurora Varejo ME
+R$ 238.545,14
+88%
+Fechada
+OPT-781
+Vertex Consultoria
+R$ 193.756,21
+96%
+Negoc.
+OPT-822
+Quantum Saúde
+R$ 472.075,78
+42%
+Proposta
+OPT-837
+Delta Logística Ltda
+R$ 425.805,86
+61%
+Proposta
+OPT-425
+Helix Energia S.A.
+R$ 343.043,85
+81%
+Fechada
+Salvar
+Salvar e Novo
+Cancelar
+
+===== SLIDE 52 =====
+46. Assinatura e Fechamento
+Propostas  ›  Contrato
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Contrato  ›  Assinatura e Fechamento
+Cliente
+Orion Indústria
+Oportunidade
+OPT-2025-046
+Responsável
+Juliana Castro
+Valor Estimado
+R$ 399.621,91
+Probabilidade
+89%
+Fase
+Fechamento
+Oportunidade
+Cliente
+Valor
+Prob.
+Fase
+OPT-161
+Acme Serviços Ltda
+R$ 399.854,85
+22%
+Negoc.
+OPT-137
+Nimbus Tecnologia S.A.
+R$ 36.831,14
+94%
+Qualif.
+OPT-335
+Helix Energia S.A.
+R$ 44.681,28
+98%
+Qualif.
+OPT-499
+Aurora Varejo ME
+R$ 484.047,50
+25%
+Proposta
+OPT-382
+Aurora Varejo ME
+R$ 268.778,68
+92%
+Qualif.
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 53 =====
+47. Portfólio de Projetos
+Projetos  ›  Lista
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Lista  ›  Portfólio de Projetos
+Registro
+REG-2025-036
+Responsável
+Carlos Eduardo Nunes
+Data
+10/12/2025
+Status
+Planejado
+Projeto
+Cliente
+Gerente
+% Concl.
+Status
+PRJ-2025-045 Migração Cloud
+Helix Energia S.A.
+Juliana Castro
+12%
+Em andamento
+PRJ-2025-031 BI Corporativo
+Vertex Consultoria
+Juliana Castro
+3%
+Concluído
+PRJ-2025-022 App Mobile
+Helix Energia S.A.
+Lucas Andrade
+91%
+Aprovado
+PRJ-2025-022 App Mobile
+Orion Indústria
+Rafael Teixeira
+55%
+Aprovado
+PRJ-2025-045 Migração Cloud
+Helix Energia S.A.
+Camila Ferreira
+44%
+Concluído
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 54 =====
+48. Filtros e Agrupamentos
+Projetos  ›  Lista
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Lista  ›  Filtros e Agrupamentos
+Registro
+REG-2025-051
+Responsável
+Juliana Castro
+Data
+13/12/2025
+Status
+Pendente
+Projeto
+Cliente
+Gerente
+% Concl.
+Status
+PRJ-2025-022 App Mobile
+Acme Serviços Ltda
+Lucas Andrade
+73%
+Em andamento
+PRJ-2025-031 BI Corporativo
+Vertex Consultoria
+Bruno Martins
+41%
+Em revisão
+PRJ-2025-014 ERP Fase 2
+Aurora Varejo ME
+Rafael Teixeira
+3%
+Em andamento
+PRJ-2025-001 Portal Cliente
+Acme Serviços Ltda
+Camila Ferreira
+61%
+Em andamento
+PRJ-2025-031 BI Corporativo
+Acme Serviços Ltda
+Juliana Castro
+12%
+Concluído
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 55 =====
+49. Termo de Abertura (TAP)
+Projetos  ›  Abertura
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Abertura  ›  Termo de Abertura (TAP)
+Projeto
+PRJ-2025-014 ERP Fase 2
+Patrocinador
+Fernanda Oliveira
+Gerente
+Camila Ferreira
+Início
+07/09/2025
+Término Previsto
+13/05/2025
+Orçamento
+R$ 407.166,17
+Salvar
+Salvar e Novo
+Cancelar
+
+===== SLIDE 56 =====
+50. Objetivos e Escopo
+Projetos  ›  Abertura
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Abertura  ›  Objetivos e Escopo
+Projeto
+PRJ-2025-031 BI Corporativo
+Patrocinador
+Carlos Eduardo Nunes
+Gerente
+Lucas Andrade
+Início
+24/11/2025
+Término Previsto
+14/08/2025
+Orçamento
+R$ 259.429,94
+Salvar
+Salvar e Novo
+Cancelar
+
+===== SLIDE 57 =====
+51. Stakeholders
+Projetos  ›  Abertura
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Abertura  ›  Stakeholders
+Registro
+REG-2025-061
+Responsável
+Fernanda Oliveira
+Data
+16/08/2025
+Status
+Planejado
+Salvar
+Salvar e Novo
+Cancelar
+
+===== SLIDE 58 =====
+52. Estrutura Analítica (EAP/WBS)
+Projetos  ›  Planejamento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Planejamento  ›  Estrutura Analítica (EAP/WBS)
+Registro
+REG-2025-083
+Responsável
+Rafael Teixeira
+Data
+02/06/2025
+Status
+Planejado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 59 =====
+53. Cronograma (Gantt)
+Projetos  ›  Planejamento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Planejamento  ›  Cronograma (Gantt)
+Registro
+REG-2025-079
+Responsável
+Bruno Martins
+Data
+15/10/2025
+Status
+Em andamento
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 60 =====
+54. Marcos e Entregas
+Projetos  ›  Planejamento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Planejamento  ›  Marcos e Entregas
+Registro
+REG-2025-042
+Responsável
+Lucas Andrade
+Data
+09/08/2025
+Status
+Planejado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 61 =====
+55. Linha de Base
+Projetos  ›  Planejamento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Planejamento  ›  Linha de Base
+Registro
+REG-2025-060
+Responsável
+Mariana Souza Alves
+Data
+27/02/2025
+Status
+Aprovado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 62 =====
+56. Dependências entre Atividades
+Projetos  ›  Planejamento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Planejamento  ›  Dependências entre Atividades
+Registro
+REG-2025-025
+Responsável
+Ana Beatriz Lima
+Data
+22/02/2025
+Status
+Concluído
+Tipo
+Origem
+Solicitante
+Data
+Ação
+Mudança
+PRJ-2025-031 BI Corporativo
+Camila Ferreira
+23/06/2025
+Aprovar / Rejeitar
+Alocação
+PRJ-2025-001 Portal Cliente
+Carlos Eduardo Nunes
+06/02/2025
+Aprovar / Rejeitar
+Horas
+PRJ-2025-014 ERP Fase 2
+Carlos Eduardo Nunes
+22/02/2025
+Aprovar / Rejeitar
+Despesa
+PRJ-2025-001 Portal Cliente
+Juliana Castro
+10/12/2025
+Aprovar / Rejeitar
+Despesa
+PRJ-2025-022 App Mobile
+Ana Beatriz Lima
+22/07/2025
+Aprovar / Rejeitar
+Aprovar
+Rejeitar
+Delegar
+Comentar
+
+===== SLIDE 63 =====
+57. Plano de Recursos
+Projetos  ›  Recursos
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Recursos  ›  Plano de Recursos
+Recurso
+Lucas Andrade
+Cargo
+PMO
+Alocação Atual
+29%
+Custo/Hora
+R$ 248.865,39
+Recurso
+Cargo
+Projeto
+Alocação
+Período
+Mariana Souza Alves
+Dev
+PRJ-2025-014 ERP Fase 2
+95%
+04/04/2025
+Ana Beatriz Lima
+Dev
+PRJ-2025-001 Portal Cliente
+1%
+17/06/2025
+Carlos Eduardo Nunes
+Analista
+PRJ-2025-014 ERP Fase 2
+41%
+19/12/2025
+Ana Beatriz Lima
+Analista
+PRJ-2025-045 Migração Cloud
+43%
+14/05/2025
+Ana Beatriz Lima
+Analista
+PRJ-2025-014 ERP Fase 2
+39%
+12/02/2025
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 64 =====
+58. Alocação da Equipe
+Projetos  ›  Recursos
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Recursos  ›  Alocação da Equipe
+Recurso
+Juliana Castro
+Cargo
+Desenvolvedor
+Alocação Atual
+15%
+Custo/Hora
+R$ 490.281,51
+Recurso
+Cargo
+Projeto
+Alocação
+Período
+Bruno Martins
+Analista
+PRJ-2025-001 Portal Cliente
+68%
+03/02/2025
+Camila Ferreira
+PMO
+PRJ-2025-001 Portal Cliente
+47%
+22/06/2025
+Mariana Souza Alves
+Dev
+PRJ-2025-022 App Mobile
+50%
+09/11/2025
+Lucas Andrade
+PMO
+PRJ-2025-022 App Mobile
+53%
+21/01/2025
+Bruno Martins
+Analista
+PRJ-2025-045 Migração Cloud
+76%
+13/03/2025
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 65 =====
+59. Orçamento do Projeto
+Projetos  ›  Custos
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Custos  ›  Orçamento do Projeto
+Exercício
+2025
+Centro de Custo
+CC-912
+Orçado
+R$ 339.080,90
+Realizado
+R$ 408.480,00
+Projeto
+Orçado
+Realizado
+Margem
+PRJ-2025-014 ERP Fase 2
+R$ 366.284,34
+R$ 200.101,46
+93%
+PRJ-2025-014 ERP Fase 2
+R$ 91.669,59
+R$ 365.810,89
+98%
+PRJ-2025-031 BI Corporativo
+R$ 82.765,11
+R$ 220.836,40
+26%
+PRJ-2025-031 BI Corporativo
+R$ 228.715,49
+R$ 120.542,55
+2%
+PRJ-2025-014 ERP Fase 2
+R$ 284.489,26
+R$ 437.339,19
+42%
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 66 =====
+60. Curva S de Custos
+Projetos  ›  Custos
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Custos  ›  Curva S de Custos
+Registro
+REG-2025-039
+Responsável
+Mariana Souza Alves
+Data
+26/09/2025
+Status
+Aprovado
+Projeto
+Orçado
+Realizado
+Margem
+PRJ-2025-031 BI Corporativo
+R$ 186.187,60
+R$ 213.439,13
+64%
+PRJ-2025-001 Portal Cliente
+R$ 309.338,64
+R$ 396.972,58
+71%
+PRJ-2025-022 App Mobile
+R$ 173.234,38
+R$ 18.124,32
+76%
+PRJ-2025-045 Migração Cloud
+R$ 427.680,62
+R$ 197.637,97
+81%
+PRJ-2025-031 BI Corporativo
+R$ 328.468,31
+R$ 31.711,34
+78%
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 67 =====
+61. Matriz de Riscos
+Projetos  ›  Riscos
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Riscos  ›  Matriz de Riscos
+Risco
+Atraso na entrega de fornecedor
+Probabilidade
+Baixa
+Impacto
+Baixo
+Resposta
+Mitigar
+Risco
+Prob.
+Impacto
+Resposta
+Dono
+Escopo instável
+Média
+Alto
+Evitar
+Carlos Eduardo Nunes
+Atraso fornecedor
+Média
+Médio
+Evitar
+Lucas Andrade
+Atraso fornecedor
+Alta
+Médio
+Aceitar
+Rafael Teixeira
+Atraso fornecedor
+Média
+Médio
+Mitigar
+Rafael Teixeira
+Escopo instável
+Média
+Baixo
+Aceitar
+Lucas Andrade
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 68 =====
+62. Plano de Resposta a Riscos
+Projetos  ›  Riscos
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Riscos  ›  Plano de Resposta a Riscos
+Risco
+Atraso na entrega de fornecedor
+Probabilidade
+Média
+Impacto
+Médio
+Resposta
+Evitar
+Risco
+Prob.
+Impacto
+Resposta
+Dono
+Falha técnica
+Média
+Médio
+Aceitar
+Juliana Castro
+Escopo instável
+Alta
+Médio
+Mitigar
+Juliana Castro
+Escopo instável
+Alta
+Médio
+Evitar
+Rafael Teixeira
+Falta recurso
+Baixa
+Médio
+Evitar
+Bruno Martins
+Escopo instável
+Alta
+Médio
+Mitigar
+Lucas Andrade
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 69 =====
+63. Plano de Qualidade
+Projetos  ›  Qualidade
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Qualidade  ›  Plano de Qualidade
+Registro
+REG-2025-025
+Responsável
+Pedro Henrique Rocha
+Data
+15/10/2025
+Status
+Atrasado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 70 =====
+64. Checklist de Entregáveis
+Projetos  ›  Qualidade
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Qualidade  ›  Checklist de Entregáveis
+Registro
+REG-2025-091
+Responsável
+Lucas Andrade
+Data
+06/10/2025
+Status
+Pendente
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 71 =====
+65. Plano de Comunicação
+Projetos  ›  Comunicação
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Comunicação  ›  Plano de Comunicação
+Registro
+REG-2025-099
+Responsável
+Lucas Andrade
+Data
+17/10/2025
+Status
+Planejado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 72 =====
+66. Plano de Aquisições
+Projetos  ›  Aquisições
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Aquisições  ›  Plano de Aquisições
+Registro
+REG-2025-085
+Responsável
+Juliana Castro
+Data
+03/11/2025
+Status
+Atrasado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 73 =====
+67. Apontamento de Progresso
+Projetos  ›  Execução
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Execução  ›  Apontamento de Progresso
+Colaborador
+Fernanda Oliveira
+Projeto
+PRJ-2025-045 Migração Cloud
+Data
+25/11/2025
+Horas
+124h
+Atividade
+Reunião
+Data
+Projeto
+Atividade
+Horas
+Status
+13/06/2025
+PRJ-2025-001 Portal Cliente
+Testes
+114h
+Aprovado
+16/02/2025
+PRJ-2025-031 BI Corporativo
+Dev
+164h
+Pendente
+15/09/2025
+PRJ-2025-014 ERP Fase 2
+Dev
+127h
+Aprovado
+19/04/2025
+PRJ-2025-022 App Mobile
+Reunião
+52h
+Aprovado
+08/07/2025
+PRJ-2025-045 Migração Cloud
+Dev
+8h
+Aprovado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 74 =====
+68. Registro de Ocorrências
+Projetos  ›  Execução
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Execução  ›  Registro de Ocorrências
+Registro
+REG-2025-083
+Responsável
+Ana Beatriz Lima
+Data
+08/07/2025
+Status
+Planejado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 75 =====
+69. Solicitação de Mudança
+Projetos  ›  Execução
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Execução  ›  Solicitação de Mudança
+Solicitação
+CR-2025-082
+Projeto
+PRJ-2025-001 Portal Cliente
+Solicitante
+Camila Ferreira
+Impacto Prazo
+2 dias
+Status
+Aprovado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 76 =====
+70. Painel do Projeto (EVM)
+Projetos  ›  Monitoramento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Monitoramento  ›  Painel do Projeto (EVM)
+Projetos Ativos
+35
+No Prazo
+30%
+CPI Médio
+0,72
+SPI Médio
+0,84
+Registro
+REG-2025-023
+Responsável
+Bruno Martins
+Data
+07/02/2025
+Status
+Aprovado
+Projeto
+Cliente
+Gerente
+% Concl.
+Status
+PRJ-2025-031 BI Corporativo
+Aurora Varejo ME
+Camila Ferreira
+25%
+Aprovado
+PRJ-2025-031 BI Corporativo
+Orion Indústria
+Juliana Castro
+64%
+Atrasado
+PRJ-2025-045 Migração Cloud
+Quantum Saúde
+Carlos Eduardo Nunes
+67%
+Planejado
+PRJ-2025-014 ERP Fase 2
+Delta Logística Ltda
+Juliana Castro
+72%
+Atrasado
+PRJ-2025-031 BI Corporativo
+Helix Energia S.A.
+Pedro Henrique Rocha
+73%
+Em andamento
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 77 =====
+71. Indicadores CPI/SPI
+Projetos  ›  Monitoramento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Monitoramento  ›  Indicadores CPI/SPI
+Projetos Ativos
+31
+No Prazo
+99%
+CPI Médio
+0,89
+SPI Médio
+0,88
+Registro
+REG-2025-061
+Responsável
+Pedro Henrique Rocha
+Data
+11/12/2025
+Status
+Aprovado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 78 =====
+72. Status Report
+Projetos  ›  Monitoramento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Monitoramento  ›  Status Report
+Registro
+REG-2025-083
+Responsável
+Fernanda Oliveira
+Data
+08/07/2025
+Status
+Em andamento
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 79 =====
+73. Lições Aprendidas
+Projetos  ›  Encerramento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Encerramento  ›  Lições Aprendidas
+Registro
+REG-2025-063
+Responsável
+Mariana Souza Alves
+Data
+11/01/2025
+Status
+Concluído
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 80 =====
+74. Termo de Encerramento
+Projetos  ›  Encerramento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Encerramento  ›  Termo de Encerramento
+Registro
+REG-2025-046
+Responsável
+Mariana Souza Alves
+Data
+24/12/2025
+Status
+Pendente
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 81 =====
+75. Product Backlog
+Ágil  ›  Backlog
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Backlog  ›  Product Backlog
+Registro
+REG-2025-012
+Responsável
+Camila Ferreira
+Data
+18/04/2025
+Status
+Em revisão
+ID
+História
+Pontos
+Prioridade
+Status
+US-577
+Filtro avançado
+3
+Média
+Done
+US-387
+Painel BI
+1
+Alta
+Doing
+US-383
+Painel BI
+1
+Alta
+Done
+US-473
+Export PDF
+8
+Alta
+Doing
+US-427
+Export PDF
+3
+Baixa
+Doing
+Adicionar Item
+Iniciar Sprint
+Fechar Sprint
+
+===== SLIDE 82 =====
+76. Priorização do Backlog
+Ágil  ›  Backlog
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Backlog  ›  Priorização do Backlog
+Registro
+REG-2025-092
+Responsável
+Ana Beatriz Lima
+Data
+01/07/2025
+Status
+Planejado
+ID
+História
+Pontos
+Prioridade
+Status
+US-161
+Export PDF
+3
+Média
+Doing
+US-583
+Login SSO
+1
+Baixa
+To Do
+US-340
+Export PDF
+3
+Baixa
+Done
+US-985
+Painel BI
+2
+Baixa
+To Do
+US-892
+Notificações
+3
+Alta
+Doing
+Adicionar Item
+Iniciar Sprint
+Fechar Sprint
+
+===== SLIDE 83 =====
+77. Refinamento (Grooming)
+Ágil  ›  Backlog
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Backlog  ›  Refinamento (Grooming)
+Registro
+REG-2025-032
+Responsável
+Mariana Souza Alves
+Data
+14/09/2025
+Status
+Aprovado
+ID
+História
+Pontos
+Prioridade
+Status
+US-882
+Painel BI
+2
+Alta
+Doing
+US-351
+Painel BI
+1
+Média
+Done
+US-214
+Notificações
+3
+Baixa
+To Do
+US-419
+Login SSO
+1
+Baixa
+Doing
+US-991
+Notificações
+2
+Média
+Done
+Adicionar Item
+Iniciar Sprint
+Fechar Sprint
+
+===== SLIDE 84 =====
+78. Planejamento da Sprint
+Ágil  ›  Sprint
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Sprint  ›  Planejamento da Sprint
+Story Points
+56
+Concluídos
+64%
+Velocidade
+30
+Impedimentos
+2
+Sprint
+Sprint 6
+Período
+19/02/2025 a 17/05/2025
+Meta
+Concluir módulo de faturamento
+Capacidade
+65h
+Adicionar Item
+Iniciar Sprint
+Fechar Sprint
+
+===== SLIDE 85 =====
+79. Sprint Backlog
+Ágil  ›  Sprint
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Sprint  ›  Sprint Backlog
+Story Points
+35
+Concluídos
+70%
+Velocidade
+20
+Impedimentos
+2
+Sprint
+Sprint 12
+Período
+23/11/2025 a 01/08/2025
+Meta
+Concluir módulo de faturamento
+Capacidade
+100h
+ID
+História
+Pontos
+Prioridade
+Status
+US-982
+Filtro avançado
+2
+Baixa
+To Do
+US-554
+Notificações
+2
+Média
+Done
+US-240
+Notificações
+2
+Média
+To Do
+US-833
+Notificações
+8
+Alta
+Doing
+US-417
+Notificações
+5
+Baixa
+Doing
+Adicionar Item
+Iniciar Sprint
+Fechar Sprint
+
+===== SLIDE 86 =====
+80. Quadro Kanban / Scrum
+Ágil  ›  Sprint
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Sprint  ›  Quadro Kanban / Scrum
+Story Points
+50
+Concluídos
+53%
+Velocidade
+46
+Impedimentos
+3
+Sprint
+Sprint 6
+Período
+16/01/2025 a 05/11/2025
+Meta
+Concluir módulo de faturamento
+Capacidade
+45h
+Adicionar Item
+Iniciar Sprint
+Fechar Sprint
+
+===== SLIDE 87 =====
+81. Daily / Impedimentos
+Ágil  ›  Sprint
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Sprint  ›  Daily / Impedimentos
+Story Points
+67
+Concluídos
+14%
+Velocidade
+38
+Impedimentos
+4
+Sprint
+Sprint 7
+Período
+16/08/2025 a 06/05/2025
+Meta
+Concluir módulo de faturamento
+Capacidade
+90h
+Adicionar Item
+Iniciar Sprint
+Fechar Sprint
+
+===== SLIDE 88 =====
+82. Burndown Chart
+Ágil  ›  Sprint
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Sprint  ›  Burndown Chart
+Story Points
+34
+Concluídos
+22%
+Velocidade
+46
+Impedimentos
+2
+Sprint
+Sprint 5
+Período
+22/04/2025 a 16/02/2025
+Meta
+Concluir módulo de faturamento
+Capacidade
+37h
+Adicionar Item
+Iniciar Sprint
+Fechar Sprint
+
+===== SLIDE 89 =====
+83. Velocity Chart
+Ágil  ›  Sprint
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Sprint  ›  Velocity Chart
+Story Points
+31
+Concluídos
+81%
+Velocidade
+30
+Impedimentos
+1
+Sprint
+Sprint 12
+Período
+01/10/2025 a 10/03/2025
+Meta
+Concluir módulo de faturamento
+Capacidade
+48h
+Adicionar Item
+Iniciar Sprint
+Fechar Sprint
+
+===== SLIDE 90 =====
+84. Review da Sprint
+Ágil  ›  Sprint
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Sprint  ›  Review da Sprint
+Story Points
+46
+Concluídos
+30%
+Velocidade
+24
+Impedimentos
+0
+Sprint
+Sprint 5
+Período
+04/07/2025 a 09/03/2025
+Meta
+Concluir módulo de faturamento
+Capacidade
+117h
+Adicionar Item
+Iniciar Sprint
+Fechar Sprint
+
+===== SLIDE 91 =====
+85. Retrospectiva
+Ágil  ›  Sprint
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Sprint  ›  Retrospectiva
+Story Points
+31
+Concluídos
+64%
+Velocidade
+16
+Impedimentos
+2
+Sprint
+Sprint 13
+Período
+20/07/2025 a 03/03/2025
+Meta
+Concluir módulo de faturamento
+Capacidade
+35h
+Adicionar Item
+Iniciar Sprint
+Fechar Sprint
+
+===== SLIDE 92 =====
+86. Cadastro de User Story
+Ágil  ›  Histórias
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Histórias  ›  Cadastro de User Story
+História
+US-599
+Como
+usuário gestor
+Quero
+visualizar o painel consolidado
+Story Points
+3
+Prioridade
+Baixa
+ID
+História
+Pontos
+Prioridade
+Status
+US-679
+Filtro avançado
+5
+Média
+Doing
+US-161
+Login SSO
+2
+Média
+Done
+US-855
+Filtro avançado
+8
+Alta
+Done
+US-358
+Export PDF
+2
+Alta
+Done
+US-351
+Login SSO
+5
+Baixa
+Done
+Salvar
+Salvar e Novo
+Cancelar
+
+===== SLIDE 93 =====
+87. Critérios de Aceite
+Ágil  ›  Histórias
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Histórias  ›  Critérios de Aceite
+História
+US-276
+Como
+usuário gestor
+Quero
+visualizar o painel consolidado
+Story Points
+5
+Prioridade
+Média
+ID
+História
+Pontos
+Prioridade
+Status
+US-260
+Notificações
+2
+Alta
+To Do
+US-589
+Painel BI
+1
+Média
+Done
+US-590
+Painel BI
+8
+Baixa
+Doing
+US-602
+Filtro avançado
+8
+Alta
+To Do
+US-565
+Export PDF
+3
+Baixa
+Doing
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 94 =====
+88. Estimativa (Planning Poker)
+Ágil  ›  Histórias
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Histórias  ›  Estimativa (Planning Poker)
+História
+US-320
+Como
+usuário gestor
+Quero
+visualizar o painel consolidado
+Story Points
+13
+Prioridade
+Média
+ID
+História
+Pontos
+Prioridade
+Status
+US-609
+Export PDF
+8
+Média
+Doing
+US-306
+Filtro avançado
+3
+Alta
+To Do
+US-117
+Filtro avançado
+1
+Média
+Done
+US-434
+Filtro avançado
+5
+Baixa
+Doing
+US-227
+Login SSO
+3
+Baixa
+To Do
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 95 =====
+89. Configuração de Metodologia Híbrida
+Híbrido  ›  Configuração
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Configuração  ›  Configuração de Metodologia Híbrida
+Parâmetro
+Moeda padrão
+Valor
+Híbrido
+Data/Hora
+Usuário
+Ação
+Módulo
+21/04/2025 4:49
+Bruno Martins
+Excluiu
+Projetos
+27/03/2025 5:48
+Rafael Teixeira
+Criou
+Projetos
+25/09/2025 4:43
+Lucas Andrade
+Aprovou
+Projetos
+16/08/2025 19:20
+Mariana Souza Alves
+Aprovou
+Projetos
+16/06/2025 14:12
+Lucas Andrade
+Excluiu
+Usuários
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 96 =====
+90. Fases Preditivas x Ágeis
+Híbrido  ›  Configuração
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Configuração  ›  Fases Preditivas x Ágeis
+Parâmetro
+Fuso horário
+Valor
+Híbrido
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 97 =====
+91. Painel Integrado Híbrido
+Híbrido  ›  Visão
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Visão  ›  Painel Integrado Híbrido
+Tarefas Abertas
+18
+Pendências
+5
+Horas Semana
+15h
+Alertas
+0
+Registro
+REG-2025-039
+Responsável
+Rafael Teixeira
+Data
+22/12/2025
+Status
+Em revisão
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 98 =====
+92. Cronograma + Sprints
+Híbrido  ›  Visão
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Visão  ›  Cronograma + Sprints
+Story Points
+70
+Concluídos
+72%
+Velocidade
+23
+Impedimentos
+4
+Sprint
+Sprint 1
+Período
+27/10/2025 a 26/07/2025
+Meta
+Concluir módulo de faturamento
+Capacidade
+94h
+Adicionar Item
+Iniciar Sprint
+Fechar Sprint
+
+===== SLIDE 99 =====
+93. Mapa de Alocação de Recursos
+Alocações  ›  Visão Geral
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Visão Geral  ›  Mapa de Alocação de Recursos
+Ocupação Média
+92%
+Recursos
+72
+Superalocados
+7
+Disponíveis
+10
+Recurso
+Bruno Martins
+Cargo
+PMO
+Alocação Atual
+44%
+Custo/Hora
+R$ 283.119,60
+Recurso
+Cargo
+Projeto
+Alocação
+Período
+Pedro Henrique Rocha
+Analista
+PRJ-2025-014 ERP Fase 2
+29%
+14/12/2025
+Lucas Andrade
+Dev
+PRJ-2025-022 App Mobile
+77%
+16/12/2025
+Camila Ferreira
+Analista
+PRJ-2025-045 Migração Cloud
+36%
+24/03/2025
+Ana Beatriz Lima
+PMO
+PRJ-2025-031 BI Corporativo
+28%
+03/04/2025
+Fernanda Oliveira
+PMO
+PRJ-2025-014 ERP Fase 2
+53%
+26/06/2025
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 100 =====
+94. Capacidade x Demanda
+Alocações  ›  Visão Geral
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Visão Geral  ›  Capacidade x Demanda
+Ocupação Média
+57%
+Recursos
+98
+Superalocados
+7
+Disponíveis
+16
+Registro
+REG-2025-057
+Responsável
+Ana Beatriz Lima
+Data
+12/10/2025
+Status
+Pendente
+Recurso
+Cargo
+Projeto
+Alocação
+Período
+Carlos Eduardo Nunes
+Analista
+PRJ-2025-014 ERP Fase 2
+22%
+04/12/2025
+Ana Beatriz Lima
+Analista
+PRJ-2025-031 BI Corporativo
+95%
+27/11/2025
+Mariana Souza Alves
+PMO
+PRJ-2025-031 BI Corporativo
+21%
+09/11/2025
+Juliana Castro
+Dev
+PRJ-2025-001 Portal Cliente
+86%
+03/03/2025
+Mariana Souza Alves
+Dev
+PRJ-2025-031 BI Corporativo
+37%
+05/04/2025
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 101 =====
+95. Heatmap de Ocupação
+Alocações  ›  Visão Geral
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Visão Geral  ›  Heatmap de Ocupação
+Ocupação Média
+18%
+Recursos
+68
+Superalocados
+7
+Disponíveis
+21
+Registro
+REG-2025-087
+Responsável
+Pedro Henrique Rocha
+Data
+03/02/2025
+Status
+Em andamento
+Recurso
+Cargo
+Projeto
+Alocação
+Período
+Mariana Souza Alves
+Dev
+PRJ-2025-001 Portal Cliente
+56%
+06/12/2025
+Pedro Henrique Rocha
+Analista
+PRJ-2025-014 ERP Fase 2
+2%
+14/12/2025
+Lucas Andrade
+Analista
+PRJ-2025-045 Migração Cloud
+92%
+02/07/2025
+Mariana Souza Alves
+Analista
+PRJ-2025-001 Portal Cliente
+14%
+20/02/2025
+Mariana Souza Alves
+Analista
+PRJ-2025-022 App Mobile
+2%
+24/07/2025
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 102 =====
+96. Ficha do Recurso
+Alocações  ›  Recurso
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Recurso  ›  Ficha do Recurso
+Recurso
+Mariana Souza Alves
+Cargo
+Desenvolvedor
+Alocação Atual
+67%
+Custo/Hora
+R$ 390.681,01
+Recurso
+Cargo
+Projeto
+Alocação
+Período
+Rafael Teixeira
+PMO
+PRJ-2025-014 ERP Fase 2
+83%
+16/12/2025
+Camila Ferreira
+PMO
+PRJ-2025-001 Portal Cliente
+60%
+04/10/2025
+Pedro Henrique Rocha
+Analista
+PRJ-2025-014 ERP Fase 2
+89%
+14/08/2025
+Fernanda Oliveira
+Dev
+PRJ-2025-031 BI Corporativo
+33%
+27/12/2025
+Bruno Martins
+Dev
+PRJ-2025-014 ERP Fase 2
+49%
+06/07/2025
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 103 =====
+97. Competências e Skills
+Alocações  ›  Recurso
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Recurso  ›  Competências e Skills
+Recurso
+Carlos Eduardo Nunes
+Cargo
+PMO
+Alocação Atual
+72%
+Custo/Hora
+R$ 101.528,95
+Recurso
+Cargo
+Projeto
+Alocação
+Período
+Pedro Henrique Rocha
+Analista
+PRJ-2025-001 Portal Cliente
+40%
+26/11/2025
+Ana Beatriz Lima
+Dev
+PRJ-2025-022 App Mobile
+8%
+06/11/2025
+Ana Beatriz Lima
+Dev
+PRJ-2025-045 Migração Cloud
+25%
+20/08/2025
+Ana Beatriz Lima
+Dev
+PRJ-2025-031 BI Corporativo
+95%
+03/07/2025
+Mariana Souza Alves
+Dev
+PRJ-2025-031 BI Corporativo
+52%
+19/06/2025
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 104 =====
+98. Disponibilidade
+Alocações  ›  Recurso
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Recurso  ›  Disponibilidade
+Recurso
+Lucas Andrade
+Cargo
+Arquiteto
+Alocação Atual
+65%
+Custo/Hora
+R$ 424.209,34
+Recurso
+Cargo
+Projeto
+Alocação
+Período
+Carlos Eduardo Nunes
+Dev
+PRJ-2025-022 App Mobile
+15%
+22/02/2025
+Rafael Teixeira
+Analista
+PRJ-2025-022 App Mobile
+44%
+22/02/2025
+Juliana Castro
+PMO
+PRJ-2025-022 App Mobile
+13%
+18/09/2025
+Lucas Andrade
+PMO
+PRJ-2025-022 App Mobile
+27%
+14/10/2025
+Pedro Henrique Rocha
+Analista
+PRJ-2025-045 Migração Cloud
+74%
+12/10/2025
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 105 =====
+99. Plano de Alocação
+Alocações  ›  Planejamento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Planejamento  ›  Plano de Alocação
+Registro
+REG-2025-073
+Responsável
+Lucas Andrade
+Data
+14/09/2025
+Status
+Planejado
+Recurso
+Cargo
+Projeto
+Alocação
+Período
+Pedro Henrique Rocha
+PMO
+PRJ-2025-031 BI Corporativo
+63%
+23/10/2025
+Camila Ferreira
+Dev
+PRJ-2025-045 Migração Cloud
+65%
+11/05/2025
+Rafael Teixeira
+PMO
+PRJ-2025-031 BI Corporativo
+78%
+10/08/2025
+Mariana Souza Alves
+Dev
+PRJ-2025-045 Migração Cloud
+57%
+12/07/2025
+Camila Ferreira
+Analista
+PRJ-2025-022 App Mobile
+69%
+19/09/2025
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 106 =====
+100. Solicitação de Recurso
+Alocações  ›  Planejamento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Planejamento  ›  Solicitação de Recurso
+Recurso
+Carlos Eduardo Nunes
+Cargo
+Arquiteto
+Alocação Atual
+89%
+Custo/Hora
+R$ 186.056,50
+Recurso
+Cargo
+Projeto
+Alocação
+Período
+Carlos Eduardo Nunes
+PMO
+PRJ-2025-031 BI Corporativo
+78%
+06/08/2025
+Carlos Eduardo Nunes
+PMO
+PRJ-2025-014 ERP Fase 2
+39%
+26/02/2025
+Carlos Eduardo Nunes
+Analista
+PRJ-2025-014 ERP Fase 2
+33%
+03/04/2025
+Rafael Teixeira
+PMO
+PRJ-2025-001 Portal Cliente
+4%
+17/04/2025
+Ana Beatriz Lima
+PMO
+PRJ-2025-031 BI Corporativo
+33%
+16/08/2025
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 107 =====
+101. Aprovação de Alocação
+Alocações  ›  Planejamento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Planejamento  ›  Aprovação de Alocação
+Registro
+REG-2025-074
+Responsável
+Rafael Teixeira
+Data
+08/08/2025
+Status
+Em andamento
+Recurso
+Cargo
+Projeto
+Alocação
+Período
+Juliana Castro
+Dev
+PRJ-2025-001 Portal Cliente
+14%
+08/11/2025
+Pedro Henrique Rocha
+PMO
+PRJ-2025-014 ERP Fase 2
+61%
+14/01/2025
+Lucas Andrade
+Dev
+PRJ-2025-014 ERP Fase 2
+94%
+03/02/2025
+Camila Ferreira
+PMO
+PRJ-2025-022 App Mobile
+46%
+25/03/2025
+Lucas Andrade
+PMO
+PRJ-2025-014 ERP Fase 2
+21%
+01/11/2025
+Aprovar
+Rejeitar
+Delegar
+Comentar
+
+===== SLIDE 108 =====
+102. Conflitos de Alocação
+Alocações  ›  Conflitos
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Conflitos  ›  Conflitos de Alocação
+Registro
+REG-2025-082
+Responsável
+Lucas Andrade
+Data
+08/02/2025
+Status
+Concluído
+Recurso
+Cargo
+Projeto
+Alocação
+Período
+Carlos Eduardo Nunes
+PMO
+PRJ-2025-014 ERP Fase 2
+27%
+22/03/2025
+Ana Beatriz Lima
+Analista
+PRJ-2025-031 BI Corporativo
+27%
+16/03/2025
+Camila Ferreira
+Dev
+PRJ-2025-001 Portal Cliente
+27%
+24/11/2025
+Carlos Eduardo Nunes
+Analista
+PRJ-2025-031 BI Corporativo
+50%
+18/12/2025
+Lucas Andrade
+PMO
+PRJ-2025-031 BI Corporativo
+3%
+17/08/2025
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 109 =====
+103. Resolução de Superalocação
+Alocações  ›  Conflitos
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Conflitos  ›  Resolução de Superalocação
+Registro
+REG-2025-066
+Responsável
+Lucas Andrade
+Data
+14/04/2025
+Status
+Atrasado
+Recurso
+Cargo
+Projeto
+Alocação
+Período
+Carlos Eduardo Nunes
+Analista
+PRJ-2025-031 BI Corporativo
+61%
+09/04/2025
+Carlos Eduardo Nunes
+PMO
+PRJ-2025-031 BI Corporativo
+45%
+09/08/2025
+Rafael Teixeira
+PMO
+PRJ-2025-022 App Mobile
+49%
+20/04/2025
+Carlos Eduardo Nunes
+Analista
+PRJ-2025-001 Portal Cliente
+97%
+05/01/2025
+Ana Beatriz Lima
+Dev
+PRJ-2025-014 ERP Fase 2
+22%
+14/06/2025
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 110 =====
+104. Folha de Horas
+Apontamento  ›  Timesheet
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Timesheet  ›  Folha de Horas
+Colaborador
+Pedro Henrique Rocha
+Projeto
+PRJ-2025-045 Migração Cloud
+Data
+08/04/2025
+Horas
+142h
+Atividade
+Reunião
+Data
+Projeto
+Atividade
+Horas
+Status
+01/02/2025
+PRJ-2025-022 App Mobile
+Reunião
+33h
+Pendente
+19/03/2025
+PRJ-2025-045 Migração Cloud
+Testes
+89h
+Aprovado
+19/10/2025
+PRJ-2025-022 App Mobile
+Testes
+57h
+Pendente
+22/04/2025
+PRJ-2025-014 ERP Fase 2
+Testes
+53h
+Pendente
+23/01/2025
+PRJ-2025-045 Migração Cloud
+Dev
+74h
+Aprovado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 111 =====
+105. Lançamento por Atividade
+Apontamento  ›  Timesheet
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Timesheet  ›  Lançamento por Atividade
+Colaborador
+Pedro Henrique Rocha
+Projeto
+PRJ-2025-031 BI Corporativo
+Data
+01/07/2025
+Horas
+137h
+Atividade
+Desenvolvimento
+Data
+Projeto
+Atividade
+Horas
+Status
+16/09/2025
+PRJ-2025-001 Portal Cliente
+Reunião
+54h
+Aprovado
+04/11/2025
+PRJ-2025-031 BI Corporativo
+Dev
+92h
+Aprovado
+10/09/2025
+PRJ-2025-001 Portal Cliente
+Análise
+24h
+Aprovado
+04/09/2025
+PRJ-2025-014 ERP Fase 2
+Dev
+128h
+Aprovado
+07/04/2025
+PRJ-2025-014 ERP Fase 2
+Testes
+110h
+Aprovado
+Salvar
+Salvar e Novo
+Cancelar
+
+===== SLIDE 112 =====
+106. Aprovação de Horas
+Apontamento  ›  Timesheet
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Timesheet  ›  Aprovação de Horas
+Colaborador
+Mariana Souza Alves
+Projeto
+PRJ-2025-014 ERP Fase 2
+Data
+03/01/2025
+Horas
+110h
+Atividade
+Reunião
+Data
+Projeto
+Atividade
+Horas
+Status
+10/06/2025
+PRJ-2025-045 Migração Cloud
+Reunião
+77h
+Pendente
+27/08/2025
+PRJ-2025-031 BI Corporativo
+Análise
+122h
+Aprovado
+10/07/2025
+PRJ-2025-045 Migração Cloud
+Dev
+117h
+Pendente
+21/08/2025
+PRJ-2025-045 Migração Cloud
+Dev
+158h
+Pendente
+09/07/2025
+PRJ-2025-001 Portal Cliente
+Dev
+93h
+Pendente
+Aprovar
+Rejeitar
+Delegar
+Comentar
+
+===== SLIDE 113 =====
+107. Histórico de Apontamentos
+Apontamento  ›  Timesheet
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Timesheet  ›  Histórico de Apontamentos
+Colaborador
+Camila Ferreira
+Projeto
+PRJ-2025-045 Migração Cloud
+Data
+20/07/2025
+Horas
+14h
+Atividade
+Desenvolvimento
+Data
+Projeto
+Atividade
+Horas
+Status
+14/08/2025
+PRJ-2025-045 Migração Cloud
+Dev
+166h
+Aprovado
+19/07/2025
+PRJ-2025-045 Migração Cloud
+Reunião
+24h
+Pendente
+01/11/2025
+PRJ-2025-031 BI Corporativo
+Dev
+95h
+Aprovado
+13/10/2025
+PRJ-2025-001 Portal Cliente
+Testes
+110h
+Aprovado
+11/03/2025
+PRJ-2025-045 Migração Cloud
+Dev
+162h
+Aprovado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 114 =====
+108. Lançamento de Despesas
+Apontamento  ›  Despesas
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Despesas  ›  Lançamento de Despesas
+Colaborador
+Juliana Castro
+Projeto
+PRJ-2025-014 ERP Fase 2
+Data
+23/12/2025
+Horas
+32h
+Atividade
+Análise
+Data
+Projeto
+Atividade
+Horas
+Status
+25/11/2025
+PRJ-2025-045 Migração Cloud
+Reunião
+53h
+Aprovado
+19/12/2025
+PRJ-2025-045 Migração Cloud
+Análise
+35h
+Pendente
+03/08/2025
+PRJ-2025-031 BI Corporativo
+Dev
+144h
+Aprovado
+10/09/2025
+PRJ-2025-014 ERP Fase 2
+Testes
+20h
+Pendente
+16/07/2025
+PRJ-2025-014 ERP Fase 2
+Dev
+147h
+Aprovado
+Salvar
+Salvar e Novo
+Cancelar
+
+===== SLIDE 115 =====
+109. Reembolso
+Apontamento  ›  Despesas
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Despesas  ›  Reembolso
+Colaborador
+Juliana Castro
+Projeto
+PRJ-2025-014 ERP Fase 2
+Data
+15/09/2025
+Horas
+21h
+Atividade
+Desenvolvimento
+Data
+Projeto
+Atividade
+Horas
+Status
+06/10/2025
+PRJ-2025-045 Migração Cloud
+Testes
+39h
+Pendente
+10/11/2025
+PRJ-2025-014 ERP Fase 2
+Testes
+148h
+Aprovado
+23/05/2025
+PRJ-2025-022 App Mobile
+Dev
+147h
+Pendente
+27/12/2025
+PRJ-2025-031 BI Corporativo
+Testes
+25h
+Aprovado
+13/11/2025
+PRJ-2025-022 App Mobile
+Dev
+107h
+Pendente
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 116 =====
+110. Central de Pendências
+Pendências  ›  Central
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Central  ›  Central de Pendências
+Registro
+REG-2025-041
+Responsável
+Fernanda Oliveira
+Data
+24/11/2025
+Status
+Em andamento
+Tipo
+Origem
+Solicitante
+Data
+Ação
+Mudança
+PRJ-2025-031 BI Corporativo
+Fernanda Oliveira
+07/04/2025
+Aprovar / Rejeitar
+Horas
+PRJ-2025-031 BI Corporativo
+Fernanda Oliveira
+10/02/2025
+Aprovar / Rejeitar
+Alocação
+PRJ-2025-031 BI Corporativo
+Camila Ferreira
+04/04/2025
+Aprovar / Rejeitar
+Mudança
+PRJ-2025-001 Portal Cliente
+Fernanda Oliveira
+19/05/2025
+Aprovar / Rejeitar
+Alocação
+PRJ-2025-031 BI Corporativo
+Pedro Henrique Rocha
+11/10/2025
+Aprovar / Rejeitar
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 117 =====
+111. Aprovações Pendentes
+Pendências  ›  Central
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Central  ›  Aprovações Pendentes
+Registro
+REG-2025-015
+Responsável
+Carlos Eduardo Nunes
+Data
+20/01/2025
+Status
+Concluído
+Tipo
+Origem
+Solicitante
+Data
+Ação
+Alocação
+PRJ-2025-045 Migração Cloud
+Bruno Martins
+15/01/2025
+Aprovar / Rejeitar
+Mudança
+PRJ-2025-001 Portal Cliente
+Camila Ferreira
+14/04/2025
+Aprovar / Rejeitar
+Despesa
+PRJ-2025-045 Migração Cloud
+Mariana Souza Alves
+21/11/2025
+Aprovar / Rejeitar
+Alocação
+PRJ-2025-022 App Mobile
+Mariana Souza Alves
+01/10/2025
+Aprovar / Rejeitar
+Alocação
+PRJ-2025-001 Portal Cliente
+Bruno Martins
+24/11/2025
+Aprovar / Rejeitar
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 118 =====
+112. Pendências por Tipo
+Pendências  ›  Central
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Central  ›  Pendências por Tipo
+Registro
+REG-2025-019
+Responsável
+Camila Ferreira
+Data
+27/06/2025
+Status
+Atrasado
+Tipo
+Origem
+Solicitante
+Data
+Ação
+Alocação
+PRJ-2025-014 ERP Fase 2
+Rafael Teixeira
+14/02/2025
+Aprovar / Rejeitar
+Alocação
+PRJ-2025-022 App Mobile
+Carlos Eduardo Nunes
+20/07/2025
+Aprovar / Rejeitar
+Mudança
+PRJ-2025-031 BI Corporativo
+Camila Ferreira
+06/05/2025
+Aprovar / Rejeitar
+Alocação
+PRJ-2025-014 ERP Fase 2
+Carlos Eduardo Nunes
+15/12/2025
+Aprovar / Rejeitar
+Horas
+PRJ-2025-001 Portal Cliente
+Mariana Souza Alves
+09/07/2025
+Aprovar / Rejeitar
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 119 =====
+113. Fluxo de Aprovação
+Pendências  ›  Workflow
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Workflow  ›  Fluxo de Aprovação
+Registro
+REG-2025-099
+Responsável
+Carlos Eduardo Nunes
+Data
+07/06/2025
+Status
+Aprovado
+Tipo
+Origem
+Solicitante
+Data
+Ação
+Alocação
+PRJ-2025-014 ERP Fase 2
+Ana Beatriz Lima
+18/07/2025
+Aprovar / Rejeitar
+Despesa
+PRJ-2025-022 App Mobile
+Mariana Souza Alves
+19/06/2025
+Aprovar / Rejeitar
+Alocação
+PRJ-2025-022 App Mobile
+Fernanda Oliveira
+04/08/2025
+Aprovar / Rejeitar
+Mudança
+PRJ-2025-014 ERP Fase 2
+Bruno Martins
+27/06/2025
+Aprovar / Rejeitar
+Alocação
+PRJ-2025-045 Migração Cloud
+Rafael Teixeira
+11/09/2025
+Aprovar / Rejeitar
+Aprovar
+Rejeitar
+Delegar
+Comentar
+
+===== SLIDE 120 =====
+114. Delegação de Pendências
+Pendências  ›  Workflow
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Workflow  ›  Delegação de Pendências
+Registro
+REG-2025-025
+Responsável
+Camila Ferreira
+Data
+15/01/2025
+Status
+Atrasado
+Tipo
+Origem
+Solicitante
+Data
+Ação
+Despesa
+PRJ-2025-001 Portal Cliente
+Fernanda Oliveira
+11/05/2025
+Aprovar / Rejeitar
+Despesa
+PRJ-2025-031 BI Corporativo
+Mariana Souza Alves
+18/08/2025
+Aprovar / Rejeitar
+Mudança
+PRJ-2025-045 Migração Cloud
+Juliana Castro
+23/02/2025
+Aprovar / Rejeitar
+Despesa
+PRJ-2025-031 BI Corporativo
+Camila Ferreira
+18/03/2025
+Aprovar / Rejeitar
+Alocação
+PRJ-2025-022 App Mobile
+Rafael Teixeira
+10/08/2025
+Aprovar / Rejeitar
+Aprovar
+Rejeitar
+Delegar
+Comentar
+
+===== SLIDE 121 =====
+115. Histórico de Decisões
+Pendências  ›  Workflow
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Workflow  ›  Histórico de Decisões
+Registro
+REG-2025-080
+Responsável
+Ana Beatriz Lima
+Data
+16/05/2025
+Status
+Em revisão
+Tipo
+Origem
+Solicitante
+Data
+Ação
+Mudança
+PRJ-2025-031 BI Corporativo
+Mariana Souza Alves
+25/10/2025
+Aprovar / Rejeitar
+Alocação
+PRJ-2025-014 ERP Fase 2
+Juliana Castro
+08/04/2025
+Aprovar / Rejeitar
+Horas
+PRJ-2025-045 Migração Cloud
+Rafael Teixeira
+04/01/2025
+Aprovar / Rejeitar
+Horas
+PRJ-2025-031 BI Corporativo
+Lucas Andrade
+11/07/2025
+Aprovar / Rejeitar
+Mudança
+PRJ-2025-031 BI Corporativo
+Carlos Eduardo Nunes
+13/10/2025
+Aprovar / Rejeitar
+Aprovar
+Rejeitar
+Delegar
+Comentar
+
+===== SLIDE 122 =====
+116. Painel Financeiro
+Financeiro  ›  Visão Geral
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Visão Geral  ›  Painel Financeiro
+Receita Mês
+R$ 345.427,35
+Margem Média
+95%
+A Receber
+R$ 472.545,87
+Inadimplência
+72%
+Registro
+REG-2025-026
+Responsável
+Carlos Eduardo Nunes
+Data
+16/08/2025
+Status
+Aprovado
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 123 =====
+117. Fluxo de Caixa
+Financeiro  ›  Visão Geral
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Visão Geral  ›  Fluxo de Caixa
+Receita Mês
+R$ 202.745,99
+Margem Média
+54%
+A Receber
+R$ 187.721,70
+Inadimplência
+32%
+Registro
+REG-2025-030
+Responsável
+Fernanda Oliveira
+Data
+01/04/2025
+Status
+Concluído
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 124 =====
+118. Receita x Despesa
+Financeiro  ›  Visão Geral
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Visão Geral  ›  Receita x Despesa
+Receita Mês
+R$ 294.942,25
+Margem Média
+12%
+A Receber
+R$ 399.295,30
+Inadimplência
+21%
+Colaborador
+Rafael Teixeira
+Tipo
+Transporte
+Valor
+R$ 321.615,88
+Data
+21/10/2025
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 125 =====
+119. Cronograma de Faturamento
+Financeiro  ›  Faturamento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Faturamento  ›  Cronograma de Faturamento
+Cliente
+Orion Indústria
+Nº Fatura
+NF-2025-4464
+Valor
+R$ 173.390,16
+Vencimento
+22/06/2025
+Status
+Paga
+Documento
+Cliente
+Valor
+Vencimento
+Status
+NF-9624
+Nimbus Tecnologia S.A.
+R$ 372.163,63
+21/10/2025
+Emitida
+NF-1910
+Quantum Saúde
+R$ 31.497,93
+22/03/2025
+Pendente
+NF-1749
+Vertex Consultoria
+R$ 478.619,94
+19/03/2025
+Emitida
+NF-5037
+Delta Logística Ltda
+R$ 210.662,73
+23/05/2025
+Emitida
+NF-8917
+Aurora Varejo ME
+R$ 332.298,83
+02/07/2025
+Emitida
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 126 =====
+120. Emissão de Fatura
+Financeiro  ›  Faturamento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Faturamento  ›  Emissão de Fatura
+Cliente
+Delta Logística Ltda
+Nº Fatura
+NF-2025-7543
+Valor
+R$ 337.049,92
+Vencimento
+17/02/2025
+Status
+Pendente
+Documento
+Cliente
+Valor
+Vencimento
+Status
+NF-4060
+Orion Indústria
+R$ 354.361,79
+05/10/2025
+Emitida
+NF-5166
+Aurora Varejo ME
+R$ 225.663,06
+09/05/2025
+Pendente
+NF-1894
+Delta Logística Ltda
+R$ 339.861,10
+13/03/2025
+Emitida
+NF-4508
+Orion Indústria
+R$ 399.962,01
+12/10/2025
+Pendente
+NF-9725
+Vertex Consultoria
+R$ 269.352,42
+04/04/2025
+Paga
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 127 =====
+121. Notas Fiscais
+Financeiro  ›  Faturamento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Faturamento  ›  Notas Fiscais
+Cliente
+Orion Indústria
+Nº Fatura
+NF-2025-2772
+Valor
+R$ 152.865,10
+Vencimento
+26/05/2025
+Status
+Pendente
+Documento
+Cliente
+Valor
+Vencimento
+Status
+NF-8788
+Helix Energia S.A.
+R$ 87.864,08
+02/05/2025
+Paga
+NF-1130
+Delta Logística Ltda
+R$ 147.392,86
+13/11/2025
+Paga
+NF-6117
+Vertex Consultoria
+R$ 338.051,16
+07/01/2025
+Pendente
+NF-4055
+Quantum Saúde
+R$ 356.275,80
+18/09/2025
+Emitida
+NF-5148
+Nimbus Tecnologia S.A.
+R$ 223.696,18
+14/11/2025
+Pendente
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 128 =====
+122. Medição de Contrato
+Financeiro  ›  Faturamento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Faturamento  ›  Medição de Contrato
+Contrato
+CTR-2025-030
+Cliente
+Orion Indústria
+Valor
+R$ 214.704,16
+Vigência
+03/07/2025 a 01/09/2025
+Documento
+Cliente
+Valor
+Vencimento
+Status
+NF-7817
+Orion Indústria
+R$ 242.308,68
+02/08/2025
+Pendente
+NF-3616
+Vertex Consultoria
+R$ 359.132,18
+09/07/2025
+Pendente
+NF-2371
+Delta Logística Ltda
+R$ 178.280,96
+02/04/2025
+Emitida
+NF-9954
+Nimbus Tecnologia S.A.
+R$ 154.524,04
+19/10/2025
+Pendente
+NF-1033
+Acme Serviços Ltda
+R$ 149.176,87
+23/08/2025
+Pendente
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 129 =====
+123. Custos por Projeto
+Financeiro  ›  Custos
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Custos  ›  Custos por Projeto
+Registro
+REG-2025-039
+Responsável
+Carlos Eduardo Nunes
+Data
+24/05/2025
+Status
+Em revisão
+Projeto
+Orçado
+Realizado
+Margem
+PRJ-2025-022 App Mobile
+R$ 107.765,46
+R$ 153.447,18
+46%
+PRJ-2025-022 App Mobile
+R$ 447.447,04
+R$ 161.357,57
+84%
+PRJ-2025-014 ERP Fase 2
+R$ 295.677,42
+R$ 129.097,79
+90%
+PRJ-2025-031 BI Corporativo
+R$ 174.473,05
+R$ 296.721,53
+67%
+PRJ-2025-014 ERP Fase 2
+R$ 451.548,41
+R$ 87.888,96
+42%
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 130 =====
+124. Centro de Custos
+Financeiro  ›  Custos
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Custos  ›  Centro de Custos
+Registro
+REG-2025-010
+Responsável
+Rafael Teixeira
+Data
+03/11/2025
+Status
+Aprovado
+Projeto
+Orçado
+Realizado
+Margem
+PRJ-2025-045 Migração Cloud
+R$ 166.592,19
+R$ 178.421,26
+41%
+PRJ-2025-022 App Mobile
+R$ 262.712,50
+R$ 62.464,85
+7%
+PRJ-2025-031 BI Corporativo
+R$ 97.295,01
+R$ 102.976,14
+32%
+PRJ-2025-014 ERP Fase 2
+R$ 125.378,14
+R$ 318.346,85
+53%
+PRJ-2025-031 BI Corporativo
+R$ 87.436,35
+R$ 460.873,06
+3%
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 131 =====
+125. Rateio de Custos
+Financeiro  ›  Custos
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Custos  ›  Rateio de Custos
+Registro
+REG-2025-072
+Responsável
+Juliana Castro
+Data
+27/01/2025
+Status
+Planejado
+Projeto
+Orçado
+Realizado
+Margem
+PRJ-2025-022 App Mobile
+R$ 274.941,33
+R$ 408.427,17
+43%
+PRJ-2025-022 App Mobile
+R$ 176.631,11
+R$ 116.885,92
+14%
+PRJ-2025-014 ERP Fase 2
+R$ 63.564,30
+R$ 236.112,53
+91%
+PRJ-2025-001 Portal Cliente
+R$ 437.505,39
+R$ 489.744,72
+45%
+PRJ-2025-031 BI Corporativo
+R$ 94.345,38
+R$ 226.816,77
+8%
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 132 =====
+126. Contas a Receber
+Financeiro  ›  Contas
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Contas  ›  Contas a Receber
+Registro
+REG-2025-083
+Responsável
+Carlos Eduardo Nunes
+Data
+11/09/2025
+Status
+Planejado
+Documento
+Cliente
+Valor
+Vencimento
+Status
+NF-2573
+Acme Serviços Ltda
+R$ 83.399,25
+19/06/2025
+Paga
+NF-6939
+Quantum Saúde
+R$ 272.227,72
+22/03/2025
+Paga
+NF-4577
+Quantum Saúde
+R$ 101.201,28
+05/01/2025
+Pendente
+NF-8718
+Orion Indústria
+R$ 69.460,57
+26/11/2025
+Emitida
+NF-3610
+Aurora Varejo ME
+R$ 380.115,89
+18/11/2025
+Pendente
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 133 =====
+127. Contas a Pagar
+Financeiro  ›  Contas
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Contas  ›  Contas a Pagar
+Registro
+REG-2025-038
+Responsável
+Ana Beatriz Lima
+Data
+13/05/2025
+Status
+Em revisão
+Documento
+Cliente
+Valor
+Vencimento
+Status
+NF-8672
+Quantum Saúde
+R$ 359.378,26
+08/01/2025
+Emitida
+NF-2237
+Delta Logística Ltda
+R$ 92.840,94
+08/04/2025
+Emitida
+NF-8647
+Aurora Varejo ME
+R$ 44.709,28
+10/06/2025
+Pendente
+NF-7769
+Nimbus Tecnologia S.A.
+R$ 443.962,03
+20/03/2025
+Pendente
+NF-3484
+Quantum Saúde
+R$ 276.085,47
+26/09/2025
+Emitida
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 134 =====
+128. Inadimplência
+Financeiro  ›  Contas
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Contas  ›  Inadimplência
+Registro
+REG-2025-029
+Responsável
+Bruno Martins
+Data
+21/12/2025
+Status
+Planejado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 135 =====
+129. Margem por Projeto
+Financeiro  ›  Rentabilidade
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Rentabilidade  ›  Margem por Projeto
+Registro
+REG-2025-085
+Responsável
+Bruno Martins
+Data
+14/11/2025
+Status
+Pendente
+Projeto
+Orçado
+Realizado
+Margem
+PRJ-2025-045 Migração Cloud
+R$ 475.900,46
+R$ 332.229,57
+26%
+PRJ-2025-014 ERP Fase 2
+R$ 144.919,46
+R$ 202.042,98
+33%
+PRJ-2025-014 ERP Fase 2
+R$ 357.390,06
+R$ 87.285,00
+18%
+PRJ-2025-014 ERP Fase 2
+R$ 456.454,66
+R$ 174.080,68
+32%
+PRJ-2025-014 ERP Fase 2
+R$ 372.673,22
+R$ 308.882,80
+23%
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 136 =====
+130. Análise de Rentabilidade
+Financeiro  ›  Rentabilidade
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Rentabilidade  ›  Análise de Rentabilidade
+Registro
+REG-2025-062
+Responsável
+Pedro Henrique Rocha
+Data
+08/11/2025
+Status
+Aprovado
+Projeto
+Orçado
+Realizado
+Margem
+PRJ-2025-045 Migração Cloud
+R$ 452.818,61
+R$ 373.942,76
+16%
+PRJ-2025-014 ERP Fase 2
+R$ 248.437,02
+R$ 95.845,95
+11%
+PRJ-2025-031 BI Corporativo
+R$ 210.520,28
+R$ 161.313,36
+10%
+PRJ-2025-031 BI Corporativo
+R$ 287.037,85
+R$ 124.699,01
+36%
+PRJ-2025-001 Portal Cliente
+R$ 165.537,32
+R$ 448.393,97
+81%
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 137 =====
+131. Orçamento Anual
+Financeiro  ›  Orçamento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Orçamento  ›  Orçamento Anual
+Exercício
+2025
+Centro de Custo
+CC-292
+Orçado
+R$ 308.767,29
+Realizado
+R$ 403.563,45
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 138 =====
+132. Realizado x Orçado
+Financeiro  ›  Orçamento
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Orçamento  ›  Realizado x Orçado
+Exercício
+2025
+Centro de Custo
+CC-711
+Orçado
+R$ 87.357,65
+Realizado
+R$ 43.239,63
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 139 =====
+133. Central de Relatórios
+Relatórios  ›  Painéis
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Painéis  ›  Central de Relatórios
+Registro
+REG-2025-030
+Responsável
+Carlos Eduardo Nunes
+Data
+13/01/2025
+Status
+Pendente
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 140 =====
+134. Dashboards Gerenciais
+Relatórios  ›  Painéis
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Painéis  ›  Dashboards Gerenciais
+Tarefas Abertas
+31
+Pendências
+14
+Horas Semana
+51h
+Alertas
+0
+Registro
+REG-2025-041
+Responsável
+Rafael Teixeira
+Data
+02/08/2025
+Status
+Em revisão
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 141 =====
+135. Indicadores Executivos
+Relatórios  ›  Painéis
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Painéis  ›  Indicadores Executivos
+Tarefas Abertas
+19
+Pendências
+12
+Horas Semana
+39h
+Alertas
+2
+Registro
+REG-2025-089
+Responsável
+Rafael Teixeira
+Data
+02/11/2025
+Status
+Aprovado
+Gerar
+Agendar
+Exportar PDF
+Exportar Excel
+
+===== SLIDE 142 =====
+136. Construtor de Relatórios
+Relatórios  ›  Geração
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Geração  ›  Construtor de Relatórios
+Registro
+REG-2025-039
+Responsável
+Carlos Eduardo Nunes
+Data
+01/02/2025
+Status
+Concluído
+Salvar
+Salvar e Novo
+Cancelar
+
+===== SLIDE 143 =====
+137. Agendamento de Relatórios
+Relatórios  ›  Geração
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Geração  ›  Agendamento de Relatórios
+Registro
+REG-2025-090
+Responsável
+Juliana Castro
+Data
+01/07/2025
+Status
+Planejado
+Salvar
+Salvar e Novo
+Cancelar
+
+===== SLIDE 144 =====
+138. Exportação (PDF/Excel)
+Relatórios  ›  Geração
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Geração  ›  Exportação (PDF/Excel)
+Registro
+REG-2025-066
+Responsável
+Mariana Souza Alves
+Data
+05/01/2025
+Status
+Em revisão
+Salvar
+Salvar e Novo
+Cancelar
+
+===== SLIDE 145 =====
+139. Análise Preditiva com IA
+Relatórios  ›  Analytics
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Analytics  ›  Análise Preditiva com IA
+Registro
+REG-2025-025
+Responsável
+Carlos Eduardo Nunes
+Data
+21/06/2025
+Status
+Aprovado
+Gerar
+Agendar
+Exportar PDF
+Exportar Excel
+
+===== SLIDE 146 =====
+140. Alertas Inteligentes
+Relatórios  ›  Analytics
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Analytics  ›  Alertas Inteligentes
+Registro
+REG-2025-013
+Responsável
+Fernanda Oliveira
+Data
+08/06/2025
+Status
+Pendente
+Gerar
+Agendar
+Exportar PDF
+Exportar Excel
+
+===== SLIDE 147 =====
+141. Gestão de Usuários
+Administração  ›  Usuários
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Usuários  ›  Gestão de Usuários
+Nome
+Bruno Martins
+E-mail
+bruno.martins@empresa-ficticia.com
+Perfil
+Analista
+Status
+Ativo
+Nome
+E-mail
+Perfil
+Status
+Ana Beatriz Lima
+ana.beatriz@empresa-ficticia.com
+Gerente
+Ativo
+Camila Ferreira
+camila.ferreira@empresa-ficticia.com
+Admin
+Ativo
+Mariana Souza Alves
+mariana.souza@empresa-ficticia.com
+Analista
+Ativo
+Ana Beatriz Lima
+ana.beatriz@empresa-ficticia.com
+Analista
+Ativo
+Carlos Eduardo Nunes
+carlos.eduardo@empresa-ficticia.com
+Admin
+Ativo
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 148 =====
+142. Cadastro de Usuário
+Administração  ›  Usuários
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Usuários  ›  Cadastro de Usuário
+Nome
+Camila Ferreira
+E-mail
+fernanda.oliveira@empresa-ficticia.com
+Perfil
+Consultor
+Status
+Ativo
+Nome
+E-mail
+Perfil
+Status
+Fernanda Oliveira
+fernanda.oliveira@empresa-ficticia.com
+Analista
+Ativo
+Juliana Castro
+juliana.castro@empresa-ficticia.com
+Admin
+Ativo
+Bruno Martins
+bruno.martins@empresa-ficticia.com
+Gerente
+Ativo
+Lucas Andrade
+lucas.andrade@empresa-ficticia.com
+Gerente
+Ativo
+Pedro Henrique Rocha
+pedro.henrique@empresa-ficticia.com
+Gerente
+Ativo
+Salvar
+Salvar e Novo
+Cancelar
+
+===== SLIDE 149 =====
+143. Grupos e Equipes
+Administração  ›  Usuários
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Usuários  ›  Grupos e Equipes
+Nome
+Juliana Castro
+E-mail
+bruno.martins@empresa-ficticia.com
+Perfil
+Analista
+Status
+Ativo
+Nome
+E-mail
+Perfil
+Status
+Fernanda Oliveira
+fernanda.oliveira@empresa-ficticia.com
+Admin
+Ativo
+Lucas Andrade
+lucas.andrade@empresa-ficticia.com
+Analista
+Ativo
+Lucas Andrade
+lucas.andrade@empresa-ficticia.com
+Analista
+Ativo
+Rafael Teixeira
+rafael.teixeira@empresa-ficticia.com
+Analista
+Ativo
+Mariana Souza Alves
+mariana.souza@empresa-ficticia.com
+Admin
+Ativo
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 150 =====
+144. Perfis de Acesso
+Administração  ›  Permissões
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Permissões  ›  Perfis de Acesso
+Perfil
+Administrador
+Módulos
+Projetos, Financeiro, Portfólio
+Nível
+Edição
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 151 =====
+145. Matriz de Permissões
+Administração  ›  Permissões
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Permissões  ›  Matriz de Permissões
+Perfil
+Gerente
+Módulos
+Projetos, Financeiro, Portfólio
+Nível
+Edição
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 152 =====
+146. Políticas de Segurança
+Administração  ›  Permissões
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Permissões  ›  Políticas de Segurança
+Perfil
+Gerente
+Módulos
+Projetos, Financeiro, Portfólio
+Nível
+Edição
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 153 =====
+147. Parâmetros Gerais
+Administração  ›  Configurações
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Configurações  ›  Parâmetros Gerais
+Parâmetro
+Moeda padrão
+Valor
+Híbrido
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 154 =====
+148. Configuração de Metodologias
+Administração  ›  Configurações
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Configurações  ›  Configuração de Metodologias
+Parâmetro
+Moeda padrão
+Valor
+BRL (R$)
+Data/Hora
+Usuário
+Ação
+Módulo
+14/02/2025 17:19
+Ana Beatriz Lima
+Criou
+Financeiro
+20/09/2025 19:29
+Pedro Henrique Rocha
+Aprovou
+Projetos
+21/03/2025 0:28
+Lucas Andrade
+Excluiu
+Usuários
+22/03/2025 18:14
+Mariana Souza Alves
+Excluiu
+Financeiro
+14/04/2025 7:56
+Ana Beatriz Lima
+Aprovou
+Usuários
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 155 =====
+149. Campos Customizados
+Administração  ›  Configurações
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Configurações  ›  Campos Customizados
+Parâmetro
+Metodologia padrão
+Valor
+America/Sao_Paulo
+Projeto
+Orçado
+Realizado
+Margem
+PRJ-2025-014 ERP Fase 2
+R$ 190.986,12
+R$ 23.110,54
+43%
+PRJ-2025-014 ERP Fase 2
+R$ 392.092,89
+R$ 483.489,20
+41%
+PRJ-2025-014 ERP Fase 2
+R$ 409.849,67
+R$ 127.561,28
+51%
+PRJ-2025-022 App Mobile
+R$ 453.937,00
+R$ 220.815,23
+46%
+PRJ-2025-001 Portal Cliente
+R$ 180.786,14
+R$ 266.172,91
+61%
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 156 =====
+150. Modelos de Projeto
+Administração  ›  Configurações
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Configurações  ›  Modelos de Projeto
+Parâmetro
+Fuso horário
+Valor
+Híbrido
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 157 =====
+151. Workflows e Aprovações
+Administração  ›  Configurações
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Configurações  ›  Workflows e Aprovações
+Registro
+REG-2025-014
+Responsável
+Pedro Henrique Rocha
+Data
+12/08/2025
+Status
+Aprovado
+Tipo
+Origem
+Solicitante
+Data
+Ação
+Mudança
+PRJ-2025-014 ERP Fase 2
+Ana Beatriz Lima
+20/03/2025
+Aprovar / Rejeitar
+Despesa
+PRJ-2025-014 ERP Fase 2
+Camila Ferreira
+09/07/2025
+Aprovar / Rejeitar
+Horas
+PRJ-2025-001 Portal Cliente
+Mariana Souza Alves
+01/10/2025
+Aprovar / Rejeitar
+Despesa
+PRJ-2025-022 App Mobile
+Carlos Eduardo Nunes
+23/02/2025
+Aprovar / Rejeitar
+Despesa
+PRJ-2025-001 Portal Cliente
+Mariana Souza Alves
+21/07/2025
+Aprovar / Rejeitar
+Aprovar
+Rejeitar
+Delegar
+Comentar
+
+===== SLIDE 158 =====
+152. Integrações e APIs
+Administração  ›  Integrações
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Integrações  ›  Integrações e APIs
+Registro
+REG-2025-034
+Responsável
+Camila Ferreira
+Data
+02/06/2025
+Status
+Em andamento
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 159 =====
+153. Conectores (ERP, SSO)
+Administração  ›  Integrações
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Integrações  ›  Conectores (ERP, SSO)
+Registro
+REG-2025-088
+Responsável
+Ana Beatriz Lima
+Data
+04/04/2025
+Status
+Aprovado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 160 =====
+154. Webhooks
+Administração  ›  Integrações
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Integrações  ›  Webhooks
+Registro
+REG-2025-083
+Responsável
+Mariana Souza Alves
+Data
+15/05/2025
+Status
+Aprovado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 161 =====
+155. Log de Auditoria
+Administração  ›  Auditoria
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Auditoria  ›  Log de Auditoria
+Registro
+REG-2025-061
+Responsável
+Carlos Eduardo Nunes
+Data
+20/02/2025
+Status
+Planejado
+Data/Hora
+Usuário
+Ação
+Módulo
+26/01/2025 20:24
+Mariana Souza Alves
+Criou
+Projetos
+20/12/2025 1:16
+Ana Beatriz Lima
+Editou
+Financeiro
+21/07/2025 6:20
+Mariana Souza Alves
+Criou
+Financeiro
+13/09/2025 2:31
+Rafael Teixeira
+Excluiu
+Financeiro
+24/01/2025 20:32
+Ana Beatriz Lima
+Excluiu
+Usuários
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 162 =====
+156. Trilha de Alterações
+Administração  ›  Auditoria
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Auditoria  ›  Trilha de Alterações
+Registro
+REG-2025-099
+Responsável
+Carlos Eduardo Nunes
+Data
+25/06/2025
+Status
+Concluído
+Data/Hora
+Usuário
+Ação
+Módulo
+17/09/2025 17:50
+Fernanda Oliveira
+Excluiu
+Projetos
+22/12/2025 5:12
+Lucas Andrade
+Editou
+Financeiro
+11/10/2025 10:06
+Juliana Castro
+Criou
+Usuários
+18/11/2025 21:48
+Camila Ferreira
+Criou
+Usuários
+08/08/2025 2:12
+Bruno Martins
+Editou
+Projetos
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 163 =====
+157. Estrutura Organizacional
+Administração  ›  Organização
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Organização  ›  Estrutura Organizacional
+Registro
+REG-2025-015
+Responsável
+Lucas Andrade
+Data
+21/12/2025
+Status
+Planejado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 164 =====
+158. Cadastro de Clientes
+Administração  ›  Organização
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Organização  ›  Cadastro de Clientes
+Razão Social
+Delta Logística Ltda
+CNPJ
+95.692.531/0001-88
+Contato
+Bruno Martins
+E-mail
+pedro.henrique@empresa-ficticia.com
+Situação
+Ativo
+Salvar
+Salvar e Novo
+Cancelar
+
+===== SLIDE 165 =====
+159. Cadastro de Fornecedores
+Administração  ›  Organização
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Organização  ›  Cadastro de Fornecedores
+Fornecedor
+Nimbus Tecnologia S.A.
+CNPJ
+13.738.617/0001-03
+Categoria
+Software
+Salvar
+Salvar e Novo
+Cancelar
+
+===== SLIDE 166 =====
+160. Calendário Corporativo
+Administração  ›  Organização
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Organização  ›  Calendário Corporativo
+Registro
+REG-2025-016
+Responsável
+Pedro Henrique Rocha
+Data
+25/06/2025
+Status
+Planejado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 167 =====
+161. Feriados e Exceções
+Administração  ›  Organização
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Organização  ›  Feriados e Exceções
+Registro
+REG-2025-061
+Responsável
+Carlos Eduardo Nunes
+Data
+05/03/2025
+Status
+Pendente
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 168 =====
+162. Assistente Virtual PSOffice
+Assistente IA  ›  Copiloto
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Copiloto  ›  Assistente Virtual PSOffice
+Registro
+REG-2025-080
+Responsável
+Juliana Castro
+Data
+16/10/2025
+Status
+Planejado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 169 =====
+163. Sugestões de Planejamento
+Assistente IA  ›  Copiloto
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Copiloto  ›  Sugestões de Planejamento
+Registro
+REG-2025-055
+Responsável
+Mariana Souza Alves
+Data
+02/03/2025
+Status
+Concluído
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 170 =====
+164. Análise de Riscos por IA
+Assistente IA  ›  Copiloto
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Copiloto  ›  Análise de Riscos por IA
+Risco
+Atraso na entrega de fornecedor
+Probabilidade
+Baixa
+Impacto
+Médio
+Resposta
+Transferir
+Risco
+Prob.
+Impacto
+Resposta
+Dono
+Atraso fornecedor
+Baixa
+Baixo
+Aceitar
+Carlos Eduardo Nunes
+Escopo instável
+Média
+Médio
+Mitigar
+Camila Ferreira
+Atraso fornecedor
+Alta
+Alto
+Aceitar
+Pedro Henrique Rocha
+Falha técnica
+Alta
+Baixo
+Aceitar
+Bruno Martins
+Escopo instável
+Baixa
+Alto
+Evitar
+Bruno Martins
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 171 =====
+165. Geração Automática de Status Report
+Assistente IA  ›  Copiloto
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Copiloto  ›  Geração Automática de Status Report
+Registro
+REG-2025-063
+Responsável
+Juliana Castro
+Data
+10/12/2025
+Status
+Aprovado
+Salvar
+Salvar e Novo
+Cancelar
+
+===== SLIDE 172 =====
+166. Previsão de Prazos e Custos
+Assistente IA  ›  Copiloto
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Copiloto  ›  Previsão de Prazos e Custos
+Registro
+REG-2025-078
+Responsável
+Fernanda Oliveira
+Data
+26/08/2025
+Status
+Em andamento
+Projeto
+Orçado
+Realizado
+Margem
+PRJ-2025-014 ERP Fase 2
+R$ 45.007,61
+R$ 401.701,59
+63%
+PRJ-2025-001 Portal Cliente
+R$ 129.643,23
+R$ 141.005,93
+68%
+PRJ-2025-001 Portal Cliente
+R$ 428.468,16
+R$ 340.031,41
+36%
+PRJ-2025-014 ERP Fase 2
+R$ 28.777,75
+R$ 491.795,04
+58%
+PRJ-2025-014 ERP Fase 2
+R$ 306.805,38
+R$ 274.551,96
+26%
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 173 =====
+167. Recomendação de Alocação
+Assistente IA  ›  Copiloto
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Copiloto  ›  Recomendação de Alocação
+Registro
+REG-2025-032
+Responsável
+Fernanda Oliveira
+Data
+04/02/2025
+Status
+Em andamento
+Recurso
+Cargo
+Projeto
+Alocação
+Período
+Bruno Martins
+PMO
+PRJ-2025-031 BI Corporativo
+93%
+02/12/2025
+Ana Beatriz Lima
+Dev
+PRJ-2025-022 App Mobile
+55%
+11/11/2025
+Fernanda Oliveira
+Dev
+PRJ-2025-031 BI Corporativo
+47%
+01/08/2025
+Carlos Eduardo Nunes
+Dev
+PRJ-2025-045 Migração Cloud
+12%
+14/07/2025
+Lucas Andrade
+Dev
+PRJ-2025-022 App Mobile
+71%
+23/03/2025
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 174 =====
+168. Aplicativo Móvel - Home
+Mobile  ›  App
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+App  ›  Aplicativo Móvel - Home
+Tarefas Abertas
+20
+Pendências
+11
+Horas Semana
+52h
+Alertas
+3
+Registro
+REG-2025-096
+Responsável
+Mariana Souza Alves
+Data
+04/11/2025
+Status
+Em revisão
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 175 =====
+169. Apontamento Mobile
+Mobile  ›  App
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+App  ›  Apontamento Mobile
+Colaborador
+Fernanda Oliveira
+Projeto
+PRJ-2025-022 App Mobile
+Data
+17/07/2025
+Horas
+161h
+Atividade
+Análise
+Data
+Projeto
+Atividade
+Horas
+Status
+23/10/2025
+PRJ-2025-014 ERP Fase 2
+Dev
+153h
+Pendente
+18/12/2025
+PRJ-2025-045 Migração Cloud
+Reunião
+15h
+Pendente
+21/07/2025
+PRJ-2025-031 BI Corporativo
+Análise
+126h
+Pendente
+08/08/2025
+PRJ-2025-045 Migração Cloud
+Testes
+155h
+Aprovado
+04/12/2025
+PRJ-2025-001 Portal Cliente
+Dev
+125h
+Aprovado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 176 =====
+170. Aprovações Mobile
+Mobile  ›  App
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+App  ›  Aprovações Mobile
+Registro
+REG-2025-071
+Responsável
+Lucas Andrade
+Data
+25/07/2025
+Status
+Aprovado
+Tipo
+Origem
+Solicitante
+Data
+Ação
+Mudança
+PRJ-2025-031 BI Corporativo
+Mariana Souza Alves
+03/12/2025
+Aprovar / Rejeitar
+Mudança
+PRJ-2025-014 ERP Fase 2
+Rafael Teixeira
+15/11/2025
+Aprovar / Rejeitar
+Mudança
+PRJ-2025-014 ERP Fase 2
+Lucas Andrade
+09/04/2025
+Aprovar / Rejeitar
+Mudança
+PRJ-2025-022 App Mobile
+Rafael Teixeira
+01/07/2025
+Aprovar / Rejeitar
+Alocação
+PRJ-2025-045 Migração Cloud
+Pedro Henrique Rocha
+20/05/2025
+Aprovar / Rejeitar
+Aprovar
+Rejeitar
+Delegar
+Comentar
+
+===== SLIDE 177 =====
+171. Central de Ajuda
+Suporte  ›  Ajuda
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Ajuda  ›  Central de Ajuda
+Registro
+REG-2025-060
+Responsável
+Ana Beatriz Lima
+Data
+12/06/2025
+Status
+Em revisão
+Novo
+Filtrar
+Exportar
+Atualizar
+
+===== SLIDE 178 =====
+172. Tutoriais e Vídeos
+Suporte  ›  Ajuda
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Ajuda  ›  Tutoriais e Vídeos
+Registro
+REG-2025-097
+Responsável
+Juliana Castro
+Data
+13/09/2025
+Status
+Em andamento
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 179 =====
+173. Abertura de Chamado
+Suporte  ›  Ajuda
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Ajuda  ›  Abertura de Chamado
+Registro
+REG-2025-040
+Responsável
+Juliana Castro
+Data
+06/06/2025
+Status
+Concluído
+Salvar
+Salvar e Novo
+Cancelar
+
+===== SLIDE 180 =====
+174. Base de Conhecimento
+Suporte  ›  Ajuda
+PSOffice
+Home
+Portfólio
+Projetos
+Alocações
+Pendências
+Financeiro
+Admin
+Ana B. Lima
+Ajuda  ›  Base de Conhecimento
+Registro
+REG-2025-072
+Responsável
+Fernanda Oliveira
+Data
+27/07/2025
+Status
+Aprovado
+Salvar
+Editar
+Excluir
+Voltar
+
+===== SLIDE 181 =====
+Fim da Apresentação
+PSOffice — mockups ilustrativos com dados fictícios

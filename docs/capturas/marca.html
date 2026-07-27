@@ -1,0 +1,10 @@
+<body style="margin:0;display:flex;gap:40px;padding:40px;background:#f7f8fa;align-items:center">
+<svg width="160" height="160" viewBox="0 0 24 24" id="a"></svg>
+<div style="background:#1e2430;padding:24px;border-radius:20px"><svg width="120" height="120" viewBox="0 0 24 24" id="b"></svg></div>
+<script>
+const B="M1.5 5 A3.5 3.5 0 0 1 5 1.5 H9.9 A1.1 1.1 0 0 1 11 2.6 V4.9 A1.1 1.1 0 0 1 9.9 6 H7.1 A1.1 1.1 0 0 0 6 7.1 V9.9 A1.1 1.1 0 0 1 4.9 11 H2.6 A1.1 1.1 0 0 1 1.5 9.9 Z";
+for (const [id,base] of [["a","#1e2430"],["b","#ffffff"]]) {
+  document.getElementById(id).innerHTML = [0,90,180,270].map((r,i)=>
+    `<path d="${B}" fill="${i===1?'#0a78f0':base}" transform="rotate(${r} 12 12)"/>`).join('');
+}
+</script></body>
