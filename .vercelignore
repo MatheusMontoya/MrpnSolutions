@@ -14,3 +14,6 @@ backend/requirements-dev.txt
 node_modules/
 .pytest_cache/
 __pycache__/
+
+# senha crua temporaria (configurar_conexao.py apaga depois de usar)
+senha.txt

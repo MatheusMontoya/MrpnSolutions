@@ -24,3 +24,6 @@ dist/
 Thumbs.db
 .DS_Store
 desktop.ini
+
+# senha crua temporaria (configurar_conexao.py apaga depois de usar)
+senha.txt
