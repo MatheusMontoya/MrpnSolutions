@@ -19,8 +19,10 @@ exatamente como os routers já estão prefixados — nada a mudar no código.
 
 ## 1. Supabase — criar o banco
 
-1. Crie um projeto novo. **Escolha a região `South America (São Paulo)`**: o
-   banco perto do usuário é o que mais pesa na latência percebida.
+1. Crie um projeto novo. A região do banco e a das funções da Vercel devem
+   ficar próximas uma da outra — é o trajeto função↔banco que pesa, não o seu
+   até o banco. Este ambiente usa `ca-central-1` com as funções no padrão
+   `iad1`, que são vizinhas.
 2. Guarde a senha do banco que ele gera. Ela não é recuperável depois.
 3. Vá em **Connect** (ou Project Settings → Database) e copie a string de
    **Connection Pooling / Transaction mode**, a da **porta 6543**.
@@ -33,7 +35,7 @@ exatamente como os routers já estão prefixados — nada a mudar no código.
 A string parece com isto (a senha entra no lugar de `SUA_SENHA`):
 
 ```
-postgresql://postgres.abcdefgh:SUA_SENHA@aws-0-sa-east-1.pooler.supabase.com:6543/postgres
+postgresql://postgres.fxenxbrpsddmqupvxngn:SUA_SENHA@aws-0-ca-central-1.pooler.supabase.com:6543/postgres
 ```
 
 ## 2. Criar o schema e a carga inicial — uma vez
@@ -85,9 +87,15 @@ e o `dist`.
 
 4. **Deploy.**
 
-Depois do primeiro deploy, em **Settings → Functions**, mude a região para
-**São Paulo (gru1)**. Por padrão a Vercel roda em Washington, e cada consulta
-faria a viagem EUA↔Brasil até o Supabase.
+**Região das funções: mantenha o padrão (Washington, `iad1`).** O que importa
+para a latência não é a distância até você, é a distância entre a função e o
+banco — uma requisição faz várias consultas, e cada uma paga o trajeto. Com o
+banco em `ca-central-1` (Montreal), a função em Washington fica a poucos
+milissegundos dele. Mudar a função para São Paulo faria cada consulta cruzar o
+continente e deixaria o app mais lento, não mais rápido.
+
+Se um dia quiser o melhor dos dois, os dois têm de andar juntos: banco em
+`sa-east-1` **e** funções em `gru1`.
 
 ## 5. Conferir se subiu certo
 
