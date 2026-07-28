@@ -85,7 +85,7 @@ export default function Contratos() {
                       </td>
                       <td>
                         <div className="linha-flex" style={{ gap: 6 }}>
-                          <span className="avatar-consultor" style={{ width: 20, height: 20, fontSize: 8.5 }}>{iniciais(c.cliente)}</span>
+                          <span className="avatar-consultor" style={{ width: 22, height: 22, fontSize: 10 }}>{iniciais(c.cliente)}</span>
                           <span className="texto-2">{c.cliente}</span>
                         </div>
                       </td>

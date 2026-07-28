@@ -4,20 +4,22 @@ description: PSA para consultoria SAP hora-homem — azul elétrico sobre grafit
 colors:
   azul-eletrico: "#0a78f0"
   azul-fundo: "#0a5cb8"
+  azul-acao: "#0968d4"
+  azul-texto: "#0968d4"
   azul-lavagem: "#e8f2fe"
   azul-borda-marca: "#b9d9fb"
   azure-assinatura: "#3fa0ff"
   grafite-profundo: "#1e2430"
   tinta: "#1e2430"
   tinta-2: "#5a6270"
-  tinta-3: "#8b93a1"
+  tinta-3: "#6a7382"
   canvas: "#f7f8fa"
   superficie: "#ffffff"
   superficie-baixa: "#f2f4f7"
   linha: "#e3e6ec"
-  verde-saudavel: "#07875a"
-  ambar-atencao: "#a3600a"
-  carmim-critico: "#d62b4f"
+  verde-saudavel: "#077e54"
+  ambar-atencao: "#a05e0a"
+  carmim-critico: "#cd284a"
 typography:
   display:
     fontFamily: "Figtree Variable, system-ui, sans-serif"
@@ -62,13 +64,13 @@ spacing:
   xl: "32px"
 components:
   button-primary:
-    backgroundColor: "{colors.azul-eletrico}"
+    backgroundColor: "{colors.azul-acao}"
     textColor: "#ffffff"
     rounded: "{rounded.controle}"
     padding: "8px 16px"
     height: "38px"
   button-primary-hover:
-    backgroundColor: "#0968d4"
+    backgroundColor: "#0a5cb8"
   button-secondary:
     backgroundColor: "{colors.superficie}"
     textColor: "{colors.azul-fundo}"
@@ -168,7 +170,7 @@ Três cores oficiais e nada além: **grafite profundo** (#1E2430), **azul elétr
 comunicar situação, nunca para decorar.
 
 ### Primary
-- **Azul Elétrico** (#0A78F0): a cor de marca, chapada. Botão primário, a peça
+- **Azul Elétrico** (#0A78F0): a cor de marca, chapada. A peça
   superior-direita do símbolo, link, aba e item de navegação ativos, foco de teclado,
   série "realizada" nos gráficos. Nunca como preenchimento de badge nem como
   decoração de superfície.
@@ -184,16 +186,39 @@ comunicar situação, nunca para decorar.
   Existe só para o branco puro dos cards se destacar.
 - **Superfície** (#ffffff) e **Superfície Baixa** (#f2f4f7): cards e faixas internas
   (cabeçalho de tabela, hover de linha, campo de busca em repouso).
-- **Tinta** (#1e2430), **Tinta 2** (#5a6270), **Tinta 3** (#8b93a1): a rampa de texto
-  — conteúdo, apoio e metadado. Tinta 3 nunca carrega informação essencial.
+- **Tinta** (#1e2430), **Tinta 2** (#5a6270), **Tinta 3** (#6a7382): a rampa de texto
+  — conteúdo, apoio e metadado. Tinta 3 passa AA no card e no canvas, mas não sobre
+  superfície tingida: ali quem escreve é a Tinta 2.
 - **Linha** (#e3e6ec): divisórias e contorno de card, sempre 1px.
 
 ### Tertiary
-Semânticas, e apenas para estado: **Verde Saudável** (#07875a) para dentro da meta e
-aprovado, **Âmbar Atenção** (#a3600a) para ocioso e pendente, **Carmim Crítico**
-(#d62b4f) para superalocado, vencido e destrutivo.
+Semânticas, e apenas para estado: **Verde Saudável** (#077e54) para dentro da meta e
+aprovado, **Âmbar Atenção** (#a05e0a) para ocioso e pendente, **Carmim Crítico**
+(#cd284a) para superalocado, vencido e destrutivo. Os três tons foram calibrados
+para alcançar 4.5:1 sobre o próprio fundo de badge.
 
 ### Named Rules
+
+**A Regra dos Três Azuis.** O azul da marca (#0A78F0) e o azul que carrega texto
+não são o mesmo. Branco sobre #0A78F0 dá **4.24:1**, abaixo do mínimo AA de 4.5 —
+medido, não estimado. Então:
+
+| Token | Papel | Contraste |
+| --- | --- | --- |
+| `--azul` | acento da marca: ícone, borda, estado ativo, série de gráfico | não carrega texto |
+| `--azul-acao` | superfície cheia com texto branco: botão primário, contador ativo | 5.33:1 com branco |
+| `--azul-texto` | link e rótulo sobre fundo claro (no escuro é o acento clareado) | 5.33:1 claro / 5.57:1 escuro |
+
+**A Regra da Rampa 3.** `--texto-3` alcança 4.5:1 no card branco e no canvas, mas
+**não** sobre superfície tingida (`--superficie-variante`, `--azul-claro`). Quem
+escreve sobre fundo tingido usa `--texto-2`. Escurecer a rampa 3 até passar em
+tudo foi testado e rejeitado: ela chegaria a 1.13:1 do `--texto-2` e os dois
+cinzas ficariam indistinguíveis, matando a hierarquia.
+
+**A Regra da Cor que Segue o Tema.** Nenhuma cor cravada em hexadecimal dentro de
+regra de componente. O `.badge-laranja` tinha `color: #7a5200` e no tema escuro o
+fundo virava marrom escuro enquanto o texto continuava marrom escuro: **2.08:1**,
+ilegível — e invisível para quem só testa o tema claro.
 **A Regra do Acento Único.** Se um elemento não é acionável, não está selecionado e
 não indica estado, ele não usa o azul da marca. Um badge informativo usa a lavagem
 (#e8f2fe) com texto em #0a5cb8 — nunca o acento cheio.
@@ -376,6 +401,9 @@ animada foi removida por ser movimento decorativo.
 - **Don't** aplicar gradiente em texto (`background-clip: text`).
 - **Don't** usar MAIÚSCULAS com tracking como rótulo de seção.
 - **Don't** aninhar card dentro de card.
+- **Do** medir alvo de toque contra 24×24px, que é o mínimo da WCAG 2.5.8 (AA).
+  Os 44×44 são da 2.5.5, que é AAA — exigir 44 reprova coisas legítimas como
+  segmento de Gantt e cria correção inútil.
 - **Don't** introduzir uma segunda cor de marca: o sistema tem um acento e três
   semânticas de estado, e nada além disso.
 - **Don't** deixar movimento que não comunique estado — inclusive borda animada.

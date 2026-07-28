@@ -67,7 +67,7 @@ export default function Gantt({ fases, onSelecionarFase }) {
             }} />
             <span style={{
               position: 'absolute', top: 22, left: '50%', transform: 'translateX(-50%)',
-              fontSize: 9, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase',
+              fontSize: 10.5, fontWeight: 650,
               color: 'var(--vermelho)', background: 'var(--superficie)', padding: '0 3px', whiteSpace: 'nowrap',
             }}>
               Hoje

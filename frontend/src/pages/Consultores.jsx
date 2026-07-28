@@ -160,7 +160,7 @@ export default function Consultores() {
                     <th key={s} className={corrente ? 'col-corrente' : ''}
                       title={`Semana de ${s}${corrente ? ' — semana corrente' : ''}`}>
                       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
-                        <span style={{ fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: corrente ? 'var(--azul)' : 'var(--texto-3)' }}>
+                        <span style={{ fontSize: 10.5, color: corrente ? 'var(--azul-texto)' : 'var(--texto-2)' }}>
                           {corrente ? 'Atual' : 'Semana'}
                         </span>
                         <span className="mono" style={{ fontSize: 12, fontWeight: corrente ? 700 : 500, color: corrente ? 'var(--azul)' : 'var(--texto)' }}>

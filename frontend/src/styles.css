@@ -16,6 +16,14 @@
   --azul: #0a78f0;
   --azul-hover: #0968d4;
   --azul-ativo: #0a5cb8;
+  /* Azul de AÇÃO: superfície cheia que carrega texto branco. O #0A78F0 da
+     marca da só 4.24:1 com branco, abaixo do mínimo AA. A marca continua sendo
+     o --azul (ícone, link, borda, estado ativo); quem preenche botão é este. */
+  --azul-acao: #0968d4;
+  --azul-acao-hover: #0a5cb8;
+  /* Azul de TEXTO: link e rotulo sobre fundo claro. O #0A78F0 da marca da
+     4.24:1 em branco e 3.84 em superficie tingida — ambos abaixo de AA. */
+  --azul-texto: #0968d4;
   --azul-claro: #e8f2fe;        /* wash da marca */
   --azul-borda: #b9d9fb;
   --azul-fill-suave: #d3e8fd;   /* barra "prevista" do gráfico, fills suaves */
@@ -38,14 +46,15 @@
 
   --texto: #1e2430;               /* a tinta É o grafite da marca */
   --texto-2: #5a6270;
-  --texto-3: #8b93a1;
+  --texto-3: #6a7382;  /* 4.79:1 no card, 4.50:1 no canvas — #8b93a1 dava 3.09 */
 
   /* -- semânticas (status apenas) -- */
-  --verde: #07875a;
+  --verde: #077e54;   /* 4.53:1 sobre --verde-fundo */
   --verde-fundo: #e6f5ef;
-  --laranja: #a3600a;
+  --laranja: #a05e0a;  /* 4.58:1 sobre --laranja-fundo */
+  --sobre-vermelho: #ffffff;  /* no claro o vermelho e escuro: texto branco */
   --laranja-fundo: #fbf1e0;
-  --vermelho: #d62b4f;
+  --vermelho: #cd284a; /* 4.55:1 sobre --vermelho-fundo */
   --vermelho-fundo: #fdeaee;
 
   /* -- espaçamento (base 4) -- */
@@ -190,7 +199,7 @@ h1, h2, h3 { text-wrap: balance; }
   min-width: 20px; height: 20px; padding: 0 6px;
   display: inline-flex; align-items: center; justify-content: center;
   border-radius: 999px;
-  background: var(--vermelho); color: #fff;
+  background: var(--vermelho); color: var(--sobre-vermelho);
   font-variant-numeric: tabular-nums; font-size: 11px; font-weight: 600;
 }
 
@@ -498,7 +507,7 @@ table.tabela { width: 100%; border-collapse: collapse; font-size: 13.5px; }
 }
 .badge-azul { background: var(--azul-claro); color: var(--azul-hover); }
 .badge-verde { background: var(--verde-fundo); color: var(--verde); }
-.badge-laranja { background: var(--laranja-fundo); color: #7a5200; }
+.badge-laranja { background: var(--laranja-fundo); color: var(--laranja); }
 .badge-vermelho { background: var(--vermelho-fundo); color: var(--vermelho); }
 .badge-cinza { background: var(--superficie-variante); color: var(--texto-2); }
 
@@ -561,8 +570,8 @@ table.tabela { width: 100%; border-collapse: collapse; font-size: 13.5px; }
 }
 .botao:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
 .botao:active:not(:disabled) { transform: translateY(1px) scale(0.99); }
-.botao-primario { background: var(--azul); color: #fff; }
-.botao-primario:hover { background: var(--azul-hover); }
+.botao-primario { background: var(--azul-acao); color: #fff; }
+.botao-primario:hover { background: var(--azul-acao-hover); }
 .botao-primario:active { background: var(--azul-ativo); }
 .botao-secundario { background: var(--superficie); color: var(--azul-hover); border-color: var(--azul-borda); }
 .botao-secundario:hover { background: var(--azul-claro); }
@@ -678,7 +687,9 @@ table.tabela { width: 100%; border-collapse: collapse; font-size: 13.5px; }
 }
 .fechar-x {
   background: none; border: none; cursor: pointer;
-  color: var(--texto-2); padding: var(--esp-1); border-radius: var(--raio-1); line-height: 0;
+  color: var(--texto-2); border-radius: var(--raio-1); line-height: 0;
+  /* alvo de 32px: o icone continua com 16px, a area clicavel e que cresce */
+  width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center;
   transition: background var(--dur-1) var(--ease-sair), color var(--dur-1) var(--ease-sair);
 }
 .fechar-x:hover { background: var(--superficie-variante); color: var(--texto); }
@@ -743,7 +754,8 @@ table.tabela { width: 100%; border-collapse: collapse; font-size: 13.5px; }
   text-align: right;
   font-variant-numeric: tabular-nums;
   font-size: 13px;
-  padding: 6px var(--esp-2);
+  padding: 7px var(--esp-2);
+  min-height: 34px;
   border: 1px solid var(--borda-forte);
   border-radius: var(--raio-1);
   transition: border-color var(--dur-1) var(--ease-sair), box-shadow var(--dur-1) var(--ease-sair);
@@ -790,7 +802,7 @@ table.tabela { width: 100%; border-collapse: collapse; font-size: 13.5px; }
 .skeleton-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--esp-4); }
 
 /* ============ empty states ============ */
-.vazio { color: var(--texto-3); text-align: center; padding: 28px 0; font-size: 13px; }
+.vazio { color: var(--texto-2); text-align: center; padding: 28px 0; font-size: 13px; }
 .vazio-ensina {
   display: flex; flex-direction: column; align-items: center; gap: var(--esp-2);
   color: var(--texto-2); text-align: center; padding: var(--esp-8) var(--esp-5);
@@ -900,14 +912,15 @@ table.tabela { width: 100%; border-collapse: collapse; font-size: 13.5px; }
 .texto-3 { color: var(--texto-3); }
 .linha-flex { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .espacador { flex: 1; }
-a.link { color: var(--azul); text-decoration: none; font-weight: 600; }
+a.link { color: var(--azul-texto); text-decoration: none; font-weight: 600; }
 a.link:hover { text-decoration: underline; }
 a.link:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; border-radius: 2px; }
 
 /* ============ porte v3 (classes das telas) ============ */
 .campo-busca {
   width: 100%;
-  padding: 7px 12px 7px 32px;
+  padding: 8px 12px 8px 32px;
+  min-height: 36px;
   font-size: 13.5px;
   border: 1px solid var(--borda-forte);
   border-radius: var(--raio-1);
@@ -1033,7 +1046,7 @@ a.link:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; bord
   font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;
   color: var(--texto); margin: 20px 0 10px;
 }
-.sub-secao .contagem { font-variant-numeric: tabular-nums; color: var(--texto-3); text-transform: none; letter-spacing: 0; }
+.sub-secao .contagem { font-variant-numeric: tabular-nums; color: var(--texto-2); text-transform: none; letter-spacing: 0; }
 
 /* fila de aprovações */
 .fila-item { border: 1px solid var(--borda); border-radius: var(--raio-2); padding: 14px 16px; margin-bottom: 10px; background: var(--superficie); }
@@ -1046,7 +1059,7 @@ a.link:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; bord
   margin-left: auto;
   min-width: 20px; height: 20px; padding: 0 6px;
   display: inline-flex; align-items: center; justify-content: center;
-  border-radius: 99px; background: var(--vermelho); color: #fff;
+  border-radius: 99px; background: var(--vermelho); color: var(--sobre-vermelho);
   font-variant-numeric: tabular-nums; font-size: 11px; font-weight: 600;
 }
 .nav-item.ativo .nav-badge { background: rgba(255, 255, 255, 0.25); }
@@ -1069,7 +1082,7 @@ a.link:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; bord
   font-size: 13px; font-weight: 700; letter-spacing: -0.01em;
   color: var(--texto); padding: 2px 4px 10px;
 }
-.kanban-col > .titulo .contagem { font-variant-numeric: tabular-nums; color: var(--texto-3); }
+.kanban-col > .titulo .contagem { font-variant-numeric: tabular-nums; color: var(--texto-2); }
 .kanban-card {
   background: var(--superficie);
   border: 1px solid var(--borda);
@@ -1147,6 +1160,7 @@ a.link:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; bord
   background: var(--superficie);
   color: var(--texto-2);
   border-radius: 99px;
+  min-height: 32px;
   padding: 6px 12px;
   font-size: 12.5px;
   cursor: pointer;
@@ -1296,10 +1310,16 @@ a.link:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; bord
 /* trilha de navegação acima do título */
 .migalhas {
   display: flex; align-items: center; gap: 6px;
-  font-size: 12.5px; color: var(--texto-3);
+  /* a trilha inteira na rampa 2: o ultimo segmento e a pagina atual, e ela
+     fica sobre o canvas tingido, onde a rampa 3 nao alcanca 4.5:1 */
+  font-size: 12.5px; color: var(--texto-2);
   margin-bottom: 8px;
 }
-.migalhas a { color: var(--texto-2); text-decoration: none; font-weight: 550; }
+.migalhas a {
+  color: var(--texto-2); text-decoration: none; font-weight: 550;
+  /* area clicavel de 32px sem mudar o tamanho visual da trilha */
+  display: inline-flex; align-items: center; min-height: 32px;
+}
 .migalhas a:hover { color: var(--azul); }
 
 /* ---------- barra de ferramentas de visualização ---------- */
@@ -1339,7 +1359,7 @@ a.link:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; bord
   background: var(--superficie-variante); color: var(--texto-2);
   font-variant-numeric: tabular-nums; font-size: 11px; font-weight: 600;
 }
-.toolbar-chip.ativo .contagem { background: var(--azul); color: #fff; }
+.toolbar-chip.ativo .contagem { background: var(--azul-acao); color: #fff; }
 
 /* ---------- controle segmentado ---------- */
 .segmentado {
@@ -1466,7 +1486,7 @@ a.link:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; bord
   animation: girar-spinner 0.7s linear infinite;
 }
 @keyframes girar-spinner { to { transform: rotate(360deg); } }
-.botao-perigo { background: var(--vermelho); color: #fff; }
+.botao-perigo { background: var(--vermelho); color: var(--sobre-vermelho); }
 .botao-perigo:hover { background: #a81a3e; }
 /* botão de ícone quadrado com contorno (toolbar) */
 .icone-botao-contornado {
@@ -1573,6 +1593,7 @@ a.link:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; bord
 :root[data-tema='escuro'] {
   /* acento clareado: #0a78f0 puro fica pesado sobre superfície escura */
   --azul: #4d9dfa;
+  --azul-texto: #4d9dfa;  /* no escuro o link e o proprio acento clareado: 5.57:1 */
   --azul-hover: #6cadfb;
   --azul-ativo: #8fc2fc;
   --azul-claro: #16273d;        /* wash da marca (escuro) */
@@ -1604,6 +1625,9 @@ a.link:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; bord
   --laranja: #eda54e;
   --laranja-fundo: #33281a;
   --vermelho: #ff7a97;
+  /* no escuro o vermelho e claro: quem escreve em cima dele e o grafite,
+     nao o branco (branco sobre #ff7a97 da 2.48:1) */
+  --sobre-vermelho: #1e2430;
   --vermelho-fundo: #3a1e28;
 
   --sombra-1: 0 1px 2px rgba(0, 0, 0, 0.4);
@@ -1616,13 +1640,14 @@ a.link:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; bord
   background: rgba(30, 36, 48, 0.86);
 }
 :root[data-tema='escuro'] .botao-primario:not(:disabled) {
-  /* mantem o azul cheio da marca: branco sobre #0A78F0 passa AA.
+  /* o --azul-acao (#0968d4) serve aos dois temas: branco sobre ele da 5.33:1,
+     enquanto o azul cheio da marca dava 4.24 e reprovava.
      O :not(:disabled) é obrigatório — sem ele este bloco vence a regra de
      desabilitado por especificidade e o botão inativo volta a parecer ativo. */
-  background: #0a78f0;
+  background: var(--azul-acao);
   color: #fff;
 }
-:root[data-tema='escuro'] .botao-primario:hover:not(:disabled) { background: #0d84ff; }
+:root[data-tema='escuro'] .botao-primario:hover:not(:disabled) { background: #0b74e6; }
 :root[data-tema='escuro'] .sidebar-item.ativo { color: var(--azul-ativo); }
 :root[data-tema='escuro'] .pilha-avatares > * { border-color: var(--superficie); }
 :root[data-tema='escuro'] .gaveta-aberta .gaveta-fundo { background: rgba(0, 0, 0, 0.6); }
@@ -1666,7 +1691,7 @@ a.link:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; bord
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .marca-assinatura .marca-endosso {
-  font-size: 10.5px; font-weight: 500; color: var(--texto-3);
+  font-size: 11px; font-weight: 500; color: var(--texto-3);
   white-space: nowrap; margin-top: 2px;
 }
 .marca-assinatura.na-escura .marca-nome { color: #fff; }

@@ -115,7 +115,7 @@ export default function Propostas() {
                 <div className="kanban-card" key={p.id}>
                   <div className="nome">{p.nome}</div>
                   <div className="linha-flex" style={{ gap: 6, marginTop: 4 }}>
-                    <span className="avatar-consultor" style={{ width: 20, height: 20, fontSize: 8.5 }}>{iniciais(p.cliente)}</span>
+                    <span className="avatar-consultor" style={{ width: 22, height: 22, fontSize: 10 }}>{iniciais(p.cliente)}</span>
                     <span className="texto-2" style={{ fontSize: 12 }}>{p.cliente}</span>
                   </div>
                   <div className="meta">

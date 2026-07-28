@@ -123,7 +123,7 @@ export default function QuadroAgil() {
               onClick={() => setSprintSel(s.id)}>
               <strong>{s.nome}</strong>
               <span className={`badge ${cls}`}>{rot}</span>
-              <span className="mono texto-3" style={{ fontSize: 11 }}>
+              <span className="mono texto-2" style={{ fontSize: 11 }}>
                 {s.concluidas}/{s.total}
               </span>
             </button>
