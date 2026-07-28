@@ -2,6 +2,8 @@
 
 > **Tudo se encaixa. Entrega com controle.**
 
+**[Guia de uso](docs/GUIA.md)** — como operar o produto, por perfil e por fluxo.
+
 PSA (Professional Services Automation) para consultoria SAP que fatura por
 hora-homem. Tripé: **Projeto ↔ Alocação de consultores ↔ Receita**.
 
