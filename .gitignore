@@ -27,3 +27,4 @@ desktop.ini
 
 # senha crua temporaria (configurar_conexao.py apaga depois de usar)
 senha.txt
+conexao.txt

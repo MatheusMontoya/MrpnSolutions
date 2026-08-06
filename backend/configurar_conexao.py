@@ -1,53 +1,76 @@
-"""Monta a DATABASE_URL a partir da senha crua, com percent-encoding correto.
+"""Monta a DATABASE_URL a partir da string do painel + a senha crua.
 
-Senha de banco quase sempre tem caractere reservado de URI, e escrever a string
-na mao quebra em silencio: '#' inicia o fragment (a senha chega truncada), '/'
-encerra a autoridade, '@' separa credencial de host, ':' separa usuario de senha.
-Aqui quem codifica e o urllib, entao qualquer senha funciona sem voce precisar
-saber disso.
+Duas coisas que quebram em silencio quando se escreve a string na mao:
+
+1. Caractere reservado de URI na senha. '#' inicia o fragment (a senha chega
+   truncada ao servidor), '/' encerra a autoridade, '@' separa credencial de
+   host, ':' separa usuario de senha. Aqui quem codifica e o urllib.
+2. Ref e regiao do projeto. Mudam a cada projeto novo do Supabase, entao nada
+   e cravado neste arquivo: a string vem do painel, como esta la.
 
 Uso:
-    1. Salve a senha CRUA, sozinha, em backend/senha.txt (sem aspas, sem prefixo)
-    2. python configurar_conexao.py
+    1. backend/conexao.txt  -> a string do painel (Connect > Transaction pooler),
+                               exatamente como copiada, com o [YOUR-PASSWORD]
+    2. backend/senha.txt    -> a senha crua, sozinha
+    3. python configurar_conexao.py
 
-O arquivo da senha e apagado no fim. A senha nunca e impressa na tela.
+Os dois arquivos temporarios sao apagados no fim. A senha nunca e impressa.
 """
+import re
 from pathlib import Path
 from urllib.parse import quote
 
-REF = "fxenxbrpsddmqupvxngn"
-HOST = "aws-0-ca-central-1.pooler.supabase.com"
-PORTA = 6543
-
 AQUI = Path(__file__).resolve().parent
+ARQ_CONEXAO = AQUI / "conexao.txt"
 ARQ_SENHA = AQUI / "senha.txt"
 ARQ_ENV = AQUI / ".env"
 
+PLACEHOLDERS = ("[YOUR-PASSWORD]", "[YOUR_PASSWORD]", "YOUR-PASSWORD", "SUA_SENHA")
+
+
+def limpar() -> None:
+    for f in (ARQ_CONEXAO, ARQ_SENHA):
+        if f.exists():
+            f.unlink()
+            print(f"{f.name} apagado.")
+
 
 def main() -> int:
-    if not ARQ_SENHA.exists():
-        print(f"Falta o arquivo {ARQ_SENHA.name}: salve a senha crua nele e rode de novo.")
+    faltando = [f.name for f in (ARQ_CONEXAO, ARQ_SENHA) if not f.exists()]
+    if faltando:
+        print("Falta(m): " + ", ".join(faltando))
+        print("Veja as instrucoes no topo deste arquivo.")
         return 1
 
-    bruto = ARQ_SENHA.read_text(encoding="utf-8")
-    senha = bruto.strip("\r\n")
-    if not senha:
-        print("O arquivo da senha esta vazio.")
+    modelo = ARQ_CONEXAO.read_text(encoding="utf-8").strip()
+    senha = ARQ_SENHA.read_text(encoding="utf-8").strip("\r\n")
+    if not modelo or not senha:
+        print("conexao.txt ou senha.txt esta vazio.")
         return 1
-    if senha != senha.strip():
-        print("Aviso: a senha tem espaco no inicio ou no fim — mantendo como esta.")
-    if senha.startswith("- "):
-        print("Aviso: a senha comeca com '- '. Se isso era marcador de lista e nao")
-        print("parte da senha, remova do arquivo e rode de novo.")
 
-    # safe="" garante que TODO caractere reservado seja codificado
+    if not modelo.startswith(("postgresql://", "postgres://")):
+        print(f"conexao.txt nao parece uma connection string: comeca com '{modelo[:18]}...'")
+        print("Copie a da aba 'Transaction pooler' no botao Connect do Supabase.")
+        return 1
+
+    if ":6543/" not in modelo:
+        porta = re.search(r":(\d{4,5})/", modelo)
+        print(f"AVISO: a porta e {porta.group(1) if porta else '?'}, esperava 6543 (Transaction pooler).")
+        print("A conexao direta (5432) esgota conexoes em serverless. Prossiga so se souber o que faz.")
+
     codificada = quote(senha, safe="")
-    url = f"postgresql://postgres.{REF}:{codificada}@{HOST}:{PORTA}/postgres"
+    url = modelo
+    for ph in PLACEHOLDERS:
+        url = url.replace(ph, codificada)
+    if codificada not in url:
+        print("Nao achei o placeholder da senha na string. Substituindo o trecho entre ':' e '@'…")
+        url = re.sub(r"://([^:]+):[^@]*@", lambda m: f"://{m.group(1)}:{codificada}@", modelo, count=1)
 
+    ref = re.search(r"://(?:postgres\.)?([a-z0-9]{16,})[:.]", url)
+    host = re.search(r"@([^:/]+)", url)
     reservados = [c for c in "#/@:?&%" if c in senha]
-    print(f"Senha lida: {len(senha)} caracteres.")
-    print(f"Caracteres reservados de URI encontrados: {reservados or 'nenhum'}")
-    print(f"Apos codificar, a senha ocupa {len(codificada)} caracteres na URL.")
+    print(f"Projeto: {ref.group(1) if ref else '?'} | host: {host.group(1) if host else '?'}")
+    print(f"Senha: {len(senha)} caracteres | reservados de URI: {reservados or 'nenhum'} | {len(codificada)} apos codificar")
 
     cabecalho = (
         "# Conexao com o Postgres do Supabase.\n"
@@ -60,7 +83,7 @@ def main() -> int:
     try:
         import psycopg2
 
-        conexao = psycopg2.connect(url, connect_timeout=15)
+        conexao = psycopg2.connect(url, connect_timeout=20)
         with conexao.cursor() as cur:
             cur.execute("select current_database(), version()")
             banco, versao = cur.fetchone()
@@ -71,14 +94,12 @@ def main() -> int:
         print("psycopg2 nao instalado; nao deu para testar a conexao agora.")
         return 0
     except Exception as e:  # noqa: BLE001
-        # a mensagem do driver nao inclui a senha, so o motivo da recusa
-        print(f"FALHOU AO CONECTAR: {type(e).__name__}: {e}")
+        # a mensagem do driver traz o motivo da recusa, nunca a senha
+        print(f"FALHOU AO CONECTAR: {type(e).__name__}: {str(e).strip()[:200]}")
         return 2
 
 
 if __name__ == "__main__":
     codigo = main()
-    if ARQ_SENHA.exists():
-        ARQ_SENHA.unlink()
-        print("senha.txt apagado.")
+    limpar()
     raise SystemExit(codigo)
