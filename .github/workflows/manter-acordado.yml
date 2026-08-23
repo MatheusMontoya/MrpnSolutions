@@ -1,0 +1,33 @@
+# Mantém o banco acordado e vigia a produção — tudo no free tier.
+#
+# O plano gratuito do Supabase pausa projetos após ~7 dias sem atividade; foi
+# isso que derrubou a produção duas vezes. Este robô chama /api/saude duas
+# vezes por semana: o endpoint executa um SELECT no banco, o que conta como
+# atividade e zera o relógio da pausa.
+#
+# Bônus de monitoramento: se o app ou o banco estiverem fora, o passo falha e
+# o GitHub envia e-mail ao dono do repositório — alerta gratuito, sem serviço
+# externo.
+name: Manter banco acordado
+
+on:
+  schedule:
+    # segunda e quinta, 12:00 UTC (09:00 em Brasília) — bem dentro da janela
+    # de 7 dias da pausa por inatividade
+    - cron: "0 12 * * 1,4"
+  workflow_dispatch: {}
+
+jobs:
+  batimento:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Toca o banco via /api/saude
+        run: |
+          codigo=$(curl -s -o resposta.json -w "%{http_code}" --max-time 60 \
+            https://runrate-five.vercel.app/api/saude)
+          echo "http=$codigo"
+          cat resposta.json
+          if [ "$codigo" != "200" ]; then
+            echo "::error::RunRate com problema (http $codigo) — veja resposta.json acima"
+            exit 1
+          fi

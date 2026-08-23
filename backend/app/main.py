@@ -109,7 +109,30 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-ROTAS_LIVRES = {"/api/auth/login"}
+ROTAS_LIVRES = {"/api/auth/login", "/api/saude"}
+
+
+@app.get("/api/saude", include_in_schema=False)
+def saude():
+    """Batimento cardíaco: toca o banco de verdade.
+
+    Duas funções ao mesmo tempo: (1) a consulta conta como atividade, o que
+    impede o free tier do Supabase de pausar o projeto por inatividade — foi
+    isso que derrubou a produção duas vezes; (2) responde o estado real, então
+    o robô de monitoramento sabe distinguir "app no ar" de "banco fora".
+    Não exige token: não expõe dado nenhum, só o veredicto.
+    """
+    from sqlalchemy import text
+
+    try:
+        with database.engine.connect() as con:
+            con.execute(text("select 1"))
+        return {"app": "ok", "banco": "ok"}
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse(
+            {"app": "ok", "banco": "indisponivel", "detalhe": str(e).strip()[:160]},
+            status_code=503,
+        )
 
 
 @app.middleware("http")
