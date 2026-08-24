@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from sqlmodel import Session, select
 
 from ..database import get_session
-from ..seguranca import exigir_gestor
+from ..seguranca import exigir_ceo
 from ..models import Cliente, Fase, Projeto, StatusProjeto
 from ..services.projetos import criar_projeto_com_fases, fase_atual
 from .atividades import resumo_gate
@@ -71,7 +71,7 @@ def listar_projetos(session: Session = Depends(get_session)):
     return resposta
 
 
-@router.post("/projetos", status_code=201, dependencies=[Depends(exigir_gestor)])
+@router.post("/projetos", status_code=201, dependencies=[Depends(exigir_ceo)])
 def criar_projeto(dados: ProjetoCreate, session: Session = Depends(get_session)):
     if not session.get(Cliente, dados.cliente_id):
         raise HTTPException(404, "Cliente não encontrado")
@@ -197,7 +197,7 @@ def evm_do_projeto(projeto_id: int, session: Session = Depends(get_session)):
     return calcular_evm(p, despesas)
 
 
-@router.patch("/projetos/{projeto_id}", dependencies=[Depends(exigir_gestor)])
+@router.patch("/projetos/{projeto_id}", dependencies=[Depends(exigir_ceo)])
 def atualizar_projeto(projeto_id: int, dados: dict, session: Session = Depends(get_session)):
     p = session.get(Projeto, projeto_id)
     if not p:
@@ -211,7 +211,7 @@ def atualizar_projeto(projeto_id: int, dados: dict, session: Session = Depends(g
     return {"ok": True}
 
 
-@router.post("/fases/{fase_id}/reagendar", dependencies=[Depends(exigir_gestor)])
+@router.post("/fases/{fase_id}/reagendar", dependencies=[Depends(exigir_ceo)])
 def reagendar_fase(fase_id: int, req: ReagendamentoRequest, session: Session = Depends(get_session)):
     """Move a data-fim de uma fase. Com aplicar=false devolve só a simulação
     (diff antes→depois); com aplicar=true persiste a cascata."""

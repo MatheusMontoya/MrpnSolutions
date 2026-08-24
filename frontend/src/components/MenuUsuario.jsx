@@ -41,6 +41,7 @@ export default function MenuUsuario() {
   }, [aberto])
 
   const consultor = sessao?.perfil === 'consultor'
+  const ROTULOS = { ceo: 'CEO', rh: 'RH', consultor: 'Consultor' }
 
   return (
     <div className="menu-usuario-raiz" ref={caixa}>
@@ -62,7 +63,7 @@ export default function MenuUsuario() {
             <span className="avatar" aria-hidden="true">{iniciais(sessao?.nome) || 'RR'}</span>
             <span className="quem">
               <span className="nome">{sessao?.nome}</span>
-              <span className="perfil">{consultor ? 'Consultor' : 'Gestor'}</span>
+              <span className="perfil">{ROTULOS[sessao?.perfil] ?? sessao?.perfil}</span>
             </span>
           </div>
 
@@ -85,7 +86,7 @@ export default function MenuUsuario() {
             </div>
           </div>
 
-          {!consultor && (
+          {sessao?.perfil === 'ceo' && (
             <button
               role="menuitem"
               type="button"

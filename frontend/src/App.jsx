@@ -60,7 +60,9 @@ const IC = {
 
 /* Navegação global na SIDEBAR, agrupada por domínio (padrão Productive/ClickUp):
  * todos os destinos ficam visíveis de uma vez, sem esconder nada atrás de abas. */
-const GRUPOS_GESTOR = [
+const ROTULO_PERFIL = { ceo: 'CEO', rh: 'RH', consultor: 'Consultor' }
+
+const GRUPOS_CEO = [
   { rotulo: 'Visão geral', itens: [
     { rotulo: 'Dashboard', para: '/dashboard', icone: IC.dashboard },
     { rotulo: 'Copiloto', para: '/copiloto', icone: IC.faisca },
@@ -92,6 +94,19 @@ const GRUPOS_GESTOR = [
   ] },
 ]
 
+/* RH: gestão de pessoas — aprova horas/despesas/ausências/alocações e cuida
+ * da equipe. Sem financeiro, comercial nem projetos: isso é visão do CEO. */
+const GRUPOS_RH = [
+  { rotulo: 'Equipe', itens: [
+    { rotulo: 'Aprovações', para: '/aprovacoes', icone: IC.aprovar, contador: 'pendentes' },
+    { rotulo: 'Consultores', para: '/consultores', icone: IC.equipe },
+    { rotulo: 'Agenda', para: '/agenda', icone: IC.calendario },
+    { rotulo: 'Apontamento', para: '/apontamento', icone: IC.relogio },
+    { rotulo: 'Despesas', para: '/despesas', icone: IC.cartao },
+    { rotulo: 'Ausências', para: '/ausencias', icone: IC.ausencia },
+  ] },
+]
+
 const GRUPOS_CONSULTOR = [
   { rotulo: 'Meu espaço', itens: [
     { rotulo: 'Apontamento', para: '/apontamento', icone: IC.relogio },
@@ -103,11 +118,14 @@ const GRUPOS_CONSULTOR = [
 
 /* Ações rápidas do botão "+ Novo": levam à tela COM o formulário aberto
  * (?novo=1), então o rótulo entrega exatamente o que promete. */
-const ACOES_GESTOR = [
+const ACOES_CEO = [
   { rotulo: 'Novo projeto', para: '/projetos?novo=1', icone: IC.projetos },
   { rotulo: 'Nova proposta', para: '/propostas?novo=1', icone: IC.proposta },
   { rotulo: 'Nova despesa', para: '/despesas?novo=1', icone: IC.cartao },
   { rotulo: 'Lançar horas', para: '/apontamento', icone: IC.relogio },
+]
+const ACOES_RH = [
+  { rotulo: 'Nova despesa', para: '/despesas?novo=1', icone: IC.cartao },
 ]
 const ACOES_CONSULTOR = [
   { rotulo: 'Lançar horas', para: '/apontamento', icone: IC.relogio },
@@ -130,11 +148,12 @@ function Shell() {
   const nav = useNavigate()
   const location = useLocation()
   const consultor = sessao.perfil === 'consultor'
+  const rh = sessao.perfil === 'rh'
   const [pendentes, setPendentes] = useState(0)
   const [gaveta, setGaveta] = useState(false) // sidebar como gaveta no mobile
 
-  const grupos = consultor ? GRUPOS_CONSULTOR : GRUPOS_GESTOR
-  const acoes = consultor ? ACOES_CONSULTOR : ACOES_GESTOR
+  const grupos = consultor ? GRUPOS_CONSULTOR : rh ? GRUPOS_RH : GRUPOS_CEO
+  const acoes = consultor ? ACOES_CONSULTOR : rh ? ACOES_RH : ACOES_CEO
 
   useEffect(() => {
     if (consultor) return
@@ -200,7 +219,7 @@ function Shell() {
             <span className="avatar" aria-hidden="true">{iniciais(sessao?.nome) || 'MS'}</span>
             <span className="quem">
               <span className="nome">{sessao?.nome}</span>
-              <span className="perfil">{consultor ? 'Consultor' : 'Gestor'}</span>
+              <span className="perfil">{ROTULO_PERFIL[sessao.perfil] ?? sessao.perfil}</span>
             </span>
             <button className="icone-botao" type="button" title="Sair" aria-label="Sair" onClick={logout}>
               <Icone d={IC.sair} size={16} />
@@ -233,6 +252,18 @@ function Shell() {
                 <Route path="/despesas" element={<Despesas />} />
                 <Route path="/ausencias" element={<Ausencias />} />
                 <Route path="*" element={<Navigate to="/apontamento" replace />} />
+              </Routes>
+            ) : rh ? (
+              <Routes>
+                <Route path="/" element={<Navigate to="/aprovacoes" replace />} />
+                <Route path="/aprovacoes" element={<Aprovacoes />} />
+                <Route path="/consultores" element={<Consultores />} />
+                <Route path="/consultores/:id" element={<ConsultorDetalhe />} />
+                <Route path="/agenda" element={<Agenda />} />
+                <Route path="/apontamento" element={<Apontamento />} />
+                <Route path="/despesas" element={<Despesas />} />
+                <Route path="/ausencias" element={<Ausencias />} />
+                <Route path="*" element={<Navigate to="/aprovacoes" replace />} />
               </Routes>
             ) : (
               <Routes>

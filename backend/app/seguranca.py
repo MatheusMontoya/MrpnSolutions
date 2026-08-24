@@ -16,8 +16,17 @@ def usuario_atual(request: Request) -> dict:
     return u
 
 
-def exigir_gestor(request: Request) -> dict:
+def exigir_ceo(request: Request) -> dict:
+    """Financeiro, comercial, projetos, configurações: visão completa do negócio."""
     u = usuario_atual(request)
-    if u["perfil"] != PerfilUsuario.gestor:
-        raise HTTPException(403, "Apenas gestores podem acessar este recurso")
+    if u["perfil"] != PerfilUsuario.ceo:
+        raise HTTPException(403, "Apenas o CEO pode acessar este recurso")
+    return u
+
+
+def exigir_gestao(request: Request) -> dict:
+    """CEO ou RH: aprovações (horas, despesas, ausências, alocações) e equipe."""
+    u = usuario_atual(request)
+    if u["perfil"] not in (PerfilUsuario.ceo, PerfilUsuario.rh):
+        raise HTTPException(403, "Apenas CEO ou RH podem acessar este recurso")
     return u

@@ -7,7 +7,7 @@ from pydantic import BaseModel
 from sqlmodel import Session, select
 
 from ..database import get_session
-from ..seguranca import exigir_gestor
+from ..seguranca import exigir_gestao
 from ..models import (
     Configuracao,
     Consultor,
@@ -101,7 +101,7 @@ def lancar_despesa(dados: DespesaCreate, session: Session = Depends(get_session)
     return serializar(d)
 
 
-@router.patch("/{despesa_id}/decidir", dependencies=[Depends(exigir_gestor)])
+@router.patch("/{despesa_id}/decidir", dependencies=[Depends(exigir_gestao)])
 def decidir_despesa(despesa_id: int, dados: DecisaoDespesa, session: Session = Depends(get_session)):
     d = session.get(Despesa, despesa_id)
     if not d:

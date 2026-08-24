@@ -17,7 +17,7 @@ from app.services.auth import gerar_hash, verificar_senha
 
 @pytest.fixture()
 def api(monkeypatch):
-    """TestClient sobre um banco em memória com um gestor e uma consultora."""
+    """TestClient sobre um banco em memória com CEO, RH e uma consultora."""
     engine = create_engine(
         "sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool
     )
@@ -33,8 +33,12 @@ def api(monkeypatch):
         s.commit()
         s.refresh(consultora)
         s.add(Usuario(
-            email="gestor@teste.com", nome="Gestor Teste",
-            perfil=PerfilUsuario.gestor, senha_hash=gerar_hash("segredo1"),
+            email="ceo@teste.com", nome="CEO Teste",
+            perfil=PerfilUsuario.ceo, senha_hash=gerar_hash("segredo1"),
+        ))
+        s.add(Usuario(
+            email="rh@teste.com", nome="RH Teste",
+            perfil=PerfilUsuario.rh, senha_hash=gerar_hash("segredo1"),
         ))
         s.add(Usuario(
             email="ana@teste.com", nome="Ana Teste",
@@ -45,7 +49,7 @@ def api(monkeypatch):
     return TestClient(app)
 
 
-def _logar(api, email="gestor@teste.com", senha="segredo1"):
+def _logar(api, email="ceo@teste.com", senha="segredo1"):
     r = api.post("/api/auth/login", json={"email": email, "senha": senha})
     assert r.status_code == 200, r.text
     return {"Authorization": f"Bearer {r.json()['token']}"}
@@ -63,13 +67,13 @@ def test_hash_e_verificacao():
 # ---------------- login e token ----------------
 
 def test_login_ok_e_senha_errada(api):
-    r = api.post("/api/auth/login", json={"email": "gestor@teste.com", "senha": "segredo1"})
+    r = api.post("/api/auth/login", json={"email": "ceo@teste.com", "senha": "segredo1"})
     assert r.status_code == 200
     corpo = r.json()
-    assert corpo["perfil"] == "gestor"
+    assert corpo["perfil"] == "ceo"
     assert corpo["token"]
 
-    r = api.post("/api/auth/login", json={"email": "gestor@teste.com", "senha": "errada"})
+    r = api.post("/api/auth/login", json={"email": "ceo@teste.com", "senha": "errada"})
     assert r.status_code == 401
 
 
@@ -99,7 +103,7 @@ def test_trocar_senha(api):
 
 # ---------------- RBAC ----------------
 
-def test_consultor_bloqueado_em_rota_de_gestor(api):
+def test_consultor_bloqueado_em_rota_gerencial(api):
     h = _logar(api, "ana@teste.com")
     assert api.get("/api/propostas", headers=h).status_code == 403
     assert api.get("/api/aprovacoes", headers=h).status_code == 403
@@ -119,7 +123,7 @@ def test_consultor_acessa_o_proprio_espaco(api):
     assert api.get("/api/consultores/1/agenda", headers=h).status_code == 200
 
 
-def test_gestor_acessa_tudo(api):
+def test_ceo_acessa_tudo(api):
     h = _logar(api)
     assert api.get("/api/propostas", headers=h).status_code == 200
     assert api.get("/api/aprovacoes", headers=h).status_code == 200
@@ -128,9 +132,9 @@ def test_gestor_acessa_tudo(api):
 
 # ---------------- gestão de usuários ----------------
 
-def test_gestor_cria_usuario_e_email_duplicado_da_409(api):
+def test_ceo_cria_usuario_e_email_duplicado_da_409(api):
     h = _logar(api)
-    novo = {"email": "novo@teste.com", "nome": "Novo", "senha": "segredo2", "perfil": "gestor"}
+    novo = {"email": "novo@teste.com", "nome": "Novo", "senha": "segredo2", "perfil": "ceo"}
     assert api.post("/api/usuarios", headers=h, json=novo).status_code == 201
     assert api.post("/api/usuarios", headers=h, json=novo).status_code == 409
     assert api.post("/api/auth/login", json={"email": "novo@teste.com", "senha": "segredo2"}).status_code == 200
@@ -148,7 +152,7 @@ def test_usuario_desativado_nao_loga_e_sessao_morre(api):
     assert api.get("/api/auth/eu", headers=hc).status_code == 401  # sessão viva morre junto
 
 
-def test_gestor_nao_desativa_a_si_mesmo(api):
+def test_ceo_nao_desativa_a_si_mesmo(api):
     h = _logar(api)
     eu = api.get("/api/auth/eu", headers=h).json()
     assert api.patch(f"/api/usuarios/{eu['id']}", headers=h, json={"ativo": False}).status_code == 422
@@ -166,9 +170,44 @@ def test_mutacoes_entram_na_trilha_de_auditoria(api):
     alvo = next(e for e in eventos if e["caminho"] == "/api/clientes")
     assert alvo["metodo"] == "POST"
     assert alvo["status"] == 201
-    assert alvo["usuario"] == "Gestor Teste"
+    assert alvo["usuario"] == "CEO Teste"
 
 
-def test_auditoria_e_so_do_gestor(api):
+def test_auditoria_e_so_do_ceo(api):
     hc = _logar(api, "ana@teste.com")
     assert api.get("/api/auditoria", headers=hc).status_code == 403
+
+
+# ---------------- RBAC do RH ----------------
+
+def test_rh_aprova_mas_nao_ve_financeiro(api):
+    h = _logar(api, "rh@teste.com")
+    # o trabalho do RH: fila de aprovações e equipe
+    assert api.get("/api/aprovacoes", headers=h).status_code == 200
+    assert api.get("/api/consultores", headers=h).status_code == 200
+    assert api.get("/api/consultores/1/agenda", headers=h).status_code == 200
+    # o que é do CEO fica fora: dinheiro, comercial, configurações sensíveis
+    assert api.get("/api/dashboard", headers=h).status_code == 403
+    assert api.get("/api/financeiro/rentabilidade", headers=h).status_code == 403
+    assert api.get("/api/propostas", headers=h).status_code == 403
+    assert api.get("/api/copiloto/insights", headers=h).status_code == 403
+    assert api.get("/api/usuarios", headers=h).status_code == 403
+    assert api.get("/api/auditoria", headers=h).status_code == 403
+
+
+def test_rh_cria_consultor_mas_nao_projeto(api):
+    h = _logar(api, "rh@teste.com")
+    r = api.post("/api/consultores", headers=h, json={
+        "nome": "Novo Consultor", "senioridade": "pleno",
+        "taxa_hora_custo": 80, "taxa_hora_venda": 180,
+    })
+    assert r.status_code == 201
+    assert api.post("/api/projetos", headers=h, json={
+        "nome": "X", "cliente_id": 1, "data_inicio": "2026-03-02",
+    }).status_code == 403
+
+
+def test_consultor_segue_bloqueado_nas_rotas_de_gestao(api):
+    h = _logar(api, "ana@teste.com")
+    assert api.get("/api/aprovacoes", headers=h).status_code == 403
+    assert api.get("/api/dashboard", headers=h).status_code == 403

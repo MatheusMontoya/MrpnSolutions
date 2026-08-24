@@ -7,7 +7,7 @@ from pydantic import BaseModel
 from sqlmodel import Session, select
 
 from ..database import get_session
-from ..seguranca import exigir_gestor
+from ..seguranca import exigir_gestao
 from ..models import Ausencia, Consultor, StatusAprovacao, TipoAusencia
 
 router = APIRouter(prefix="/api/ausencias", tags=["Ausências"])
@@ -67,7 +67,7 @@ def solicitar_ausencia(dados: AusenciaCreate, session: Session = Depends(get_ses
     return serializar(a)
 
 
-@router.patch("/{ausencia_id}/decidir", dependencies=[Depends(exigir_gestor)])
+@router.patch("/{ausencia_id}/decidir", dependencies=[Depends(exigir_gestao)])
 def decidir_ausencia(ausencia_id: int, dados: DecisaoAusencia, session: Session = Depends(get_session)):
     a = session.get(Ausencia, ausencia_id)
     if not a:

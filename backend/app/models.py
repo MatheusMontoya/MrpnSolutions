@@ -153,8 +153,9 @@ class StatusMedicao(str, Enum):
 
 
 class PerfilUsuario(str, Enum):
-    gestor = "gestor"
-    consultor = "consultor"
+    ceo = "ceo"              # visão completa: financeiro, comercial, projetos, configurações
+    rh = "rh"                # gestão de pessoas: aprovações, consultores, agenda
+    consultor = "consultor"  # o próprio espaço: horas, despesas, ausências
 
 
 class StatusSprint(str, Enum):

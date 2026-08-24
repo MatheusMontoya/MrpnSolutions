@@ -627,7 +627,7 @@ function SecaoUsuarios() {
         <div>
           <h2 className="card-titulo-secao" style={{ padding: 0 }}>Usuários</h2>
           <div className="texto-3" style={{ fontSize: 12.5, marginTop: 2 }}>
-            Contas com senha real. Gestor vê tudo; consultor entra no próprio espaço (horas, despesas, ausências, agenda).
+            Contas com senha real. CEO vê o negócio inteiro; RH aprova e cuida da equipe; consultor entra no próprio espaço.
           </div>
         </div>
         <button className="botao botao-secundario" onClick={() => setNovo({ email: '', nome: '', senha: '', perfil: 'consultor', consultor_id: consultores[0]?.id ?? '' })}>
@@ -654,8 +654,9 @@ function SecaoUsuarios() {
             <div className="campo">
               <label htmlFor="usu-perfil">Perfil</label>
               <select id="usu-perfil" value={novo.perfil} onChange={(e) => setNovo({ ...novo, perfil: e.target.value })}>
-                <option value="consultor">Consultor</option>
-                <option value="gestor">Gestor</option>
+                <option value="consultor">Consultor — lança horas, despesas e ausências</option>
+                <option value="rh">RH — aprova horas, despesas, ausências e alocações</option>
+                <option value="ceo">CEO — visão completa, inclusive financeiro</option>
               </select>
             </div>
             {novo.perfil === 'consultor' && (
@@ -680,7 +681,7 @@ function SecaoUsuarios() {
                 <tr key={u.id} style={{ opacity: u.ativo ? 1 : 0.55 }}>
                   <td>{u.nome}</td>
                   <td className="mono" style={{ fontSize: 12.5 }}>{u.email}</td>
-                  <td><span className={`badge ${u.perfil === 'gestor' ? 'badge-azul' : 'badge-cinza'}`}>{u.perfil}</span></td>
+                  <td><span className={`badge ${u.perfil === 'consultor' ? 'badge-cinza' : 'badge-azul'}`}>{({ ceo: 'CEO', rh: 'RH', consultor: 'consultor' })[u.perfil] ?? u.perfil}</span></td>
                   <td className="texto-2">{u.consultor || '—'}</td>
                   <td>
                     <span className={`badge ${u.ativo ? 'badge-verde' : 'badge-vermelho'}`}>{u.ativo ? 'ativo' : 'desativado'}</span>

@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from sqlmodel import Session, select
 
 from ..database import get_session
-from ..seguranca import exigir_gestor
+from ..seguranca import exigir_ceo
 from ..models import Configuracao, Feriado
 from ..services.receita import definir_feriados
 
@@ -29,7 +29,7 @@ def listar_feriados(session: Session = Depends(get_session)):
     ]
 
 
-@router.post("/feriados", status_code=201, dependencies=[Depends(exigir_gestor)])
+@router.post("/feriados", status_code=201, dependencies=[Depends(exigir_ceo)])
 def criar_feriado(dados: FeriadoCreate, session: Session = Depends(get_session)):
     existente = session.exec(select(Feriado).where(Feriado.data == dados.data)).first()
     if existente:
@@ -41,7 +41,7 @@ def criar_feriado(dados: FeriadoCreate, session: Session = Depends(get_session))
     return {"id": f.id, "data": f.data.isoformat(), "nome": f.nome}
 
 
-@router.delete("/feriados/{feriado_id}", status_code=204, dependencies=[Depends(exigir_gestor)])
+@router.delete("/feriados/{feriado_id}", status_code=204, dependencies=[Depends(exigir_ceo)])
 def remover_feriado(feriado_id: int, session: Session = Depends(get_session)):
     f = session.get(Feriado, feriado_id)
     if not f:
@@ -66,7 +66,7 @@ def obter_configuracao(session: Session = Depends(get_session)):
     return _obter_ou_criar(session)
 
 
-@router.patch("", response_model=Configuracao, dependencies=[Depends(exigir_gestor)])
+@router.patch("", response_model=Configuracao, dependencies=[Depends(exigir_ceo)])
 def atualizar_configuracao(dados: dict, session: Session = Depends(get_session)):
     cfg = _obter_ou_criar(session)
     for campo, valor in dados.items():

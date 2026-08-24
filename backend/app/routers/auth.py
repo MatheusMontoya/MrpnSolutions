@@ -9,7 +9,7 @@ from sqlmodel import Session, select
 
 from ..database import get_session
 from ..models import Consultor, PerfilUsuario, Usuario
-from ..seguranca import exigir_gestor, usuario_atual
+from ..seguranca import exigir_ceo, usuario_atual
 from ..services.auth import (
     autenticar,
     criar_sessao,
@@ -101,13 +101,13 @@ def trocar_senha(dados: TrocaSenha, request: Request, session: Session = Depends
 
 # ---------------- gestão de usuários (gestor) ----------------
 
-@router.get("/usuarios", dependencies=[Depends(exigir_gestor)])
+@router.get("/usuarios", dependencies=[Depends(exigir_ceo)])
 def listar_usuarios(session: Session = Depends(get_session)):
     usuarios = session.exec(select(Usuario).order_by(Usuario.nome)).all()
     return [_ser_usuario(u) for u in usuarios]
 
 
-@router.post("/usuarios", status_code=201, dependencies=[Depends(exigir_gestor)])
+@router.post("/usuarios", status_code=201, dependencies=[Depends(exigir_ceo)])
 def criar_usuario(dados: UsuarioCreate, session: Session = Depends(get_session)):
     email = dados.email.strip().lower()
     if session.exec(select(Usuario).where(Usuario.email == email)).first():
@@ -128,7 +128,7 @@ def criar_usuario(dados: UsuarioCreate, session: Session = Depends(get_session))
     return _ser_usuario(u)
 
 
-@router.patch("/usuarios/{usuario_id}", dependencies=[Depends(exigir_gestor)])
+@router.patch("/usuarios/{usuario_id}", dependencies=[Depends(exigir_ceo)])
 def atualizar_usuario(usuario_id: int, dados: UsuarioUpdate, request: Request, session: Session = Depends(get_session)):
     u = session.get(Usuario, usuario_id)
     if not u:

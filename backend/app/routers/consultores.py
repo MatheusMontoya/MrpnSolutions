@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlmodel import Session, select
 
 from ..database import get_session
-from ..seguranca import exigir_gestor
+from ..seguranca import exigir_gestao
 from ..models import HORAS_SEMANA_PADRAO, Alocacao, Apontamento, Ausencia, Consultor
 from ..services.receita import (
     horas_alocadas_na_semana,
@@ -22,7 +22,7 @@ def listar_consultores(session: Session = Depends(get_session)):
     return session.exec(select(Consultor).order_by(Consultor.nome)).all()
 
 
-@router.post("", response_model=Consultor, status_code=201, dependencies=[Depends(exigir_gestor)])
+@router.post("", response_model=Consultor, status_code=201, dependencies=[Depends(exigir_gestao)])
 def criar_consultor(consultor: Consultor, session: Session = Depends(get_session)):
     consultor.id = None
     session.add(consultor)

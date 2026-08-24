@@ -8,7 +8,7 @@ isso já é custo, já é receita prevista e já é consumo de capacidade da sem
 existe planilha paralela para reconciliar depois.
 
 - **No ar:** https://runrate-five.vercel.app
-- **Acesso de demonstração:** `gestor@psa.com` ou `ana@psa.com`, senha `psa123`
+- **Acesso de demonstração:** `ceo@psa.com`, `rh@psa.com` ou `ana@psa.com` — senha `psa123`
 
 ---
 
@@ -21,18 +21,19 @@ Depois de entrar, o **avatar no canto superior direito** abre o menu da conta:
 troca de tema (Claro, Escuro ou Sistema), Configurações e sair. O claro é o tema
 oficial; o escuro é preferência sua e fica salvo no navegador.
 
-## Os dois perfis
+## Os três perfis
 
 O que você vê depende de quem você é.
 
-| | Gestor | Consultor |
-| --- | --- | --- |
-| Navegação | 5 grupos, 20 telas | 1 grupo, 4 telas |
-| Enxerga | tudo: comercial, projetos, equipe, financeiro | apenas o próprio espaço |
-| Pode | criar projeto, aprovar horas, faturar, configurar | lançar horas, despesas e ausências |
+| | CEO | RH | Consultor |
+| --- | --- | --- | --- |
+| Navegação | 5 grupos, 20 telas | 1 grupo, 6 telas | 1 grupo, 4 telas |
+| Enxerga | tudo: lucro, faturamento, comercial, projetos, equipe | a equipe: aprovações, consultores, agenda | apenas o próprio espaço |
+| Pode | tudo, inclusive configurar e gerir usuários | aprovar horas, despesas, ausências e alocações; cadastrar consultor | lançar horas, despesas e ausências |
+| Entra em | Dashboard | Aprovações | Apontamento |
 
-A restrição não é só visual: o backend exige perfil de gestor nas rotas
-sensíveis. Consultor não vê custo de colega nem margem de projeto.
+A restrição não é só visual: o backend recusa (403) o que não é do perfil.
+RH não vê margem, faturamento nem propostas; consultor não vê custo de colega.
 
 ---
 
@@ -79,7 +80,22 @@ ausências. É a visão de "o que me espera".
 
 ---
 
-# Para o gestor
+# Para o RH
+
+Sua casa é a fila de **Aprovações** — é nela que você aterrissa ao entrar.
+Chegam ali as semanas de horas enviadas pelos consultores, as despesas, os
+pedidos de ausência e as solicitações de alocação, cada um com **Aprovar** ou
+**Recusar** (com motivo). Ausência aprovada reduz a capacidade do consultor
+nas semanas dela — é assim que o sistema evita superalocação.
+
+Além da fila, você tem **Consultores** (cadastro, senioridade, taxas e o mapa
+de utilização), **Agenda** (o mês de cada um), **Apontamento** e **Despesas**
+(visão de acompanhamento) e **Ausências**. O que é dinheiro do negócio —
+faturamento, margem, propostas — fica com o CEO.
+
+---
+
+# Para o CEO
 
 A navegação segue o ciclo do negócio: **Comercial → Projetos → Equipe → Financeiro**,
 com o Dashboard e o Copiloto por cima.
@@ -264,12 +280,12 @@ cobrança. Nessa ordem, e nunca ao contrário.
 | **Avatar** (canto direito) | tema, Configurações, sair |
 | **Exportar** | vários relatórios exportam CSV, com acento correto no Excel |
 
-## Configurações — só gestor
+## Configurações — só CEO
 
 | Seção | O que controla |
 | --- | --- |
 | **Aparência** | tema padrão da sua conta |
-| **Usuários** | quem acessa, com que perfil, e redefinição de senha |
+| **Usuários** | quem acessa, com que perfil (CEO, RH ou Consultor), e redefinição de senha |
 | **Feriados** | calendário corporativo — entra direto no cálculo de capacidade |
 | **Modelos de projeto** | o esqueleto de fases e atividades que todo projeto novo herda |
 | **Copiloto IA** | chave da API e modelo |

@@ -32,5 +32,5 @@ export function SessaoProvider({ children }) {
   return <Ctx.Provider value={{ sessao, entrar, sair }}>{children}</Ctx.Provider>
 }
 
-// { token, perfil: 'gestor'|'consultor', nome: string, consultorId: number|null }
+// { token, perfil: 'ceo'|'rh'|'consultor', nome: string, consultorId: number|null }
 export const useSessao = () => useContext(Ctx)

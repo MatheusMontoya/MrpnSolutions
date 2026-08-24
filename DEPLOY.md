@@ -102,7 +102,7 @@ Se um dia quiser o melhor dos dois, os dois têm de andar juntos: banco em
 | Verificação | Esperado |
 | --- | --- |
 | `https://SEU-APP.vercel.app/` | tela de login com a aurora azul |
-| Entrar com `gestor@psa.com` / `psa123` | vai para o Dashboard com os números |
+| Entrar com `ceo@psa.com` / `psa123` | vai para o Dashboard com os números |
 | `https://SEU-APP.vercel.app/api/docs` | OpenAPI do FastAPI |
 | Recarregar em `/projetos/1` | continua na tela (não dá 404) |
 | Lançar horas, sair e voltar | o dado **persiste** — é o teste do Postgres |
@@ -118,7 +118,7 @@ O deploy acima é uma **demonstração**, e por isso mostra as credenciais na te
 Para receber dado real de cliente:
 
 1. `VITE_DEMO=0` nas variáveis da Vercel — o bloco de credenciais sai do login.
-2. Troque as senhas dos usuários semeados (todos nascem com `psa123`) em
+2. Troque as senhas dos usuários semeados — CEO, RH e consultores nascem com `psa123` em
    **Configurações → Usuários**, ou apague os de demonstração e crie os reais.
 3. Ative **Deployment Protection** na Vercel se o ambiente não deve ser público.
 

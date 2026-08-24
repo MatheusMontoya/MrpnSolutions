@@ -5,12 +5,12 @@ from sqlmodel import Session, select
 
 from ..database import get_session
 from ..models import EventoAuditoria
-from ..seguranca import exigir_gestor
+from ..seguranca import exigir_ceo
 
 router = APIRouter(
     prefix="/api/auditoria",
     tags=["Auditoria"],
-    dependencies=[Depends(exigir_gestor)],
+    dependencies=[Depends(exigir_ceo)],
 )
 
 

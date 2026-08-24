@@ -12,9 +12,13 @@ import { api } from '../api'
 // entrada não precisa vender o produto para quem já é cliente; precisa sumir.
 
 const DEMOS = [
-  { rotulo: 'Gestor', email: 'gestor@psa.com' },
+  { rotulo: 'CEO', email: 'ceo@psa.com' },
+  { rotulo: 'RH', email: 'rh@psa.com' },
   { rotulo: 'Consultora', email: 'ana@psa.com' },
 ]
+
+// cada perfil aterrissa na tela que é o centro do seu trabalho
+const DESTINO_POS_LOGIN = { ceo: '/dashboard', rh: '/aprovacoes', consultor: '/apontamento' }
 const SENHA_DEMO = 'psa123'
 
 // O bloco de credenciais fica visível por padrão (é um ambiente de demonstração).
@@ -36,7 +40,7 @@ export default function Login() {
     try {
       const r = await api.post('/auth/login', form)
       entrar({ token: r.token, perfil: r.perfil, nome: r.nome, consultorId: r.consultor_id })
-      nav(r.perfil === 'gestor' ? '/dashboard' : '/apontamento')
+      nav(DESTINO_POS_LOGIN[r.perfil] ?? '/apontamento')
     } catch (err) {
       setErro(err.message)
       setOcupado(false)

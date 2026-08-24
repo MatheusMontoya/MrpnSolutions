@@ -143,8 +143,12 @@ def _popular(session: Session) -> None:
 
     senha_demo = gerar_hash("psa123")  # mesmo hash para todos acelera o seed
     session.add(Usuario(
-        email="gestor@psa.com", nome="Gestor Demo",
-        perfil=PerfilUsuario.gestor, senha_hash=senha_demo,
+        email="ceo@psa.com", nome="CEO Demo",
+        perfil=PerfilUsuario.ceo, senha_hash=senha_demo,
+    ))
+    session.add(Usuario(
+        email="rh@psa.com", nome="RH Demo",
+        perfil=PerfilUsuario.rh, senha_hash=senha_demo,
     ))
     for c in (ana, bruno, carla, diego, elisa, fabio):
         email = c.nome.split()[0].lower()

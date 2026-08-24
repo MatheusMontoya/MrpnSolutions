@@ -15,7 +15,7 @@ from sqlmodel import Session
 
 from . import database
 from .database import USA_SQLITE, criar_tabelas
-from .seguranca import exigir_gestor
+from .seguranca import exigir_ceo, exigir_gestao
 from .routers import (
     agil,
     alocacoes,
@@ -177,7 +177,10 @@ async def autenticacao_e_auditoria(request: Request, call_next):
     return resposta
 
 
-GESTOR = [Depends(exigir_gestor)]
+# Dois níveis gerenciais: o RH aprova e cuida de pessoas; o CEO vê o negócio
+# inteiro (dinheiro, comercial, projetos, configurações).
+CEO = [Depends(exigir_ceo)]
+GESTAO = [Depends(exigir_gestao)]
 
 # acessíveis aos dois perfis (writes sensíveis têm guarda própria na rota)
 app.include_router(auth.router)
@@ -189,25 +192,25 @@ app.include_router(ausencias.router)
 app.include_router(despesas.router)
 
 # exclusivos do gestor
-app.include_router(dashboard.router, dependencies=GESTOR)
-app.include_router(clientes.router, dependencies=GESTOR)
-app.include_router(alocacoes.router, dependencies=GESTOR)
-app.include_router(atividades.router, dependencies=GESTOR)
-app.include_router(pendencias.router, dependencies=GESTOR)
-app.include_router(aprovacoes.router, dependencies=GESTOR)
-app.include_router(propostas.router, dependencies=GESTOR)
-app.include_router(faturas.router, dependencies=GESTOR)
-app.include_router(contratos.router, dependencies=GESTOR)
-app.include_router(governanca.router, dependencies=GESTOR)
-app.include_router(financeiro.router, dependencies=GESTOR)
-app.include_router(copiloto.router, dependencies=GESTOR)
-app.include_router(exportacao.router, dependencies=GESTOR)
-app.include_router(solicitacoes.router, dependencies=GESTOR)
-app.include_router(medicoes.router, dependencies=GESTOR)
-app.include_router(orcamento.router, dependencies=GESTOR)
-app.include_router(modelos.router, dependencies=GESTOR)
-app.include_router(agil.router, dependencies=GESTOR)
-app.include_router(auditoria.router)  # já exige gestor internamente
+app.include_router(dashboard.router, dependencies=CEO)
+app.include_router(clientes.router, dependencies=CEO)
+app.include_router(alocacoes.router, dependencies=CEO)
+app.include_router(atividades.router, dependencies=CEO)
+app.include_router(pendencias.router, dependencies=CEO)
+app.include_router(aprovacoes.router, dependencies=GESTAO)
+app.include_router(propostas.router, dependencies=CEO)
+app.include_router(faturas.router, dependencies=CEO)
+app.include_router(contratos.router, dependencies=CEO)
+app.include_router(governanca.router, dependencies=CEO)
+app.include_router(financeiro.router, dependencies=CEO)
+app.include_router(copiloto.router, dependencies=CEO)
+app.include_router(exportacao.router, dependencies=CEO)
+app.include_router(solicitacoes.router, dependencies=GESTAO)
+app.include_router(medicoes.router, dependencies=CEO)
+app.include_router(orcamento.router, dependencies=CEO)
+app.include_router(modelos.router, dependencies=CEO)
+app.include_router(agil.router, dependencies=CEO)
+app.include_router(auditoria.router)  # já exige CEO internamente
 
 
 if FRONTEND_DIST.exists():
