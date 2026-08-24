@@ -4,8 +4,16 @@
     {
       "name": "psa-sap",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "uvicorn", "app.main:app", "--host", "127.0.0.1", "--port", "8000"],
-      "cwd": "C:\\Users\\mathe\\OneDrive\\Desktop\\00 Projetos\\PSA-SAP\\psa-sap\\backend",
+      "runtimeArgs": [
+        "-m",
+        "uvicorn",
+        "app.main:app",
+        "--host",
+        "127.0.0.1",
+        "--port",
+        "8000"
+      ],
+      "cwd": "backend",
       "port": 8000
     }
   ]

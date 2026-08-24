@@ -2,12 +2,12 @@
 gestor. Ausência aprovada reduz a capacidade no motor de utilização."""
 from datetime import date
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from pydantic import BaseModel
 from sqlmodel import Session, select
 
 from ..database import get_session
-from ..seguranca import exigir_gestao
+from ..seguranca import consultor_do_filtro, eh_gestao, exigir_gestao, usuario_atual
 from ..models import Ausencia, Consultor, StatusAprovacao, TipoAusencia
 
 router = APIRouter(prefix="/api/ausencias", tags=["Ausências"])
@@ -42,11 +42,13 @@ def serializar(a: Ausencia) -> dict:
 
 @router.get("")
 def listar_ausencias(
+    request: Request,
     consultor_id: int | None = Query(default=None),
     status: StatusAprovacao | None = Query(default=None),
     session: Session = Depends(get_session),
 ):
     q = select(Ausencia).order_by(Ausencia.data_inicio.desc())
+    consultor_id = consultor_do_filtro(request, consultor_id)
     if consultor_id is not None:
         q = q.where(Ausencia.consultor_id == consultor_id)
     if status is not None:
@@ -55,7 +57,11 @@ def listar_ausencias(
 
 
 @router.post("", status_code=201)
-def solicitar_ausencia(dados: AusenciaCreate, session: Session = Depends(get_session)):
+def solicitar_ausencia(request: Request, dados: AusenciaCreate, session: Session = Depends(get_session)):
+    dono = consultor_do_filtro(request, dados.consultor_id)
+    if dono != dados.consultor_id:
+        # consultor lançando em nome de outro: o dono correto prevalece
+        dados.consultor_id = dono
     if not session.get(Consultor, dados.consultor_id):
         raise HTTPException(404, "Consultor não encontrado")
     if dados.data_fim < dados.data_inicio:
@@ -82,11 +88,13 @@ def decidir_ausencia(ausencia_id: int, dados: DecisaoAusencia, session: Session 
 
 
 @router.delete("/{ausencia_id}", status_code=204)
-def cancelar_ausencia(ausencia_id: int, session: Session = Depends(get_session)):
+def cancelar_ausencia(ausencia_id: int, request: Request, session: Session = Depends(get_session)):
     """Consultor cancela a própria solicitação enquanto pendente."""
     a = session.get(Ausencia, ausencia_id)
     if not a:
         raise HTTPException(404, "Ausência não encontrada")
+    if not eh_gestao(usuario_atual(request)) and a.consultor_id != usuario_atual(request).get("consultor_id"):
+        raise HTTPException(403, "Você só pode remover os seus próprios registros")
     if a.status != StatusAprovacao.pendente:
         raise HTTPException(409, "Só é possível cancelar solicitações pendentes")
     session.delete(a)

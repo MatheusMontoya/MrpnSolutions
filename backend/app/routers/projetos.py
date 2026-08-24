@@ -1,12 +1,12 @@
 from datetime import date
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel
 from sqlmodel import Session, select
 
 from ..database import get_session
-from ..seguranca import exigir_ceo
-from ..models import Cliente, Fase, Projeto, StatusProjeto
+from ..seguranca import eh_gestao, exigir_ceo, exigir_gestao, usuario_atual
+from ..models import Alocacao, Cliente, Fase, Projeto, StatusProjeto
 from ..services.projetos import criar_projeto_com_fases, fase_atual
 from .atividades import resumo_gate
 from ..services.reagendamento import aplicar_reagendamento, simular_reagendamento
@@ -40,8 +40,17 @@ class ReagendamentoRequest(BaseModel):
 
 
 @router.get("/projetos")
-def listar_projetos(session: Session = Depends(get_session)):
+def listar_projetos(request: Request, session: Session = Depends(get_session)):
+    """Gestão vê a carteira inteira; consultor vê só os projetos em que tem
+    alocação — a lista serve a ele apenas para escolher o projeto da despesa."""
     projetos = session.exec(select(Projeto).order_by(Projeto.nome)).all()
+    u = usuario_atual(request)
+    if not eh_gestao(u):
+        alocacoes = session.exec(
+            select(Alocacao).where(Alocacao.consultor_id == u.get("consultor_id"))
+        ).all()
+        meus = {a.fase.projeto_id for a in alocacoes if a.fase}
+        projetos = [p for p in projetos if p.id in meus]
     hoje = date.today()
     resposta = []
     for p in projetos:
@@ -87,7 +96,7 @@ def criar_projeto(dados: ProjetoCreate, session: Session = Depends(get_session))
     return obter_projeto(projeto.id, session)
 
 
-@router.get("/projetos/{projeto_id}")
+@router.get("/projetos/{projeto_id}", dependencies=[Depends(exigir_gestao)])
 def obter_projeto(projeto_id: int, session: Session = Depends(get_session)):
     p = session.get(Projeto, projeto_id)
     if not p:
@@ -184,7 +193,7 @@ def obter_projeto(projeto_id: int, session: Session = Depends(get_session)):
     }
 
 
-@router.get("/projetos/{projeto_id}/evm")
+@router.get("/projetos/{projeto_id}/evm", dependencies=[Depends(exigir_gestao)])
 def evm_do_projeto(projeto_id: int, session: Session = Depends(get_session)):
     """Valor agregado (EVM): PV/EV/AC, SPI/CPI e EAC — tudo derivado do motor."""
     from ..models import Despesa

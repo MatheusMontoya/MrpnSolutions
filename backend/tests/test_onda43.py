@@ -3,6 +3,7 @@ agenda mensal do consultor."""
 from datetime import date, timedelta
 
 import pytest
+from conftest import RequisicaoFalsa
 from fastapi import HTTPException
 
 from app.models import (
@@ -192,7 +193,7 @@ def test_agenda_mostra_alocacao_ausencia_e_feriado(session, projeto, consultor_s
     session.add(Apontamento(alocacao_id=aloc.id, data=date(2026, 2, 3), horas=8))
     session.commit()
 
-    agenda = agenda_do_consultor(consultor_senior.id, mes="2026-02", session=session)
+    agenda = agenda_do_consultor(consultor_senior.id, RequisicaoFalsa(), mes="2026-02", session=session)
     dias = {d["data"]: d for d in agenda["dias"]}
 
     assert dias["2026-02-03"]["alocacoes"][0]["horas_dia"] == 8.0
@@ -209,4 +210,4 @@ def test_agenda_mostra_alocacao_ausencia_e_feriado(session, projeto, consultor_s
 
 def test_agenda_mes_invalido_da_422(session, consultor_senior):
     with pytest.raises(HTTPException):
-        agenda_do_consultor(consultor_senior.id, mes="fevereiro", session=session)
+        agenda_do_consultor(consultor_senior.id, RequisicaoFalsa(), mes="fevereiro", session=session)

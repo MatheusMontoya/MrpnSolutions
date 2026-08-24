@@ -138,9 +138,22 @@ def atualizar_usuario(usuario_id: int, dados: UsuarioUpdate, request: Request, s
         raise HTTPException(422, "Você não pode desativar o próprio usuário")
     if dados.nome is not None:
         u.nome = dados.nome
-    if dados.perfil is not None:
+    if dados.perfil is not None and dados.perfil != u.perfil:
+        # rebaixar a si mesmo tranca o CEO para fora das próprias telas, e como
+        # só o CEO gerencia usuários, ninguém sobraria para desfazer
+        if u.id == atual["id"]:
+            raise HTTPException(422, "Você não pode alterar o próprio perfil")
+        if dados.perfil == PerfilUsuario.consultor:
+            # consultor sem vínculo não tem de quem lançar horas
+            vinculo = dados.consultor_id if dados.consultor_id is not None else u.consultor_id
+            if not vinculo or not session.get(Consultor, vinculo):
+                raise HTTPException(422, "Perfil consultor exige um consultor vinculado")
+            u.consultor_id = vinculo
+        else:
+            # CEO e RH não são alocáveis: o vínculo antigo sairia órfão
+            u.consultor_id = None
         u.perfil = dados.perfil
-    if dados.consultor_id is not None:
+    if dados.consultor_id is not None and u.perfil == PerfilUsuario.consultor:
         if not session.get(Consultor, dados.consultor_id):
             raise HTTPException(404, "Consultor não encontrado")
         u.consultor_id = dados.consultor_id

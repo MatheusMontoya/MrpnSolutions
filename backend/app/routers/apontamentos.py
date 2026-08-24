@@ -1,10 +1,11 @@
 from datetime import date, timedelta
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from pydantic import BaseModel
 from sqlmodel import Session, select
 
 from ..database import get_session
+from ..seguranca import consultor_do_filtro, eh_gestao, exigir_dono, exigir_gestao, usuario_atual
 from ..models import Alocacao, Apontamento, Consultor, EnvioSemana, StatusEnvio
 from ..services.receita import segunda_da_semana
 
@@ -40,12 +41,14 @@ def _semana_bloqueada(session: Session, consultor_id: int, dia: date) -> bool:
 
 @router.get("/semana")
 def grade_semanal(
+    request: Request,
     consultor_id: int,
     inicio: date | None = Query(default=None, description="Qualquer dia da semana desejada; default = semana corrente"),
     session: Session = Depends(get_session),
 ):
     """Grade semanal de apontamento: alocações ativas do consultor na semana e
     as horas já lançadas por dia."""
+    consultor_id = consultor_do_filtro(request, consultor_id)
     consultor = session.get(Consultor, consultor_id)
     if not consultor:
         raise HTTPException(404, "Consultor não encontrado")
@@ -106,13 +109,15 @@ def grade_semanal(
 
 
 @router.post("", status_code=201)
-def lancar_horas(dados: ApontamentoUpsert, session: Session = Depends(get_session)):
+def lancar_horas(dados: ApontamentoUpsert, request: Request, session: Session = Depends(get_session)):
     """Upsert por (alocação, dia): lançar de novo substitui; horas=0 remove."""
     if dados.horas < 0 or dados.horas > 24:
         raise HTTPException(422, "Horas devem estar entre 0 e 24")
     a = session.get(Alocacao, dados.alocacao_id)
     if not a:
         raise HTTPException(404, "Alocação não encontrada")
+    # sem isto, qualquer consultor lançava (ou zerava) horas na alocação de outro
+    exigir_dono(request, a.consultor_id)
     if _semana_bloqueada(session, a.consultor_id, dados.data):
         raise HTTPException(409, "Semana já enviada para aprovação — edição bloqueada")
 
@@ -148,12 +153,13 @@ def lancar_horas(dados: ApontamentoUpsert, session: Session = Depends(get_sessio
 
 
 @router.post("/semana/enviar", status_code=201)
-def enviar_semana(dados: EnviarSemana, session: Session = Depends(get_session)):
+def enviar_semana(dados: EnviarSemana, request: Request, session: Session = Depends(get_session)):
     """Consultor envia a semana para aprovação do gestor.
 
     Congela a edição da grade; total de horas é fotografado no envio.
     Semana reprovada pode ser reenviada (volta a 'enviada').
     """
+    exigir_dono(request, dados.consultor_id)
     consultor = session.get(Consultor, dados.consultor_id)
     if not consultor:
         raise HTTPException(404, "Consultor não encontrado")
@@ -203,7 +209,7 @@ def enviar_semana(dados: EnviarSemana, session: Session = Depends(get_session)):
     return {"id": envio.id, "status": envio.status, "total_horas": envio.total_horas}
 
 
-@router.get("/atividades")
+@router.get("/atividades", dependencies=[Depends(exigir_gestao)])
 def atividades_recentes(
     limite: int = Query(default=10, ge=1, le=50),
     session: Session = Depends(get_session),

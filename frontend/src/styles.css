@@ -1549,6 +1549,25 @@ a.link:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; bord
 }
 @media (prefers-reduced-motion: reduce) { .kanban-card:hover { transform: none; } }
 
+/* seletor de perfil na lista de usuários: parece etiqueta, age como campo */
+.select-perfil {
+  appearance: none;
+  height: 26px; padding: 0 22px 0 10px;
+  border: 1px solid transparent; border-radius: 999px;
+  background: var(--azul-claro); color: var(--azul-ativo);
+  font: inherit; font-size: 12px; font-weight: 600;
+  cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+                    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 12px) 11px, calc(100% - 8px) 11px;
+  background-size: 4px 4px, 4px 4px;
+  background-repeat: no-repeat;
+  transition: border-color var(--dur-1) var(--ease-sair);
+}
+.select-perfil:hover:not(:disabled) { border-color: var(--azul-borda); }
+.select-perfil:focus-visible { outline: 2px solid var(--azul); outline-offset: 1px; }
+.select-perfil:disabled { cursor: not-allowed; background-color: var(--superficie-variante); color: var(--texto-2); }
+
 /* ---------- KPI ---------- */
 /* rótulo e valor vivem no bloco canônico de .kpi, lá em cima: duplicar aqui
    fazia esta cópia vencer por ordem e capturar o número do anel. */

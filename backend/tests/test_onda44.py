@@ -211,3 +211,40 @@ def test_consultor_segue_bloqueado_nas_rotas_de_gestao(api):
     h = _logar(api, "ana@teste.com")
     assert api.get("/api/aprovacoes", headers=h).status_code == 403
     assert api.get("/api/dashboard", headers=h).status_code == 403
+
+
+# ---------------- troca de perfil ----------------
+
+def test_ceo_promove_consultor_para_rh(api):
+    h = _logar(api)
+    with Session(db.engine) as s:
+        ana = s.exec(select(Usuario).where(Usuario.email == "ana@teste.com")).first()
+        ana_id = ana.id
+    r = api.patch(f"/api/usuarios/{ana_id}", headers=h, json={"perfil": "rh"})
+    assert r.status_code == 200, r.text
+    assert r.json()["perfil"] == "rh"
+    # deixou de ser alocável: o vínculo com o consultor sai
+    assert r.json()["consultor_id"] is None
+    # e o RBAC novo já vale
+    hn = _logar(api, "ana@teste.com")
+    assert api.get("/api/aprovacoes", headers=hn).status_code == 200
+    assert api.get("/api/dashboard", headers=hn).status_code == 403
+
+
+def test_virar_consultor_exige_vinculo(api):
+    h = _logar(api)
+    with Session(db.engine) as s:
+        rh = s.exec(select(Usuario).where(Usuario.email == "rh@teste.com")).first()
+        rh_id = rh.id
+    # sem consultor_id o pedido é recusado
+    assert api.patch(f"/api/usuarios/{rh_id}", headers=h, json={"perfil": "consultor"}).status_code == 422
+    # com vínculo, passa
+    r = api.patch(f"/api/usuarios/{rh_id}", headers=h, json={"perfil": "consultor", "consultor_id": 1})
+    assert r.status_code == 200, r.text
+    assert r.json()["consultor_id"] == 1
+
+
+def test_ceo_nao_troca_o_proprio_perfil(api):
+    h = _logar(api)
+    eu = api.get("/api/auth/eu", headers=h).json()
+    assert api.patch(f"/api/usuarios/{eu['id']}", headers=h, json={"perfil": "rh"}).status_code == 422

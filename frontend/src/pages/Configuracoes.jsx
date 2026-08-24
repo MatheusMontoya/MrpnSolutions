@@ -584,10 +584,13 @@ function SecaoUsuarios() {
   const [consultores, setConsultores] = useState([])
   const [novo, setNovo] = useState(null)
   const [erro, setErro] = useState(null)
+  // a sessão guarda nome e perfil, não o id — e é o id que diz qual linha sou eu
+  const [euId, setEuId] = useState(null)
 
   const carregar = () => {
     api.get('/usuarios').then(setUsuarios).catch((e) => setErro(e.message))
     api.get('/consultores').then(setConsultores).catch(() => {})
+    api.get('/auth/eu').then((u) => setEuId(u.id)).catch(() => {})
   }
   useEffect(() => { carregar() }, [])
 
@@ -608,6 +611,32 @@ function SecaoUsuarios() {
     setErro(null)
     try {
       await api.patch(`/usuarios/${u.id}`, { ativo: !u.ativo })
+      carregar()
+    } catch (err) { setErro(err.message) }
+  }
+
+  /* Troca de perfil direto na lista. Virar consultor exige escolher a pessoa
+   * alocável — sem isso o backend recusa (422), então perguntamos antes. */
+  const trocarPerfil = async (u, perfil) => {
+    if (perfil === u.perfil) return
+    const corpo = { perfil }
+    if (perfil === 'consultor') {
+      const livres = consultores.map((c, i) => `${i + 1}) ${c.nome}`).join(`
+`)
+      const escolha = window.prompt(
+        `Perfil consultor precisa estar vinculado a uma pessoa alocável.
+
+${livres}
+
+Digite o número:`,
+      )
+      const idx = Number(escolha) - 1
+      if (!consultores[idx]) return
+      corpo.consultor_id = consultores[idx].id
+    }
+    setErro(null)
+    try {
+      await api.patch(`/usuarios/${u.id}`, corpo)
       carregar()
     } catch (err) { setErro(err.message) }
   }
@@ -681,7 +710,20 @@ function SecaoUsuarios() {
                 <tr key={u.id} style={{ opacity: u.ativo ? 1 : 0.55 }}>
                   <td>{u.nome}</td>
                   <td className="mono" style={{ fontSize: 12.5 }}>{u.email}</td>
-                  <td><span className={`badge ${u.perfil === 'consultor' ? 'badge-cinza' : 'badge-azul'}`}>{({ ceo: 'CEO', rh: 'RH', consultor: 'consultor' })[u.perfil] ?? u.perfil}</span></td>
+                  <td>
+                    <select
+                      className="select-perfil"
+                      value={u.perfil}
+                      aria-label={`Perfil de ${u.nome}`}
+                      disabled={u.id === euId}
+                      title={u.id === euId ? 'Você não pode alterar o próprio perfil' : 'Trocar o perfil'}
+                      onChange={(e) => trocarPerfil(u, e.target.value)}
+                    >
+                      <option value="ceo">CEO</option>
+                      <option value="rh">RH</option>
+                      <option value="consultor">Consultor</option>
+                    </select>
+                  </td>
                   <td className="texto-2">{u.consultor || '—'}</td>
                   <td>
                     <span className={`badge ${u.ativo ? 'badge-verde' : 'badge-vermelho'}`}>{u.ativo ? 'ativo' : 'desativado'}</span>

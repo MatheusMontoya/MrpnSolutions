@@ -1,11 +1,11 @@
 from datetime import date
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel
 from sqlmodel import Session, select
 
 from ..database import get_session
-from ..seguranca import exigir_ceo
+from ..seguranca import eh_gestao, exigir_ceo, usuario_atual
 from ..models import Configuracao, Feriado
 from ..services.receita import definir_feriados
 
@@ -61,9 +61,18 @@ def _obter_ou_criar(session: Session) -> Configuracao:
     return cfg
 
 
-@router.get("", response_model=Configuracao)
-def obter_configuracao(session: Session = Depends(get_session)):
-    return _obter_ou_criar(session)
+# O consultor precisa de UM parâmetro daqui: a taxa por km, para lançar despesa
+# de quilometragem. Todo o resto — chave da API, CNPJ, meta de margem e a tabela
+# de preço de venda — é dado de gestão e não pode sair na mesma resposta.
+CAMPOS_OPERACIONAIS = ("nome_consultoria", "jornada_semanal", "taxa_km", "formato_data", "moeda", "fuso")
+
+
+@router.get("")
+def obter_configuracao(request: Request, session: Session = Depends(get_session)):
+    cfg = _obter_ou_criar(session)
+    if eh_gestao(usuario_atual(request)):
+        return cfg
+    return {campo: getattr(cfg, campo) for campo in CAMPOS_OPERACIONAIS}
 
 
 @router.patch("", response_model=Configuracao, dependencies=[Depends(exigir_ceo)])

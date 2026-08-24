@@ -3,6 +3,7 @@ envio/aprovação de semana, despesas (km) e pendências."""
 from datetime import date, timedelta
 
 import pytest
+from conftest import RequisicaoFalsa
 from sqlmodel import select
 
 from app.models import (
@@ -108,13 +109,13 @@ def alocacao_com_horas(session, projeto, consultor_senior):
     session.add(a)
     session.commit()
     session.refresh(a)
-    lancar_horas(ApontamentoUpsert(alocacao_id=a.id, data=a.data_inicio, horas=8), session)
+    lancar_horas(ApontamentoUpsert(alocacao_id=a.id, data=a.data_inicio, horas=8), RequisicaoFalsa(), session)
     return a
 
 
 def test_enviar_semana_congela_edicao(session, alocacao_com_horas, consultor_senior):
     dia = alocacao_com_horas.data_inicio
-    enviar_semana(EnviarSemana(consultor_id=consultor_senior.id, semana=dia), session)
+    enviar_semana(EnviarSemana(consultor_id=consultor_senior.id, semana=dia), RequisicaoFalsa(), session)
 
     envio = session.exec(select(EnvioSemana)).one()
     assert envio.status == StatusEnvio.enviada
@@ -122,28 +123,28 @@ def test_enviar_semana_congela_edicao(session, alocacao_com_horas, consultor_sen
 
     from fastapi import HTTPException
     with pytest.raises(HTTPException) as exc:
-        lancar_horas(ApontamentoUpsert(alocacao_id=alocacao_com_horas.id, data=dia, horas=6), session)
+        lancar_horas(ApontamentoUpsert(alocacao_id=alocacao_com_horas.id, data=dia, horas=6), RequisicaoFalsa(), session)
     assert exc.value.status_code == 409
 
 
 def test_reprovacao_reabre_edicao_e_permite_reenvio(session, alocacao_com_horas, consultor_senior):
     dia = alocacao_com_horas.data_inicio
-    enviar_semana(EnviarSemana(consultor_id=consultor_senior.id, semana=dia), session)
+    enviar_semana(EnviarSemana(consultor_id=consultor_senior.id, semana=dia), RequisicaoFalsa(), session)
     envio = session.exec(select(EnvioSemana)).one()
 
     decidir_envio(envio.id, DecisaoEnvio(status=StatusEnvio.reprovada, comentario_gestor="Faltou sexta"), session)
 
     # edição liberada de novo
-    lancar_horas(ApontamentoUpsert(alocacao_id=alocacao_com_horas.id, data=dia, horas=7), session)
+    lancar_horas(ApontamentoUpsert(alocacao_id=alocacao_com_horas.id, data=dia, horas=7), RequisicaoFalsa(), session)
     # e reenvio possível
-    r = enviar_semana(EnviarSemana(consultor_id=consultor_senior.id, semana=dia), session)
+    r = enviar_semana(EnviarSemana(consultor_id=consultor_senior.id, semana=dia), RequisicaoFalsa(), session)
     assert r["status"] == StatusEnvio.enviada
     assert r["total_horas"] == 7
 
 
 def test_reprovar_exige_comentario(session, alocacao_com_horas, consultor_senior):
     from fastapi import HTTPException
-    enviar_semana(EnviarSemana(consultor_id=consultor_senior.id, semana=alocacao_com_horas.data_inicio), session)
+    enviar_semana(EnviarSemana(consultor_id=consultor_senior.id, semana=alocacao_com_horas.data_inicio), RequisicaoFalsa(), session)
     envio = session.exec(select(EnvioSemana)).one()
     with pytest.raises(HTTPException) as exc:
         decidir_envio(envio.id, DecisaoEnvio(status=StatusEnvio.reprovada), session)
@@ -151,11 +152,11 @@ def test_reprovar_exige_comentario(session, alocacao_com_horas, consultor_senior
 
 
 def test_fila_agrega_envios_ausencias_despesas(session, alocacao_com_horas, consultor_senior, projeto):
-    enviar_semana(EnviarSemana(consultor_id=consultor_senior.id, semana=alocacao_com_horas.data_inicio), session)
+    enviar_semana(EnviarSemana(consultor_id=consultor_senior.id, semana=alocacao_com_horas.data_inicio), RequisicaoFalsa(), session)
     session.add(Ausencia(consultor_id=consultor_senior.id, tipo=TipoAusencia.folga,
                          data_inicio=date(2026, 3, 2), data_fim=date(2026, 3, 3)))
     session.commit()
-    lancar_despesa(DespesaCreate(consultor_id=consultor_senior.id, projeto_id=projeto.id,
+    lancar_despesa(RequisicaoFalsa(), DespesaCreate(consultor_id=consultor_senior.id, projeto_id=projeto.id,
                                  data=date(2026, 2, 2), tipo=TipoDespesa.alimentacao,
                                  descricao="Almoço", valor=50.0), session)
 
@@ -173,7 +174,7 @@ def test_fila_agrega_envios_ausencias_despesas(session, alocacao_com_horas, cons
 def test_despesa_km_calcula_valor_pela_taxa(session, consultor_senior, projeto):
     session.add(Configuracao(taxa_km=2.00))
     session.commit()
-    d = lancar_despesa(DespesaCreate(consultor_id=consultor_senior.id, projeto_id=projeto.id,
+    d = lancar_despesa(RequisicaoFalsa(), DespesaCreate(consultor_id=consultor_senior.id, projeto_id=projeto.id,
                                      data=date(2026, 2, 3), tipo=TipoDespesa.quilometragem,
                                      km=150), session)
     assert d["valor"] == 300.0
@@ -183,6 +184,6 @@ def test_despesa_km_calcula_valor_pela_taxa(session, consultor_senior, projeto):
 def test_despesa_km_sem_km_rejeita(session, consultor_senior, projeto):
     from fastapi import HTTPException
     with pytest.raises(HTTPException) as exc:
-        lancar_despesa(DespesaCreate(consultor_id=consultor_senior.id, projeto_id=projeto.id,
+        lancar_despesa(RequisicaoFalsa(), DespesaCreate(consultor_id=consultor_senior.id, projeto_id=projeto.id,
                                      data=date(2026, 2, 3), tipo=TipoDespesa.quilometragem), session)
     assert exc.value.status_code == 422

@@ -2,12 +2,12 @@
 aprovação e reembolso pelo gestor."""
 from datetime import date
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from pydantic import BaseModel
 from sqlmodel import Session, select
 
 from ..database import get_session
-from ..seguranca import exigir_gestao
+from ..seguranca import consultor_do_filtro, eh_gestao, exigir_gestao, usuario_atual
 from ..models import (
     Configuracao,
     Consultor,
@@ -54,12 +54,14 @@ def serializar(d: Despesa) -> dict:
 
 @router.get("")
 def listar_despesas(
+    request: Request,
     consultor_id: int | None = Query(default=None),
     projeto_id: int | None = Query(default=None),
     status: StatusDespesa | None = Query(default=None),
     session: Session = Depends(get_session),
 ):
     q = select(Despesa).order_by(Despesa.data.desc(), Despesa.id.desc())
+    consultor_id = consultor_do_filtro(request, consultor_id)
     if consultor_id is not None:
         q = q.where(Despesa.consultor_id == consultor_id)
     if projeto_id is not None:
@@ -70,7 +72,11 @@ def listar_despesas(
 
 
 @router.post("", status_code=201)
-def lancar_despesa(dados: DespesaCreate, session: Session = Depends(get_session)):
+def lancar_despesa(request: Request, dados: DespesaCreate, session: Session = Depends(get_session)):
+    dono = consultor_do_filtro(request, dados.consultor_id)
+    if dono != dados.consultor_id:
+        # consultor lançando em nome de outro: o dono correto prevalece
+        dados.consultor_id = dono
     if not session.get(Consultor, dados.consultor_id):
         raise HTTPException(404, "Consultor não encontrado")
     if not session.get(Projeto, dados.projeto_id):
@@ -118,11 +124,13 @@ def decidir_despesa(despesa_id: int, dados: DecisaoDespesa, session: Session = D
 
 
 @router.delete("/{despesa_id}", status_code=204)
-def remover_despesa(despesa_id: int, session: Session = Depends(get_session)):
+def remover_despesa(despesa_id: int, request: Request, session: Session = Depends(get_session)):
     """Consultor remove a própria despesa enquanto pendente."""
     d = session.get(Despesa, despesa_id)
     if not d:
         raise HTTPException(404, "Despesa não encontrada")
+    if not eh_gestao(usuario_atual(request)) and d.consultor_id != usuario_atual(request).get("consultor_id"):
+        raise HTTPException(403, "Você só pode remover os seus próprios registros")
     if d.status != StatusDespesa.pendente:
         raise HTTPException(409, "Só é possível remover despesas pendentes")
     session.delete(d)

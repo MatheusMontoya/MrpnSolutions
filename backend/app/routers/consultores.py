@@ -1,10 +1,10 @@
 from datetime import date, timedelta
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from sqlmodel import Session, select
 
 from ..database import get_session
-from ..seguranca import exigir_gestao
+from ..seguranca import eh_gestao, exigir_dono, exigir_gestao, usuario_atual
 from ..models import HORAS_SEMANA_PADRAO, Alocacao, Apontamento, Ausencia, Consultor
 from ..services.receita import (
     horas_alocadas_na_semana,
@@ -17,9 +17,21 @@ from ..services.receita import (
 router = APIRouter(prefix="/api/consultores", tags=["Consultores"])
 
 
-@router.get("", response_model=list[Consultor])
-def listar_consultores(session: Session = Depends(get_session)):
-    return session.exec(select(Consultor).order_by(Consultor.nome)).all()
+@router.get("")
+def listar_consultores(request: Request, session: Session = Depends(get_session)):
+    """Gestão vê a equipe inteira com as taxas; consultor vê só a si mesmo e sem
+    taxa nenhuma — custo/hora e taxa de venda são dado comercial da consultoria."""
+    u = usuario_atual(request)
+    consultores = session.exec(select(Consultor).order_by(Consultor.nome)).all()
+    if eh_gestao(u):
+        return consultores
+    return [
+        {
+            "id": c.id, "nome": c.nome, "senioridade": c.senioridade,
+            "modulo_sap": c.modulo_sap, "skills": c.skills,
+        }
+        for c in consultores if c.id == u.get("consultor_id")
+    ]
 
 
 @router.post("", response_model=Consultor, status_code=201, dependencies=[Depends(exigir_gestao)])
@@ -31,7 +43,7 @@ def criar_consultor(consultor: Consultor, session: Session = Depends(get_session
     return consultor
 
 
-@router.get("/utilizacao")
+@router.get("/utilizacao", dependencies=[Depends(exigir_gestao)])
 def utilizacao_heatmap(
     inicio: date | None = Query(default=None, description="Qualquer dia da primeira semana; default = 4 semanas atrás"),
     semanas: int = Query(default=12, ge=1, le=26),
@@ -68,7 +80,7 @@ def utilizacao_heatmap(
     return {"semanas": [s.isoformat() for s in segundas], "consultores": resultado}
 
 
-@router.get("/capacidade")
+@router.get("/capacidade", dependencies=[Depends(exigir_gestao)])
 def demanda_vs_capacidade(
     inicio: date | None = Query(default=None, description="Qualquer dia da primeira semana; default = semana corrente"),
     semanas: int = Query(default=12, ge=1, le=26),
@@ -114,7 +126,7 @@ def demanda_vs_capacidade(
     return {"consultores": len(consultores), "serie": serie}
 
 
-@router.get("/{consultor_id}/painel")
+@router.get("/{consultor_id}/painel", dependencies=[Depends(exigir_gestao)])
 def painel_consultor(consultor_id: int, session: Session = Depends(get_session)):
     """Detalhe do consultor: taxas, KPIs (utilização média, horas/receita/margem do
     mês) e alocações ativas cross-projeto."""
@@ -184,11 +196,13 @@ def painel_consultor(consultor_id: int, session: Session = Depends(get_session))
 @router.get("/{consultor_id}/agenda")
 def agenda_do_consultor(
     consultor_id: int,
+    request: Request,
     mes: str = Query(default=None, description="YYYY-MM; default = mês corrente"),
     session: Session = Depends(get_session),
 ):
     """Calendário mensal do consultor: alocações (h/dia), ausências aprovadas,
     feriados do calendário corporativo e horas apontadas por dia."""
+    exigir_dono(request, consultor_id)
     from ..models import Feriado, StatusAprovacao
     from ..services.receita import eh_dia_util
 
@@ -273,7 +287,8 @@ def agenda_do_consultor(
 
 
 @router.get("/{consultor_id}", response_model=Consultor)
-def obter_consultor(consultor_id: int, session: Session = Depends(get_session)):
+def obter_consultor(consultor_id: int, request: Request, session: Session = Depends(get_session)):
+    exigir_dono(request, consultor_id)
     consultor = session.get(Consultor, consultor_id)
     if not consultor:
         raise HTTPException(404, "Consultor não encontrado")

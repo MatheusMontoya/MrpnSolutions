@@ -55,3 +55,28 @@ def projeto(session, cliente):
         session,
         Projeto(nome="Projeto Teste", cliente_id=cliente.id, data_inicio=date(2026, 1, 5)),
     )
+
+class _EstadoFalso:
+    def __init__(self, usuario):
+        self.usuario = usuario
+
+
+class RequisicaoFalsa:
+    """Stub de Request para os testes que chamam routers como função pura.
+
+    O middleware de autenticação não roda aí, então é aqui que se diz quem está
+    pedindo. O padrão é o CEO — quem quiser exercitar as guardas de isolamento
+    passa perfil='consultor' e o consultor_id.
+    """
+
+    def __init__(self, perfil="ceo", consultor_id=None, nome="Teste", id=1):
+        self.state = _EstadoFalso(
+            {"id": id, "nome": nome, "email": f"{perfil}@teste.com",
+             "perfil": perfil, "consultor_id": consultor_id}
+        )
+
+
+@pytest.fixture()
+def req():
+    """Requisitante padrão dos testes unitários: CEO, que enxerga tudo."""
+    return RequisicaoFalsa()
