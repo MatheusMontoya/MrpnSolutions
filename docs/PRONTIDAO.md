@@ -63,10 +63,10 @@ outra pergunta, que é a que vaza dado: *"esta linha é sua?"*
 
 | # | Pergunta | Como provar | Estado |
 |---|---|---|---|
-| 6.1 | O ambiente tem dado real ou só seed? | `select nome from cliente` — se vier Aurora Alimentos / TecnoMed, é seed | MANUAL |
-| 6.2 | Credencial de demonstração some da tela de login? | `VITE_DEMO=0` nas variáveis da Vercel | MANUAL |
-| 6.3 | Senha `psa123` trocada em todas as contas? | `select email from usuario` e trocar uma a uma em Configurações → Usuários | MANUAL |
-| 6.4 | Contas de demonstração desativadas? | mesma tela, botão Desativar | MANUAL |
+| 6.1 | O ambiente tem dado real ou só seed? | ✅ **limpo em 25/08/2026** — `select count(*) from cliente` = 0. Backup do seed em `docs/backup-antes-da-limpeza.json` | FEITO |
+| 6.2 | Credencial de demonstração some da tela de login? | ✅ `VITE_DEMO=0` nas 3 variáveis da Vercel; conferido no bundle servido | FEITO |
+| 6.3 | Senha `psa123` trocada em todas as contas? | ✅ nenhuma conta com `psa123` existe: as 9 de demonstração foram apagadas | FEITO |
+| 6.4 | Contas de demonstração desativadas? | ✅ apagadas, não só desativadas. Resta 1 conta: `michel@mrpnachbar.com` (CEO) | FEITO |
 | 6.5 | O ambiente está público? | se não deve estar: Vercel → Deployment Protection | MANUAL |
 
 ---
@@ -92,6 +92,9 @@ Enquanto for demonstração, tudo bem. Antes de dado real, plano pago.
 
 | Data | O que | Quem |
 |---|---|---|
+| 25/08/2026 | limpeza do seed de produção (backup antes) | Claude |
+| 25/08/2026 | `VITE_DEMO=0` e remoção das 9 contas de demonstração | Claude |
+| — | senha temporária do CEO → definitiva | **Michel, no 1º acesso** |
 | — | senha do banco Supabase | pendente |
 | — | chave da API Anthropic | pendente |
 

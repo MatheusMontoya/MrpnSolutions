@@ -1,0 +1,4485 @@
+{
+ "alocacao": [
+  {
+   "id": 1,
+   "consultor_id": 2,
+   "fase_id": 3,
+   "data_inicio": "2026-05-25",
+   "data_fim": "2026-07-05",
+   "horas_semana": 20.0,
+   "taxa_hora_venda": 240.0
+  },
+  {
+   "id": 2,
+   "consultor_id": 4,
+   "fase_id": 3,
+   "data_inicio": "2026-05-25",
+   "data_fim": "2026-07-05",
+   "horas_semana": 40.0,
+   "taxa_hora_venda": 170.0
+  },
+  {
+   "id": 3,
+   "consultor_id": 1,
+   "fase_id": 4,
+   "data_inicio": "2026-07-06",
+   "data_fim": "2026-09-13",
+   "horas_semana": 30.0,
+   "taxa_hora_venda": 260.0
+  },
+  {
+   "id": 4,
+   "consultor_id": 3,
+   "fase_id": 4,
+   "data_inicio": "2026-07-06",
+   "data_fim": "2026-09-13",
+   "horas_semana": 40.0,
+   "taxa_hora_venda": 180.0
+  },
+  {
+   "id": 5,
+   "consultor_id": 5,
+   "fase_id": 4,
+   "data_inicio": "2026-07-06",
+   "data_fim": "2026-09-13",
+   "horas_semana": 40.0,
+   "taxa_hora_venda": 95.0
+  },
+  {
+   "id": 6,
+   "consultor_id": 3,
+   "fase_id": 5,
+   "data_inicio": "2026-09-14",
+   "data_fim": "2026-10-11",
+   "horas_semana": 30.0,
+   "taxa_hora_venda": 180.0
+  },
+  {
+   "id": 7,
+   "consultor_id": 1,
+   "fase_id": 9,
+   "data_inicio": "2026-07-13",
+   "data_fim": "2026-08-23",
+   "horas_semana": 20.0,
+   "taxa_hora_venda": 260.0
+  },
+  {
+   "id": 8,
+   "consultor_id": 2,
+   "fase_id": 9,
+   "data_inicio": "2026-07-13",
+   "data_fim": "2026-08-23",
+   "horas_semana": 30.0,
+   "taxa_hora_venda": 240.0
+  },
+  {
+   "id": 9,
+   "consultor_id": 4,
+   "fase_id": 9,
+   "data_inicio": "2026-07-13",
+   "data_fim": "2026-08-23",
+   "horas_semana": 30.0,
+   "taxa_hora_venda": 170.0
+  },
+  {
+   "id": 10,
+   "consultor_id": 2,
+   "fase_id": 14,
+   "data_inicio": "2026-07-27",
+   "data_fim": "2026-08-16",
+   "horas_semana": 10.0,
+   "taxa_hora_venda": 240.0
+  },
+  {
+   "id": 11,
+   "consultor_id": 4,
+   "fase_id": 14,
+   "data_inicio": "2026-07-27",
+   "data_fim": "2026-08-16",
+   "horas_semana": 8.0,
+   "taxa_hora_venda": 170.0
+  },
+  {
+   "id": 12,
+   "consultor_id": 6,
+   "fase_id": 14,
+   "data_inicio": "2026-07-27",
+   "data_fim": "2026-08-16",
+   "horas_semana": 12.0,
+   "taxa_hora_venda": 100.0
+  }
+ ],
+ "apontamento": [
+  {
+   "id": 1,
+   "alocacao_id": 1,
+   "data": "2026-06-08",
+   "horas": 4.0,
+   "descricao": ""
+  },
+  {
+   "id": 2,
+   "alocacao_id": 1,
+   "data": "2026-06-09",
+   "horas": 3.2,
+   "descricao": ""
+  },
+  {
+   "id": 3,
+   "alocacao_id": 1,
+   "data": "2026-06-10",
+   "horas": 4.0,
+   "descricao": ""
+  },
+  {
+   "id": 4,
+   "alocacao_id": 1,
+   "data": "2026-06-11",
+   "horas": 3.6,
+   "descricao": ""
+  },
+  {
+   "id": 5,
+   "alocacao_id": 1,
+   "data": "2026-06-12",
+   "horas": 4.4,
+   "descricao": ""
+  },
+  {
+   "id": 6,
+   "alocacao_id": 1,
+   "data": "2026-06-15",
+   "horas": 4.0,
+   "descricao": ""
+  },
+  {
+   "id": 7,
+   "alocacao_id": 1,
+   "data": "2026-06-16",
+   "horas": 3.6,
+   "descricao": ""
+  },
+  {
+   "id": 8,
+   "alocacao_id": 1,
+   "data": "2026-06-17",
+   "horas": 4.4,
+   "descricao": ""
+  },
+  {
+   "id": 9,
+   "alocacao_id": 1,
+   "data": "2026-06-18",
+   "horas": 4.0,
+   "descricao": ""
+  },
+  {
+   "id": 10,
+   "alocacao_id": 1,
+   "data": "2026-06-19",
+   "horas": 3.2,
+   "descricao": ""
+  },
+  {
+   "id": 11,
+   "alocacao_id": 1,
+   "data": "2026-06-22",
+   "horas": 4.4,
+   "descricao": ""
+  },
+  {
+   "id": 12,
+   "alocacao_id": 1,
+   "data": "2026-06-23",
+   "horas": 4.0,
+   "descricao": ""
+  },
+  {
+   "id": 13,
+   "alocacao_id": 1,
+   "data": "2026-06-24",
+   "horas": 3.2,
+   "descricao": ""
+  },
+  {
+   "id": 14,
+   "alocacao_id": 1,
+   "data": "2026-06-25",
+   "horas": 4.0,
+   "descricao": ""
+  },
+  {
+   "id": 15,
+   "alocacao_id": 1,
+   "data": "2026-06-26",
+   "horas": 3.6,
+   "descricao": ""
+  },
+  {
+   "id": 16,
+   "alocacao_id": 1,
+   "data": "2026-06-29",
+   "horas": 3.2,
+   "descricao": ""
+  },
+  {
+   "id": 17,
+   "alocacao_id": 1,
+   "data": "2026-06-30",
+   "horas": 4.0,
+   "descricao": ""
+  },
+  {
+   "id": 18,
+   "alocacao_id": 1,
+   "data": "2026-07-01",
+   "horas": 3.6,
+   "descricao": ""
+  },
+  {
+   "id": 19,
+   "alocacao_id": 1,
+   "data": "2026-07-02",
+   "horas": 4.4,
+   "descricao": ""
+  },
+  {
+   "id": 20,
+   "alocacao_id": 1,
+   "data": "2026-07-03",
+   "horas": 4.0,
+   "descricao": ""
+  },
+  {
+   "id": 21,
+   "alocacao_id": 2,
+   "data": "2026-06-08",
+   "horas": 8.0,
+   "descricao": ""
+  },
+  {
+   "id": 22,
+   "alocacao_id": 2,
+   "data": "2026-06-09",
+   "horas": 6.4,
+   "descricao": ""
+  },
+  {
+   "id": 23,
+   "alocacao_id": 2,
+   "data": "2026-06-10",
+   "horas": 8.0,
+   "descricao": ""
+  },
+  {
+   "id": 24,
+   "alocacao_id": 2,
+   "data": "2026-06-11",
+   "horas": 7.2,
+   "descricao": ""
+  },
+  {
+   "id": 25,
+   "alocacao_id": 2,
+   "data": "2026-06-12",
+   "horas": 8.8,
+   "descricao": ""
+  },
+  {
+   "id": 26,
+   "alocacao_id": 2,
+   "data": "2026-06-15",
+   "horas": 8.0,
+   "descricao": ""
+  },
+  {
+   "id": 27,
+   "alocacao_id": 2,
+   "data": "2026-06-16",
+   "horas": 7.2,
+   "descricao": ""
+  },
+  {
+   "id": 28,
+   "alocacao_id": 2,
+   "data": "2026-06-17",
+   "horas": 8.8,
+   "descricao": ""
+  },
+  {
+   "id": 29,
+   "alocacao_id": 2,
+   "data": "2026-06-18",
+   "horas": 8.0,
+   "descricao": ""
+  },
+  {
+   "id": 30,
+   "alocacao_id": 2,
+   "data": "2026-06-19",
+   "horas": 6.4,
+   "descricao": ""
+  },
+  {
+   "id": 31,
+   "alocacao_id": 2,
+   "data": "2026-06-22",
+   "horas": 8.8,
+   "descricao": ""
+  },
+  {
+   "id": 32,
+   "alocacao_id": 2,
+   "data": "2026-06-23",
+   "horas": 8.0,
+   "descricao": ""
+  },
+  {
+   "id": 33,
+   "alocacao_id": 2,
+   "data": "2026-06-24",
+   "horas": 6.4,
+   "descricao": ""
+  },
+  {
+   "id": 34,
+   "alocacao_id": 2,
+   "data": "2026-06-25",
+   "horas": 8.0,
+   "descricao": ""
+  },
+  {
+   "id": 35,
+   "alocacao_id": 2,
+   "data": "2026-06-26",
+   "horas": 7.2,
+   "descricao": ""
+  },
+  {
+   "id": 36,
+   "alocacao_id": 2,
+   "data": "2026-06-29",
+   "horas": 6.4,
+   "descricao": ""
+  },
+  {
+   "id": 37,
+   "alocacao_id": 2,
+   "data": "2026-06-30",
+   "horas": 8.0,
+   "descricao": ""
+  },
+  {
+   "id": 38,
+   "alocacao_id": 2,
+   "data": "2026-07-01",
+   "horas": 7.2,
+   "descricao": ""
+  },
+  {
+   "id": 39,
+   "alocacao_id": 2,
+   "data": "2026-07-02",
+   "horas": 8.8,
+   "descricao": ""
+  },
+  {
+   "id": 40,
+   "alocacao_id": 2,
+   "data": "2026-07-03",
+   "horas": 8.0,
+   "descricao": ""
+  },
+  {
+   "id": 41,
+   "alocacao_id": 3,
+   "data": "2026-07-06",
+   "horas": 6.6,
+   "descricao": ""
+  },
+  {
+   "id": 42,
+   "alocacao_id": 3,
+   "data": "2026-07-07",
+   "horas": 6.0,
+   "descricao": ""
+  },
+  {
+   "id": 43,
+   "alocacao_id": 3,
+   "data": "2026-07-08",
+   "horas": 4.8,
+   "descricao": ""
+  },
+  {
+   "id": 44,
+   "alocacao_id": 3,
+   "data": "2026-07-09",
+   "horas": 6.0,
+   "descricao": ""
+  },
+  {
+   "id": 45,
+   "alocacao_id": 3,
+   "data": "2026-07-10",
+   "horas": 5.4,
+   "descricao": ""
+  },
+  {
+   "id": 46,
+   "alocacao_id": 3,
+   "data": "2026-07-13",
+   "horas": 4.8,
+   "descricao": ""
+  },
+  {
+   "id": 47,
+   "alocacao_id": 3,
+   "data": "2026-07-14",
+   "horas": 6.0,
+   "descricao": ""
+  },
+  {
+   "id": 48,
+   "alocacao_id": 3,
+   "data": "2026-07-15",
+   "horas": 5.4,
+   "descricao": ""
+  },
+  {
+   "id": 49,
+   "alocacao_id": 3,
+   "data": "2026-07-16",
+   "horas": 6.6,
+   "descricao": ""
+  },
+  {
+   "id": 50,
+   "alocacao_id": 3,
+   "data": "2026-07-17",
+   "horas": 6.0,
+   "descricao": ""
+  },
+  {
+   "id": 51,
+   "alocacao_id": 3,
+   "data": "2026-07-20",
+   "horas": 5.4,
+   "descricao": ""
+  },
+  {
+   "id": 52,
+   "alocacao_id": 3,
+   "data": "2026-07-21",
+   "horas": 6.6,
+   "descricao": ""
+  },
+  {
+   "id": 53,
+   "alocacao_id": 3,
+   "data": "2026-07-22",
+   "horas": 6.0,
+   "descricao": ""
+  },
+  {
+   "id": 54,
+   "alocacao_id": 3,
+   "data": "2026-07-23",
+   "horas": 4.8,
+   "descricao": "Ajustes pós-teste integrado"
+  },
+  {
+   "id": 55,
+   "alocacao_id": 3,
+   "data": "2026-07-24",
+   "horas": 6.0,
+   "descricao": "Preparação de dados de teste"
+  },
+  {
+   "id": 56,
+   "alocacao_id": 3,
+   "data": "2026-07-27",
+   "horas": 6.0,
+   "descricao": "Desenvolvimento de report/enhancement"
+  },
+  {
+   "id": 57,
+   "alocacao_id": 3,
+   "data": "2026-07-28",
+   "horas": 4.8,
+   "descricao": "Ajustes pós-teste integrado"
+  },
+  {
+   "id": 58,
+   "alocacao_id": 3,
+   "data": "2026-07-29",
+   "horas": 6.0,
+   "descricao": "Preparação de dados de teste"
+  },
+  {
+   "id": 59,
+   "alocacao_id": 3,
+   "data": "2026-07-30",
+   "horas": 5.4,
+   "descricao": "Configuração (customizing) no ambiente DEV"
+  },
+  {
+   "id": 60,
+   "alocacao_id": 3,
+   "data": "2026-07-31",
+   "horas": 6.6,
+   "descricao": "Testes unitários do módulo"
+  },
+  {
+   "id": 61,
+   "alocacao_id": 3,
+   "data": "2026-08-03",
+   "horas": 6.0,
+   "descricao": "Preparação de dados de teste"
+  },
+  {
+   "id": 62,
+   "alocacao_id": 3,
+   "data": "2026-08-04",
+   "horas": 5.4,
+   "descricao": "Configuração (customizing) no ambiente DEV"
+  },
+  {
+   "id": 63,
+   "alocacao_id": 3,
+   "data": "2026-08-05",
+   "horas": 6.6,
+   "descricao": "Testes unitários do módulo"
+  },
+  {
+   "id": 64,
+   "alocacao_id": 3,
+   "data": "2026-08-06",
+   "horas": 6.0,
+   "descricao": "Desenvolvimento de report/enhancement"
+  },
+  {
+   "id": 65,
+   "alocacao_id": 4,
+   "data": "2026-07-06",
+   "horas": 8.8,
+   "descricao": ""
+  },
+  {
+   "id": 66,
+   "alocacao_id": 4,
+   "data": "2026-07-07",
+   "horas": 8.0,
+   "descricao": ""
+  },
+  {
+   "id": 67,
+   "alocacao_id": 4,
+   "data": "2026-07-08",
+   "horas": 6.4,
+   "descricao": ""
+  },
+  {
+   "id": 68,
+   "alocacao_id": 4,
+   "data": "2026-07-09",
+   "horas": 8.0,
+   "descricao": ""
+  },
+  {
+   "id": 69,
+   "alocacao_id": 4,
+   "data": "2026-07-10",
+   "horas": 7.2,
+   "descricao": ""
+  },
+  {
+   "id": 70,
+   "alocacao_id": 4,
+   "data": "2026-07-13",
+   "horas": 6.4,
+   "descricao": ""
+  },
+  {
+   "id": 71,
+   "alocacao_id": 4,
+   "data": "2026-07-14",
+   "horas": 8.0,
+   "descricao": ""
+  },
+  {
+   "id": 72,
+   "alocacao_id": 4,
+   "data": "2026-07-15",
+   "horas": 7.2,
+   "descricao": ""
+  },
+  {
+   "id": 73,
+   "alocacao_id": 4,
+   "data": "2026-07-16",
+   "horas": 8.8,
+   "descricao": ""
+  },
+  {
+   "id": 74,
+   "alocacao_id": 4,
+   "data": "2026-07-17",
+   "horas": 8.0,
+   "descricao": ""
+  },
+  {
+   "id": 75,
+   "alocacao_id": 4,
+   "data": "2026-07-20",
+   "horas": 7.2,
+   "descricao": ""
+  },
+  {
+   "id": 76,
+   "alocacao_id": 4,
+   "data": "2026-07-21",
+   "horas": 8.8,
+   "descricao": ""
+  },
+  {
+   "id": 77,
+   "alocacao_id": 4,
+   "data": "2026-07-22",
+   "horas": 8.0,
+   "descricao": ""
+  },
+  {
+   "id": 78,
+   "alocacao_id": 4,
+   "data": "2026-07-23",
+   "horas": 6.4,
+   "descricao": "Preparação de dados de teste"
+  },
+  {
+   "id": 79,
+   "alocacao_id": 4,
+   "data": "2026-07-24",
+   "horas": 8.0,
+   "descricao": "Configuração (customizing) no ambiente DEV"
+  },
+  {
+   "id": 80,
+   "alocacao_id": 4,
+   "data": "2026-07-27",
+   "horas": 8.0,
+   "descricao": "Ajustes pós-teste integrado"
+  },
+  {
+   "id": 81,
+   "alocacao_id": 4,
+   "data": "2026-07-28",
+   "horas": 6.4,
+   "descricao": "Preparação de dados de teste"
+  },
+  {
+   "id": 82,
+   "alocacao_id": 4,
+   "data": "2026-07-29",
+   "horas": 8.0,
+   "descricao": "Configuração (customizing) no ambiente DEV"
+  },
+  {
+   "id": 83,
+   "alocacao_id": 4,
+   "data": "2026-07-30",
+   "horas": 7.2,
+   "descricao": "Testes unitários do módulo"
+  },
+  {
+   "id": 84,
+   "alocacao_id": 4,
+   "data": "2026-07-31",
+   "horas": 8.8,
+   "descricao": "Desenvolvimento de report/enhancement"
+  },
+  {
+   "id": 85,
+   "alocacao_id": 4,
+   "data": "2026-08-03",
+   "horas": 8.0,
+   "descricao": "Configuração (customizing) no ambiente DEV"
+  },
+  {
+   "id": 86,
+   "alocacao_id": 4,
+   "data": "2026-08-04",
+   "horas": 7.2,
+   "descricao": "Testes unitários do módulo"
+  },
+  {
+   "id": 87,
+   "alocacao_id": 4,
+   "data": "2026-08-05",
+   "horas": 8.8,
+   "descricao": "Desenvolvimento de report/enhancement"
+  },
+  {
+   "id": 88,
+   "alocacao_id": 4,
+   "data": "2026-08-06",
+   "horas": 8.0,
+   "descricao": "Ajustes pós-teste integrado"
+  },
+  {
+   "id": 89,
+   "alocacao_id": 5,
+   "data": "2026-07-06",
+   "horas": 8.8,
+   "descricao": ""
+  },
+  {
+   "id": 90,
+   "alocacao_id": 5,
+   "data": "2026-07-07",
+   "horas": 8.0,
+   "descricao": ""
+  },
+  {
+   "id": 91,
+   "alocacao_id": 5,
+   "data": "2026-07-08",
+   "horas": 6.4,
+   "descricao": ""
+  },
+  {
+   "id": 92,
+   "alocacao_id": 5,
+   "data": "2026-07-09",
+   "horas": 8.0,
+   "descricao": ""
+  },
+  {
+   "id": 93,
+   "alocacao_id": 5,
+   "data": "2026-07-10",
+   "horas": 7.2,
+   "descricao": ""
+  },
+  {
+   "id": 94,
+   "alocacao_id": 5,
+   "data": "2026-07-13",
+   "horas": 6.4,
+   "descricao": ""
+  },
+  {
+   "id": 95,
+   "alocacao_id": 5,
+   "data": "2026-07-14",
+   "horas": 8.0,
+   "descricao": ""
+  },
+  {
+   "id": 96,
+   "alocacao_id": 5,
+   "data": "2026-07-15",
+   "horas": 7.2,
+   "descricao": ""
+  },
+  {
+   "id": 97,
+   "alocacao_id": 5,
+   "data": "2026-07-16",
+   "horas": 8.8,
+   "descricao": ""
+  },
+  {
+   "id": 98,
+   "alocacao_id": 5,
+   "data": "2026-07-17",
+   "horas": 8.0,
+   "descricao": ""
+  },
+  {
+   "id": 99,
+   "alocacao_id": 5,
+   "data": "2026-07-20",
+   "horas": 7.2,
+   "descricao": ""
+  },
+  {
+   "id": 100,
+   "alocacao_id": 5,
+   "data": "2026-07-21",
+   "horas": 8.8,
+   "descricao": ""
+  },
+  {
+   "id": 101,
+   "alocacao_id": 5,
+   "data": "2026-07-22",
+   "horas": 8.0,
+   "descricao": ""
+  },
+  {
+   "id": 102,
+   "alocacao_id": 5,
+   "data": "2026-07-23",
+   "horas": 6.4,
+   "descricao": "Configuração (customizing) no ambiente DEV"
+  },
+  {
+   "id": 103,
+   "alocacao_id": 5,
+   "data": "2026-07-24",
+   "horas": 8.0,
+   "descricao": "Testes unitários do módulo"
+  },
+  {
+   "id": 104,
+   "alocacao_id": 5,
+   "data": "2026-07-27",
+   "horas": 8.0,
+   "descricao": "Preparação de dados de teste"
+  },
+  {
+   "id": 105,
+   "alocacao_id": 5,
+   "data": "2026-07-28",
+   "horas": 6.4,
+   "descricao": "Configuração (customizing) no ambiente DEV"
+  },
+  {
+   "id": 106,
+   "alocacao_id": 5,
+   "data": "2026-07-29",
+   "horas": 8.0,
+   "descricao": "Testes unitários do módulo"
+  },
+  {
+   "id": 107,
+   "alocacao_id": 5,
+   "data": "2026-07-30",
+   "horas": 7.2,
+   "descricao": "Desenvolvimento de report/enhancement"
+  },
+  {
+   "id": 108,
+   "alocacao_id": 5,
+   "data": "2026-07-31",
+   "horas": 8.8,
+   "descricao": "Ajustes pós-teste integrado"
+  },
+  {
+   "id": 109,
+   "alocacao_id": 5,
+   "data": "2026-08-03",
+   "horas": 8.0,
+   "descricao": "Testes unitários do módulo"
+  },
+  {
+   "id": 110,
+   "alocacao_id": 5,
+   "data": "2026-08-04",
+   "horas": 7.2,
+   "descricao": "Desenvolvimento de report/enhancement"
+  },
+  {
+   "id": 111,
+   "alocacao_id": 5,
+   "data": "2026-08-05",
+   "horas": 8.8,
+   "descricao": "Ajustes pós-teste integrado"
+  },
+  {
+   "id": 112,
+   "alocacao_id": 5,
+   "data": "2026-08-06",
+   "horas": 8.0,
+   "descricao": "Preparação de dados de teste"
+  },
+  {
+   "id": 113,
+   "alocacao_id": 7,
+   "data": "2026-07-13",
+   "horas": 3.2,
+   "descricao": ""
+  },
+  {
+   "id": 114,
+   "alocacao_id": 7,
+   "data": "2026-07-14",
+   "horas": 4.0,
+   "descricao": ""
+  },
+  {
+   "id": 115,
+   "alocacao_id": 7,
+   "data": "2026-07-15",
+   "horas": 3.6,
+   "descricao": ""
+  },
+  {
+   "id": 116,
+   "alocacao_id": 7,
+   "data": "2026-07-16",
+   "horas": 4.4,
+   "descricao": ""
+  },
+  {
+   "id": 117,
+   "alocacao_id": 7,
+   "data": "2026-07-17",
+   "horas": 4.0,
+   "descricao": ""
+  },
+  {
+   "id": 118,
+   "alocacao_id": 7,
+   "data": "2026-07-20",
+   "horas": 3.6,
+   "descricao": ""
+  },
+  {
+   "id": 119,
+   "alocacao_id": 7,
+   "data": "2026-07-21",
+   "horas": 4.4,
+   "descricao": ""
+  },
+  {
+   "id": 120,
+   "alocacao_id": 7,
+   "data": "2026-07-22",
+   "horas": 4.0,
+   "descricao": ""
+  },
+  {
+   "id": 121,
+   "alocacao_id": 7,
+   "data": "2026-07-23",
+   "horas": 3.2,
+   "descricao": "Blueprint funcional"
+  },
+  {
+   "id": 122,
+   "alocacao_id": 7,
+   "data": "2026-07-24",
+   "horas": 4.0,
+   "descricao": "Workshop de processos com key users"
+  },
+  {
+   "id": 123,
+   "alocacao_id": 7,
+   "data": "2026-07-27",
+   "horas": 4.0,
+   "descricao": "Blueprint funcional"
+  },
+  {
+   "id": 124,
+   "alocacao_id": 7,
+   "data": "2026-07-28",
+   "horas": 3.2,
+   "descricao": "Workshop de processos com key users"
+  },
+  {
+   "id": 125,
+   "alocacao_id": 7,
+   "data": "2026-07-29",
+   "horas": 4.0,
+   "descricao": "Levantamento de requisitos"
+  },
+  {
+   "id": 126,
+   "alocacao_id": 7,
+   "data": "2026-07-30",
+   "horas": 3.6,
+   "descricao": "Documentação de gaps (fit-to-standard)"
+  },
+  {
+   "id": 127,
+   "alocacao_id": 7,
+   "data": "2026-07-31",
+   "horas": 4.4,
+   "descricao": "Blueprint funcional"
+  },
+  {
+   "id": 128,
+   "alocacao_id": 7,
+   "data": "2026-08-03",
+   "horas": 4.0,
+   "descricao": "Documentação de gaps (fit-to-standard)"
+  },
+  {
+   "id": 129,
+   "alocacao_id": 7,
+   "data": "2026-08-04",
+   "horas": 3.6,
+   "descricao": "Blueprint funcional"
+  },
+  {
+   "id": 130,
+   "alocacao_id": 7,
+   "data": "2026-08-05",
+   "horas": 4.4,
+   "descricao": "Workshop de processos com key users"
+  },
+  {
+   "id": 131,
+   "alocacao_id": 7,
+   "data": "2026-08-06",
+   "horas": 4.0,
+   "descricao": "Levantamento de requisitos"
+  },
+  {
+   "id": 132,
+   "alocacao_id": 8,
+   "data": "2026-07-13",
+   "horas": 4.8,
+   "descricao": ""
+  },
+  {
+   "id": 133,
+   "alocacao_id": 8,
+   "data": "2026-07-14",
+   "horas": 6.0,
+   "descricao": ""
+  },
+  {
+   "id": 134,
+   "alocacao_id": 8,
+   "data": "2026-07-15",
+   "horas": 5.4,
+   "descricao": ""
+  },
+  {
+   "id": 135,
+   "alocacao_id": 8,
+   "data": "2026-07-16",
+   "horas": 6.6,
+   "descricao": ""
+  },
+  {
+   "id": 136,
+   "alocacao_id": 8,
+   "data": "2026-07-17",
+   "horas": 6.0,
+   "descricao": ""
+  },
+  {
+   "id": 137,
+   "alocacao_id": 8,
+   "data": "2026-07-20",
+   "horas": 5.4,
+   "descricao": ""
+  },
+  {
+   "id": 138,
+   "alocacao_id": 8,
+   "data": "2026-07-21",
+   "horas": 6.6,
+   "descricao": ""
+  },
+  {
+   "id": 139,
+   "alocacao_id": 8,
+   "data": "2026-07-22",
+   "horas": 6.0,
+   "descricao": ""
+  },
+  {
+   "id": 140,
+   "alocacao_id": 8,
+   "data": "2026-07-23",
+   "horas": 4.8,
+   "descricao": "Workshop de processos com key users"
+  },
+  {
+   "id": 141,
+   "alocacao_id": 8,
+   "data": "2026-07-24",
+   "horas": 6.0,
+   "descricao": "Levantamento de requisitos"
+  },
+  {
+   "id": 142,
+   "alocacao_id": 8,
+   "data": "2026-07-27",
+   "horas": 6.0,
+   "descricao": "Workshop de processos com key users"
+  },
+  {
+   "id": 143,
+   "alocacao_id": 8,
+   "data": "2026-07-28",
+   "horas": 4.8,
+   "descricao": "Levantamento de requisitos"
+  },
+  {
+   "id": 144,
+   "alocacao_id": 8,
+   "data": "2026-07-29",
+   "horas": 6.0,
+   "descricao": "Documentação de gaps (fit-to-standard)"
+  },
+  {
+   "id": 145,
+   "alocacao_id": 8,
+   "data": "2026-07-30",
+   "horas": 5.4,
+   "descricao": "Blueprint funcional"
+  },
+  {
+   "id": 146,
+   "alocacao_id": 8,
+   "data": "2026-07-31",
+   "horas": 6.6,
+   "descricao": "Workshop de processos com key users"
+  },
+  {
+   "id": 147,
+   "alocacao_id": 8,
+   "data": "2026-08-03",
+   "horas": 6.0,
+   "descricao": "Blueprint funcional"
+  },
+  {
+   "id": 148,
+   "alocacao_id": 8,
+   "data": "2026-08-04",
+   "horas": 5.4,
+   "descricao": "Workshop de processos com key users"
+  },
+  {
+   "id": 149,
+   "alocacao_id": 8,
+   "data": "2026-08-05",
+   "horas": 6.6,
+   "descricao": "Levantamento de requisitos"
+  },
+  {
+   "id": 150,
+   "alocacao_id": 8,
+   "data": "2026-08-06",
+   "horas": 6.0,
+   "descricao": "Documentação de gaps (fit-to-standard)"
+  },
+  {
+   "id": 151,
+   "alocacao_id": 9,
+   "data": "2026-07-13",
+   "horas": 4.8,
+   "descricao": ""
+  },
+  {
+   "id": 152,
+   "alocacao_id": 9,
+   "data": "2026-07-14",
+   "horas": 6.0,
+   "descricao": ""
+  },
+  {
+   "id": 153,
+   "alocacao_id": 9,
+   "data": "2026-07-15",
+   "horas": 5.4,
+   "descricao": ""
+  },
+  {
+   "id": 154,
+   "alocacao_id": 9,
+   "data": "2026-07-16",
+   "horas": 6.6,
+   "descricao": ""
+  },
+  {
+   "id": 155,
+   "alocacao_id": 9,
+   "data": "2026-07-17",
+   "horas": 6.0,
+   "descricao": ""
+  },
+  {
+   "id": 156,
+   "alocacao_id": 9,
+   "data": "2026-07-20",
+   "horas": 5.4,
+   "descricao": ""
+  },
+  {
+   "id": 157,
+   "alocacao_id": 9,
+   "data": "2026-07-21",
+   "horas": 6.6,
+   "descricao": ""
+  },
+  {
+   "id": 158,
+   "alocacao_id": 9,
+   "data": "2026-07-22",
+   "horas": 6.0,
+   "descricao": ""
+  },
+  {
+   "id": 159,
+   "alocacao_id": 9,
+   "data": "2026-07-23",
+   "horas": 4.8,
+   "descricao": "Levantamento de requisitos"
+  },
+  {
+   "id": 160,
+   "alocacao_id": 9,
+   "data": "2026-07-24",
+   "horas": 6.0,
+   "descricao": "Documentação de gaps (fit-to-standard)"
+  },
+  {
+   "id": 161,
+   "alocacao_id": 9,
+   "data": "2026-07-27",
+   "horas": 6.0,
+   "descricao": "Levantamento de requisitos"
+  },
+  {
+   "id": 162,
+   "alocacao_id": 9,
+   "data": "2026-07-28",
+   "horas": 4.8,
+   "descricao": "Documentação de gaps (fit-to-standard)"
+  },
+  {
+   "id": 163,
+   "alocacao_id": 9,
+   "data": "2026-07-29",
+   "horas": 6.0,
+   "descricao": "Blueprint funcional"
+  },
+  {
+   "id": 164,
+   "alocacao_id": 9,
+   "data": "2026-07-30",
+   "horas": 5.4,
+   "descricao": "Workshop de processos com key users"
+  },
+  {
+   "id": 165,
+   "alocacao_id": 9,
+   "data": "2026-07-31",
+   "horas": 6.6,
+   "descricao": "Levantamento de requisitos"
+  },
+  {
+   "id": 166,
+   "alocacao_id": 9,
+   "data": "2026-08-03",
+   "horas": 6.0,
+   "descricao": "Workshop de processos com key users"
+  },
+  {
+   "id": 167,
+   "alocacao_id": 9,
+   "data": "2026-08-04",
+   "horas": 5.4,
+   "descricao": "Levantamento de requisitos"
+  },
+  {
+   "id": 168,
+   "alocacao_id": 9,
+   "data": "2026-08-05",
+   "horas": 6.6,
+   "descricao": "Documentação de gaps (fit-to-standard)"
+  },
+  {
+   "id": 169,
+   "alocacao_id": 9,
+   "data": "2026-08-06",
+   "horas": 6.0,
+   "descricao": "Blueprint funcional"
+  },
+  {
+   "id": 170,
+   "alocacao_id": 10,
+   "data": "2026-07-27",
+   "horas": 2.0,
+   "descricao": "Plano de projeto e cronograma"
+  },
+  {
+   "id": 171,
+   "alocacao_id": 10,
+   "data": "2026-07-28",
+   "horas": 1.6,
+   "descricao": "Definição da equipe e papéis"
+  },
+  {
+   "id": 172,
+   "alocacao_id": 10,
+   "data": "2026-07-29",
+   "horas": 2.0,
+   "descricao": "Setup do ambiente de projeto"
+  },
+  {
+   "id": 173,
+   "alocacao_id": 10,
+   "data": "2026-07-30",
+   "horas": 1.8,
+   "descricao": "Plano de projeto e cronograma"
+  },
+  {
+   "id": 174,
+   "alocacao_id": 10,
+   "data": "2026-07-31",
+   "horas": 2.2,
+   "descricao": "Definição da equipe e papéis"
+  },
+  {
+   "id": 175,
+   "alocacao_id": 10,
+   "data": "2026-08-03",
+   "horas": 2.0,
+   "descricao": "Definição da equipe e papéis"
+  },
+  {
+   "id": 176,
+   "alocacao_id": 10,
+   "data": "2026-08-04",
+   "horas": 1.8,
+   "descricao": "Setup do ambiente de projeto"
+  },
+  {
+   "id": 177,
+   "alocacao_id": 10,
+   "data": "2026-08-05",
+   "horas": 2.2,
+   "descricao": "Plano de projeto e cronograma"
+  },
+  {
+   "id": 178,
+   "alocacao_id": 10,
+   "data": "2026-08-06",
+   "horas": 2.0,
+   "descricao": "Definição da equipe e papéis"
+  },
+  {
+   "id": 179,
+   "alocacao_id": 11,
+   "data": "2026-07-27",
+   "horas": 1.6,
+   "descricao": "Definição da equipe e papéis"
+  },
+  {
+   "id": 180,
+   "alocacao_id": 11,
+   "data": "2026-07-28",
+   "horas": 1.3,
+   "descricao": "Setup do ambiente de projeto"
+  },
+  {
+   "id": 181,
+   "alocacao_id": 11,
+   "data": "2026-07-29",
+   "horas": 1.6,
+   "descricao": "Plano de projeto e cronograma"
+  },
+  {
+   "id": 182,
+   "alocacao_id": 11,
+   "data": "2026-07-30",
+   "horas": 1.4,
+   "descricao": "Definição da equipe e papéis"
+  },
+  {
+   "id": 183,
+   "alocacao_id": 11,
+   "data": "2026-07-31",
+   "horas": 1.8,
+   "descricao": "Setup do ambiente de projeto"
+  },
+  {
+   "id": 184,
+   "alocacao_id": 11,
+   "data": "2026-08-03",
+   "horas": 1.6,
+   "descricao": "Setup do ambiente de projeto"
+  },
+  {
+   "id": 185,
+   "alocacao_id": 11,
+   "data": "2026-08-04",
+   "horas": 1.4,
+   "descricao": "Plano de projeto e cronograma"
+  },
+  {
+   "id": 186,
+   "alocacao_id": 11,
+   "data": "2026-08-05",
+   "horas": 1.8,
+   "descricao": "Definição da equipe e papéis"
+  },
+  {
+   "id": 187,
+   "alocacao_id": 11,
+   "data": "2026-08-06",
+   "horas": 1.6,
+   "descricao": "Setup do ambiente de projeto"
+  },
+  {
+   "id": 188,
+   "alocacao_id": 12,
+   "data": "2026-07-27",
+   "horas": 2.4,
+   "descricao": "Setup do ambiente de projeto"
+  },
+  {
+   "id": 189,
+   "alocacao_id": 12,
+   "data": "2026-07-28",
+   "horas": 1.9,
+   "descricao": "Plano de projeto e cronograma"
+  },
+  {
+   "id": 190,
+   "alocacao_id": 12,
+   "data": "2026-07-29",
+   "horas": 2.4,
+   "descricao": "Definição da equipe e papéis"
+  },
+  {
+   "id": 191,
+   "alocacao_id": 12,
+   "data": "2026-07-30",
+   "horas": 2.2,
+   "descricao": "Setup do ambiente de projeto"
+  },
+  {
+   "id": 192,
+   "alocacao_id": 12,
+   "data": "2026-07-31",
+   "horas": 2.6,
+   "descricao": "Plano de projeto e cronograma"
+  },
+  {
+   "id": 193,
+   "alocacao_id": 12,
+   "data": "2026-08-03",
+   "horas": 2.4,
+   "descricao": "Plano de projeto e cronograma"
+  },
+  {
+   "id": 194,
+   "alocacao_id": 12,
+   "data": "2026-08-04",
+   "horas": 2.2,
+   "descricao": "Definição da equipe e papéis"
+  },
+  {
+   "id": 195,
+   "alocacao_id": 12,
+   "data": "2026-08-05",
+   "horas": 2.6,
+   "descricao": "Setup do ambiente de projeto"
+  },
+  {
+   "id": 196,
+   "alocacao_id": 12,
+   "data": "2026-08-06",
+   "horas": 2.4,
+   "descricao": "Plano de projeto e cronograma"
+  }
+ ],
+ "atividade": [
+  {
+   "id": 17,
+   "fase_id": 5,
+   "titulo": "Plano de cutover aprovado",
+   "ordem": 0,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 18,
+   "fase_id": 5,
+   "titulo": "Treinamento dos usuários finais",
+   "ordem": 1,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 19,
+   "fase_id": 5,
+   "titulo": "Execução do cutover / go-live",
+   "ordem": 2,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 20,
+   "fase_id": 5,
+   "titulo": "Verificação pós-go-live",
+   "ordem": 3,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 21,
+   "fase_id": 6,
+   "titulo": "Hypercare (suporte assistido)",
+   "ordem": 0,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 22,
+   "fase_id": 6,
+   "titulo": "Transição para o suporte contínuo",
+   "ordem": 1,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 23,
+   "fase_id": 6,
+   "titulo": "Lições aprendidas e encerramento",
+   "ordem": 2,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 34,
+   "fase_id": 9,
+   "titulo": "Log de gaps e change requests",
+   "ordem": 2,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 35,
+   "fase_id": 9,
+   "titulo": "Validar aderência da unidade ao template global",
+   "ordem": 3,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 36,
+   "fase_id": 10,
+   "titulo": "Configuração (customizing) no ambiente DEV",
+   "ordem": 0,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 37,
+   "fase_id": 10,
+   "titulo": "Desenvolvimentos (RICEFW) priorizados",
+   "ordem": 1,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 38,
+   "fase_id": 10,
+   "titulo": "Testes unitários por módulo",
+   "ordem": 2,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 39,
+   "fase_id": 10,
+   "titulo": "Validar aderência da unidade ao template global",
+   "ordem": 3,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 40,
+   "fase_id": 11,
+   "titulo": "Plano de cutover aprovado",
+   "ordem": 0,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 41,
+   "fase_id": 11,
+   "titulo": "Treinamento dos usuários finais",
+   "ordem": 1,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 42,
+   "fase_id": 11,
+   "titulo": "Execução do cutover / go-live",
+   "ordem": 2,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 43,
+   "fase_id": 11,
+   "titulo": "Validar aderência da unidade ao template global",
+   "ordem": 3,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 44,
+   "fase_id": 12,
+   "titulo": "Hypercare (suporte assistido)",
+   "ordem": 0,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 45,
+   "fase_id": 12,
+   "titulo": "Transição para o suporte contínuo",
+   "ordem": 1,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 46,
+   "fase_id": 12,
+   "titulo": "Lições aprendidas e encerramento",
+   "ordem": 2,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 47,
+   "fase_id": 12,
+   "titulo": "Validar aderência da unidade ao template global",
+   "ordem": 3,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 53,
+   "fase_id": 14,
+   "titulo": "Setup dos ambientes do projeto",
+   "ordem": 2,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 54,
+   "fase_id": 14,
+   "titulo": "RACI dos workshops fit-to-standard",
+   "ordem": 3,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 55,
+   "fase_id": 15,
+   "titulo": "Workshops fit-to-standard por processo",
+   "ordem": 0,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 56,
+   "fase_id": 15,
+   "titulo": "Backlog de adoção atualizado",
+   "ordem": 1,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 57,
+   "fase_id": 15,
+   "titulo": "Log de gaps e change requests",
+   "ordem": 2,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 58,
+   "fase_id": 15,
+   "titulo": "Blueprint/desenho da solução validado",
+   "ordem": 3,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 59,
+   "fase_id": 16,
+   "titulo": "Configuração (customizing) no ambiente DEV",
+   "ordem": 0,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 60,
+   "fase_id": 16,
+   "titulo": "Desenvolvimentos (RICEFW) priorizados",
+   "ordem": 1,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 61,
+   "fase_id": 16,
+   "titulo": "Testes unitários por módulo",
+   "ordem": 2,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 62,
+   "fase_id": 16,
+   "titulo": "Ciclos de teste integrado",
+   "ordem": 3,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 63,
+   "fase_id": 16,
+   "titulo": "Carga de dados de teste (mock)",
+   "ordem": 4,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 64,
+   "fase_id": 17,
+   "titulo": "Plano de cutover aprovado",
+   "ordem": 0,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 65,
+   "fase_id": 17,
+   "titulo": "Treinamento dos usuários finais",
+   "ordem": 1,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 66,
+   "fase_id": 17,
+   "titulo": "Execução do cutover / go-live",
+   "ordem": 2,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 67,
+   "fase_id": 17,
+   "titulo": "Verificação pós-go-live",
+   "ordem": 3,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 68,
+   "fase_id": 18,
+   "titulo": "Hypercare (suporte assistido)",
+   "ordem": 0,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 69,
+   "fase_id": 18,
+   "titulo": "Transição para o suporte contínuo",
+   "ordem": 1,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 70,
+   "fase_id": 18,
+   "titulo": "Lições aprendidas e encerramento",
+   "ordem": 2,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": null
+  },
+  {
+   "id": 1,
+   "fase_id": 1,
+   "titulo": "Análise de viabilidade e escopo inicial",
+   "ordem": 0,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 2,
+   "fase_id": 1,
+   "titulo": "Business case e objetivos de negócio",
+   "ordem": 1,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 3,
+   "fase_id": 1,
+   "titulo": "Roadmap inicial da implementação",
+   "ordem": 2,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 4,
+   "fase_id": 2,
+   "titulo": "Plano de projeto e cronograma detalhado",
+   "ordem": 0,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 5,
+   "fase_id": 2,
+   "titulo": "Reunião de kickoff com stakeholders",
+   "ordem": 1,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 6,
+   "fase_id": 2,
+   "titulo": "Setup dos ambientes do projeto",
+   "ordem": 2,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 7,
+   "fase_id": 2,
+   "titulo": "RACI dos workshops fit-to-standard",
+   "ordem": 3,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 8,
+   "fase_id": 3,
+   "titulo": "Workshops fit-to-standard por processo",
+   "ordem": 0,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 9,
+   "fase_id": 3,
+   "titulo": "Backlog de adoção atualizado",
+   "ordem": 1,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 10,
+   "fase_id": 3,
+   "titulo": "Log de gaps e change requests",
+   "ordem": 2,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 11,
+   "fase_id": 3,
+   "titulo": "Blueprint/desenho da solução validado",
+   "ordem": 3,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 12,
+   "fase_id": 4,
+   "titulo": "Configuração (customizing) no ambiente DEV",
+   "ordem": 0,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 13,
+   "fase_id": 4,
+   "titulo": "Desenvolvimentos (RICEFW) priorizados",
+   "ordem": 1,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 24,
+   "fase_id": 7,
+   "titulo": "Análise de viabilidade e escopo inicial",
+   "ordem": 0,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 25,
+   "fase_id": 7,
+   "titulo": "Business case e objetivos de negócio",
+   "ordem": 1,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 26,
+   "fase_id": 7,
+   "titulo": "Roadmap inicial da implementação",
+   "ordem": 2,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 27,
+   "fase_id": 7,
+   "titulo": "Validar aderência da unidade ao template global",
+   "ordem": 3,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 28,
+   "fase_id": 8,
+   "titulo": "Plano de projeto e cronograma detalhado",
+   "ordem": 0,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 29,
+   "fase_id": 8,
+   "titulo": "Reunião de kickoff com stakeholders",
+   "ordem": 1,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 30,
+   "fase_id": 8,
+   "titulo": "Setup dos ambientes do projeto",
+   "ordem": 2,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 31,
+   "fase_id": 8,
+   "titulo": "Validar aderência da unidade ao template global",
+   "ordem": 3,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 32,
+   "fase_id": 9,
+   "titulo": "Workshops fit-to-standard por processo",
+   "ordem": 0,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 33,
+   "fase_id": 9,
+   "titulo": "Backlog de adoção atualizado",
+   "ordem": 1,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 48,
+   "fase_id": 13,
+   "titulo": "Análise de viabilidade e escopo inicial",
+   "ordem": 0,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 49,
+   "fase_id": 13,
+   "titulo": "Business case e objetivos de negócio",
+   "ordem": 1,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 50,
+   "fase_id": 13,
+   "titulo": "Roadmap inicial da implementação",
+   "ordem": 2,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 51,
+   "fase_id": 14,
+   "titulo": "Plano de projeto e cronograma detalhado",
+   "ordem": 0,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 52,
+   "fase_id": 14,
+   "titulo": "Reunião de kickoff com stakeholders",
+   "ordem": 1,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "concluida",
+   "sprint_id": null
+  },
+  {
+   "id": 14,
+   "fase_id": 4,
+   "titulo": "Testes unitários por módulo",
+   "ordem": 2,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "em_andamento",
+   "sprint_id": 2
+  },
+  {
+   "id": 15,
+   "fase_id": 4,
+   "titulo": "Ciclos de teste integrado",
+   "ordem": 3,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": 2
+  },
+  {
+   "id": 16,
+   "fase_id": 4,
+   "titulo": "Carga de dados de teste (mock)",
+   "ordem": 4,
+   "responsavel_id": null,
+   "data_prevista": null,
+   "status": "pendente",
+   "sprint_id": 2
+  }
+ ],
+ "ausencia": [
+  {
+   "id": 1,
+   "consultor_id": 6,
+   "tipo": "ferias",
+   "data_inicio": "2026-08-10",
+   "data_fim": "2026-08-14",
+   "motivo": "Férias programadas",
+   "status": "aprovada",
+   "comentario_gestor": ""
+  },
+  {
+   "id": 2,
+   "consultor_id": 5,
+   "tipo": "folga",
+   "data_inicio": "2026-08-17",
+   "data_fim": "2026-08-18",
+   "motivo": "Compensação de horas do go-live",
+   "status": "pendente",
+   "comentario_gestor": ""
+  }
+ ],
+ "cliente": [
+  {
+   "id": 1,
+   "nome": "Aurora Alimentos",
+   "contato": "Paulo Andrade — paulo.andrade@aurora.com.br"
+  },
+  {
+   "id": 2,
+   "nome": "TecnoMed Diagnósticos",
+   "contato": "Renata Campos — renata.campos@tecnomed.com.br"
+  }
+ ],
+ "configuracao": [
+  {
+   "id": 1,
+   "nome_consultoria": "MRPN Solutions",
+   "cnpj": "00.000.000/0001-00",
+   "jornada_semanal": 40.0,
+   "limiar_super": 1.0,
+   "limiar_ocioso": 0.6,
+   "meta_margem": 0.45,
+   "taxa_junior": 150.0,
+   "taxa_pleno": 220.0,
+   "taxa_senior": 350.0,
+   "formato_data": "DD/MM/AAAA",
+   "moeda": "BRL",
+   "fuso": "(GMT-03:00) Brasília",
+   "taxa_km": 1.2,
+   "anthropic_api_key": "",
+   "modelo_ia": "claude-sonnet-5"
+  }
+ ],
+ "consultor": [
+  {
+   "id": 1,
+   "nome": "Ana Souza",
+   "senioridade": "senior",
+   "modulo_sap": "FI/CO",
+   "skills": "S/4HANA Finance, Fechamento contábil, Fiori",
+   "taxa_hora_custo": 120.0,
+   "taxa_hora_venda": 260.0
+  },
+  {
+   "id": 2,
+   "nome": "Bruno Lima",
+   "senioridade": "senior",
+   "modulo_sap": "MM",
+   "skills": "Compras, MRP, Integração Ariba",
+   "taxa_hora_custo": 110.0,
+   "taxa_hora_venda": 240.0
+  },
+  {
+   "id": 3,
+   "nome": "Carla Mendes",
+   "senioridade": "pleno",
+   "modulo_sap": "SD",
+   "skills": "Vendas B2B, Preços, EDI",
+   "taxa_hora_custo": 80.0,
+   "taxa_hora_venda": 180.0
+  },
+  {
+   "id": 4,
+   "nome": "Diego Ferreira",
+   "senioridade": "pleno",
+   "modulo_sap": "PP",
+   "skills": "PP/DS, Chão de fábrica",
+   "taxa_hora_custo": 75.0,
+   "taxa_hora_venda": 170.0
+  },
+  {
+   "id": 5,
+   "nome": "Elisa Rocha",
+   "senioridade": "junior",
+   "modulo_sap": "ABAP",
+   "skills": "ABAP OO, CDS Views, Fiori Elements",
+   "taxa_hora_custo": 50.0,
+   "taxa_hora_venda": 110.0
+  },
+  {
+   "id": 6,
+   "nome": "Fábio Torres",
+   "senioridade": "junior",
+   "modulo_sap": "BASIS",
+   "skills": "HANA DB, Transporte, Monitoramento",
+   "taxa_hora_custo": 45.0,
+   "taxa_hora_venda": 100.0
+  }
+ ],
+ "contrato": [
+  {
+   "id": 1,
+   "cliente_id": 1,
+   "nome": "Contrato Guarda-chuva S/4HANA 2026",
+   "data_inicio": "2026-03-19",
+   "data_fim": "2026-09-20",
+   "valor": 600000.0,
+   "status": "vigente",
+   "observacoes": "Cobre Greenfield + Migração ECC. Renovação em negociação."
+  },
+  {
+   "id": 2,
+   "cliente_id": 2,
+   "nome": "Contrato Rollout Fiori",
+   "data_inicio": "2026-05-28",
+   "data_fim": "2027-02-02",
+   "valor": 180000.0,
+   "status": "vigente",
+   "observacoes": ""
+  }
+ ],
+ "despesa": [
+  {
+   "id": 1,
+   "consultor_id": 1,
+   "projeto_id": 1,
+   "data": "2026-08-04",
+   "tipo": "quilometragem",
+   "descricao": "Visita ao cliente (ida e volta)",
+   "valor": 144.0,
+   "km": 120.0,
+   "status": "pendente",
+   "comentario_gestor": ""
+  },
+  {
+   "id": 2,
+   "consultor_id": 2,
+   "projeto_id": 2,
+   "data": "2026-07-31",
+   "tipo": "hospedagem",
+   "descricao": "Hotel — workshop fit-to-standard",
+   "valor": 480.0,
+   "km": null,
+   "status": "aprovada",
+   "comentario_gestor": ""
+  },
+  {
+   "id": 3,
+   "consultor_id": 3,
+   "projeto_id": 1,
+   "data": "2026-08-05",
+   "tipo": "alimentacao",
+   "descricao": "Almoço com key users",
+   "valor": 86.5,
+   "km": null,
+   "status": "pendente",
+   "comentario_gestor": ""
+  }
+ ],
+ "enviosemana": [
+  {
+   "id": 1,
+   "consultor_id": 3,
+   "semana": "2026-07-27",
+   "status": "aprovada",
+   "total_horas": 38.4,
+   "comentario_gestor": "",
+   "enviado_em": "2026-07-31",
+   "decidido_em": "2026-08-01"
+  },
+  {
+   "id": 2,
+   "consultor_id": 4,
+   "semana": "2026-07-27",
+   "status": "enviada",
+   "total_horas": 36.5,
+   "comentario_gestor": "",
+   "enviado_em": "2026-08-02",
+   "decidido_em": null
+  }
+ ],
+ "eventoauditoria": [
+  {
+   "id": 1,
+   "quando": "2026-08-06 13:35:24.792600",
+   "usuario": "Gestor Demo",
+   "perfil": "PerfilUsuario.gestor",
+   "metodo": "POST",
+   "caminho": "/api/clientes",
+   "status": 201,
+   "detalhe": ""
+  },
+  {
+   "id": 2,
+   "quando": "2026-08-24 13:04:48.079184",
+   "usuario": "CEO Demo",
+   "perfil": "PerfilUsuario.ceo",
+   "metodo": "POST",
+   "caminho": "/api/usuarios",
+   "status": 201,
+   "detalhe": ""
+  },
+  {
+   "id": 3,
+   "quando": "2026-08-24 13:04:50.382463",
+   "usuario": "CEO Demo",
+   "perfil": "PerfilUsuario.ceo",
+   "metodo": "PATCH",
+   "caminho": "/api/usuarios/9",
+   "status": 200,
+   "detalhe": ""
+  },
+  {
+   "id": 4,
+   "quando": "2026-08-25 14:38:23.318651",
+   "usuario": "CEO Demo",
+   "perfil": "PerfilUsuario.ceo",
+   "metodo": "POST",
+   "caminho": "/api/usuarios",
+   "status": 201,
+   "detalhe": ""
+  }
+ ],
+ "fase": [
+  {
+   "id": 5,
+   "projeto_id": 1,
+   "nome": "Deploy",
+   "ordem": 4,
+   "data_inicio_prevista": "2026-09-14",
+   "data_fim_prevista": "2026-10-11",
+   "baseline_inicio": "2026-09-14",
+   "baseline_fim": "2026-10-11",
+   "status": "nao_iniciada"
+  },
+  {
+   "id": 6,
+   "projeto_id": 1,
+   "nome": "Run",
+   "ordem": 5,
+   "data_inicio_prevista": "2026-10-12",
+   "data_fim_prevista": "2026-11-08",
+   "baseline_inicio": "2026-10-12",
+   "baseline_fim": "2026-11-08",
+   "status": "nao_iniciada"
+  },
+  {
+   "id": 10,
+   "projeto_id": 2,
+   "nome": "Realize",
+   "ordem": 3,
+   "data_inicio_prevista": "2026-08-24",
+   "data_fim_prevista": "2026-11-01",
+   "baseline_inicio": "2026-08-24",
+   "baseline_fim": "2026-11-01",
+   "status": "nao_iniciada"
+  },
+  {
+   "id": 11,
+   "projeto_id": 2,
+   "nome": "Deploy",
+   "ordem": 4,
+   "data_inicio_prevista": "2026-11-02",
+   "data_fim_prevista": "2026-11-29",
+   "baseline_inicio": "2026-11-02",
+   "baseline_fim": "2026-11-29",
+   "status": "nao_iniciada"
+  },
+  {
+   "id": 12,
+   "projeto_id": 2,
+   "nome": "Run",
+   "ordem": 5,
+   "data_inicio_prevista": "2026-11-30",
+   "data_fim_prevista": "2026-12-27",
+   "baseline_inicio": "2026-11-30",
+   "baseline_fim": "2026-12-27",
+   "status": "nao_iniciada"
+  },
+  {
+   "id": 15,
+   "projeto_id": 3,
+   "nome": "Explore",
+   "ordem": 2,
+   "data_inicio_prevista": "2026-08-17",
+   "data_fim_prevista": "2026-09-27",
+   "baseline_inicio": "2026-08-17",
+   "baseline_fim": "2026-09-27",
+   "status": "nao_iniciada"
+  },
+  {
+   "id": 16,
+   "projeto_id": 3,
+   "nome": "Realize",
+   "ordem": 3,
+   "data_inicio_prevista": "2026-09-28",
+   "data_fim_prevista": "2026-12-06",
+   "baseline_inicio": "2026-09-28",
+   "baseline_fim": "2026-12-06",
+   "status": "nao_iniciada"
+  },
+  {
+   "id": 17,
+   "projeto_id": 3,
+   "nome": "Deploy",
+   "ordem": 4,
+   "data_inicio_prevista": "2026-12-07",
+   "data_fim_prevista": "2027-01-03",
+   "baseline_inicio": "2026-12-07",
+   "baseline_fim": "2027-01-03",
+   "status": "nao_iniciada"
+  },
+  {
+   "id": 18,
+   "projeto_id": 3,
+   "nome": "Run",
+   "ordem": 5,
+   "data_inicio_prevista": "2027-01-04",
+   "data_fim_prevista": "2027-01-31",
+   "baseline_inicio": "2027-01-04",
+   "baseline_fim": "2027-01-31",
+   "status": "nao_iniciada"
+  },
+  {
+   "id": 1,
+   "projeto_id": 1,
+   "nome": "Discover",
+   "ordem": 0,
+   "data_inicio_prevista": "2026-04-20",
+   "data_fim_prevista": "2026-05-03",
+   "baseline_inicio": "2026-04-20",
+   "baseline_fim": "2026-05-03",
+   "status": "concluida"
+  },
+  {
+   "id": 2,
+   "projeto_id": 1,
+   "nome": "Prepare",
+   "ordem": 1,
+   "data_inicio_prevista": "2026-05-04",
+   "data_fim_prevista": "2026-05-24",
+   "baseline_inicio": "2026-05-04",
+   "baseline_fim": "2026-05-24",
+   "status": "concluida"
+  },
+  {
+   "id": 3,
+   "projeto_id": 1,
+   "nome": "Explore",
+   "ordem": 2,
+   "data_inicio_prevista": "2026-05-25",
+   "data_fim_prevista": "2026-07-05",
+   "baseline_inicio": "2026-05-25",
+   "baseline_fim": "2026-07-05",
+   "status": "concluida"
+  },
+  {
+   "id": 4,
+   "projeto_id": 1,
+   "nome": "Realize",
+   "ordem": 3,
+   "data_inicio_prevista": "2026-07-06",
+   "data_fim_prevista": "2026-09-13",
+   "baseline_inicio": "2026-07-06",
+   "baseline_fim": "2026-09-13",
+   "status": "em_andamento"
+  },
+  {
+   "id": 7,
+   "projeto_id": 2,
+   "nome": "Discover",
+   "ordem": 0,
+   "data_inicio_prevista": "2026-06-08",
+   "data_fim_prevista": "2026-06-21",
+   "baseline_inicio": "2026-06-08",
+   "baseline_fim": "2026-06-21",
+   "status": "concluida"
+  },
+  {
+   "id": 8,
+   "projeto_id": 2,
+   "nome": "Prepare",
+   "ordem": 1,
+   "data_inicio_prevista": "2026-06-22",
+   "data_fim_prevista": "2026-07-12",
+   "baseline_inicio": "2026-06-22",
+   "baseline_fim": "2026-07-12",
+   "status": "concluida"
+  },
+  {
+   "id": 9,
+   "projeto_id": 2,
+   "nome": "Explore",
+   "ordem": 2,
+   "data_inicio_prevista": "2026-07-13",
+   "data_fim_prevista": "2026-08-23",
+   "baseline_inicio": "2026-07-13",
+   "baseline_fim": "2026-08-23",
+   "status": "em_andamento"
+  },
+  {
+   "id": 13,
+   "projeto_id": 3,
+   "nome": "Discover",
+   "ordem": 0,
+   "data_inicio_prevista": "2026-07-13",
+   "data_fim_prevista": "2026-07-26",
+   "baseline_inicio": "2026-07-13",
+   "baseline_fim": "2026-07-26",
+   "status": "concluida"
+  },
+  {
+   "id": 14,
+   "projeto_id": 3,
+   "nome": "Prepare",
+   "ordem": 1,
+   "data_inicio_prevista": "2026-07-27",
+   "data_fim_prevista": "2026-08-16",
+   "baseline_inicio": "2026-07-27",
+   "baseline_fim": "2026-08-16",
+   "status": "em_andamento"
+  }
+ ],
+ "fatura": [
+  {
+   "id": 4,
+   "projeto_id": 1,
+   "competencia": "2026-08-01",
+   "valor": 78960.0,
+   "status": "prevista",
+   "numero": "",
+   "data_emissao": null,
+   "data_vencimento": null,
+   "data_recebimento": null
+  },
+  {
+   "id": 5,
+   "projeto_id": 1,
+   "competencia": "2026-09-01",
+   "valor": 47880.0,
+   "status": "prevista",
+   "numero": "",
+   "data_emissao": null,
+   "data_vencimento": null,
+   "data_recebimento": null
+  },
+  {
+   "id": 6,
+   "projeto_id": 1,
+   "competencia": "2026-10-01",
+   "valor": 7560.0,
+   "status": "prevista",
+   "numero": "",
+   "data_emissao": null,
+   "data_vencimento": null,
+   "data_recebimento": null
+  },
+  {
+   "id": 1,
+   "projeto_id": 1,
+   "competencia": "2026-05-01",
+   "valor": 11600.0,
+   "status": "recebida",
+   "numero": "NF-202605-001",
+   "data_emissao": "2026-06-04",
+   "data_vencimento": "2026-07-04",
+   "data_recebimento": "2026-07-01"
+  },
+  {
+   "id": 2,
+   "projeto_id": 1,
+   "competencia": "2026-06-01",
+   "valor": 51040.0,
+   "status": "recebida",
+   "numero": "NF-202606-001",
+   "data_emissao": "2026-07-05",
+   "data_vencimento": "2026-08-04",
+   "data_recebimento": "2026-08-01"
+  },
+  {
+   "id": 3,
+   "projeto_id": 1,
+   "competencia": "2026-07-01",
+   "valor": 82160.0,
+   "status": "emitida",
+   "numero": "NF-202607-001",
+   "data_emissao": "2026-06-27",
+   "data_vencimento": "2026-07-27",
+   "data_recebimento": null
+  }
+ ],
+ "feriado": [
+  {
+   "id": 1,
+   "data": "2026-09-07",
+   "nome": "Independência do Brasil"
+  },
+  {
+   "id": 2,
+   "data": "2026-10-12",
+   "nome": "Nossa Senhora Aparecida"
+  },
+  {
+   "id": 3,
+   "data": "2026-11-02",
+   "nome": "Finados"
+  },
+  {
+   "id": 4,
+   "data": "2026-11-15",
+   "nome": "Proclamação da República"
+  },
+  {
+   "id": 5,
+   "data": "2026-12-25",
+   "nome": "Natal"
+  }
+ ],
+ "itemgate": [
+  {
+   "id": 13,
+   "fase_id": 4,
+   "codigo": "REA-01",
+   "pergunta": "As configurações estão documentadas no tracker de configuração?",
+   "risco": "Config sem rastro dificulta suporte e auditoria pós-go-live.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 14,
+   "fase_id": 4,
+   "codigo": "REA-02",
+   "pergunta": "Os ciclos de teste integrado foram concluídos com defeitos críticos zerados?",
+   "risco": "Go-live com defeito crítico aberto transfere o risco para produção.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 15,
+   "fase_id": 4,
+   "codigo": "REA-03",
+   "pergunta": "A migração de dados foi ensaiada com dados reais (mock/dress rehearsal)?",
+   "risco": "Primeira carga real no cutover é receita para rollback.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 16,
+   "fase_id": 4,
+   "codigo": "REA-04",
+   "pergunta": "Os key users foram treinados para o teste de aceitação?",
+   "risco": "UAT sem key user preparado não valida nada.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 17,
+   "fase_id": 5,
+   "codigo": "DEP-01",
+   "pergunta": "O plano de cutover (atividades, janela, rollback) está aprovado?",
+   "risco": "Cutover sem plano/rollback põe a operação do cliente em risco.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 18,
+   "fase_id": 5,
+   "codigo": "DEP-02",
+   "pergunta": "Os usuários finais foram treinados e comunicados?",
+   "risco": "Usuário despreparado gera enxurrada de chamados no hypercare.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 19,
+   "fase_id": 5,
+   "codigo": "DEP-03",
+   "pergunta": "Critérios de go/no-go definidos e aceitos pelo cliente?",
+   "risco": "Sem critério objetivo, a decisão de go-live vira queda de braço.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 20,
+   "fase_id": 6,
+   "codigo": "RUN-01",
+   "pergunta": "O plano de hypercare (equipe, SLA, horário) está ativo?",
+   "risco": "Hypercare sem SLA definido frustra o cliente na fase mais sensível.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 21,
+   "fase_id": 6,
+   "codigo": "RUN-02",
+   "pergunta": "A transição para o suporte contínuo foi formalizada?",
+   "risco": "Sem transição formal, o time do projeto vira suporte eterno.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 22,
+   "fase_id": 6,
+   "codigo": "RUN-03",
+   "pergunta": "Lições aprendidas registradas e projeto encerrado formalmente?",
+   "risco": "Sem encerramento formal, horas continuam sendo lançadas no projeto.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 27,
+   "fase_id": 9,
+   "codigo": "EXP-01",
+   "pergunta": "Os workshops fit-to-standard cobriram todos os processos do escopo?",
+   "risco": "Processo não coberto em workshop reaparece como gap tardio.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 28,
+   "fase_id": 9,
+   "codigo": "EXP-02",
+   "pergunta": "O backlog de adoção está atualizado e priorizado?",
+   "risco": "Backlog desatualizado esconde esforço real do Realize.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 29,
+   "fase_id": 10,
+   "codigo": "REA-01",
+   "pergunta": "As configurações estão documentadas no tracker de configuração?",
+   "risco": "Config sem rastro dificulta suporte e auditoria pós-go-live.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 30,
+   "fase_id": 10,
+   "codigo": "REA-02",
+   "pergunta": "Os ciclos de teste integrado foram concluídos com defeitos críticos zerados?",
+   "risco": "Go-live com defeito crítico aberto transfere o risco para produção.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 31,
+   "fase_id": 11,
+   "codigo": "DEP-01",
+   "pergunta": "O plano de cutover (atividades, janela, rollback) está aprovado?",
+   "risco": "Cutover sem plano/rollback põe a operação do cliente em risco.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 32,
+   "fase_id": 11,
+   "codigo": "DEP-02",
+   "pergunta": "Os usuários finais foram treinados e comunicados?",
+   "risco": "Usuário despreparado gera enxurrada de chamados no hypercare.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 33,
+   "fase_id": 12,
+   "codigo": "RUN-01",
+   "pergunta": "O plano de hypercare (equipe, SLA, horário) está ativo?",
+   "risco": "Hypercare sem SLA definido frustra o cliente na fase mais sensível.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 34,
+   "fase_id": 12,
+   "codigo": "RUN-02",
+   "pergunta": "A transição para o suporte contínuo foi formalizada?",
+   "risco": "Sem transição formal, o time do projeto vira suporte eterno.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 38,
+   "fase_id": 14,
+   "codigo": "PRE-01",
+   "pergunta": "O plano de projeto (cronograma, marcos, papéis) está aprovado?",
+   "risco": "A ausência de linha de base impede medir atraso e desvio.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 39,
+   "fase_id": 14,
+   "codigo": "PRE-02",
+   "pergunta": "A equipe do projeto e o RACI dos workshops estão definidos?",
+   "risco": "Workshops sem papéis claros geram decisões sem dono.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 40,
+   "fase_id": 14,
+   "codigo": "PRE-03",
+   "pergunta": "Ambientes e acessos necessários estão disponíveis?",
+   "risco": "Atraso de acesso/ambiente é a causa nº 1 de derrapagem no Explore.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 41,
+   "fase_id": 14,
+   "codigo": "PRE-04",
+   "pergunta": "O plano de gestão de mudança organizacional (OCM) foi iniciado?",
+   "risco": "Sem OCM, a adoção pelos usuários finais fica comprometida no go-live.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 42,
+   "fase_id": 15,
+   "codigo": "EXP-01",
+   "pergunta": "Os workshops fit-to-standard cobriram todos os processos do escopo?",
+   "risco": "Processo não coberto em workshop reaparece como gap tardio.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 43,
+   "fase_id": 15,
+   "codigo": "EXP-02",
+   "pergunta": "O backlog de adoção está atualizado e priorizado?",
+   "risco": "Backlog desatualizado esconde esforço real do Realize.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 44,
+   "fase_id": 15,
+   "codigo": "EXP-03",
+   "pergunta": "Existe log de change requests com impacto em custo/prazo?",
+   "risco": "CRs sem log corroem a margem silenciosamente.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 45,
+   "fase_id": 15,
+   "codigo": "EXP-04",
+   "pergunta": "O escopo foi congelado para a fase Realize?",
+   "risco": "Escopo aberto durante o Realize dilui o time e atrasa entregas.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 46,
+   "fase_id": 15,
+   "codigo": "EXP-05",
+   "pergunta": "Cenários de integração foram identificados e dimensionados?",
+   "risco": "Integrações subestimadas explodem no teste integrado.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 47,
+   "fase_id": 16,
+   "codigo": "REA-01",
+   "pergunta": "As configurações estão documentadas no tracker de configuração?",
+   "risco": "Config sem rastro dificulta suporte e auditoria pós-go-live.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 48,
+   "fase_id": 16,
+   "codigo": "REA-02",
+   "pergunta": "Os ciclos de teste integrado foram concluídos com defeitos críticos zerados?",
+   "risco": "Go-live com defeito crítico aberto transfere o risco para produção.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 49,
+   "fase_id": 16,
+   "codigo": "REA-03",
+   "pergunta": "A migração de dados foi ensaiada com dados reais (mock/dress rehearsal)?",
+   "risco": "Primeira carga real no cutover é receita para rollback.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 50,
+   "fase_id": 16,
+   "codigo": "REA-04",
+   "pergunta": "Os key users foram treinados para o teste de aceitação?",
+   "risco": "UAT sem key user preparado não valida nada.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 51,
+   "fase_id": 17,
+   "codigo": "DEP-01",
+   "pergunta": "O plano de cutover (atividades, janela, rollback) está aprovado?",
+   "risco": "Cutover sem plano/rollback põe a operação do cliente em risco.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 52,
+   "fase_id": 17,
+   "codigo": "DEP-02",
+   "pergunta": "Os usuários finais foram treinados e comunicados?",
+   "risco": "Usuário despreparado gera enxurrada de chamados no hypercare.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 53,
+   "fase_id": 17,
+   "codigo": "DEP-03",
+   "pergunta": "Critérios de go/no-go definidos e aceitos pelo cliente?",
+   "risco": "Sem critério objetivo, a decisão de go-live vira queda de braço.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 54,
+   "fase_id": 18,
+   "codigo": "RUN-01",
+   "pergunta": "O plano de hypercare (equipe, SLA, horário) está ativo?",
+   "risco": "Hypercare sem SLA definido frustra o cliente na fase mais sensível.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 55,
+   "fase_id": 18,
+   "codigo": "RUN-02",
+   "pergunta": "A transição para o suporte contínuo foi formalizada?",
+   "risco": "Sem transição formal, o time do projeto vira suporte eterno.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 56,
+   "fase_id": 18,
+   "codigo": "RUN-03",
+   "pergunta": "Lições aprendidas registradas e projeto encerrado formalmente?",
+   "risco": "Sem encerramento formal, horas continuam sendo lançadas no projeto.",
+   "status": "nao_verificado",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 1,
+   "fase_id": 1,
+   "codigo": "DIS-01",
+   "pergunta": "O escopo e os objetivos de negócio estão documentados e aprovados pelo sponsor?",
+   "risco": "Sem escopo aprovado, as fases seguintes herdam ambiguidade e retrabalho.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 2,
+   "fase_id": 1,
+   "codigo": "DIS-02",
+   "pergunta": "O business case justifica o investimento (custo × benefício)?",
+   "risco": "Projetos sem business case claro perdem patrocínio no meio do caminho.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 3,
+   "fase_id": 1,
+   "codigo": "DIS-03",
+   "pergunta": "Os principais riscos e restrições foram identificados?",
+   "risco": "Riscos não mapeados no Discover viram surpresas caras no Realize.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 4,
+   "fase_id": 2,
+   "codigo": "PRE-01",
+   "pergunta": "O plano de projeto (cronograma, marcos, papéis) está aprovado?",
+   "risco": "A ausência de linha de base impede medir atraso e desvio.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 5,
+   "fase_id": 2,
+   "codigo": "PRE-02",
+   "pergunta": "A equipe do projeto e o RACI dos workshops estão definidos?",
+   "risco": "Workshops sem papéis claros geram decisões sem dono.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 6,
+   "fase_id": 2,
+   "codigo": "PRE-03",
+   "pergunta": "Ambientes e acessos necessários estão disponíveis?",
+   "risco": "Atraso de acesso/ambiente é a causa nº 1 de derrapagem no Explore.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 7,
+   "fase_id": 2,
+   "codigo": "PRE-04",
+   "pergunta": "O plano de gestão de mudança organizacional (OCM) foi iniciado?",
+   "risco": "Sem OCM, a adoção pelos usuários finais fica comprometida no go-live.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 8,
+   "fase_id": 3,
+   "codigo": "EXP-01",
+   "pergunta": "Os workshops fit-to-standard cobriram todos os processos do escopo?",
+   "risco": "Processo não coberto em workshop reaparece como gap tardio.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 9,
+   "fase_id": 3,
+   "codigo": "EXP-02",
+   "pergunta": "O backlog de adoção está atualizado e priorizado?",
+   "risco": "Backlog desatualizado esconde esforço real do Realize.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 10,
+   "fase_id": 3,
+   "codigo": "EXP-03",
+   "pergunta": "Existe log de change requests com impacto em custo/prazo?",
+   "risco": "CRs sem log corroem a margem silenciosamente.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 11,
+   "fase_id": 3,
+   "codigo": "EXP-04",
+   "pergunta": "O escopo foi congelado para a fase Realize?",
+   "risco": "Escopo aberto durante o Realize dilui o time e atrasa entregas.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 12,
+   "fase_id": 3,
+   "codigo": "EXP-05",
+   "pergunta": "Cenários de integração foram identificados e dimensionados?",
+   "risco": "Integrações subestimadas explodem no teste integrado.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 23,
+   "fase_id": 7,
+   "codigo": "DIS-01",
+   "pergunta": "O escopo e os objetivos de negócio estão documentados e aprovados pelo sponsor?",
+   "risco": "Sem escopo aprovado, as fases seguintes herdam ambiguidade e retrabalho.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 24,
+   "fase_id": 7,
+   "codigo": "DIS-02",
+   "pergunta": "O business case justifica o investimento (custo × benefício)?",
+   "risco": "Projetos sem business case claro perdem patrocínio no meio do caminho.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 25,
+   "fase_id": 8,
+   "codigo": "PRE-01",
+   "pergunta": "O plano de projeto (cronograma, marcos, papéis) está aprovado?",
+   "risco": "A ausência de linha de base impede medir atraso e desvio.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 26,
+   "fase_id": 8,
+   "codigo": "PRE-02",
+   "pergunta": "A equipe do projeto e o RACI dos workshops estão definidos?",
+   "risco": "Workshops sem papéis claros geram decisões sem dono.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 35,
+   "fase_id": 13,
+   "codigo": "DIS-01",
+   "pergunta": "O escopo e os objetivos de negócio estão documentados e aprovados pelo sponsor?",
+   "risco": "Sem escopo aprovado, as fases seguintes herdam ambiguidade e retrabalho.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 36,
+   "fase_id": 13,
+   "codigo": "DIS-02",
+   "pergunta": "O business case justifica o investimento (custo × benefício)?",
+   "risco": "Projetos sem business case claro perdem patrocínio no meio do caminho.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  },
+  {
+   "id": 37,
+   "fase_id": 13,
+   "codigo": "DIS-03",
+   "pergunta": "Os principais riscos e restrições foram identificados?",
+   "risco": "Riscos não mapeados no Discover viram surpresas caras no Realize.",
+   "status": "verde",
+   "plano_acao": "",
+   "responsavel": ""
+  }
+ ],
+ "itemorcamento": [
+  {
+   "id": 1,
+   "projeto_id": 1,
+   "categoria": "terceiros",
+   "descricao": "Consultoria de segurança (perfis e GRC)",
+   "valor_orcado": 18000.0,
+   "valor_realizado": 9500.0
+  },
+  {
+   "id": 2,
+   "projeto_id": 1,
+   "categoria": "licencas",
+   "descricao": "Ferramenta de migração de dados",
+   "valor_orcado": 7500.0,
+   "valor_realizado": 7500.0
+  }
+ ],
+ "medicao": [
+  {
+   "id": 1,
+   "projeto_id": 2,
+   "competencia": "2026-07-01",
+   "total_horas": 230.4,
+   "total_valor": 50400.0,
+   "status": "gerada",
+   "observacoes": "",
+   "criada_em": "2026-08-04",
+   "decidida_em": null,
+   "fatura_id": null
+  }
+ ],
+ "modeloatividade": [
+  {
+   "id": 1,
+   "modelo_id": 1,
+   "fase": "Discover",
+   "titulo": "Análise de viabilidade e escopo inicial",
+   "ordem": 0
+  },
+  {
+   "id": 2,
+   "modelo_id": 1,
+   "fase": "Discover",
+   "titulo": "Business case e objetivos de negócio",
+   "ordem": 1
+  },
+  {
+   "id": 3,
+   "modelo_id": 1,
+   "fase": "Discover",
+   "titulo": "Roadmap inicial da implementação",
+   "ordem": 2
+  },
+  {
+   "id": 4,
+   "modelo_id": 1,
+   "fase": "Prepare",
+   "titulo": "Plano de projeto e cronograma detalhado",
+   "ordem": 0
+  },
+  {
+   "id": 5,
+   "modelo_id": 1,
+   "fase": "Prepare",
+   "titulo": "Reunião de kickoff com stakeholders",
+   "ordem": 1
+  },
+  {
+   "id": 6,
+   "modelo_id": 1,
+   "fase": "Prepare",
+   "titulo": "Setup dos ambientes do projeto",
+   "ordem": 2
+  },
+  {
+   "id": 7,
+   "modelo_id": 1,
+   "fase": "Prepare",
+   "titulo": "RACI dos workshops fit-to-standard",
+   "ordem": 3
+  },
+  {
+   "id": 8,
+   "modelo_id": 1,
+   "fase": "Explore",
+   "titulo": "Workshops fit-to-standard por processo",
+   "ordem": 0
+  },
+  {
+   "id": 9,
+   "modelo_id": 1,
+   "fase": "Explore",
+   "titulo": "Backlog de adoção atualizado",
+   "ordem": 1
+  },
+  {
+   "id": 10,
+   "modelo_id": 1,
+   "fase": "Explore",
+   "titulo": "Log de gaps e change requests",
+   "ordem": 2
+  },
+  {
+   "id": 11,
+   "modelo_id": 1,
+   "fase": "Explore",
+   "titulo": "Blueprint/desenho da solução validado",
+   "ordem": 3
+  },
+  {
+   "id": 12,
+   "modelo_id": 1,
+   "fase": "Realize",
+   "titulo": "Configuração (customizing) no ambiente DEV",
+   "ordem": 0
+  },
+  {
+   "id": 13,
+   "modelo_id": 1,
+   "fase": "Realize",
+   "titulo": "Desenvolvimentos (RICEFW) priorizados",
+   "ordem": 1
+  },
+  {
+   "id": 14,
+   "modelo_id": 1,
+   "fase": "Realize",
+   "titulo": "Testes unitários por módulo",
+   "ordem": 2
+  },
+  {
+   "id": 15,
+   "modelo_id": 1,
+   "fase": "Realize",
+   "titulo": "Ciclos de teste integrado",
+   "ordem": 3
+  },
+  {
+   "id": 16,
+   "modelo_id": 1,
+   "fase": "Realize",
+   "titulo": "Carga de dados de teste (mock)",
+   "ordem": 4
+  },
+  {
+   "id": 17,
+   "modelo_id": 1,
+   "fase": "Deploy",
+   "titulo": "Plano de cutover aprovado",
+   "ordem": 0
+  },
+  {
+   "id": 18,
+   "modelo_id": 1,
+   "fase": "Deploy",
+   "titulo": "Treinamento dos usuários finais",
+   "ordem": 1
+  },
+  {
+   "id": 19,
+   "modelo_id": 1,
+   "fase": "Deploy",
+   "titulo": "Execução do cutover / go-live",
+   "ordem": 2
+  },
+  {
+   "id": 20,
+   "modelo_id": 1,
+   "fase": "Deploy",
+   "titulo": "Verificação pós-go-live",
+   "ordem": 3
+  },
+  {
+   "id": 21,
+   "modelo_id": 1,
+   "fase": "Run",
+   "titulo": "Hypercare (suporte assistido)",
+   "ordem": 0
+  },
+  {
+   "id": 22,
+   "modelo_id": 1,
+   "fase": "Run",
+   "titulo": "Transição para o suporte contínuo",
+   "ordem": 1
+  },
+  {
+   "id": 23,
+   "modelo_id": 1,
+   "fase": "Run",
+   "titulo": "Lições aprendidas e encerramento",
+   "ordem": 2
+  },
+  {
+   "id": 24,
+   "modelo_id": 2,
+   "fase": "Discover",
+   "titulo": "Análise de viabilidade e escopo inicial",
+   "ordem": 0
+  },
+  {
+   "id": 25,
+   "modelo_id": 2,
+   "fase": "Discover",
+   "titulo": "Business case e objetivos de negócio",
+   "ordem": 1
+  },
+  {
+   "id": 26,
+   "modelo_id": 2,
+   "fase": "Discover",
+   "titulo": "Roadmap inicial da implementação",
+   "ordem": 2
+  },
+  {
+   "id": 27,
+   "modelo_id": 2,
+   "fase": "Discover",
+   "titulo": "Validar aderência da unidade ao template global",
+   "ordem": 3
+  },
+  {
+   "id": 28,
+   "modelo_id": 2,
+   "fase": "Prepare",
+   "titulo": "Plano de projeto e cronograma detalhado",
+   "ordem": 0
+  },
+  {
+   "id": 29,
+   "modelo_id": 2,
+   "fase": "Prepare",
+   "titulo": "Reunião de kickoff com stakeholders",
+   "ordem": 1
+  },
+  {
+   "id": 30,
+   "modelo_id": 2,
+   "fase": "Prepare",
+   "titulo": "Setup dos ambientes do projeto",
+   "ordem": 2
+  },
+  {
+   "id": 31,
+   "modelo_id": 2,
+   "fase": "Prepare",
+   "titulo": "Validar aderência da unidade ao template global",
+   "ordem": 3
+  },
+  {
+   "id": 32,
+   "modelo_id": 2,
+   "fase": "Explore",
+   "titulo": "Workshops fit-to-standard por processo",
+   "ordem": 0
+  },
+  {
+   "id": 33,
+   "modelo_id": 2,
+   "fase": "Explore",
+   "titulo": "Backlog de adoção atualizado",
+   "ordem": 1
+  },
+  {
+   "id": 34,
+   "modelo_id": 2,
+   "fase": "Explore",
+   "titulo": "Log de gaps e change requests",
+   "ordem": 2
+  },
+  {
+   "id": 35,
+   "modelo_id": 2,
+   "fase": "Explore",
+   "titulo": "Validar aderência da unidade ao template global",
+   "ordem": 3
+  },
+  {
+   "id": 36,
+   "modelo_id": 2,
+   "fase": "Realize",
+   "titulo": "Configuração (customizing) no ambiente DEV",
+   "ordem": 0
+  },
+  {
+   "id": 37,
+   "modelo_id": 2,
+   "fase": "Realize",
+   "titulo": "Desenvolvimentos (RICEFW) priorizados",
+   "ordem": 1
+  },
+  {
+   "id": 38,
+   "modelo_id": 2,
+   "fase": "Realize",
+   "titulo": "Testes unitários por módulo",
+   "ordem": 2
+  },
+  {
+   "id": 39,
+   "modelo_id": 2,
+   "fase": "Realize",
+   "titulo": "Validar aderência da unidade ao template global",
+   "ordem": 3
+  },
+  {
+   "id": 40,
+   "modelo_id": 2,
+   "fase": "Deploy",
+   "titulo": "Plano de cutover aprovado",
+   "ordem": 0
+  },
+  {
+   "id": 41,
+   "modelo_id": 2,
+   "fase": "Deploy",
+   "titulo": "Treinamento dos usuários finais",
+   "ordem": 1
+  },
+  {
+   "id": 42,
+   "modelo_id": 2,
+   "fase": "Deploy",
+   "titulo": "Execução do cutover / go-live",
+   "ordem": 2
+  },
+  {
+   "id": 43,
+   "modelo_id": 2,
+   "fase": "Deploy",
+   "titulo": "Validar aderência da unidade ao template global",
+   "ordem": 3
+  },
+  {
+   "id": 44,
+   "modelo_id": 2,
+   "fase": "Run",
+   "titulo": "Hypercare (suporte assistido)",
+   "ordem": 0
+  },
+  {
+   "id": 45,
+   "modelo_id": 2,
+   "fase": "Run",
+   "titulo": "Transição para o suporte contínuo",
+   "ordem": 1
+  },
+  {
+   "id": 46,
+   "modelo_id": 2,
+   "fase": "Run",
+   "titulo": "Lições aprendidas e encerramento",
+   "ordem": 2
+  },
+  {
+   "id": 47,
+   "modelo_id": 2,
+   "fase": "Run",
+   "titulo": "Validar aderência da unidade ao template global",
+   "ordem": 3
+  }
+ ],
+ "modeloitemgate": [
+  {
+   "id": 1,
+   "modelo_id": 1,
+   "fase": "Discover",
+   "codigo": "DIS-01",
+   "pergunta": "O escopo e os objetivos de negócio estão documentados e aprovados pelo sponsor?",
+   "risco": "Sem escopo aprovado, as fases seguintes herdam ambiguidade e retrabalho."
+  },
+  {
+   "id": 2,
+   "modelo_id": 1,
+   "fase": "Discover",
+   "codigo": "DIS-02",
+   "pergunta": "O business case justifica o investimento (custo × benefício)?",
+   "risco": "Projetos sem business case claro perdem patrocínio no meio do caminho."
+  },
+  {
+   "id": 3,
+   "modelo_id": 1,
+   "fase": "Discover",
+   "codigo": "DIS-03",
+   "pergunta": "Os principais riscos e restrições foram identificados?",
+   "risco": "Riscos não mapeados no Discover viram surpresas caras no Realize."
+  },
+  {
+   "id": 4,
+   "modelo_id": 1,
+   "fase": "Prepare",
+   "codigo": "PRE-01",
+   "pergunta": "O plano de projeto (cronograma, marcos, papéis) está aprovado?",
+   "risco": "A ausência de linha de base impede medir atraso e desvio."
+  },
+  {
+   "id": 5,
+   "modelo_id": 1,
+   "fase": "Prepare",
+   "codigo": "PRE-02",
+   "pergunta": "A equipe do projeto e o RACI dos workshops estão definidos?",
+   "risco": "Workshops sem papéis claros geram decisões sem dono."
+  },
+  {
+   "id": 6,
+   "modelo_id": 1,
+   "fase": "Prepare",
+   "codigo": "PRE-03",
+   "pergunta": "Ambientes e acessos necessários estão disponíveis?",
+   "risco": "Atraso de acesso/ambiente é a causa nº 1 de derrapagem no Explore."
+  },
+  {
+   "id": 7,
+   "modelo_id": 1,
+   "fase": "Prepare",
+   "codigo": "PRE-04",
+   "pergunta": "O plano de gestão de mudança organizacional (OCM) foi iniciado?",
+   "risco": "Sem OCM, a adoção pelos usuários finais fica comprometida no go-live."
+  },
+  {
+   "id": 8,
+   "modelo_id": 1,
+   "fase": "Explore",
+   "codigo": "EXP-01",
+   "pergunta": "Os workshops fit-to-standard cobriram todos os processos do escopo?",
+   "risco": "Processo não coberto em workshop reaparece como gap tardio."
+  },
+  {
+   "id": 9,
+   "modelo_id": 1,
+   "fase": "Explore",
+   "codigo": "EXP-02",
+   "pergunta": "O backlog de adoção está atualizado e priorizado?",
+   "risco": "Backlog desatualizado esconde esforço real do Realize."
+  },
+  {
+   "id": 10,
+   "modelo_id": 1,
+   "fase": "Explore",
+   "codigo": "EXP-03",
+   "pergunta": "Existe log de change requests com impacto em custo/prazo?",
+   "risco": "CRs sem log corroem a margem silenciosamente."
+  },
+  {
+   "id": 11,
+   "modelo_id": 1,
+   "fase": "Explore",
+   "codigo": "EXP-04",
+   "pergunta": "O escopo foi congelado para a fase Realize?",
+   "risco": "Escopo aberto durante o Realize dilui o time e atrasa entregas."
+  },
+  {
+   "id": 12,
+   "modelo_id": 1,
+   "fase": "Explore",
+   "codigo": "EXP-05",
+   "pergunta": "Cenários de integração foram identificados e dimensionados?",
+   "risco": "Integrações subestimadas explodem no teste integrado."
+  },
+  {
+   "id": 13,
+   "modelo_id": 1,
+   "fase": "Realize",
+   "codigo": "REA-01",
+   "pergunta": "As configurações estão documentadas no tracker de configuração?",
+   "risco": "Config sem rastro dificulta suporte e auditoria pós-go-live."
+  },
+  {
+   "id": 14,
+   "modelo_id": 1,
+   "fase": "Realize",
+   "codigo": "REA-02",
+   "pergunta": "Os ciclos de teste integrado foram concluídos com defeitos críticos zerados?",
+   "risco": "Go-live com defeito crítico aberto transfere o risco para produção."
+  },
+  {
+   "id": 15,
+   "modelo_id": 1,
+   "fase": "Realize",
+   "codigo": "REA-03",
+   "pergunta": "A migração de dados foi ensaiada com dados reais (mock/dress rehearsal)?",
+   "risco": "Primeira carga real no cutover é receita para rollback."
+  },
+  {
+   "id": 16,
+   "modelo_id": 1,
+   "fase": "Realize",
+   "codigo": "REA-04",
+   "pergunta": "Os key users foram treinados para o teste de aceitação?",
+   "risco": "UAT sem key user preparado não valida nada."
+  },
+  {
+   "id": 17,
+   "modelo_id": 1,
+   "fase": "Deploy",
+   "codigo": "DEP-01",
+   "pergunta": "O plano de cutover (atividades, janela, rollback) está aprovado?",
+   "risco": "Cutover sem plano/rollback põe a operação do cliente em risco."
+  },
+  {
+   "id": 18,
+   "modelo_id": 1,
+   "fase": "Deploy",
+   "codigo": "DEP-02",
+   "pergunta": "Os usuários finais foram treinados e comunicados?",
+   "risco": "Usuário despreparado gera enxurrada de chamados no hypercare."
+  },
+  {
+   "id": 19,
+   "modelo_id": 1,
+   "fase": "Deploy",
+   "codigo": "DEP-03",
+   "pergunta": "Critérios de go/no-go definidos e aceitos pelo cliente?",
+   "risco": "Sem critério objetivo, a decisão de go-live vira queda de braço."
+  },
+  {
+   "id": 20,
+   "modelo_id": 1,
+   "fase": "Run",
+   "codigo": "RUN-01",
+   "pergunta": "O plano de hypercare (equipe, SLA, horário) está ativo?",
+   "risco": "Hypercare sem SLA definido frustra o cliente na fase mais sensível."
+  },
+  {
+   "id": 21,
+   "modelo_id": 1,
+   "fase": "Run",
+   "codigo": "RUN-02",
+   "pergunta": "A transição para o suporte contínuo foi formalizada?",
+   "risco": "Sem transição formal, o time do projeto vira suporte eterno."
+  },
+  {
+   "id": 22,
+   "modelo_id": 1,
+   "fase": "Run",
+   "codigo": "RUN-03",
+   "pergunta": "Lições aprendidas registradas e projeto encerrado formalmente?",
+   "risco": "Sem encerramento formal, horas continuam sendo lançadas no projeto."
+  },
+  {
+   "id": 23,
+   "modelo_id": 2,
+   "fase": "Discover",
+   "codigo": "DIS-01",
+   "pergunta": "O escopo e os objetivos de negócio estão documentados e aprovados pelo sponsor?",
+   "risco": "Sem escopo aprovado, as fases seguintes herdam ambiguidade e retrabalho."
+  },
+  {
+   "id": 24,
+   "modelo_id": 2,
+   "fase": "Discover",
+   "codigo": "DIS-02",
+   "pergunta": "O business case justifica o investimento (custo × benefício)?",
+   "risco": "Projetos sem business case claro perdem patrocínio no meio do caminho."
+  },
+  {
+   "id": 25,
+   "modelo_id": 2,
+   "fase": "Prepare",
+   "codigo": "PRE-01",
+   "pergunta": "O plano de projeto (cronograma, marcos, papéis) está aprovado?",
+   "risco": "A ausência de linha de base impede medir atraso e desvio."
+  },
+  {
+   "id": 26,
+   "modelo_id": 2,
+   "fase": "Prepare",
+   "codigo": "PRE-02",
+   "pergunta": "A equipe do projeto e o RACI dos workshops estão definidos?",
+   "risco": "Workshops sem papéis claros geram decisões sem dono."
+  },
+  {
+   "id": 27,
+   "modelo_id": 2,
+   "fase": "Explore",
+   "codigo": "EXP-01",
+   "pergunta": "Os workshops fit-to-standard cobriram todos os processos do escopo?",
+   "risco": "Processo não coberto em workshop reaparece como gap tardio."
+  },
+  {
+   "id": 28,
+   "modelo_id": 2,
+   "fase": "Explore",
+   "codigo": "EXP-02",
+   "pergunta": "O backlog de adoção está atualizado e priorizado?",
+   "risco": "Backlog desatualizado esconde esforço real do Realize."
+  },
+  {
+   "id": 29,
+   "modelo_id": 2,
+   "fase": "Realize",
+   "codigo": "REA-01",
+   "pergunta": "As configurações estão documentadas no tracker de configuração?",
+   "risco": "Config sem rastro dificulta suporte e auditoria pós-go-live."
+  },
+  {
+   "id": 30,
+   "modelo_id": 2,
+   "fase": "Realize",
+   "codigo": "REA-02",
+   "pergunta": "Os ciclos de teste integrado foram concluídos com defeitos críticos zerados?",
+   "risco": "Go-live com defeito crítico aberto transfere o risco para produção."
+  },
+  {
+   "id": 31,
+   "modelo_id": 2,
+   "fase": "Deploy",
+   "codigo": "DEP-01",
+   "pergunta": "O plano de cutover (atividades, janela, rollback) está aprovado?",
+   "risco": "Cutover sem plano/rollback põe a operação do cliente em risco."
+  },
+  {
+   "id": 32,
+   "modelo_id": 2,
+   "fase": "Deploy",
+   "codigo": "DEP-02",
+   "pergunta": "Os usuários finais foram treinados e comunicados?",
+   "risco": "Usuário despreparado gera enxurrada de chamados no hypercare."
+  },
+  {
+   "id": 33,
+   "modelo_id": 2,
+   "fase": "Run",
+   "codigo": "RUN-01",
+   "pergunta": "O plano de hypercare (equipe, SLA, horário) está ativo?",
+   "risco": "Hypercare sem SLA definido frustra o cliente na fase mais sensível."
+  },
+  {
+   "id": 34,
+   "modelo_id": 2,
+   "fase": "Run",
+   "codigo": "RUN-02",
+   "pergunta": "A transição para o suporte contínuo foi formalizada?",
+   "risco": "Sem transição formal, o time do projeto vira suporte eterno."
+  }
+ ],
+ "modeloprojeto": [
+  {
+   "id": 1,
+   "nome": "Implantação SAP Activate (padrão)",
+   "descricao": "Entregas e Quality Gates adaptados dos aceleradores oficiais do SAP Activate.",
+   "padrao": true
+  },
+  {
+   "id": 2,
+   "nome": "Rollout / nova unidade",
+   "descricao": "Versão enxuta para ativar uma unidade num template já implantado.",
+   "padrao": false
+  }
+ ],
+ "mudancacr": [
+  {
+   "id": 1,
+   "projeto_id": 1,
+   "titulo": "Incluir relatório fiscal customizado (Reforma Tributária)",
+   "descricao": "Cliente solicitou report adicional fora do escopo original.",
+   "impacto_horas": 80.0,
+   "impacto_valor": 14400.0,
+   "status": "aberta",
+   "criada_em": "2026-08-01",
+   "decidida_em": null
+  },
+  {
+   "id": 2,
+   "projeto_id": 1,
+   "titulo": "Ampliar treinamento para 2ª turma",
+   "descricao": "",
+   "impacto_horas": 24.0,
+   "impacto_valor": 3600.0,
+   "status": "aprovada",
+   "criada_em": "2026-07-22",
+   "decidida_em": "2026-07-28"
+  }
+ ],
+ "pendencia": [
+  {
+   "id": 1,
+   "projeto_id": 1,
+   "fase_id": 4,
+   "titulo": "Ambiente QAS instável para o teste integrado",
+   "descricao": "Quedas intermitentes bloqueando o ciclo 2 de testes.",
+   "responsavel_id": 2,
+   "prioridade": "alta",
+   "status": "aberta",
+   "criada_em": "2026-08-03",
+   "resolvida_em": null
+  },
+  {
+   "id": 2,
+   "projeto_id": 1,
+   "fase_id": 5,
+   "titulo": "Definir estratégia de carga para o cutover",
+   "descricao": "",
+   "responsavel_id": 1,
+   "prioridade": "media",
+   "status": "em_andamento",
+   "criada_em": "2026-07-30",
+   "resolvida_em": null
+  },
+  {
+   "id": 3,
+   "projeto_id": 2,
+   "fase_id": 9,
+   "titulo": "Ata do workshop de suprimentos pendente de validação",
+   "descricao": "",
+   "responsavel_id": 4,
+   "prioridade": "baixa",
+   "status": "resolvida",
+   "criada_em": "2026-07-27",
+   "resolvida_em": "2026-08-02"
+  }
+ ],
+ "projeto": [
+  {
+   "id": 1,
+   "nome": "S/4HANA Greenfield",
+   "cliente_id": 1,
+   "data_inicio": "2026-04-20",
+   "status": "ativo",
+   "licoes_aprendidas": "",
+   "encerrado_em": null,
+   "modelo_id": null
+  },
+  {
+   "id": 2,
+   "nome": "Rollout Fiori Laboratórios",
+   "cliente_id": 2,
+   "data_inicio": "2026-06-08",
+   "status": "ativo",
+   "licoes_aprendidas": "",
+   "encerrado_em": null,
+   "modelo_id": 2
+  },
+  {
+   "id": 3,
+   "nome": "Migração ECC → S/4",
+   "cliente_id": 1,
+   "data_inicio": "2026-07-13",
+   "status": "ativo",
+   "licoes_aprendidas": "",
+   "encerrado_em": null,
+   "modelo_id": null
+  }
+ ],
+ "proposta": [
+  {
+   "id": 1,
+   "cliente_id": 2,
+   "nome": "Implementação SAP IBP",
+   "descricao": "Planejamento integrado (demand + supply) para a operação de diagnósticos.",
+   "escopo": "",
+   "premissas": "",
+   "horas_junior": 0.0,
+   "horas_pleno": 0.0,
+   "horas_senior": 0.0,
+   "valor_estimado": 180000.0,
+   "margem_estimada": 0.0,
+   "horas_estimadas": 900.0,
+   "probabilidade": 0.6,
+   "validade": null,
+   "estagio": "negociacao",
+   "criada_em": "2026-07-16",
+   "decidida_em": null,
+   "projeto_id": null
+  },
+  {
+   "id": 2,
+   "cliente_id": 1,
+   "nome": "AMS — Sustentação S/4HANA",
+   "descricao": "Suporte contínuo pós-go-live (banco de horas mensal).",
+   "escopo": "",
+   "premissas": "",
+   "horas_junior": 0.0,
+   "horas_pleno": 0.0,
+   "horas_senior": 0.0,
+   "valor_estimado": 90000.0,
+   "margem_estimada": 0.0,
+   "horas_estimadas": 600.0,
+   "probabilidade": 0.4,
+   "validade": null,
+   "estagio": "proposta",
+   "criada_em": "2026-07-27",
+   "decidida_em": null,
+   "projeto_id": null
+  },
+  {
+   "id": 3,
+   "cliente_id": 1,
+   "nome": "Rollout Filial Sul",
+   "descricao": "Extensão do template S/4 para a nova planta.",
+   "escopo": "",
+   "premissas": "",
+   "horas_junior": 0.0,
+   "horas_pleno": 0.0,
+   "horas_senior": 0.0,
+   "valor_estimado": 250000.0,
+   "margem_estimada": 0.0,
+   "horas_estimadas": 1400.0,
+   "probabilidade": 0.3,
+   "validade": null,
+   "estagio": "qualificacao",
+   "criada_em": "2026-08-02",
+   "decidida_em": null,
+   "projeto_id": null
+  },
+  {
+   "id": 4,
+   "cliente_id": 2,
+   "nome": "Upgrade BW/4HANA",
+   "descricao": "Perdida para concorrente por prazo.",
+   "escopo": "",
+   "premissas": "",
+   "horas_junior": 0.0,
+   "horas_pleno": 0.0,
+   "horas_senior": 0.0,
+   "valor_estimado": 120000.0,
+   "margem_estimada": 0.0,
+   "horas_estimadas": 0.0,
+   "probabilidade": 0.5,
+   "validade": null,
+   "estagio": "perdida",
+   "criada_em": "2026-06-22",
+   "decidida_em": "2026-07-25",
+   "projeto_id": null
+  }
+ ],
+ "risco": [
+  {
+   "id": 1,
+   "projeto_id": 1,
+   "titulo": "Indisponibilidade do time do cliente no UAT",
+   "probabilidade": "medio",
+   "impacto": "alto",
+   "resposta": "Congelar agenda de key users com 3 semanas de antecedência.",
+   "status": "aberto"
+  },
+  {
+   "id": 2,
+   "projeto_id": 1,
+   "titulo": "Volumetria de migração acima do estimado",
+   "probabilidade": "alto",
+   "impacto": "alto",
+   "resposta": "Dress rehearsal extra + janela de contingência no cutover.",
+   "status": "aberto"
+  },
+  {
+   "id": 3,
+   "projeto_id": 2,
+   "titulo": "Atraso na liberação dos acessos Fiori",
+   "probabilidade": "baixo",
+   "impacto": "medio",
+   "resposta": "Checklist de acessos no gate do Prepare.",
+   "status": "mitigado"
+  }
+ ],
+ "sessaoacesso": [
+  {
+   "id": 1,
+   "token": "wHmli4grM6EoLjsnb8XJqpbOWcCo_2Brqs9FwA8cYQc",
+   "usuario_id": 1,
+   "criada_em": "2026-08-06 13:34:57.799273",
+   "expira_em": "2026-08-07 01:34:57.799273"
+  },
+  {
+   "id": 2,
+   "token": "up7UEJq4jJ55qGPZ-F4pVLM0xhRjPuuTwL01sA16aTw",
+   "usuario_id": 2,
+   "criada_em": "2026-08-06 13:34:59.044640",
+   "expira_em": "2026-08-07 01:34:59.044640"
+  },
+  {
+   "id": 3,
+   "token": "mmgKC94QdCYm9z5QsFS65PURQRm-1VwLAKIIaXW_0RY",
+   "usuario_id": 1,
+   "criada_em": "2026-08-06 13:35:00.360955",
+   "expira_em": "2026-08-07 01:35:00.836042"
+  },
+  {
+   "id": 4,
+   "token": "FMJKi4d0u681reMGJRbIxdntG_arXbt09_Q0WHUEu2g",
+   "usuario_id": 1,
+   "criada_em": "2026-08-06 13:35:24.283857",
+   "expira_em": "2026-08-07 01:35:24.663668"
+  },
+  {
+   "id": 5,
+   "token": "3mYeTYDDOW5_A0Sy2LSrjKeu8JSV2kcm9ojYkkisXPo",
+   "usuario_id": 1,
+   "criada_em": "2026-08-06 13:35:28.381361",
+   "expira_em": "2026-08-07 01:35:28.733090"
+  },
+  {
+   "id": 7,
+   "token": "0Hlr6M3mlLpCBARNdQBsSPTYgeWlya3BObACARASr1w",
+   "usuario_id": 2,
+   "criada_em": "2026-08-24 00:48:40.121303",
+   "expira_em": "2026-08-24 12:48:40.121303"
+  },
+  {
+   "id": 21,
+   "token": "rjEeYP0iVN_7O-PJHg3uwG1aSz6bbQjizkRFnsaEuic",
+   "usuario_id": 2,
+   "criada_em": "2026-08-24 14:01:00.486140",
+   "expira_em": "2026-08-25 02:01:04.423810"
+  },
+  {
+   "id": 22,
+   "token": "mh0AVbiOtD5C7kks-hJfPT8WgeANskaZ1KGeP9W0-Z0",
+   "usuario_id": 8,
+   "criada_em": "2026-08-25 13:44:21.354481",
+   "expira_em": "2026-08-26 01:44:26.192280"
+  },
+  {
+   "id": 6,
+   "token": "vABHhQ4wVfzfo_TajvjAcFg2UIlzEXu01oOnFz_BZk8",
+   "usuario_id": 1,
+   "criada_em": "2026-08-24 00:48:39.620394",
+   "expira_em": "2026-08-24 12:48:45.172045"
+  },
+  {
+   "id": 8,
+   "token": "2vJ2SuQnLFApYXFwA0lmCPAzKbttu3aQY1FpMJ1M4vA",
+   "usuario_id": 1,
+   "criada_em": "2026-08-24 01:10:35.909331",
+   "expira_em": "2026-08-24 13:10:35.909331"
+  },
+  {
+   "id": 9,
+   "token": "r1vDK_T46l4BL3Nh6Vw4R6XAm_zrIbJN8pZDvLNsZrE",
+   "usuario_id": 8,
+   "criada_em": "2026-08-24 01:10:36.808238",
+   "expira_em": "2026-08-24 13:10:36.808238"
+  },
+  {
+   "id": 10,
+   "token": "QjlVpXlg8U-sqJjypYlLotTiaQa8cLOG2JETk8kqeaU",
+   "usuario_id": 2,
+   "criada_em": "2026-08-24 01:10:37.645153",
+   "expira_em": "2026-08-24 13:10:37.645153"
+  },
+  {
+   "id": 23,
+   "token": "V8g3DZPjaWTXR8QbexIYyrcD7CLqPIuRuJFfkoT007Q",
+   "usuario_id": 2,
+   "criada_em": "2026-08-25 14:02:33.398751",
+   "expira_em": "2026-08-26 02:02:38.696679"
+  },
+  {
+   "id": 24,
+   "token": "IKF8_IbUwTffIi057mcA2UlKLpM9bFEH123wVBCLhzE",
+   "usuario_id": 8,
+   "criada_em": "2026-08-25 14:02:34.629865",
+   "expira_em": "2026-08-26 02:02:41.598964"
+  },
+  {
+   "id": 25,
+   "token": "po6rIo5yUSWWQ788TFaSEozi04gM2qhgiOM1qHLORLo",
+   "usuario_id": 8,
+   "criada_em": "2026-08-25 14:03:13.952193",
+   "expira_em": "2026-08-26 02:03:14.804485"
+  },
+  {
+   "id": 26,
+   "token": "N3o10iKaYPHda4U--JlzHAGa0wcRZVi2LHzVMVSBK_M",
+   "usuario_id": 1,
+   "criada_em": "2026-08-25 14:38:22.639529",
+   "expira_em": "2026-08-26 02:38:23.074078"
+  },
+  {
+   "id": 27,
+   "token": "aOGq5tFmzd8CzXbkbIlea2Kd-EKVMaZCDwuExGKevjs",
+   "usuario_id": 10,
+   "criada_em": "2026-08-25 14:38:23.805330",
+   "expira_em": "2026-08-26 02:38:23.805330"
+  },
+  {
+   "id": 28,
+   "token": "fQGkk2Re_O7Qa5F80ubuzhPT0vSZJtv1DHrW8YFjBU8",
+   "usuario_id": 10,
+   "criada_em": "2026-08-25 14:42:06.585997",
+   "expira_em": "2026-08-26 02:42:07.345046"
+  },
+  {
+   "id": 12,
+   "token": "Fmr3n1VWuXw3LBLGEwYYfXusmFVNpoIGUYKP7lknARI",
+   "usuario_id": 1,
+   "criada_em": "2026-08-24 12:51:11.893168",
+   "expira_em": "2026-08-25 00:51:11.893168"
+  },
+  {
+   "id": 13,
+   "token": "ojxw3ZfREkDQk-y0PkXLbrWegMaRaDpm5AwSaOXj-aA",
+   "usuario_id": 2,
+   "criada_em": "2026-08-24 12:51:12.588868",
+   "expira_em": "2026-08-25 00:51:12.588868"
+  },
+  {
+   "id": 15,
+   "token": "TQfCgdexzgH1uTRBUmFDGVgyaro8bSH8sC88y-bIoPk",
+   "usuario_id": 8,
+   "criada_em": "2026-08-24 12:51:48.497176",
+   "expira_em": "2026-08-25 00:51:48.497176"
+  },
+  {
+   "id": 14,
+   "token": "QkJqk3NbIXDXY-p4zEJ7KI_PVGFMuAPanWfrUFXYBfU",
+   "usuario_id": 8,
+   "criada_em": "2026-08-24 12:51:46.169830",
+   "expira_em": "2026-08-25 00:51:51.268655"
+  },
+  {
+   "id": 16,
+   "token": "6mhpd-V7-WjnfdLA-g6ufiK5wa2Hy3ljSaBtNu_-e-M",
+   "usuario_id": 1,
+   "criada_em": "2026-08-24 13:04:07.826376",
+   "expira_em": "2026-08-25 01:04:08.515928"
+  },
+  {
+   "id": 18,
+   "token": "45U05hUZX-eK0_TOAZY4wtenuu_c29CFQPjjkcOTBnY",
+   "usuario_id": 9,
+   "criada_em": "2026-08-24 13:04:48.564799",
+   "expira_em": "2026-08-25 01:04:49.314339"
+  },
+  {
+   "id": 17,
+   "token": "LMAyJJm5MVtA09jq4MJ3gLAAsI-8ExtLMz4cGdwO5EI",
+   "usuario_id": 1,
+   "criada_em": "2026-08-24 13:04:47.537947",
+   "expira_em": "2026-08-25 01:04:50.265262"
+  },
+  {
+   "id": 19,
+   "token": "eUyaM8UVBJQU4oVTA09DeUMcNKoPlu_M-tdHUcdo8uk",
+   "usuario_id": 1,
+   "criada_em": "2026-08-24 13:05:41.013128",
+   "expira_em": "2026-08-25 01:05:45.744890"
+  },
+  {
+   "id": 11,
+   "token": "ejCAsJ4GRq19tGubhBRvAj42RV98zNEkDCTh4Q2nPxE",
+   "usuario_id": 1,
+   "criada_em": "2026-08-24 12:43:43.419633",
+   "expira_em": "2026-08-25 01:16:15.186300"
+  },
+  {
+   "id": 20,
+   "token": "GAprk1tkvkht2epq1IsqgpLuYE_ZqFkGvNZJh2LHZX0",
+   "usuario_id": 2,
+   "criada_em": "2026-08-24 13:30:56.091466",
+   "expira_em": "2026-08-25 01:30:58.172918"
+  }
+ ],
+ "solicitacaoalocacao": [
+  {
+   "id": 1,
+   "consultor_id": 1,
+   "fase_id": 15,
+   "data_inicio": "2026-08-03",
+   "data_fim": "2026-09-04",
+   "horas_semana": 20.0,
+   "taxa_hora_venda": null,
+   "justificativa": "Fit-to-standard de FI/CO precisa de sênior desde o início.",
+   "solicitante": "Gestor Demo",
+   "status": "pendente",
+   "comentario_gestor": "",
+   "criada_em": "2026-08-05",
+   "decidida_em": null,
+   "alocacao_id": null
+  },
+  {
+   "id": 2,
+   "consultor_id": 6,
+   "fase_id": 10,
+   "data_inicio": "2026-08-17",
+   "data_fim": "2026-09-25",
+   "horas_semana": 20.0,
+   "taxa_hora_venda": null,
+   "justificativa": "Apoio BASIS na preparação dos ambientes do Realize.",
+   "solicitante": "Gestor Demo",
+   "status": "pendente",
+   "comentario_gestor": "",
+   "criada_em": "2026-08-06",
+   "decidida_em": null,
+   "alocacao_id": null
+  }
+ ],
+ "sprint": [
+  {
+   "id": 1,
+   "projeto_id": 1,
+   "numero": 1,
+   "nome": "",
+   "meta": "Configurações centrais de FI/CO no razão",
+   "data_inicio": "2026-07-06",
+   "data_fim": "2026-07-17",
+   "status": "encerrada",
+   "encerrada_em": "2026-07-17",
+   "carry_over": 1
+  },
+  {
+   "id": 2,
+   "projeto_id": 1,
+   "numero": 2,
+   "nome": "",
+   "meta": "Integração MM→FI e primeiros testes unitários",
+   "data_inicio": "2026-07-20",
+   "data_fim": "2026-08-07",
+   "status": "ativa",
+   "encerrada_em": null,
+   "carry_over": 0
+  }
+ ],
+ "usuario": [
+  {
+   "id": 2,
+   "email": "ana@psa.com",
+   "nome": "Ana Souza",
+   "senha_hash": "fe43bb2f3190768d7017931e4ae5a0c8$63c350da36dbec57b293b9a486990f036c8fce5b5cb077683483ce6e649e15d3",
+   "perfil": "consultor",
+   "consultor_id": 1,
+   "ativo": true
+  },
+  {
+   "id": 3,
+   "email": "bruno@psa.com",
+   "nome": "Bruno Lima",
+   "senha_hash": "fe43bb2f3190768d7017931e4ae5a0c8$63c350da36dbec57b293b9a486990f036c8fce5b5cb077683483ce6e649e15d3",
+   "perfil": "consultor",
+   "consultor_id": 2,
+   "ativo": true
+  },
+  {
+   "id": 4,
+   "email": "carla@psa.com",
+   "nome": "Carla Mendes",
+   "senha_hash": "fe43bb2f3190768d7017931e4ae5a0c8$63c350da36dbec57b293b9a486990f036c8fce5b5cb077683483ce6e649e15d3",
+   "perfil": "consultor",
+   "consultor_id": 3,
+   "ativo": true
+  },
+  {
+   "id": 5,
+   "email": "diego@psa.com",
+   "nome": "Diego Ferreira",
+   "senha_hash": "fe43bb2f3190768d7017931e4ae5a0c8$63c350da36dbec57b293b9a486990f036c8fce5b5cb077683483ce6e649e15d3",
+   "perfil": "consultor",
+   "consultor_id": 4,
+   "ativo": true
+  },
+  {
+   "id": 6,
+   "email": "elisa@psa.com",
+   "nome": "Elisa Rocha",
+   "senha_hash": "fe43bb2f3190768d7017931e4ae5a0c8$63c350da36dbec57b293b9a486990f036c8fce5b5cb077683483ce6e649e15d3",
+   "perfil": "consultor",
+   "consultor_id": 5,
+   "ativo": true
+  },
+  {
+   "id": 7,
+   "email": "fabio@psa.com",
+   "nome": "Fábio Torres",
+   "senha_hash": "fe43bb2f3190768d7017931e4ae5a0c8$63c350da36dbec57b293b9a486990f036c8fce5b5cb077683483ce6e649e15d3",
+   "perfil": "consultor",
+   "consultor_id": 6,
+   "ativo": true
+  },
+  {
+   "id": 1,
+   "email": "ceo@psa.com",
+   "nome": "CEO Demo",
+   "senha_hash": "fe43bb2f3190768d7017931e4ae5a0c8$63c350da36dbec57b293b9a486990f036c8fce5b5cb077683483ce6e649e15d3",
+   "perfil": "ceo",
+   "consultor_id": null,
+   "ativo": true
+  },
+  {
+   "id": 8,
+   "email": "rh@psa.com",
+   "nome": "RH Demo",
+   "senha_hash": "e4bfb2c88a7ad16569cd37b40ec0205e$faabb08a2a15998d6e860b52557e4fa5cb87305399b7c805cd9b40bb12e22951",
+   "perfil": "rh",
+   "consultor_id": null,
+   "ativo": true
+  },
+  {
+   "id": 9,
+   "email": "teste.rh@mrpn.com.br",
+   "nome": "Teste RH",
+   "senha_hash": "805e636407d08f36e78d67008e650b08$9ba25398a28d2be2f037ee35a4bf5de066389d07185973b6855e3957ad3d4ebc",
+   "perfil": "rh",
+   "consultor_id": null,
+   "ativo": false
+  },
+  {
+   "id": 10,
+   "email": "michel@mrpnachbar.com",
+   "nome": "Michel",
+   "senha_hash": "867dedd80c4e9e168c57c2c270729e88$64654e2174989781a274d4246934ceebb667fd77894d54fad834e8d299410b66",
+   "perfil": "ceo",
+   "consultor_id": null,
+   "ativo": true
+  }
+ ]
+}
