@@ -8,6 +8,7 @@ import { BrowserRouter } from 'react-router-dom'
 import '@fontsource-variable/figtree'
 import App from './App'
 import { SessaoProvider } from './sessao'
+import { SidebarProvider } from './sidebar'
 import { TemaProvider } from './tema'
 import './styles.css'
 
@@ -15,9 +16,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <TemaProvider>
-        <SessaoProvider>
-          <App />
-        </SessaoProvider>
+        <SidebarProvider>
+          <SessaoProvider>
+            <App />
+          </SessaoProvider>
+        </SidebarProvider>
       </TemaProvider>
     </BrowserRouter>
   </React.StrictMode>,

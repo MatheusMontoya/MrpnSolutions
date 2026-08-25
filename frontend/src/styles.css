@@ -46,7 +46,8 @@
 
   --texto: #1e2430;               /* a tinta É o grafite da marca */
   --texto-2: #5a6270;
-  --texto-3: #6a7382;  /* 4.79:1 no card, 4.50:1 no canvas — #8b93a1 dava 3.09 */
+  --texto-3: #6a7382;
+  --largura-sidebar-trilho: 68px;  /* 4.79:1 no card, 4.50:1 no canvas — #8b93a1 dava 3.09 */
 
   /* -- semânticas (status apenas) -- */
   --verde: #077e54;   /* 4.53:1 sobre --verde-fundo */
@@ -62,6 +63,11 @@
   --esp-5: 20px; --esp-6: 24px; --esp-8: 32px; --esp-10: 40px;
 
   /* -- raio (Productive: controles macios, superfícies bem arredondadas) -- */
+  /* Largura da barra lateral. Fica em token porque .app precisa existir UMA vez
+     só: a disputa migra para qual valor do token vence, e :root[data-sidebar]
+     sempre bate :root nu — sem guerra de especificidade com @media. */
+  --largura-sidebar: 252px;
+
   --raio-1: 12px;  /* controles: inputs, chips, células, barras */
   --raio-2: 22px;  /* cards, modal, containers */
   --raio-3: 30px;  /* superfícies grandes / card de IA */
@@ -81,6 +87,7 @@
   --z-fixo: 10;
   --z-modal-fundo: 40;
   --z-modal: 50;
+  --z-dica: 60;   /* balão da barra: acima até do modal */
 
   /* -- tipografia -- */
   --fonte: "Figtree Variable", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
@@ -124,9 +131,54 @@ h1, h2, h3 { text-wrap: balance; }
    ============================================================ */
 .app {
   display: grid;
-  grid-template-columns: 252px minmax(0, 1fr);
+  grid-template-columns: var(--largura-sidebar) minmax(0, 1fr);
   min-height: 100dvh;
 }
+
+/* MODO TRILHO — um bloco só, ligado pelo data-sidebar no <html>.
+   Vale em qualquer largura, então o puxador funciona também no notebook. */
+:root[data-sidebar='recolhida'] {
+  --largura-sidebar: var(--largura-sidebar-trilho);
+}
+:root[data-sidebar='recolhida'] .sidebar-item,
+:root[data-sidebar='recolhida'] .menu-novo > .botao {
+  justify-content: center;
+  padding: 0;
+  gap: 0;
+}
+/* O rótulo é ocultado VISUALMENTE, não removido: display:none o tiraria da
+   árvore de acessibilidade e o link "Aprovações" passaria a ser anunciado
+   como "3" — o texto do contador venceria o nome. */
+:root[data-sidebar='recolhida'] .sidebar-item .rotulo,
+:root[data-sidebar='recolhida'] .menu-novo .botao .rotulo,
+:root[data-sidebar='recolhida'] .sidebar-grupo-rotulo,
+:root[data-sidebar='recolhida'] .marca-texto,
+:root[data-sidebar='recolhida'] .sidebar-usuario .quem {
+  position: absolute;
+  width: 1px; height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+:root[data-sidebar='recolhida'] .sidebar-topo { justify-content: center; padding: 18px 0 var(--esp-3); }
+:root[data-sidebar='recolhida'] .menu-novo { padding: 0 14px var(--esp-4); }
+:root[data-sidebar='recolhida'] .menu-novo > .botao { width: 40px; margin: 0 auto; }
+:root[data-sidebar='recolhida'] .sidebar-nav { padding: 0 14px var(--esp-4); }
+:root[data-sidebar='recolhida'] .sidebar-grupo + .sidebar-grupo {
+  margin-top: var(--esp-3);
+  padding-top: var(--esp-3);
+  border-top: 1px solid var(--borda);
+}
+:root[data-sidebar='recolhida'] .sidebar-contador {
+  position: absolute; top: 4px; right: 4px;
+  min-width: 16px; height: 16px; padding: 0 4px; font-size: 10px;
+}
+/* no trilho o item ativo perde o texto e sobra o preenchimento: a lavagem
+   (#e8f2fe sobre branco) daria ~1.1:1, abaixo dos 3:1 da WCAG 1.4.11 */
+:root[data-sidebar='recolhida'] .sidebar-item.ativo { background: var(--azul-fill-suave); }
+:root[data-sidebar='recolhida'] .sidebar-usuario { justify-content: center; padding: 6px 0; }
+:root[data-sidebar='recolhida'] .sidebar-usuario .icone-botao { display: none; }
+:root[data-sidebar='recolhida'] .menu-flutuante { left: 14px; width: 224px; right: auto; }
 
 /* ---------- sidebar ---------- */
 .sidebar {
@@ -303,30 +355,11 @@ h1, h2, h3 { text-wrap: balance; }
 .app .so-mobile { display: none; }
 .gaveta-fundo { display: none; }
 
+/* A antiga @media (max-width: 1180px) recolhia a barra por conta própria e
+   virava um segundo dono da largura — um toggle por classe não venceria ela.
+   Agora quem decide é o data-sidebar, e o JS ('auto') é que observa esta
+   largura, preservando o comportamento automático de antes. */
 @media (max-width: 1180px) {
-  .app { grid-template-columns: 68px minmax(0, 1fr); }
-  .sidebar-item { justify-content: center; padding: 0; }
-  .sidebar-item .rotulo,
-  .sidebar-grupo-rotulo,
-  .marca-nome,
-  .sidebar-usuario .quem,
-  .menu-novo .botao .rotulo { display: none; }
-  .sidebar-topo { justify-content: center; padding: 18px 0 var(--esp-3); }
-  .menu-novo { padding: 0 14px var(--esp-4); }
-  .menu-novo > .botao { gap: 0; padding: 0; width: 40px; margin: 0 auto; }
-  .sidebar-nav { padding: 0 14px var(--esp-4); }
-  .sidebar-grupo + .sidebar-grupo {
-    margin-top: var(--esp-3);
-    padding-top: var(--esp-3);
-    border-top: 1px solid var(--borda);
-  }
-  .sidebar-contador {
-    position: absolute; top: 4px; right: 4px;
-    min-width: 16px; height: 16px; padding: 0 4px; font-size: 10px;
-  }
-  .sidebar-usuario { justify-content: center; padding: 6px 0; }
-  .sidebar-usuario .icone-botao { display: none; }
-  .menu-flutuante { left: 14px; width: 224px; right: auto; }
   .conteudo { padding: 0 var(--esp-6) 56px; }
 }
 
@@ -341,12 +374,37 @@ h1, h2, h3 { text-wrap: balance; }
     z-index: var(--z-modal);
     box-shadow: var(--sombra-3);
   }
-  .sidebar-item { justify-content: flex-start; padding: 0 10px; }
+  /* A GAVETA NÃO HERDA O TRILHO. Ela tem 264px de largura e mostra tudo, mesmo
+     que a pessoa tenha recolhido a barra no computador. Sem estes reset, quem
+     recolheu no desktop abriria o menu do celular só com ícones — bug que só
+     aparece depois de mexer no puxador E trocar de aparelho. Os seletores
+     repetem o :root[data-sidebar] porque precisam empatar em especificidade. */
+  :root[data-sidebar='recolhida'] .sidebar-item,
+  .sidebar-item { justify-content: flex-start; padding: 0 10px; gap: 10px; }
+  :root[data-sidebar='recolhida'] .sidebar-item .rotulo,
+  :root[data-sidebar='recolhida'] .menu-novo .botao .rotulo,
+  :root[data-sidebar='recolhida'] .sidebar-grupo-rotulo,
+  :root[data-sidebar='recolhida'] .marca-texto,
+  :root[data-sidebar='recolhida'] .sidebar-usuario .quem,
   .sidebar-item .rotulo,
   .sidebar-grupo-rotulo,
   .marca-nome,
-  .menu-novo .botao .rotulo { display: initial; }
+  .menu-novo .botao .rotulo {
+    position: static;
+    width: auto; height: auto;
+    clip-path: none;
+    overflow: visible;
+  }
+  :root[data-sidebar='recolhida'] .sidebar-usuario .quem,
   .sidebar-usuario .quem { display: flex; }
+  :root[data-sidebar='recolhida'] .sidebar-topo { justify-content: space-between; padding: 16px var(--esp-4) var(--esp-3); }
+  :root[data-sidebar='recolhida'] .menu-novo,
+  :root[data-sidebar='recolhida'] .sidebar-nav { padding-left: var(--esp-4); padding-right: var(--esp-4); }
+  :root[data-sidebar='recolhida'] .menu-novo > .botao { width: 100%; gap: 7px; padding: 0 var(--esp-4); margin: 0; }
+  :root[data-sidebar='recolhida'] .sidebar-grupo + .sidebar-grupo { border-top: none; padding-top: 0; margin-top: var(--esp-5); }
+  :root[data-sidebar='recolhida'] .sidebar-contador { position: static; min-width: 20px; height: 20px; padding: 0 6px; font-size: 11px; }
+  /* o puxador não faz sentido numa gaveta que abre e fecha pelo botão do topo */
+  .sidebar-puxador { display: none; }
   .sidebar-topo { justify-content: space-between; padding: 16px var(--esp-4) var(--esp-3); }
   .menu-novo, .sidebar-nav { padding-left: var(--esp-4); padding-right: var(--esp-4); }
   .menu-novo > .botao { width: 100%; gap: 7px; padding: 0 var(--esp-4); margin: 0; }
@@ -1567,6 +1625,56 @@ a.link:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; bord
 .select-perfil:hover:not(:disabled) { border-color: var(--azul-borda); }
 .select-perfil:focus-visible { outline: 2px solid var(--azul); outline-offset: 1px; }
 .select-perfil:disabled { cursor: not-allowed; background-color: var(--superficie-variante); color: var(--texto-2); }
+
+/* ---------- puxador da barra lateral ---------- */
+/* Fica na divisa, sobre a borda: custo zero de altura e de largura interna, e a
+   marca não precisa encolher para caber. O topo de 67px é aritmética do que já
+   existe — 18 (padding) + 30 (selo) + 12 (--esp-3) = 60px de .sidebar-topo; o
+   botão "+ Novo" tem 40px, centro em 80; menos 13 de meio-puxador = 67. Como
+   .sidebar-topo soma o mesmo nos dois modos, ele não se move ao alternar. */
+.sidebar-puxador {
+  position: absolute; top: 67px; right: -13px; z-index: 1;
+  width: 26px; height: 26px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--borda);
+  border-radius: 999px;
+  background: var(--superficie);
+  color: var(--texto-2);
+  cursor: pointer;
+  box-shadow: var(--sombra-1);
+  transition: color var(--dur-1) var(--ease-sair), border-color var(--dur-1) var(--ease-sair);
+}
+.sidebar-puxador:hover { color: var(--azul-texto); border-color: var(--azul-borda); }
+.sidebar-puxador:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
+
+/* ---------- balão com o nome da seção (modo trilho) ---------- */
+/* Em portal no <body>: .sidebar-nav tem overflow-y auto, e no CSS um eixo em
+   auto tira o outro de visible — um ::after seria cortado na borda da barra. */
+.dica-flutuante {
+  position: fixed;
+  transform: translateY(-50%);
+  z-index: var(--z-dica);
+  padding: 6px 10px;
+  border-radius: var(--raio-1);
+  background: var(--chrome);
+  color: #fff;
+  font-size: 12.5px; font-weight: 550;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: var(--sombra-2);
+  animation: dica-entra var(--dur-1) var(--ease-sair);
+}
+@keyframes dica-entra { from { opacity: 0; transform: translateY(-50%) translateX(-4px); } }
+@media (prefers-reduced-motion: reduce) { .dica-flutuante { animation: none; } }
+
+/* texto só para leitor de tela: sai da vista sem sair da árvore */
+.so-leitor {
+  position: absolute;
+  width: 1px; height: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
 
 /* ---------- KPI ---------- */
 /* rótulo e valor vivem no bloco canônico de .kpi, lá em cima: duplicar aqui

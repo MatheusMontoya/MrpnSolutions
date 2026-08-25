@@ -156,6 +156,26 @@ faixa e embarra o degradê de cinza; a viagem fica só no azul. É o único degr
 da tela e vive em superfície ampla, como manda a Regra da Marca Chapada. No tema
 escuro o grafite já é o fundo, então a aurora vira luz azul em vez de véu.
 
+**A Regra da Densidade.** A barra lateral tem duas densidades e a escolha é do
+usuário, persistida em `mrpn-sidebar` — 'expandida', 'recolhida' ou 'auto' (que
+segue a largura da janela, como o 'sistema' do tema). A largura vive num
+**token** (`--largura-sidebar`), não numa classe: assim `.app` existe uma vez só
+e a disputa migra para qual valor do token vence, em vez de virar guerra de
+especificidade com a media query — que era o que impedia o controle de
+funcionar na faixa de notebook.
+
+No modo trilho o rótulo é ocultado com `clip-path`, **nunca com `display:none`**:
+o segundo tira o elemento da árvore de acessibilidade, e o link "Aprovações"
+passava a ser anunciado como "6", porque o texto do contador vencia o nome. O
+balão com o nome vive em portal no `<body>`, porque `.sidebar-nav` tem
+`overflow-y: auto` e no CSS um eixo em `auto` tira o outro de `visible` — um
+pseudo-elemento seria cortado na borda.
+
+A troca de densidade **não anima**: `grid-template-columns` é propriedade de
+layout, e o reflow desceria por toda a subárvore do conteúdo enquanto a topbar
+com `backdrop-filter` é recomposta a cada quadro. O salto é seco; a continuidade
+vem da rotação do chevron, que é composta.
+
 **A Regra do Desabilitado.** Botão inativo não é botão desbotado. Nada de
 `opacity` global — ela embaça o rótulo junto com o fundo e o controle parece
 quebrado. O desabilitado troca a cor de marca por um neutro sólido e mantém o

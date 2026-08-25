@@ -5,6 +5,9 @@ import Icone from './components/Icone'
 import { MarcaCompleta } from './components/Marca'
 import MenuUsuario from './components/MenuUsuario'
 import { iniciais } from './format'
+import BotaoTema from './components/BotaoTema'
+import DicaFlutuante from './components/DicaFlutuante'
+import { useSidebar } from './sidebar'
 import { useSessao } from './sessao'
 import Agenda from './pages/Agenda'
 import Apontamento from './pages/Apontamento'
@@ -30,6 +33,8 @@ import Propostas from './pages/Propostas'
 import QuadroAgil from './pages/QuadroAgil'
 
 const IC = {
+  chevron_esq: ['M15 18l-6-6 6-6'],
+  chevron_dir: ['M9 18l6-6-6-6'],
   dashboard: ['M3 3h7v9H3z', 'M14 3h7v5h-7z', 'M14 12h7v9h-7z', 'M3 16h7v5H3z'],
   faisca: ['M13 2 3 14h9l-1 8 10-12h-9l1-8z'],
   proposta: ['M22 2 11 13', 'M22 2 15 22l-4-9-9-4 20-7z'],
@@ -149,6 +154,10 @@ function Shell() {
   const location = useLocation()
   const consultor = sessao.perfil === 'consultor'
   const rh = sessao.perfil === 'rh'
+  const { efetiva, alternar } = useSidebar()
+  const recolhida = efetiva === 'recolhida'
+  // um balão só para a barra inteira; os eventos são delegados no <aside>
+  const [dica, setDica] = useState(null)
   const [pendentes, setPendentes] = useState(0)
   const [gaveta, setGaveta] = useState(false) // sidebar como gaveta no mobile
 
@@ -163,6 +172,38 @@ function Shell() {
   // trocar de rota fecha a gaveta
   useEffect(() => { setGaveta(false) }, [location.pathname])
 
+  // Ctrl/Cmd+B alterna a densidade. A guarda contra campo de texto é
+  // obrigatória: sem ela, digitar Ctrl+B numa descrição recolheria a barra.
+  useEffect(() => {
+    const tecla = (e) => {
+      if (!(e.ctrlKey || e.metaKey) || e.key.toLowerCase() !== 'b') return
+      const alvo = e.target
+      const digitando = alvo?.matches?.('input, textarea, select, [contenteditable="true"]')
+      if (digitando) return
+      e.preventDefault()
+      alternar()
+    }
+    document.addEventListener('keydown', tecla)
+    return () => document.removeEventListener('keydown', tecla)
+  }, [alternar])
+
+  // Esc fecha o balão. No document, não no <aside>: com o mouse parado sobre um
+  // ícone o foco costuma estar fora da barra, e o evento nunca chegaria lá.
+  useEffect(() => {
+    if (!dica) return
+    const esc = (e) => { if (e.key === 'Escape') setDica(null) }
+    document.addEventListener('keydown', esc)
+    return () => document.removeEventListener('keydown', esc)
+  }, [dica])
+
+  // só faz sentido apontar nome quando o nome não está escrito na tela
+  const eventosDica = recolhida ? {
+    onMouseOver: (e) => setDica(e.target.closest?.('[data-dica]') || null),
+    onMouseLeave: () => setDica(null),
+    onFocus: (e) => setDica(e.target.closest?.('[data-dica]') || null),
+    onBlur: () => setDica(null),
+  } : {}
+
   const contadores = { pendentes }
 
   const logout = () => {
@@ -174,7 +215,19 @@ function Shell() {
     <div className={`app${gaveta ? ' gaveta-aberta' : ''}`}>
       <div className="gaveta-fundo" onClick={() => setGaveta(false)} aria-hidden="true" />
 
-      <aside className="sidebar">
+      <aside className="sidebar" {...eventosDica}>
+        <button
+          type="button"
+          className="sidebar-puxador"
+          onClick={alternar}
+          aria-expanded={!recolhida}
+          aria-label="Alternar a barra lateral"
+          aria-keyshortcuts="Control+B"
+          title={`${recolhida ? 'Expandir' : 'Recolher'} a barra (Ctrl+B)`}
+        >
+          <Icone d={recolhida ? IC.chevron_dir : IC.chevron_esq} size={14} strokeWidth={2.4} />
+        </button>
+
         <div className="sidebar-topo">
           <div className="sidebar-marca">
             <MarcaCompleta size={30} />
@@ -194,13 +247,16 @@ function Shell() {
                 <NavLink
                   key={item.para}
                   to={item.para}
-                  title={item.rotulo}
+                  data-dica={item.rotulo}
                   className={({ isActive }) => `sidebar-item${isActive ? ' ativo' : ''}`}
                 >
                   <Icone d={item.icone} size={17} />
                   <span className="rotulo">{item.rotulo}</span>
                   {item.contador && contadores[item.contador] > 0 && (
-                    <span className="sidebar-contador">{contadores[item.contador]}</span>
+                    <>
+                      <span className="sidebar-contador" aria-hidden="true">{contadores[item.contador]}</span>
+                      <span className="so-leitor">{contadores[item.contador]} pendentes</span>
+                    </>
                   )}
                 </NavLink>
               ))}
@@ -210,7 +266,7 @@ function Shell() {
 
         <div className="sidebar-rodape">
           {!consultor && (
-            <NavLink to="/configuracoes" className={({ isActive }) => `sidebar-item${isActive ? ' ativo' : ''}`} title="Configurações">
+            <NavLink to="/configuracoes" data-dica="Configurações" className={({ isActive }) => `sidebar-item${isActive ? ' ativo' : ''}`}>
               <Icone d={IC.engrenagem} size={17} />
               <span className="rotulo">Configurações</span>
             </NavLink>
@@ -239,6 +295,7 @@ function Shell() {
               <Icone d={IC.sino} size={18} />
               {pendentes > 0 && <span className="ponto-notif" aria-hidden="true" />}
             </button>
+            <BotaoTema />
             <MenuUsuario />
           </div>
         </header>
@@ -298,6 +355,8 @@ function Shell() {
           </div>
         </main>
       </div>
+
+      <DicaFlutuante alvo={dica} />
     </div>
   )
 }
