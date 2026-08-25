@@ -161,3 +161,36 @@ sprint só organiza a execução. 105 testes.
 - Aprovação de horas: reverte a decisão anterior de deixar fora?
 - Pipeline: o corte original dizia "não fazer CRM" — pipeline de propostas é meio-CRM;
   se entrar, entra focado em proposta de projeto (sem gestão de contatos/atividades comerciais).
+
+## 6. Backlog priorizado (2026-08-25)
+
+### Lição 1 — segurança de acesso (ENTREGUE)
+22 vazamentos horizontais entre consultores + excesso de acesso do RH ao
+financeiro + travessia de caminho no servidor do SPA. Fechados, com 19 testes
+de isolamento e CI que roda a cada push. Ver `docs/PRONTIDAO.md`.
+
+### Lição 2 — multiunidade (filiais) — PRÓXIMA
+Segmentar o produto por **unidade da consultoria**: cada filial enxerga os
+próprios projetos, consultores e faturamento; o CEO enxerga o consolidado e
+consegue comparar unidades.
+
+O que isso exige, em ordem:
+1. Entidade `Unidade` (nome, CNPJ, cidade) e `unidade_id` em Consultor,
+   Projeto e Cliente.
+2. Vínculo do `Usuario` à unidade — e um perfil de gestor de unidade, ou o RH
+   passando a ser por unidade.
+3. **Filtro por unidade em toda consulta** — é aqui que mora o risco: é o mesmo
+   tipo de furo da Lição 1, uma escala acima. Sem um filtro central (algo como
+   `unidade_do_filtro`, irmão do `consultor_do_filtro` que já existe), cada
+   rota nova vira uma chance de vazar dado entre filiais.
+4. Dashboard consolidado × por unidade, e rateio de custo indireto.
+
+**Pré-requisito:** Alembic (dívida D-1). Adicionar `unidade_id` em tabelas com
+dado real dentro é exatamente a migração que hoje não temos como fazer.
+
+### Lição 3 — ambiente por branch
+Preview da Vercel com banco separado do de produção. Hoje os dois apontam para
+o mesmo Supabase, então testar numa branch mexe no dado de produção.
+
+### Ainda abertos da Onda 4
+Portfólio executivo, construtor de relatórios, mobile.

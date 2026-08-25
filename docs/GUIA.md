@@ -280,6 +280,9 @@ cobrança. Nessa ordem, e nunca ao contrário.
 | **Avatar** (canto direito) | tema, Configurações, sair |
 | **Exportar** | vários relatórios exportam CSV, com acento correto no Excel |
 
+> Para dar acesso a alguém, veja [Como dar acesso a alguém](CONVIDAR-USUARIOS.md)
+> — passo a passo e modelo de mensagem.
+
 ## Configurações — só CEO
 
 | Seção | O que controla |
