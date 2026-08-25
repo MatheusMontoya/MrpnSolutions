@@ -1,0 +1,44 @@
+# Trava o merge quando o teste quebra.
+#
+# Existe por um motivo específico: 22 vazamentos de dado entre consultores
+# passaram despercebidos porque os testes rodavam quando alguém lembrava. O que
+# separa "corrigido" de "achamos que corrigimos" é isto rodando sozinho.
+name: Testes
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version-file: backend/.python-version
+          cache: pip
+      - name: Dependências
+        run: pip install -r backend/requirements-dev.txt
+      - name: Suíte completa
+        run: python -m pytest backend/tests -q
+      - name: Isolamento entre perfis (o que não pode regredir)
+        run: python -m pytest backend/tests/test_isolamento_consultor.py -q
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - name: Dependências
+        working-directory: frontend
+        run: npm ci
+      - name: Build
+        working-directory: frontend
+        run: npm run build

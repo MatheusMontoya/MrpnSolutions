@@ -216,9 +216,19 @@ app.include_router(auditoria.router)  # já exige CEO internamente
 if FRONTEND_DIST.exists():
     app.mount("/assets", StaticFiles(directory=FRONTEND_DIST / "assets"), name="assets")
 
+    RAIZ_ESTATICA = FRONTEND_DIST.resolve()
+
     @app.get("/{caminho:path}", include_in_schema=False)
     def spa(caminho: str):
-        arquivo = FRONTEND_DIST / caminho
-        if caminho and arquivo.is_file():
-            return FileResponse(arquivo)
-        return FileResponse(FRONTEND_DIST / "index.html")
+        """Serve o SPA. Qualquer caminho que escape da pasta do build vira index.
+
+        Sem o resolve()+is_relative_to, "../../backend/.env" resolvia para um
+        arquivo REAL fora do build e o FileResponse o entregava sem token. Na
+        Vercel o estático nem chega aqui, mas em container (Render/Fly, que o
+        DEPLOY.md oferece) este handler é a porta de entrada de tudo.
+        """
+        alvo = (RAIZ_ESTATICA / caminho).resolve()
+        dentro = alvo == RAIZ_ESTATICA or RAIZ_ESTATICA in alvo.parents
+        if caminho and dentro and alvo.is_file():
+            return FileResponse(alvo)
+        return FileResponse(RAIZ_ESTATICA / "index.html")

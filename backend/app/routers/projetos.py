@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from sqlmodel import Session, select
 
 from ..database import get_session
-from ..seguranca import eh_gestao, exigir_ceo, exigir_gestao, usuario_atual
+from ..seguranca import eh_ceo, eh_gestao, exigir_ceo, exigir_gestao, sem_dinheiro, usuario_atual
 from ..models import Alocacao, Cliente, Fase, Projeto, StatusProjeto
 from ..services.projetos import criar_projeto_com_fases, fase_atual
 from .atividades import resumo_gate
@@ -81,7 +81,7 @@ def listar_projetos(request: Request, session: Session = Depends(get_session)):
 
 
 @router.post("/projetos", status_code=201, dependencies=[Depends(exigir_ceo)])
-def criar_projeto(dados: ProjetoCreate, session: Session = Depends(get_session)):
+def criar_projeto(dados: ProjetoCreate, request: Request, session: Session = Depends(get_session)):
     if not session.get(Cliente, dados.cliente_id):
         raise HTTPException(404, "Cliente não encontrado")
     modelo = None
@@ -93,11 +93,11 @@ def criar_projeto(dados: ProjetoCreate, session: Session = Depends(get_session))
             raise HTTPException(404, "Modelo de projeto não encontrado")
     projeto = Projeto(**dados.model_dump(exclude={"modelo_id"}))
     projeto = criar_projeto_com_fases(session, projeto, modelo)
-    return obter_projeto(projeto.id, session)
+    return obter_projeto(projeto.id, request, session)
 
 
 @router.get("/projetos/{projeto_id}", dependencies=[Depends(exigir_gestao)])
-def obter_projeto(projeto_id: int, session: Session = Depends(get_session)):
+def obter_projeto(projeto_id: int, request: Request, session: Session = Depends(get_session)):
     p = session.get(Projeto, projeto_id)
     if not p:
         raise HTTPException(404, "Projeto não encontrado")
@@ -177,7 +177,25 @@ def obter_projeto(projeto_id: int, session: Session = Depends(get_session)):
         )
 
     apontamentos = [ap for a in todas_alocacoes for ap in a.apontamentos]
-    return {
+    # O RH precisa saber QUEM está alocado em que projeto; não precisa saber
+    # quanto o projeto fatura. O dinheiro sai do payload dele em três níveis:
+    # topo, fase e alocação — senão a margem se recompõe somando as partes.
+    DINHEIRO_ALOCACAO = ("taxa_hora_venda", "taxa_negociada", "receita_prevista",
+                         "receita_realizada", "margem_prevista")
+    DINHEIRO_FASE = ("receita_prevista", "receita_realizada")
+    if not eh_ceo(usuario_atual(request)):
+        fases = [
+            {
+                **{k: v for k, v in f.items() if k not in DINHEIRO_FASE},
+                "alocacoes": [
+                    {k: v for k, v in a.items() if k not in DINHEIRO_ALOCACAO}
+                    for a in f.get("alocacoes", [])
+                ],
+            }
+            for f in fases
+        ]
+
+    return sem_dinheiro({
         "id": p.id,
         "nome": p.nome,
         "cliente": p.cliente.nome if p.cliente else "",
@@ -188,12 +206,14 @@ def obter_projeto(projeto_id: int, session: Session = Depends(get_session)):
         "fases": fases,
         "receita_mensal_prevista": receita_mensal_prevista(todas_alocacoes),
         "receita_mensal_realizada": receita_mensal_realizada(apontamentos),
-        "receita_prevista_total": round(sum(f["receita_prevista"] for f in fases), 2),
-        "receita_realizada_total": round(sum(f["receita_realizada"] for f in fases), 2),
-    }
+        "receita_prevista_total": round(sum(f.get("receita_prevista", 0) for f in fases), 2),
+        "receita_realizada_total": round(sum(f.get("receita_realizada", 0) for f in fases), 2),
+    }, usuario_atual(request),
+        ("receita_mensal_prevista", "receita_mensal_realizada",
+         "receita_prevista_total", "receita_realizada_total"))
 
 
-@router.get("/projetos/{projeto_id}/evm", dependencies=[Depends(exigir_gestao)])
+@router.get("/projetos/{projeto_id}/evm", dependencies=[Depends(exigir_ceo)])
 def evm_do_projeto(projeto_id: int, session: Session = Depends(get_session)):
     """Valor agregado (EVM): PV/EV/AC, SPI/CPI e EAC — tudo derivado do motor."""
     from ..models import Despesa

@@ -195,13 +195,14 @@ def test_rh_aprova_mas_nao_ve_financeiro(api):
     assert api.get("/api/auditoria", headers=h).status_code == 403
 
 
-def test_rh_cria_consultor_mas_nao_projeto(api):
+def test_rh_nao_cria_consultor_nem_projeto(api):
+    """Cadastrar consultor define taxa de custo e de venda — decisão comercial,
+    logo do CEO. O RH gere as pessoas já cadastradas, não a tabela de preço."""
     h = _logar(api, "rh@teste.com")
-    r = api.post("/api/consultores", headers=h, json={
+    assert api.post("/api/consultores", headers=h, json={
         "nome": "Novo Consultor", "senioridade": "pleno",
         "taxa_hora_custo": 80, "taxa_hora_venda": 180,
-    })
-    assert r.status_code == 201
+    }).status_code == 403
     assert api.post("/api/projetos", headers=h, json={
         "nome": "X", "cliente_id": 1, "data_inicio": "2026-03-02",
     }).status_code == 403

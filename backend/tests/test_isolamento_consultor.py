@@ -166,3 +166,76 @@ def test_consultor_nao_ve_projeto_alheio_nem_financeiro(api):
 def test_consultor_ve_o_projeto_em_que_esta_alocado(api):
     ps = api.get("/api/projetos", headers=_h(api, "bruno@t.com")).json()
     assert len(ps) == 1 and ps[0]["nome"] == "Projeto do Bruno"
+
+
+# ---------- RH é gestão de PESSOAS, não de dinheiro ----------
+# Margem por consultor é o dado mais sensível de uma consultoria e se deduz de
+# custo + venda, então os dois saem juntos do payload de quem não é CEO.
+
+def _rh(api):
+    with Session(db.engine) as s:
+        s.add(Usuario(email="rh@t.com", nome="RH", perfil=PerfilUsuario.rh,
+                      senha_hash=gerar_hash("segredo1")))
+        s.commit()
+    return _h(api, "rh@t.com")
+
+
+def test_rh_nao_ve_taxas_na_lista_nem_no_heatmap(api):
+    h = _rh(api)
+    for c in api.get("/api/consultores", headers=h).json():
+        assert "taxa_hora_custo" not in c and "taxa_hora_venda" not in c
+    hm = api.get("/api/consultores/utilizacao", headers=h).json()
+    assert hm["consultores"], "o RH continua vendo a equipe e a utilização"
+    for c in hm["consultores"]:
+        assert "taxa_hora_custo" not in c and "taxa_hora_venda" not in c
+        assert c["semanas"], "utilização é o que o RH precisa e continua vindo"
+
+
+def test_rh_nao_ve_margem_no_painel_do_consultor(api):
+    d = api.get("/api/consultores/2/painel", headers=_rh(api)).json()
+    for proibido in ("taxa_hora_custo", "taxa_hora_venda", "receita_mes", "margem_mes"):
+        assert proibido not in d, f"{proibido} vazou para o RH"
+    assert "utilizacao_media" in d and "horas_mes" in d
+
+
+def test_rh_nao_ve_pel_do_projeto_mas_ve_quem_esta_alocado(api):
+    d = api.get(f"/api/projetos/{pytest.PROJ}", headers=_rh(api)).json()
+    for proibido in ("receita_prevista_total", "receita_realizada_total",
+                     "receita_mensal_prevista", "receita_mensal_realizada"):
+        assert proibido not in d, f"{proibido} vazou para o RH"
+    for f in d["fases"]:
+        assert "receita_prevista" not in f and "receita_realizada" not in f
+        for a in f.get("alocacoes", []):
+            for proibido in ("taxa_hora_venda", "taxa_negociada", "margem_prevista",
+                             "receita_prevista", "receita_realizada"):
+                assert proibido not in a, f"{proibido} vazou na alocação"
+            assert "consultor" in a, "o RH precisa saber QUEM está alocado"
+
+
+def test_rh_nao_alcanca_evm_nem_cria_consultor(api):
+    h = _rh(api)
+    assert api.get(f"/api/projetos/{pytest.PROJ}/evm", headers=h).status_code == 403
+    assert api.post("/api/consultores", headers=h, json={
+        "nome": "X", "senioridade": "pleno", "taxa_hora_custo": 1, "taxa_hora_venda": 2,
+    }).status_code == 403
+
+
+def test_ceo_continua_vendo_o_dinheiro_todo(api):
+    h = _h(api, "ceo@t.com")
+    d = api.get(f"/api/projetos/{pytest.PROJ}", headers=h).json()
+    assert "receita_prevista_total" in d
+    assert api.get(f"/api/projetos/{pytest.PROJ}/evm", headers=h).status_code == 200
+    hm = api.get("/api/consultores/utilizacao", headers=h).json()
+    assert "taxa_hora_custo" in hm["consultores"][0]
+
+
+# ---------- travessia de caminho no servidor do SPA ----------
+
+def test_spa_nao_serve_arquivo_fora_do_build():
+    """Em container o FastAPI serve o SPA; sem contenção, '../..' lia o .env."""
+    from app.main import FRONTEND_DIST
+    raiz = FRONTEND_DIST.resolve()
+    for fuga in ("../../backend/.env", "../../backend/psa.db", "../../../etc/passwd"):
+        alvo = (raiz / fuga).resolve()
+        dentro = alvo == raiz or raiz in alvo.parents
+        assert not dentro, f"{fuga} escapou da contenção"

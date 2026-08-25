@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from sqlmodel import Session, select
 
 from ..database import get_session
-from ..seguranca import eh_gestao, exigir_dono, exigir_gestao, usuario_atual
+from ..seguranca import eh_ceo, eh_gestao, exigir_ceo, exigir_dono, exigir_gestao, sem_dinheiro, usuario_atual
 from ..models import HORAS_SEMANA_PADRAO, Alocacao, Apontamento, Ausencia, Consultor
 from ..services.receita import (
     horas_alocadas_na_semana,
@@ -23,8 +23,14 @@ def listar_consultores(request: Request, session: Session = Depends(get_session)
     taxa nenhuma — custo/hora e taxa de venda são dado comercial da consultoria."""
     u = usuario_atual(request)
     consultores = session.exec(select(Consultor).order_by(Consultor.nome)).all()
-    if eh_gestao(u):
+    if eh_ceo(u):
         return consultores
+    if eh_gestao(u):  # RH: a equipe inteira, mas sem taxa nenhuma
+        return [
+            {"id": c.id, "nome": c.nome, "senioridade": c.senioridade,
+             "modulo_sap": c.modulo_sap, "skills": c.skills}
+            for c in consultores
+        ]
     return [
         {
             "id": c.id, "nome": c.nome, "senioridade": c.senioridade,
@@ -34,7 +40,7 @@ def listar_consultores(request: Request, session: Session = Depends(get_session)
     ]
 
 
-@router.post("", response_model=Consultor, status_code=201, dependencies=[Depends(exigir_gestao)])
+@router.post("", response_model=Consultor, status_code=201, dependencies=[Depends(exigir_ceo)])
 def criar_consultor(consultor: Consultor, session: Session = Depends(get_session)):
     consultor.id = None
     session.add(consultor)
@@ -45,6 +51,7 @@ def criar_consultor(consultor: Consultor, session: Session = Depends(get_session
 
 @router.get("/utilizacao", dependencies=[Depends(exigir_gestao)])
 def utilizacao_heatmap(
+    request: Request,
     inicio: date | None = Query(default=None, description="Qualquer dia da primeira semana; default = 4 semanas atrás"),
     semanas: int = Query(default=12, ge=1, le=26),
     session: Session = Depends(get_session),
@@ -55,6 +62,7 @@ def utilizacao_heatmap(
     segundas = [base + timedelta(weeks=i) for i in range(semanas)]
     semana_corrente = segunda_da_semana(hoje)
 
+    ceo = eh_ceo(usuario_atual(request))
     consultores = session.exec(select(Consultor).order_by(Consultor.nome)).all()
     resultado = []
     for c in consultores:
@@ -72,8 +80,9 @@ def utilizacao_heatmap(
                 "nome": c.nome,
                 "senioridade": c.senioridade,
                 "modulo_sap": c.modulo_sap,
-                "taxa_hora_custo": c.taxa_hora_custo,
-                "taxa_hora_venda": c.taxa_hora_venda,
+                # taxa só para o CEO: custo + venda entregam a margem da pessoa
+                **({"taxa_hora_custo": c.taxa_hora_custo,
+                    "taxa_hora_venda": c.taxa_hora_venda} if ceo else {}),
                 "semanas": semanas_dados,
             }
         )
@@ -127,7 +136,7 @@ def demanda_vs_capacidade(
 
 
 @router.get("/{consultor_id}/painel", dependencies=[Depends(exigir_gestao)])
-def painel_consultor(consultor_id: int, session: Session = Depends(get_session)):
+def painel_consultor(consultor_id: int, request: Request, session: Session = Depends(get_session)):
     """Detalhe do consultor: taxas, KPIs (utilização média, horas/receita/margem do
     mês) e alocações ativas cross-projeto."""
     c = session.get(Consultor, consultor_id)
@@ -177,7 +186,7 @@ def painel_consultor(consultor_id: int, session: Session = Depends(get_session))
             }
         )
 
-    return {
+    return sem_dinheiro({
         "id": c.id,
         "nome": c.nome,
         "senioridade": c.senioridade,
@@ -189,8 +198,11 @@ def painel_consultor(consultor_id: int, session: Session = Depends(get_session))
         "horas_mes": round(horas_mes, 2),
         "receita_mes": round(receita_mes, 2),
         "margem_mes": round(margem_mes, 4),
-        "alocacoes_ativas": ativas,
-    }
+        "alocacoes_ativas": [
+            {k: v for k, v in a.items() if k != "taxa_hora_venda"} for a in ativas
+        ] if not eh_ceo(usuario_atual(request)) else ativas,
+    }, usuario_atual(request),
+        ("taxa_hora_custo", "taxa_hora_venda", "receita_mes", "margem_mes"))
 
 
 @router.get("/{consultor_id}/agenda")

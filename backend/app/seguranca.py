@@ -32,6 +32,22 @@ def exigir_gestao(request: Request) -> dict:
     return u
 
 
+def eh_ceo(u: dict) -> bool:
+    return u["perfil"] == PerfilUsuario.ceo
+
+
+def sem_dinheiro(payload: dict, u: dict, campos: tuple[str, ...]) -> dict:
+    """Remove os campos financeiros quando quem pede não é o CEO.
+
+    O RH aprova horas e cuida de pessoas — não precisa de receita, margem nem
+    taxa de venda. Margem por consultor é o dado mais sensível de uma
+    consultoria, e ela se deduz de custo + venda, então os dois saem juntos.
+    """
+    if eh_ceo(u):
+        return payload
+    return {k: v for k, v in payload.items() if k not in campos}
+
+
 def eh_gestao(u: dict) -> bool:
     return u["perfil"] in (PerfilUsuario.ceo, PerfilUsuario.rh)
 

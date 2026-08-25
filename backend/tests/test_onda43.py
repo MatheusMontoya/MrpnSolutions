@@ -160,7 +160,7 @@ def test_projeto_criado_com_modelo_usa_entregas_dele(session, cliente):
     r = criar_projeto(ProjetoCreate(
         nome="Projeto Enxuto", cliente_id=cliente.id,
         data_inicio=date(2026, 3, 2), modelo_id=novo["id"],
-    ), session)
+    ), RequisicaoFalsa(), session)
     p = session.get(Projeto, r["id"])
     fase_discover = next(f for f in p.fases if f.nome == "Discover")
     assert [a.titulo for a in fase_discover.atividades] == ["Única entrega"]

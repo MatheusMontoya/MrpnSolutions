@@ -1,0 +1,102 @@
+# Readiness check — RunRate
+
+Lista curta e **verificável** do que precisa ter resposta antes de publicar.
+Cada item traz o comando que prova, não a opinião de quem escreveu.
+
+Regra: **item sem comando não é item.** Se não dá para verificar em 30 segundos,
+ou vira comando ou sai da lista.
+
+Estado: `AUTOMÁTICO` = coberto por teste que trava o merge · `MANUAL` = alguém confere.
+
+---
+
+## 1. Autenticação
+
+| # | Pergunta | Como provar | Estado |
+|---|---|---|---|
+| 1.1 | Toda rota `/api/*` exige token, exceto login e saúde? | `pytest -k test_api_exige_token` | AUTOMÁTICO |
+| 1.2 | Senha é guardada como hash, nunca em texto? | `select senha_hash from usuario limit 1` — tem de vir `sal$hash` | MANUAL |
+| 1.3 | Cada senha tem sal próprio? | `select count(distinct split_part(senha_hash,'$',1)), count(*) from usuario` — os dois números batem | MANUAL |
+| 1.4 | Logout revoga o token de verdade? | `pytest -k test_logout_revoga_token` | AUTOMÁTICO |
+| 1.5 | Desativar usuário mata a sessão viva? | `pytest -k test_usuario_desativado` | AUTOMÁTICO |
+
+## 2. Dono do recurso
+
+O RBAC de perfil responde *"esta rota é do seu perfil?"*. Estes itens respondem a
+outra pergunta, que é a que vaza dado: *"esta linha é sua?"*
+
+| # | Pergunta | Como provar | Estado |
+|---|---|---|---|
+| 2.1 | Consultor lê só o próprio dado? | `pytest backend/tests/test_isolamento_consultor.py` | AUTOMÁTICO |
+| 2.2 | Consultor escreve só no próprio dado? | idem — cobre lançar hora, despesa e ausência de terceiro | AUTOMÁTICO |
+| 2.3 | Filtro de listagem é forçado, não confiado? | o `consultor_id` da URL é ignorado para consultor (`consultor_do_filtro`) | AUTOMÁTICO |
+| 2.4 | RH não vê dinheiro? | `pytest -k test_rh_nao_ve` — margem, receita e taxas fora do payload | AUTOMÁTICO |
+| 2.5 | Rota nova tem guarda de dono? | **checklist de PR**: toda rota que aceite id ou `consultor_id` declara `exigir_dono` ou `consultor_do_filtro` | MANUAL |
+
+## 3. Segredos
+
+| # | Pergunta | Como provar | Estado |
+|---|---|---|---|
+| 3.1 | Nenhum segredo no repositório? | `git log -p \| grep -iE "sk-ant-\|postgresql://.*:.*@"` sem resultado | MANUAL |
+| 3.2 | `.env` bloqueado no git **e** no pacote da Vercel? | está no `.gitignore` **e** no `.vercelignore` — a CLI não usa o `.gitignore` | MANUAL |
+| 3.3 | Chave de API não sai em resposta de API? | `pytest -k test_consultor_nao_recebe_a_chave` | AUTOMÁTICO |
+| 3.4 | Chave rotacionada depois de qualquer exposição? | data da última rotação anotada abaixo | MANUAL |
+| 3.5 | Erro de servidor não devolve credencial? | `curl /api/saude` com banco fora: a mensagem traz host, nunca senha | MANUAL |
+
+## 4. Migrations
+
+| # | Pergunta | Como provar | Estado |
+|---|---|---|---|
+| 4.1 | Schema evolui sem perder dado? | **HOJE NÃO.** É `create_all`: cria, não migra. Ver dívida D-1 | ✗ |
+| 4.2 | Existe caminho de volta? | idem — sem migration não há rollback de schema | ✗ |
+| 4.3 | Enum novo tem `ALTER TYPE`? | Postgres não aceita valor de enum fora do tipo; hoje é manual (`migrar_perfis.py` é o precedente) | MANUAL |
+
+## 5. Integração contínua
+
+| # | Pergunta | Como provar | Estado |
+|---|---|---|---|
+| 5.1 | Teste roda sozinho a cada push? | `.github/workflows/testes.yml` — aba Actions do repositório | AUTOMÁTICO |
+| 5.2 | Teste vermelho impede o merge? | mesmo workflow em `pull_request`; falta marcar como *required* em Settings → Branches | MANUAL |
+| 5.3 | Build do frontend quebra a esteira? | job `frontend` do mesmo workflow | AUTOMÁTICO |
+
+## 6. Dados de demonstração
+
+| # | Pergunta | Como provar | Estado |
+|---|---|---|---|
+| 6.1 | O ambiente tem dado real ou só seed? | `select nome from cliente` — se vier Aurora Alimentos / TecnoMed, é seed | MANUAL |
+| 6.2 | Credencial de demonstração some da tela de login? | `VITE_DEMO=0` nas variáveis da Vercel | MANUAL |
+| 6.3 | Senha `psa123` trocada em todas as contas? | `select email from usuario` e trocar uma a uma em Configurações → Usuários | MANUAL |
+| 6.4 | Contas de demonstração desativadas? | mesma tela, botão Desativar | MANUAL |
+| 6.5 | O ambiente está público? | se não deve estar: Vercel → Deployment Protection | MANUAL |
+
+---
+
+## Dívidas abertas
+
+**D-1 — Sem migrations.** O schema nasce de `create_all`, que cria tabela nova
+mas não altera coluna existente. No primeiro "adicionar um campo" com dado real
+dentro, não há caminho seguro. Adotar Alembic **antes** do primeiro cliente.
+
+**D-2 — CI criada, falta tornar obrigatória.** `.github/workflows/testes.yml`
+roda os 130 testes e o build a cada push e a cada PR. Falta **um clique do dono
+do repositório**: GitHub → Settings → Branches → Add rule em `main` → marcar
+`backend` e `frontend` como *required status checks*. Sem isso a esteira
+avisa, mas não impede o merge.
+
+**D-3 — Sem backup.** O free tier do Supabase não faz backup automático.
+Enquanto for demonstração, tudo bem. Antes de dado real, plano pago.
+
+---
+
+## Rotações e verificações
+
+| Data | O que | Quem |
+|---|---|---|
+| — | senha do banco Supabase | pendente |
+| — | chave da API Anthropic | pendente |
+
+## Como usar
+
+Antes de qualquer publicação com dado real, percorrer as seis seções e registrar
+data e responsável. Item `✗` é bloqueador: ou vira verde, ou vira decisão
+consciente e assinada de assumir o risco.
