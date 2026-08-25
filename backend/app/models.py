@@ -551,6 +551,19 @@ class SessaoAcesso(SQLModel, table=True):
     usuario: Optional[Usuario] = Relationship()
 
 
+class TentativaLogin(SQLModel, table=True):
+    """Tentativa de login FALHA, para barrar força bruta.
+
+    Em banco e não em memória de propósito: cada invocação serverless é um
+    processo novo, então um contador em memória zeraria a cada requisição e o
+    limite não existiria na prática.
+    """
+
+    id: Optional[int] = Field(default=None, primary_key=True)
+    email: str = Field(index=True)
+    quando: datetime
+
+
 class EventoAuditoria(SQLModel, table=True):
     """Trilha de auditoria: toda mutação da API (POST/PATCH/DELETE) registra
     quem, quando, o quê e o resultado — gravada por middleware."""

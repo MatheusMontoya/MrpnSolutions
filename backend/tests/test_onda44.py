@@ -249,3 +249,66 @@ def test_ceo_nao_troca_o_proprio_perfil(api):
     h = _logar(api)
     eu = api.get("/api/auth/eu", headers=h).json()
     assert api.patch(f"/api/usuarios/{eu['id']}", headers=h, json={"perfil": "rh"}).status_code == 422
+
+
+# ---------------- barreiras de autenticação ----------------
+
+def test_forca_bruta_bloqueia_apos_cinco_falhas(api):
+    """Antes: 8 tentativas erradas seguidas devolviam 401 sem nenhuma barreira."""
+    for _ in range(5):
+        assert api.post("/api/auth/login", json={"email": "ceo@teste.com", "senha": "errada"}).status_code == 401
+    r = api.post("/api/auth/login", json={"email": "ceo@teste.com", "senha": "errada"})
+    assert r.status_code == 429, "a 6ª tentativa tem de ser barrada"
+    # e a senha CERTA também espera — senão o atacante só alterna e-mails
+    assert api.post("/api/auth/login", json={"email": "ceo@teste.com", "senha": "segredo1"}).status_code == 429
+
+
+def test_login_certo_limpa_o_contador(api):
+    for _ in range(3):
+        api.post("/api/auth/login", json={"email": "ceo@teste.com", "senha": "errada"})
+    assert api.post("/api/auth/login", json={"email": "ceo@teste.com", "senha": "segredo1"}).status_code == 200
+    # zerado: mais 3 falhas ainda não bloqueiam
+    for _ in range(3):
+        assert api.post("/api/auth/login", json={"email": "ceo@teste.com", "senha": "errada"}).status_code == 401
+
+
+def test_trocar_senha_derruba_as_outras_sessoes(api):
+    """Trocar a senha é o gesto de quem suspeita de invasão. Antes, o token já
+    roubado continuava valendo por até 12h — o gesto não expulsava ninguém."""
+    h1 = _logar(api)
+    h2 = _logar(api)  # segunda sessão do mesmo usuário (simula o invasor)
+    assert api.get("/api/auth/eu", headers=h2).status_code == 200
+
+    r = api.post("/api/auth/trocar-senha", headers=h1,
+                 json={"senha_atual": "segredo1", "senha_nova": "outrasenha"})
+    assert r.status_code == 200
+    assert r.json()["sessoes_encerradas"] >= 1
+    assert api.get("/api/auth/eu", headers=h1).status_code == 200, "quem trocou continua dentro"
+    assert api.get("/api/auth/eu", headers=h2).status_code == 401, "a outra sessão tem de cair"
+
+
+def test_redefinicao_pelo_ceo_derruba_a_sessao_do_usuario(api):
+    h = _logar(api)
+    hc = _logar(api, "ana@teste.com")
+    with Session(db.engine) as s:
+        ana_id = s.exec(select(Usuario).where(Usuario.email == "ana@teste.com")).first().id
+    assert api.patch(f"/api/usuarios/{ana_id}", headers=h, json={"senha": "novasenha9"}).status_code == 200
+    assert api.get("/api/auth/eu", headers=hc).status_code == 401
+
+
+def test_sessao_tem_teto_absoluto(api):
+    """A expiração deslizante sozinha nunca vence: usar a cada 11h manteria a
+    sessão para sempre. O teto de 7 dias mata mesmo a sessão em uso."""
+    from datetime import datetime, timedelta
+
+    from app.models import SessaoAcesso
+    from app.services.auth import VIDA_MAXIMA_SESSAO
+
+    h = _logar(api)
+    token = h["Authorization"].removeprefix("Bearer ")
+    with Session(db.engine) as s:
+        sessao = s.exec(select(SessaoAcesso).where(SessaoAcesso.token == token)).first()
+        sessao.criada_em = datetime.now() - VIDA_MAXIMA_SESSAO - timedelta(minutes=1)
+        s.add(sessao)
+        s.commit()
+    assert api.get("/api/auth/eu", headers=h).status_code == 401

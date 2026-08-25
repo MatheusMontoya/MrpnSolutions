@@ -61,9 +61,20 @@ def _ser_usuario(u: Usuario) -> dict:
 
 @router.post("/auth/login")
 def login(dados: LoginRequest, session: Session = Depends(get_session)):
+    from ..services.auth import bloqueado_por_forca_bruta, limpar_falhas, registrar_falha
+
+    # a barreira vem ANTES de verificar a senha: sem ela, oito tentativas
+    # seguidas passavam sem bloqueio nem atraso — força bruta virava só uma
+    # questão de tempo de CPU do atacante
+    if bloqueado_por_forca_bruta(session, dados.email):
+        raise HTTPException(429, "Muitas tentativas. Aguarde 15 minutos e tente de novo.")
     usuario = autenticar(session, dados.email, dados.senha)
     if not usuario:
+        registrar_falha(session, dados.email)
+        # a mensagem NÃO distingue e-mail inexistente de senha errada, para não
+        # virar um oráculo de quem tem conta
         raise HTTPException(401, "E-mail ou senha inválidos")
+    limpar_falhas(session, dados.email)
     sessao = criar_sessao(session, usuario)
     return {
         "token": sessao.token,
@@ -96,7 +107,13 @@ def trocar_senha(dados: TrocaSenha, request: Request, session: Session = Depends
     usuario.senha_hash = gerar_hash(dados.senha_nova)
     session.add(usuario)
     session.commit()
-    return {"ok": True}
+    # derruba as OUTRAS sessões: trocar a senha é o que se faz ao suspeitar de
+    # invasão, e sem isto o token já roubado continuava valendo por até 12h
+    from ..services.auth import revogar_sessoes_do_usuario
+
+    token_atual = (request.headers.get("authorization") or "").removeprefix("Bearer ").strip()
+    derrubadas = revogar_sessoes_do_usuario(session, usuario.id, manter_token=token_atual)
+    return {"ok": True, "sessoes_encerradas": derrubadas}
 
 
 # ---------------- gestão de usuários (gestor) ----------------
@@ -163,6 +180,10 @@ def atualizar_usuario(usuario_id: int, dados: UsuarioUpdate, request: Request, s
         if len(dados.senha) < 6:
             raise HTTPException(422, "A senha precisa de ao menos 6 caracteres")
         u.senha_hash = gerar_hash(dados.senha)
+        # redefinição pelo CEO costuma ser reação a incidente: derruba tudo
+        from ..services.auth import revogar_sessoes_do_usuario
+
+        revogar_sessoes_do_usuario(session, u.id)
     session.add(u)
     session.commit()
     session.refresh(u)
