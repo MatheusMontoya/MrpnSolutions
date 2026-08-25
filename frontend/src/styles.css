@@ -1633,19 +1633,27 @@ a.link:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; bord
    botão "+ Novo" tem 40px, centro em 80; menos 13 de meio-puxador = 67. Como
    .sidebar-topo soma o mesmo nos dois modos, ele não se move ao alternar. */
 .sidebar-puxador {
-  position: absolute; top: 67px; right: -13px; z-index: 1;
-  width: 26px; height: 26px;
+  position: absolute; top: 67px; right: -14px; z-index: 2;
+  width: 28px; height: 28px;
   display: inline-flex; align-items: center; justify-content: center;
-  border: 1px solid var(--borda);
+  /* borda-forte e sombra-2: com --borda o círculo sumia contra a superfície,
+     e um controle que ninguém acha é o mesmo que um controle que não existe —
+     foi exatamente o que aconteceu com a troca de tema escondida no menu. */
+  border: 1px solid var(--borda-forte);
   border-radius: 999px;
   background: var(--superficie);
   color: var(--texto-2);
   cursor: pointer;
-  box-shadow: var(--sombra-1);
-  transition: color var(--dur-1) var(--ease-sair), border-color var(--dur-1) var(--ease-sair);
+  box-shadow: var(--sombra-2);
+  transition: color var(--dur-1) var(--ease-sair), border-color var(--dur-1) var(--ease-sair),
+              background var(--dur-1) var(--ease-sair);
 }
-.sidebar-puxador:hover { color: var(--azul-texto); border-color: var(--azul-borda); }
+.sidebar-puxador:hover {
+  color: #fff; background: var(--azul-acao); border-color: var(--azul-acao);
+}
 .sidebar-puxador:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
+/* o círculo transborda a barra de propósito; nada no caminho pode recortá-lo */
+.sidebar { overflow: visible; }
 
 /* ---------- balão com o nome da seção (modo trilho) ---------- */
 /* Em portal no <body>: .sidebar-nav tem overflow-y auto, e no CSS um eixo em
