@@ -47,13 +47,32 @@ def _apontamentos_do_mes(session: Session, projeto: Projeto, competencia: date) 
     if not ids:
         return []
     proximo_mes = (competencia.replace(day=28) + timedelta(days=4)).replace(day=1)
-    return session.exec(
+    apontamentos = session.exec(
         select(Apontamento).where(
             Apontamento.alocacao_id.in_(ids),
             Apontamento.data >= competencia,
             Apontamento.data < proximo_mes,
         ).order_by(Apontamento.data)
     ).all()
+
+    # SÓ HORA APROVADA VIRA MEDIÇÃO — e a medição vira nota.
+    # Sem este filtro o fluxo de aprovação era decorativo para o faturamento:
+    # rascunho nunca enviado, semana aguardando decisão e semana REPROVADA
+    # entravam na medição e eram cobradas do cliente do mesmo jeito.
+    from ..models import EnvioSemana, StatusEnvio
+    from ..services.receita import segunda_da_semana
+
+    consultor_por_alocacao = {a.id: a.consultor_id for a in alocacoes}
+    aprovadas = {
+        (e.consultor_id, e.semana)
+        for e in session.exec(
+            select(EnvioSemana).where(EnvioSemana.status == StatusEnvio.aprovada)
+        ).all()
+    }
+    return [
+        ap for ap in apontamentos
+        if (consultor_por_alocacao.get(ap.alocacao_id), segunda_da_semana(ap.data)) in aprovadas
+    ]
 
 
 def _linhas(apontamentos: list[Apontamento]) -> list[dict]:

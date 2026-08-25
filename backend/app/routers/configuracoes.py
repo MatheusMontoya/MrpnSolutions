@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from sqlmodel import Session, select
 
 from ..database import get_session
-from ..seguranca import eh_gestao, exigir_ceo, usuario_atual
+from ..seguranca import eh_ceo, eh_gestao, exigir_ceo, usuario_atual
 from ..models import Configuracao, Feriado
 from ..services.receita import definir_feriados
 
@@ -67,12 +67,28 @@ def _obter_ou_criar(session: Session) -> Configuracao:
 CAMPOS_OPERACIONAIS = ("nome_consultoria", "jornada_semanal", "taxa_km", "formato_data", "moeda", "fuso")
 
 
+# Segredo não sai em resposta de API — nem para o CEO. A tela precisa saber SE
+# existe chave configurada, não QUAL é; se vazar o payload num log, num print de
+# tela ou no cache do navegador, a chave vaza junto.
+CAMPOS_SECRETOS = ("anthropic_api_key",)
+# Preço de venda, meta de margem e CNPJ são decisão comercial: o RH não vê.
+CAMPOS_COMERCIAIS = ("cnpj", "meta_margem", "taxa_junior", "taxa_pleno", "taxa_senior")
+
+
 @router.get("")
 def obter_configuracao(request: Request, session: Session = Depends(get_session)):
     cfg = _obter_ou_criar(session)
-    if eh_gestao(usuario_atual(request)):
-        return cfg
-    return {campo: getattr(cfg, campo) for campo in CAMPOS_OPERACIONAIS}
+    u = usuario_atual(request)
+    if not eh_gestao(u):
+        return {campo: getattr(cfg, campo) for campo in CAMPOS_OPERACIONAIS}
+
+    dados = {c: getattr(cfg, c) for c in cfg.model_dump() if c not in CAMPOS_SECRETOS}
+    # a tela mostra "configurada" ou "não configurada", nunca o valor
+    dados["tem_chave_ia"] = bool(cfg.anthropic_api_key)
+    if not eh_ceo(u):
+        for campo in CAMPOS_COMERCIAIS:
+            dados.pop(campo, None)
+    return dados
 
 
 @router.patch("", response_model=Configuracao, dependencies=[Depends(exigir_ceo)])

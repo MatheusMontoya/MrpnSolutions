@@ -151,7 +151,12 @@ def test_gestao_continua_vendo_tudo(api):
     assert len(api.get("/api/consultores", headers=h).json()) == 2
     assert api.get("/api/consultores/utilizacao", headers=h).status_code == 200
     assert api.get("/api/consultores/2/agenda", headers=h).status_code == 200
-    assert "anthropic_api_key" in api.get("/api/configuracoes", headers=h).json()
+    cfg = api.get("/api/configuracoes", headers=h).json()
+    # o segredo não sai em resposta NEM para o CEO: a tela precisa saber SE há
+    # chave, não QUAL é — senão ela vaza em log, print de tela ou cache
+    assert "anthropic_api_key" not in cfg
+    assert cfg["tem_chave_ia"] is True
+    assert "meta_margem" in cfg, "o CEO continua vendo os parâmetros comerciais"
 
 
 # ---------- projetos ----------
@@ -239,3 +244,12 @@ def test_spa_nao_serve_arquivo_fora_do_build():
         alvo = (raiz / fuga).resolve()
         dentro = alvo == raiz or raiz in alvo.parents
         assert not dentro, f"{fuga} escapou da contenção"
+
+
+def test_rh_nao_recebe_chave_nem_parametros_comerciais(api):
+    """O RH é gestão de pessoas: vê a operação, não a chave nem o preço."""
+    cfg = api.get("/api/configuracoes", headers=_rh(api)).json()
+    assert "anthropic_api_key" not in cfg
+    for comercial in ("meta_margem", "taxa_senior", "taxa_pleno", "taxa_junior", "cnpj"):
+        assert comercial not in cfg, f"{comercial} vazou para o RH"
+    assert "jornada_semanal" in cfg, "o operacional continua disponível"

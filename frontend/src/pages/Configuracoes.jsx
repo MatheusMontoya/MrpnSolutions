@@ -492,7 +492,9 @@ export default function Configuracoes() {
                     onChange={(e) => setCampo('anthropic_api_key', e.target.value)}
                   />
                   <span className="ajuda">
-                    Obtida em console.anthropic.com. Fica no banco local; deixe em branco para desativar a IA generativa.
+                    {form.tem_chave_ia
+                      ? 'Já existe uma chave configurada. Digite uma nova para substituí-la, ou deixe em branco para manter a atual.'
+                      : 'Obtida em console.anthropic.com. Deixe em branco para operar só com o motor determinístico.'}
                   </span>
                 </div>
                 <div className="campo" style={{ flex: 1 }}>
@@ -507,8 +509,10 @@ export default function Configuracoes() {
                 </div>
               </div>
               <div className="linha-flex" style={{ gap: 8, marginTop: 12 }}>
-                <span className={`badge ${(form.anthropic_api_key ?? '').trim() ? 'badge-verde' : ''}`}>
-                  {(form.anthropic_api_key ?? '').trim() ? 'IA generativa será ativada ao salvar' : 'Modo determinístico (sem chave)'}
+                <span className={`badge ${(form.anthropic_api_key ?? '').trim() || form.tem_chave_ia ? 'badge-verde' : ''}`}>
+                  {(form.anthropic_api_key ?? '').trim()
+                    ? 'IA generativa será ativada ao salvar'
+                    : form.tem_chave_ia ? 'IA generativa ativa' : 'Modo determinístico (sem chave)'}
                 </span>
                 <span className="texto-3" style={{ fontSize: 12 }}>
                   Os cálculos continuam 100% no motor determinístico — a IA só interpreta e recomenda.

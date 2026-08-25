@@ -4,6 +4,7 @@ API REST JSON (OpenAPI em /docs) + frontend React servido de frontend/dist.
 Toda rota /api/* exige token (Authorization: Bearer) exceto o login; mutações
 são gravadas na trilha de auditoria — ambos via middleware abaixo.
 """
+import os
 from contextlib import asynccontextmanager
 from datetime import datetime
 from pathlib import Path
@@ -82,7 +83,14 @@ def preparar_banco() -> None:
     CREATE TYPE dos enums e poderiam semear o banco duas vezes.
     """
     criar_tabelas()
-    seed_se_vazio()
+    if os.environ.get("RUNRATE_SEM_DEMO") == "1":
+        print("[RunRate] RUNRATE_SEM_DEMO=1 — schema criado SEM dados de demonstração.")
+    else:
+        # ARMADILHA CONHECIDA: seed_se_vazio() semeia quando o banco está vazio.
+        # Depois de limpar a produção, rodar o bootstrap de novo reinjetaria os
+        # 3 projetos fictícios e 8 logins com senha 'psa123'. Em produção use
+        # sempre RUNRATE_SEM_DEMO=1.
+        seed_se_vazio()
     _garantir_modelo_padrao()
 
 

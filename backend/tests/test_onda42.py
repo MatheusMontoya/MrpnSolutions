@@ -133,9 +133,18 @@ def test_solicitacao_entra_na_fila_unificada(session, projeto, consultor_senior)
 # ---------------- medição ----------------
 
 def _preparar_apontamentos(session, projeto, consultor):
+    """40h na 1ª semana de fevereiro, com a semana APROVADA.
+
+    A aprovação faz parte do preparo desde que a medição passou a só cobrar
+    hora aprovada. Antes destes testes passavam sem ela — e passavam porque o
+    produto faturava rascunho e reprovado do mesmo jeito."""
+    from app.models import EnvioSemana, StatusEnvio
+
     aloc = _alocar(session, consultor, projeto.fases[1], 40)
-    for i in range(5):  # 40h na 1ª semana de fevereiro
+    for i in range(5):
         session.add(Apontamento(alocacao_id=aloc.id, data=SEG + timedelta(days=i), horas=8))
+    session.add(EnvioSemana(consultor_id=consultor.id, semana=SEG,
+                            status=StatusEnvio.aprovada, total_horas=40))
     session.commit()
     return aloc
 

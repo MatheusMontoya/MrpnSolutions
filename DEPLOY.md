@@ -46,10 +46,16 @@ demonstração. Rode **da sua máquina**, apontando para o Supabase:
 ```bash
 cd backend
 pip install -r requirements.txt
-DATABASE_URL="postgresql://postgres.SEU_REF:SUA_SENHA@aws-0-ca-central-1.pooler.supabase.com:6543/postgres" python -m app.bootstrap
+RUNRATE_SEM_DEMO=1 DATABASE_URL="postgresql://postgres.SEU_REF:SUA_SENHA@aws-0-ca-central-1.pooler.supabase.com:6543/postgres" python -m app.bootstrap
 ```
 
 É idempotente — rodar de novo não duplica nada.
+
+> **`RUNRATE_SEM_DEMO=1` não é opcional em produção.** Sem essa variável o
+> bootstrap chama `seed_se_vazio()`, que semeia quando o banco está vazio — e
+> num ambiente já limpo isso **reinjetaria os 3 projetos fictícios e 8 contas
+> com senha `psa123`**. Com ela, o comando cria só o schema e o template
+> Activate.
 
 > **Por que isto não roda sozinho na subida do app?** Porque escreve. Em
 > serverless, dois cold starts simultâneos correriam no `CREATE TYPE` dos 23

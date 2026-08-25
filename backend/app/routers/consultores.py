@@ -5,7 +5,9 @@ from sqlmodel import Session, select
 
 from ..database import get_session
 from ..seguranca import eh_ceo, eh_gestao, exigir_ceo, exigir_dono, exigir_gestao, sem_dinheiro, usuario_atual
-from ..models import HORAS_SEMANA_PADRAO, Alocacao, Apontamento, Ausencia, Consultor
+from pydantic import BaseModel, Field
+
+from ..models import HORAS_SEMANA_PADRAO, Alocacao, Apontamento, Ausencia, Consultor, Senioridade
 from ..services.receita import (
     horas_alocadas_na_semana,
     horas_ausentes_na_semana,
@@ -15,6 +17,37 @@ from ..services.receita import (
 )
 
 router = APIRouter(prefix="/api/consultores", tags=["Consultores"])
+
+
+class ConsultorCreate(BaseModel):
+    """Entrada explícita, e o motivo é grave.
+
+    Em SQLModel, classe com table=True NÃO valida na construção — é desligado de
+    propósito. Aceitar o modelo de tabela como corpo deixava passar
+    senioridade="imperador" e taxa negativa, o commit acontecia ANTES da
+    validação da resposta, e a linha envenenada ficava. Depois disso todo
+    select(Consultor) estourava no fetch do enum: dashboard, lista, heatmap e
+    capacidade caíam em 500 de forma permanente, sem rota para desfazer.
+    """
+
+    nome: str = Field(min_length=1, max_length=200)
+    senioridade: Senioridade
+    modulo_sap: str = ""
+    skills: str = ""
+    taxa_hora_custo: float = Field(default=0.0, ge=0)
+    taxa_hora_venda: float = Field(default=0.0, ge=0)
+
+
+class ConsultorUpdate(BaseModel):
+    """Consultor deixou de ser permanente: dá para corrigir taxa, promover e
+    desligar sem mexer no banco na mão."""
+
+    nome: str | None = Field(default=None, min_length=1, max_length=200)
+    senioridade: Senioridade | None = None
+    modulo_sap: str | None = None
+    skills: str | None = None
+    taxa_hora_custo: float | None = Field(default=None, ge=0)
+    taxa_hora_venda: float | None = Field(default=None, ge=0)
 
 
 @router.get("")
@@ -41,12 +74,38 @@ def listar_consultores(request: Request, session: Session = Depends(get_session)
 
 
 @router.post("", response_model=Consultor, status_code=201, dependencies=[Depends(exigir_ceo)])
-def criar_consultor(consultor: Consultor, session: Session = Depends(get_session)):
-    consultor.id = None
+def criar_consultor(dados: ConsultorCreate, session: Session = Depends(get_session)):
+    consultor = Consultor(**dados.model_dump())
     session.add(consultor)
     session.commit()
     session.refresh(consultor)
     return consultor
+
+
+@router.patch("/{consultor_id}", response_model=Consultor, dependencies=[Depends(exigir_ceo)])
+def atualizar_consultor(consultor_id: int, dados: ConsultorUpdate, session: Session = Depends(get_session)):
+    c = session.get(Consultor, consultor_id)
+    if not c:
+        raise HTTPException(404, "Consultor não encontrado")
+    for campo, valor in dados.model_dump(exclude_unset=True).items():
+        if valor is not None:
+            setattr(c, campo, valor)
+    session.add(c)
+    session.commit()
+    session.refresh(c)
+    return c
+
+
+@router.delete("/{consultor_id}", status_code=204, dependencies=[Depends(exigir_ceo)])
+def remover_consultor(consultor_id: int, session: Session = Depends(get_session)):
+    """Só remove quem nunca foi alocado — histórico de hora faturada não se apaga."""
+    c = session.get(Consultor, consultor_id)
+    if not c:
+        raise HTTPException(404, "Consultor não encontrado")
+    if c.alocacoes:
+        raise HTTPException(409, "Consultor já alocado em projeto: o histórico não pode ser removido")
+    session.delete(c)
+    session.commit()
 
 
 @router.get("/utilizacao", dependencies=[Depends(exigir_gestao)])

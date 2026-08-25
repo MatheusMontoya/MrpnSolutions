@@ -1,6 +1,7 @@
 from datetime import date
 
 from fastapi import APIRouter, Depends, HTTPException
+from pydantic import BaseModel, Field
 from sqlmodel import Session, select
 
 from ..database import get_session
@@ -14,6 +15,14 @@ from ..services.receita import (
 )
 
 router = APIRouter(prefix="/api/clientes", tags=["Clientes"])
+
+
+class ClienteCreate(BaseModel):
+    """Entrada explícita. Aceitar o table model direto permitia POST {} com
+    nome=None: a validação só acontecia no banco e o usuário recebia 500."""
+
+    nome: str = Field(min_length=1, max_length=200)
+    contato: str = ""
 
 
 def _agregados(cliente: Cliente) -> dict:
@@ -50,8 +59,8 @@ def listar_clientes(session: Session = Depends(get_session)):
 
 
 @router.post("", response_model=Cliente, status_code=201)
-def criar_cliente(cliente: Cliente, session: Session = Depends(get_session)):
-    cliente.id = None
+def criar_cliente(dados: ClienteCreate, session: Session = Depends(get_session)):
+    cliente = Cliente(nome=dados.nome.strip(), contato=dados.contato.strip())
     session.add(cliente)
     session.commit()
     session.refresh(cliente)
