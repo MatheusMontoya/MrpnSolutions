@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import BotaoExportar from '../components/BotaoExportar'
 import Icone from '../components/Icone'
 import Modal from '../components/Modal'
 import { SkeletonPagina } from '../components/Skeleton'
 import { fmtBRL, fmtData, fmtPct, iniciais } from '../format'
+import { comAviso, confirmarE } from '../avisos'
 
 const IC_NOVA = ['M12 5v14', 'M5 12h14']
 const IC_AVANCAR = ['M5 12h14', 'M12 5l7 7-7 7']
@@ -42,30 +44,25 @@ export default function Propostas() {
 
   useEffect(carregar, [carregar])
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={carregar} />
   if (!dados) return <SkeletonPagina kpis />
 
   const ativas = dados.propostas.filter((p) => !['perdida', 'convertida'].includes(p.estagio))
   const encerradas = dados.propostas.filter((p) => ['perdida', 'convertida'].includes(p.estagio))
 
-  const avancar = async (p) => {
-    try {
-      await api.post(`/propostas/${p.id}/avancar`)
-      carregar()
-    } catch (e) { setErro(e.message) }
-  }
-  const marcarPerdida = async (p) => {
-    if (!confirm(`Marcar "${p.nome}" como perdida?`)) return
-    await api.patch(`/propostas/${p.id}`, { estagio: 'perdida' })
-    carregar()
-  }
-  const converter = async () => {
-    try {
-      const r = await api.post(`/propostas/${convertendo.id}/converter`, { data_inicio: dataInicio })
-      setConvertendo(null)
-      nav(`/projetos/${r.projeto_id}`)
-    } catch (e) { setErro(e.message) }
-  }
+  const avancar = (p) => comAviso(
+    async () => { await api.post(`/propostas/${p.id}/avancar`); carregar() },
+  )
+  const marcarPerdida = (p) => confirmarE(
+    `Marcar "${p.nome}" como perdida? Ela sai do funil e do valor ponderado.`,
+    async () => { await api.patch(`/propostas/${p.id}`, { estagio: 'perdida' }); carregar() },
+    { sucesso: 'Proposta marcada como perdida.' },
+  )
+  const converter = () => comAviso(async () => {
+    const r = await api.post(`/propostas/${convertendo.id}/converter`, { data_inicio: dataInicio })
+    setConvertendo(null)
+    nav(`/projetos/${r.projeto_id}`)
+  })
 
   return (
     <>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import BotaoExportar from '../components/BotaoExportar'
 import Icone from '../components/Icone'
 import { SkeletonPagina } from '../components/Skeleton'
@@ -20,7 +21,7 @@ export default function FinanceiroGerencial({ vista }) {
   const carregar = () => api.get(endpoint).then(setDados).catch((e) => setErro(e.message))
   useEffect(() => { setDados(null); carregar() }, [endpoint]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={carregar} />
   if (!dados) return <SkeletonPagina />
 
   if (vista === 'fluxo') return <Fluxo serie={dados.serie} />

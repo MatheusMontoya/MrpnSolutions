@@ -4,6 +4,7 @@ import Icone from '../components/Icone'
 import Modal from '../components/Modal'
 import { SkeletonPagina } from '../components/Skeleton'
 import { SENIORIDADE, corFase, fmtBRLExato, fmtData, fmtHoras, fmtMes } from '../format'
+import { confirmarE } from '../avisos'
 
 const IC_GERAR = ['M12 5v14', 'M5 12h14']
 const IC_CHECK = ['M20 6 9 17l-5-5']
@@ -55,14 +56,16 @@ export default function Medicoes() {
     } catch (e) { setErro(e.message) }
   }
 
-  const aceitar = async (m) => {
-    setErro(null)
-    try {
+  const aceitar = (m) => confirmarE(
+    `Registrar o aceite do cliente em ${fmtBRLExato(m.valor)}? Isso emite a fatura desta medição.`,
+    async () => {
+      setErro(null)
       await api.post(`/medicoes/${m.id}/aceitar`, { numero: '' })
       setDetalhe(null)
       carregar()
-    } catch (e) { setErro(e.message) }
-  }
+    },
+    { sucesso: 'Aceite registrado — fatura emitida.' },
+  )
 
   const contestar = async () => {
     setErro(null)

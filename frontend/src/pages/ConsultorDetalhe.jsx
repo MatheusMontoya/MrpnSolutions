@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import EstadoVazio from '../components/EstadoVazio'
 import Icone from '../components/Icone'
 import { SkeletonPagina } from '../components/Skeleton'
@@ -39,7 +40,7 @@ export default function ConsultorDetalhe() {
     api.get(`/consultores/${id}/painel`).then(setC).catch((e) => setErro(e.message))
   }, [id])
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={() => window.location.reload()} />
   if (!c) return <SkeletonPagina kpis />
 
   const par = parCor(c.nome)

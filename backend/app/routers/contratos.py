@@ -83,6 +83,11 @@ def atualizar_contrato(contrato_id: int, dados: ContratoUpdate, session: Session
     c = session.get(Contrato, contrato_id)
     if not c:
         raise HTTPException(404, "Contrato não encontrado")
+    novo_inicio = dados.data_inicio or c.data_inicio
+    novo_fim = dados.data_fim or c.data_fim
+    if novo_fim < novo_inicio:
+        # o POST já validava; o PATCH não — dava para inverter depois de criar
+        raise HTTPException(422, "A data de fim não pode ser anterior à de início")
     for campo, valor in dados.model_dump(exclude_unset=True).items():
         setattr(c, campo, valor)
     session.add(c)

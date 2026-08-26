@@ -107,7 +107,10 @@ def simular_reagendamento(session: Session, fase_id: int, nova_data_fim: date) -
     ordem_por_fase = {f.id: f.ordem for f in fases}
     for a in antes_aloc:
         if a.fase_id == fase.id:
-            # fase atrasada: alocações são estendidas
+            # fase atrasada: alocações são estendidas.
+            # Com delta NEGATIVO (antecipar a fase) o fim podia cair antes do
+            # início; dias_uteis devolve 0 nesse caso e a receita da alocação
+            # sumia em silêncio. Marcamos para recusar em vez de gravar.
             nova = replace(a, data_fim=a.data_fim + timedelta(days=delta))
         elif ordem_por_fase[a.fase_id] > fase.ordem:
             # fases seguintes: alocações deslocam inteiras
@@ -179,6 +182,21 @@ def simular_reagendamento(session: Session, fase_id: int, nova_data_fim: date) -
 def aplicar_reagendamento(session: Session, fase_id: int, nova_data_fim: date) -> dict:
     """Simula, aplica as mudanças no banco e devolve o mesmo diff."""
     diff = simular_reagendamento(session, fase_id, nova_data_fim)
+
+    # VALIDA ANTES DE ESCREVER. Antecipar demais deixaria a alocação com fim
+    # antes do início: dias_uteis devolve 0 e a receita some em silêncio. A
+    # checagem tem de vir antes de tocar nas fases, senão a sessão já carrega
+    # mudanças pela metade quando a exceção sobe.
+    invertidas = [
+        a for a in diff["alocacoes"]
+        if a["depois"]["data_fim"] < a["depois"]["data_inicio"]
+    ]
+    if invertidas:
+        ids = ", ".join(str(a["id"]) for a in invertidas[:3])
+        raise ValueError(
+            f"A nova data deixaria {len(invertidas)} alocação(ões) com fim antes do início "
+            f"(ids {ids}). Ajuste ou remova essas alocações antes de reagendar."
+        )
 
     novas_datas_fase = {
         f["id"]: (

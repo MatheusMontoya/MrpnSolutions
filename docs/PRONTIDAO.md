@@ -64,7 +64,7 @@ outra pergunta, que é a que vaza dado: *"esta linha é sua?"*
 | # | Pergunta | Como provar | Estado |
 |---|---|---|---|
 | 6.1 | O ambiente tem dado real ou só seed? | ✅ **limpo em 25/08/2026** — `select count(*) from cliente` = 0. Backup do seed em `docs/backup-antes-da-limpeza.json` | FEITO |
-| 6.2 | Credencial de demonstração some da tela de login? | ✅ `VITE_DEMO=0` nas 3 variáveis da Vercel; conferido no bundle servido | FEITO |
+| 6.2 | Credencial de demonstração some da tela de login? | ✅ agora é **opt-in**: só aparece com `VITE_DEMO=1`. Deploy novo nasce sem ela, mesmo se ninguém configurar nada | FEITO |
 | 6.3 | Senha `psa123` trocada em todas as contas? | ✅ nenhuma conta com `psa123` existe: as 9 de demonstração foram apagadas | FEITO |
 | 6.4 | Contas de demonstração desativadas? | ✅ apagadas, não só desativadas. Resta 1 conta: `michel@mrpnachbar.com` (CEO) | FEITO |
 | 6.5 | O ambiente está público? | se não deve estar: Vercel → Deployment Protection | MANUAL |
@@ -78,7 +78,7 @@ mas não altera coluna existente. No primeiro "adicionar um campo" com dado real
 dentro, não há caminho seguro. Adotar Alembic **antes** do primeiro cliente.
 
 **D-2 — CI criada, falta tornar obrigatória.** `.github/workflows/testes.yml`
-roda os 130 testes e o build a cada push e a cada PR. Falta **um clique do dono
+roda os 200 testes e o build a cada push e a cada PR. Falta **um clique do dono
 do repositório**: GitHub → Settings → Branches → Add rule em `main` → marcar
 `backend` e `frontend` como *required status checks*. Sem isso a esteira
 avisa, mas não impede o merge.
@@ -88,12 +88,24 @@ Enquanto for demonstração, tudo bem. Antes de dado real, plano pago.
 
 ---
 
+## 7. Recuperação de acesso
+
+| # | Pergunta | Como provar | Estado |
+|---|---|---|---|
+| 7.1 | O CEO consegue voltar se perder a senha? | ✅ `python -m app.redefinir_senha <email>` com o `DATABASE_URL` — documentado no DEPLOY.md, coberto por `tests/test_redefinir_senha.py` | FEITO |
+| 7.2 | Mudar a política de hash tranca quem já tem senha? | ✅ não: o hash grava as próprias iterações e é regravado no primeiro login. `tests/test_hash_senha.py` | FEITO |
+| 7.3 | Redefinir senha pelo CEO derruba as sessões abertas? | ✅ `revogar_sessoes_do_usuario` no PATCH `/usuarios/{id}` e no comando de terminal | FEITO |
+
+---
+
 ## Rotações e verificações
 
 | Data | O que | Quem |
 |---|---|---|
 | 25/08/2026 | limpeza do seed de produção (backup antes) | Claude |
 | 25/08/2026 | `VITE_DEMO=0` e remoção das 9 contas de demonstração | Claude |
+| 26/08/2026 | hash de senha passa a gravar as próprias iterações (migração automática no login) | Claude |
+| 26/08/2026 | bloco de credenciais de demonstração vira opt-in (`VITE_DEMO=1`) | Claude |
 | — | senha temporária do CEO → definitiva | **Michel, no 1º acesso** |
 | — | senha do banco Supabase | pendente |
 | — | chave da API Anthropic | pendente |

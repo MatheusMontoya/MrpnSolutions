@@ -15,6 +15,15 @@
       ],
       "cwd": "backend",
       "port": 8000
+    },
+    {
+      "name": "psa-sap-vazio",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "dev_vazio.py"
+      ],
+      "cwd": "backend",
+      "port": 8001
     }
   ]
 }

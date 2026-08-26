@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import DiffReagendamento from '../components/DiffReagendamento'
 import Gantt from '../components/Gantt'
 import Icone from '../components/Icone'
@@ -9,6 +10,7 @@ import { SkeletonPagina } from '../components/Skeleton'
 import { SENIORIDADE, STATUS_PROJETO, corFase, fmtBRL, fmtBRLExato, fmtData, fmtHoras, fmtPct, iniciais } from '../format'
 import { useSessao } from '../sessao'
 import { BADGE_STATUS_PENDENCIA, FormPendencia, PRIORIDADES } from './Pendencias'
+import { confirmarE } from '../avisos'
 
 const IC_CHECK_MINI = ['M20 6 9 17l-5-5']
 const IC_MAIS = ['M12 5v14', 'M5 12h14']
@@ -81,7 +83,7 @@ export default function ProjetoDetalhe() {
     api.get('/consultores').then(setConsultores).catch(() => {})
   }, [carregar])
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={carregar} />
   if (!projeto) return <SkeletonPagina />
 
   const faseAtual = projeto.fases.find((f) => f.atual) || projeto.fases[0]
@@ -260,12 +262,11 @@ export default function ProjetoDetalhe() {
                           <td className="num mono" style={{ color: mPct >= MARGEM_VERDE ? 'var(--verde)' : 'var(--texto)' }}>{fmtPct(mPct)}</td>
                           <td>
                             <button className="botao botao-fantasma botao-pequeno" title="Remover alocação"
-                              onClick={async () => {
-                                if (confirm(`Remover alocação de ${a.consultor} em ${fase.nome}? Os apontamentos lançados nela também serão removidos.`)) {
-                                  await api.del(`/alocacoes/${a.id}`)
-                                  carregar()
-                                }
-                              }}>
+                              onClick={() => confirmarE(
+                                `Remover alocação de ${a.consultor} em ${fase.nome}? Os apontamentos lançados nela também serão removidos.`,
+                                async () => { await api.del(`/alocacoes/${a.id}`); carregar() },
+                                { sucesso: 'Alocação removida.' },
+                              )}>
                               Remover
                             </button>
                           </td>
@@ -548,10 +549,11 @@ function CardOrcamento({ projetoId }) {
     } catch (err) { setErro(err.message) }
   }
 
-  const remover = async (item) => {
-    await api.del(`/orcamento/itens/${item.id}`)
-    carregar()
-  }
+  const remover = (item) => confirmarE(
+    `Excluir a linha de orçamento “${item.descricao}”? O valor sai do orçado do projeto.`,
+    async () => { await api.del(`/orcamento/itens/${item.id}`); carregar() },
+    { sucesso: 'Linha removida.' },
+  )
 
   const corConsumo = (c) => c == null ? 'var(--texto-3)' : c > 1 ? 'var(--vermelho)' : c > 0.85 ? 'var(--laranja)' : 'var(--verde)'
 
@@ -747,10 +749,11 @@ function SecaoAtividades({ fase, consultores, onMudou }) {
     setNovo('')
     onMudou()
   }
-  const remover = async (a) => {
-    await api.del(`/atividades/${a.id}`)
-    onMudou()
-  }
+  const remover = (a) => confirmarE(
+    `Excluir a atividade “${a.titulo}”?`,
+    async () => { await api.del(`/atividades/${a.id}`); onMudou() },
+    { sucesso: 'Atividade excluída.' },
+  )
 
   const concluidas = (fase.atividades || []).filter((a) => a.status === 'concluida').length
 

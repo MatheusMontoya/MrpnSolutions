@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import BotaoExportar from '../components/BotaoExportar'
 import Icone from '../components/Icone'
 import Modal from '../components/Modal'
 import { Bloco } from '../components/Skeleton'
 import { corFase, fmtData, fmtDataCurta, fmtHoras, nomeDiaSemana } from '../format'
 import { useSessao } from '../sessao'
+import { avisar, confirmarE } from '../avisos'
 
 const somaLinha = (linha) => Object.values(linha.horas_por_dia).reduce((s, h) => s + h, 0)
 
@@ -70,9 +72,14 @@ export default function Apontamento() {
   useEffect(carregar, [carregar])
 
   const mudarSemana = (dias) => {
-    const base = new Date(`${grade.semana}T00:00:00`)
-    base.setDate(base.getDate() + dias)
-    setSemanaRef(base.toISOString().slice(0, 10))
+    // A semana de destino sai do estado LOCAL, não de `grade.semana`.
+    // `grade` só muda quando a resposta do servidor chega: dois cliques rápidos
+    // em "próxima" liam os dois a mesma semana antiga e avançavam uma só.
+    setSemanaRef((atual) => {
+      const base = new Date(`${atual ?? grade.semana}T00:00:00`)
+      base.setDate(base.getDate() + dias)
+      return base.toISOString().slice(0, 10)
+    })
   }
 
   const lancar = async (alocacaoId, data, valor) => {
@@ -92,7 +99,10 @@ export default function Apontamento() {
         ),
       }))
     } catch (e) {
-      setErro(e.message)
+      // a grade inteira na tela não pode sumir porque UMA célula não salvou —
+      // e a célula precisa voltar ao valor real, não ficar com o que foi digitado
+      avisar.erro(e)
+      carregar()
     }
   }
 
@@ -128,22 +138,22 @@ export default function Apontamento() {
       }))
       setBalao(null)
     } catch (e) {
-      setErro(e.message)
+      avisar.erro(e)
     } finally {
       setSalvandoBalao(false)
     }
   }
 
-  const enviarSemana = async () => {
-    try {
+  const enviarSemana = () => confirmarE(
+    'Enviar a semana para aprovação? As horas ficam travadas para edição até o gestor decidir.',
+    async () => {
       await api.post('/apontamentos/semana/enviar', { consultor_id: consultorId, semana: grade.semana })
       carregar()
-    } catch (e) {
-      setErro(e.message)
-    }
-  }
+    },
+    { sucesso: 'Semana enviada para aprovação.' },
+  )
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={carregar} />
 
   const totalSemana = grade ? grade.alocacoes.reduce((s, l) => s + somaLinha(l), 0) : 0
   const totalPorDia = grade

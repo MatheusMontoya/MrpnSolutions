@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field
 
 from ..models import HORAS_SEMANA_PADRAO, Alocacao, Apontamento, Ausencia, Consultor, Senioridade
 from ..services.receita import (
+    capacidade_na_semana,
     horas_alocadas_na_semana,
     horas_ausentes_na_semana,
     horas_previstas,
@@ -179,7 +180,7 @@ def demanda_vs_capacidade(
             for a in alocs
         )
         capacidade = sum(
-            HORAS_SEMANA_PADRAO - horas_ausentes_na_semana(ausencias_por_consultor[c.id], seg)
+            capacidade_na_semana(ausencias_por_consultor[c.id], seg)
             for c in consultores
         )
         serie.append(
@@ -208,7 +209,10 @@ def painel_consultor(consultor_id: int, request: Request, session: Session = Dep
     # utilização média das últimas 12 semanas
     base = segunda_da_semana(hoje - timedelta(weeks=11))
     segundas = [base + timedelta(weeks=i) for i in range(12)]
-    utils = [utilizacao_semanal(alocacoes, s)["utilizacao"] for s in segundas]
+    # sem passar as ausências, a MESMA pessoa aparecia com 125% no heatmap e
+    # 50% aqui — dois números para o mesmo fato, e o gestor não sabe em qual crer
+    ausencias = session.exec(select(Ausencia).where(Ausencia.consultor_id == consultor_id)).all()
+    utils = [utilizacao_semanal(alocacoes, s, ausencias)["utilizacao"] for s in segundas]
     utilizacao_media = sum(utils) / len(utils) if utils else 0.0
 
     # mês atual (do dia 1 até hoje)

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import Icone from '../components/Icone'
 import Modal from '../components/Modal'
 import { SkeletonPagina } from '../components/Skeleton'
@@ -22,7 +23,7 @@ export default function Contratos() {
   }, [])
   useEffect(carregar, [carregar])
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={carregar} />
   if (!dados) return <SkeletonPagina />
 
   const mudarStatus = async (c, status) => {

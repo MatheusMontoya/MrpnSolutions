@@ -4,6 +4,7 @@ API REST JSON (OpenAPI em /docs) + frontend React servido de frontend/dist.
 Toda rota /api/* exige token (Authorization: Bearer) exceto o login; mutações
 são gravadas na trilha de auditoria — ambos via middleware abaixo.
 """
+import json
 import os
 from contextlib import asynccontextmanager
 from datetime import datetime
@@ -50,16 +51,21 @@ from .seed import seed_se_vazio
 FRONTEND_DIST = Path(__file__).resolve().parent.parent.parent / "frontend" / "dist"
 
 
-def _carregar_feriados() -> None:
-    """Carrega o calendário corporativo no motor (dias não úteis)."""
+def _carregar_parametros_do_motor() -> None:
+    """Leva para o motor o que a consultoria configurou: feriados, jornada e
+    limiares. Sem isto a tela de Configurações dizia "Salvo" e o cálculo
+    continuava usando as constantes do código."""
     from sqlmodel import Session, select
 
     from .database import engine
-    from .models import Feriado
-    from .services.receita import definir_feriados
+    from .models import Configuracao, Feriado
+    from .services.receita import definir_feriados, definir_parametros
 
     with Session(engine) as s:
         definir_feriados(f.data for f in s.exec(select(Feriado)).all())
+        cfg = s.exec(select(Configuracao)).first()
+        if cfg:
+            definir_parametros(cfg.jornada_semanal, cfg.limiar_super, cfg.limiar_ocioso)
 
 
 def _garantir_modelo_padrao() -> None:
@@ -104,9 +110,9 @@ async def lifespan(app: FastAPI):
     # acontecer em toda subida. Se o schema ainda não existe, o app sobe e
     # responde erro claro em vez de morrer na inicialização.
     try:
-        _carregar_feriados()
+        _carregar_parametros_do_motor()
     except Exception as e:  # noqa: BLE001
-        print(f"[RunRate] feriados não carregados ({e}). Rodou o bootstrap do banco?")
+        print(f"[RunRate] parâmetros do motor não carregados ({e}). Rodou o bootstrap?")
     yield
 
 
@@ -143,6 +149,42 @@ def saude():
         )
 
 
+# Campos que NUNCA entram na trilha, mesmo em resumo. A auditoria é lida pelo
+# CEO na tela de Auditoria; gravar senha ali seria criar um segundo lugar de
+# onde vazar credencial.
+CAMPOS_SIGILOSOS = {
+    "senha", "senha_nova", "senha_atual", "password", "token",
+    "chave_anthropic", "api_key", "secret",
+}
+LIMITE_DETALHE = 400
+
+
+def resumir_corpo(bruto: bytes) -> str:
+    """Resumo legível do corpo da requisição, com os campos sigilosos mascarados.
+
+    O campo existia no modelo desde o início e nunca era preenchido: a trilha
+    dizia "PATCH /api/faturas/12" sem dizer se a fatura foi emitida, recebida ou
+    cancelada — o que torna a auditoria inútil justamente onde ela importa.
+    """
+    if not bruto or len(bruto) > 100_000:
+        return ""
+    try:
+        dados = json.loads(bruto)
+    except (ValueError, UnicodeDecodeError):
+        return ""
+    if not isinstance(dados, dict):
+        return ""
+    limpo = {
+        k: ("***" if k.lower() in CAMPOS_SIGILOSOS else v)
+        for k, v in dados.items()
+    }
+    try:
+        texto = json.dumps(limpo, ensure_ascii=False, default=str)
+    except (TypeError, ValueError):
+        return ""
+    return texto[:LIMITE_DETALHE]
+
+
 @app.middleware("http")
 async def autenticacao_e_auditoria(request: Request, call_next):
     """Exige token em /api/* (exceto login) e registra mutações na auditoria."""
@@ -166,6 +208,18 @@ async def autenticacao_e_auditoria(request: Request, call_next):
             return JSONResponse({"detail": "Não autenticado"}, status_code=401)
         request.state.usuario = dados
 
+    corpo = b""
+    if protegida and request.method in ("POST", "PATCH", "DELETE"):
+        # Ler o corpo aqui CONSOME o stream: sem devolver um `receive` que o
+        # reemite, a rota lá na frente receberia um corpo vazio e todo POST
+        # quebraria com 422.
+        corpo = await request.body()
+
+        async def reemitir() -> dict:
+            return {"type": "http.request", "body": corpo, "more_body": False}
+
+        request._receive = reemitir
+
     resposta = await call_next(request)
 
     if protegida and request.method in ("POST", "PATCH", "DELETE"):
@@ -180,6 +234,7 @@ async def autenticacao_e_auditoria(request: Request, call_next):
                 metodo=request.method,
                 caminho=caminho,
                 status=resposta.status_code,
+                detalhe=resumir_corpo(corpo),
             ))
             s.commit()
     return resposta

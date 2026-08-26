@@ -8,6 +8,7 @@ from ..models import (
     Alocacao,
     Apontamento,
     Ausencia,
+    Cliente,
     Configuracao,
     Consultor,
     Despesa,
@@ -19,6 +20,7 @@ from ..models import (
     StatusEnvio,
     StatusPendencia,
     StatusProjeto,
+    Usuario,
 )
 from ..services.projetos import fase_atual
 from ..services.receita import (
@@ -124,8 +126,22 @@ def dashboard(session: Session = Depends(get_session)):
         session.exec(select(Pendencia).where(Pendencia.status != StatusPendencia.resolvida)).all()
     )
 
+    # --- primeiros passos ---
+    # Numa consultoria que acabou de entrar, TODO número acima é zero e a tela
+    # não diz o que fazer a seguir. Estes contadores deixam o frontend trocar o
+    # painel de zeros por um roteiro na ordem em que o produto depende deles.
+    contagem = {
+        "consultores": len(session.exec(select(Consultor)).all()),
+        "clientes": len(session.exec(select(Cliente)).all()),
+        "projetos": len(session.exec(select(Projeto)).all()),
+        "alocacoes": len(alocacoes),
+        "apontamentos": len(apontamentos),
+        "usuarios": len(session.exec(select(Usuario)).all()),
+    }
+
     return {
         "hoje": hoje.isoformat(),
+        "primeiros_passos": contagem,
         "semana_corrente": segunda.isoformat(),
         "aprovacoes_pendentes": aprovacoes_pendentes,
         "pendencias_abertas": pendencias_abertas,

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import Icone from '../components/Icone'
 import Modal from '../components/Modal'
 import { SkeletonPagina } from '../components/Skeleton'
@@ -101,6 +102,16 @@ export default function Consultores() {
   const [capacidade, setCapacidade] = useState(null)
   const [erro, setErro] = useState(null)
   const [modalNovo, setModalNovo] = useState(false)
+  const [params, setParams] = useSearchParams()
+
+  // "+ Novo" e o roteiro de primeiro uso chegam como ?novo=1 e já abrem o formulário
+  useEffect(() => {
+    if (params.get('novo')) {
+      setModalNovo(true)
+      params.delete('novo')
+      setParams(params, { replace: true })
+    }
+  }, [params, setParams])
 
   const carregar = () => {
     api.get('/consultores/utilizacao?semanas=12').then(setDados).catch((e) => setErro(e.message))
@@ -108,7 +119,7 @@ export default function Consultores() {
   }
   useEffect(carregar, [])
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={carregar} />
   if (!dados) return <SkeletonPagina />
 
   return (

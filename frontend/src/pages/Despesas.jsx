@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import BotaoExportar from '../components/BotaoExportar'
 import Icone from '../components/Icone'
 import Modal from '../components/Modal'
 import { SkeletonPagina } from '../components/Skeleton'
 import { fmtBRLExato, fmtData } from '../format'
 import { useSessao } from '../sessao'
+import { confirmarE } from '../avisos'
 
 const TIPOS = {
   deslocamento: 'Deslocamento',
@@ -54,7 +56,7 @@ export default function Despesas() {
     api.get('/configuracoes').then((c) => setTaxaKm(c.taxa_km)).catch(() => {})
   }, [carregar])
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={carregar} />
   if (!despesas) return <SkeletonPagina />
 
   const totalPendente = despesas.filter((d) => d.status === 'pendente').reduce((s, d) => s + d.valor, 0)
@@ -134,7 +136,11 @@ export default function Despesas() {
                       <td>
                         {d.status === 'pendente' && (
                           <button className="botao botao-fantasma botao-pequeno"
-                            onClick={async () => { await api.del(`/despesas/${d.id}`); carregar() }}>
+                            onClick={() => confirmarE(
+                              `Remover a despesa de ${fmtBRLExato(d.valor)}? Não há como desfazer.`,
+                              async () => { await api.del(`/despesas/${d.id}`); carregar() },
+                              { sucesso: 'Despesa removida.' },
+                            )}>
                             Remover
                           </button>
                         )}

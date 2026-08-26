@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import Icone from '../components/Icone'
 import Modal from '../components/Modal'
 import { SkeletonPagina } from '../components/Skeleton'
 import { fmtData } from '../format'
 import { useSessao } from '../sessao'
+import { confirmarE } from '../avisos'
 
 const TIPOS = {
   ferias: 'Férias',
@@ -34,7 +36,7 @@ export default function Ausencias() {
 
   useEffect(carregar, [carregar])
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={carregar} />
   if (!ausencias) return <SkeletonPagina />
 
   return (
@@ -83,7 +85,11 @@ export default function Ausencias() {
                       <td>
                         {a.status === 'pendente' && (
                           <button className="botao botao-fantasma botao-pequeno"
-                            onClick={async () => { await api.del(`/ausencias/${a.id}`); carregar() }}>
+                            onClick={() => confirmarE(
+                              `Cancelar o pedido de ${TIPOS[a.tipo] || a.tipo} de ${fmtData(a.data_inicio)} a ${fmtData(a.data_fim)}?`,
+                              async () => { await api.del(`/ausencias/${a.id}`); carregar() },
+                              { sucesso: 'Pedido cancelado.' },
+                            )}>
                             Cancelar
                           </button>
                         )}

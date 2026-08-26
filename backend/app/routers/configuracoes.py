@@ -1,7 +1,7 @@
 from datetime import date
 
 from fastapi import APIRouter, Depends, HTTPException, Request
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlmodel import Session, select
 
 from ..database import get_session
@@ -10,6 +10,28 @@ from ..models import Configuracao, Feriado
 from ..services.receita import definir_feriados
 
 router = APIRouter(prefix="/api/configuracoes", tags=["Configurações"])
+
+
+class ConfiguracaoUpdate(BaseModel):
+    """Campos editáveis, com faixa. Antes era `dados: dict` com setattr em laço:
+    jornada negativa, limiar acima de 1 e meta de margem absurda entravam sem
+    reclamação e envenenavam o cálculo de utilização da empresa inteira."""
+
+    nome_consultoria: str | None = Field(default=None, min_length=1, max_length=200)
+    cnpj: str | None = None
+    jornada_semanal: float | None = Field(default=None, gt=0, le=168)
+    limiar_super: float | None = Field(default=None, gt=0, le=5)
+    limiar_ocioso: float | None = Field(default=None, gt=0, le=1)
+    meta_margem: float | None = Field(default=None, ge=0, le=1)
+    taxa_junior: float | None = Field(default=None, ge=0)
+    taxa_pleno: float | None = Field(default=None, ge=0)
+    taxa_senior: float | None = Field(default=None, ge=0)
+    taxa_km: float | None = Field(default=None, ge=0)
+    formato_data: str | None = None
+    moeda: str | None = None
+    fuso: str | None = None
+    anthropic_api_key: str | None = None
+    modelo_ia: str | None = None
 
 
 class FeriadoCreate(BaseModel):
@@ -92,12 +114,17 @@ def obter_configuracao(request: Request, session: Session = Depends(get_session)
 
 
 @router.patch("", response_model=Configuracao, dependencies=[Depends(exigir_ceo)])
-def atualizar_configuracao(dados: dict, session: Session = Depends(get_session)):
+def atualizar_configuracao(dados: ConfiguracaoUpdate, session: Session = Depends(get_session)):
     cfg = _obter_ou_criar(session)
-    for campo, valor in dados.items():
-        if hasattr(cfg, campo) and campo != "id":
+    # exclude_unset: só grava o que veio, sem zerar o resto com os defaults
+    for campo, valor in dados.model_dump(exclude_unset=True).items():
+        if valor is not None:
             setattr(cfg, campo, valor)
     session.add(cfg)
     session.commit()
     session.refresh(cfg)
+    # recarrega o motor na hora: sem isto a mudança só valeria no próximo deploy
+    from ..services.receita import definir_parametros
+
+    definir_parametros(cfg.jornada_semanal, cfg.limiar_super, cfg.limiar_ocioso)
     return cfg

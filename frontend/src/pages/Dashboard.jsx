@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import GraficoBarras from '../components/GraficoBarras'
 import Icone from '../components/Icone'
+import PrimeirosPassos from '../components/PrimeirosPassos'
 import { SkeletonPagina } from '../components/Skeleton'
 import { SENIORIDADE, corFase, fmtBRL, fmtData, fmtHoras, fmtPct, iniciais } from '../format'
 
@@ -30,8 +32,13 @@ export default function Dashboard() {
     api.get('/apontamentos/atividades?limite=10').then(setAtividades).catch(() => setAtividades([]))
   }, [])
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={() => window.location.reload()} />
   if (!dados) return <SkeletonPagina kpis />
+
+  // Sem alocação o motor não tem o que calcular: todo cartão abaixo seria R$ 0,00
+  // e a tela não diria por quê. O roteiro assume o lugar até a base existir.
+  const passos = dados.primeiros_passos
+  const semBase = passos && passos.alocacoes === 0
 
   const totalPrevisto = dados.receita_mensal.reduce((s, m) => s + m.prevista, 0)
   const totalRealizado = dados.receita_mensal.reduce((s, m) => s + m.realizada, 0)
@@ -52,6 +59,8 @@ export default function Dashboard() {
           <Icone d={IC_FAISCA} size={15} /> Ver insights do copiloto
         </Link>
       </div>
+
+      {semBase && <PrimeirosPassos contagem={passos} />}
 
       <div className="grid-kpi">
         <div className="card kpi">

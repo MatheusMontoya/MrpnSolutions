@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import Icone from '../components/Icone'
 import { SkeletonPagina } from '../components/Skeleton'
 
@@ -61,7 +62,7 @@ export default function Copiloto() {
     }
   }
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={() => window.location.reload()} />
   if (!dados || !status) return <SkeletonPagina />
 
   return (

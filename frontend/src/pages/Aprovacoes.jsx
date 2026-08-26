@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import Icone from '../components/Icone'
 import Modal from '../components/Modal'
 import { SkeletonPagina } from '../components/Skeleton'
 import { corFase, fmtBRLExato, fmtData, fmtHoras, iniciais } from '../format'
+import { comAviso } from '../avisos'
 
 const IC_CHECK = ['M20 6 9 17l-5-5']
 const IC_X = ['M18 6 6 18', 'M6 6l12 12']
@@ -32,37 +34,38 @@ export default function Aprovacoes() {
 
   useEffect(carregar, [carregar])
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={carregar} />
   if (!fila) return <SkeletonPagina />
 
-  const decidirEnvio = async (id, status, coment = '') => {
-    try {
+  // A falha vai para o aviso, NUNCA para setErro: aqui a tela já tem a fila
+  // carregada, e trocar tudo por uma página de erro faria o gestor perder a
+  // lista inteira porque uma aprovação não passou.
+  const decidirEnvio = (id, status, coment = '') => comAviso(
+    async () => {
       await api.patch(`/aprovacoes/envios/${id}/decidir`, { status, comentario_gestor: coment })
       setReprovando(null)
       setComentario('')
       carregar()
-    } catch (e) {
-      setErro(e.message)
-    }
-  }
-  const decidirAusencia = async (id, status) => {
-    await api.patch(`/ausencias/${id}/decidir`, { status })
-    carregar()
-  }
-  const decidirDespesa = async (id, status) => {
-    await api.patch(`/despesas/${id}/decidir`, { status })
-    carregar()
-  }
-  const decidirSolicitacao = async (id, status, coment = '') => {
-    try {
+    },
+    { sucesso: status === 'aprovada' ? 'Horas aprovadas.' : 'Horas devolvidas para correção.' },
+  )
+  const decidirAusencia = (id, status) => comAviso(
+    async () => { await api.patch(`/ausencias/${id}/decidir`, { status }); carregar() },
+    { sucesso: status === 'aprovada' ? 'Ausência aprovada.' : 'Ausência recusada.' },
+  )
+  const decidirDespesa = (id, status) => comAviso(
+    async () => { await api.patch(`/despesas/${id}/decidir`, { status }); carregar() },
+    { sucesso: status === 'aprovada' ? 'Reembolso aprovado.' : 'Reembolso recusado.' },
+  )
+  const decidirSolicitacao = (id, status, coment = '') => comAviso(
+    async () => {
       await api.patch(`/solicitacoes-alocacao/${id}/decidir`, { status, comentario_gestor: coment })
       setRecusandoSol(null)
       setComentario('')
       carregar()
-    } catch (e) {
-      setErro(e.message)
-    }
-  }
+    },
+    { sucesso: status === 'aprovada' ? 'Solicitação aprovada.' : 'Solicitação recusada.' },
+  )
 
   const vazio = fila.total_pendente === 0 && fila.reembolsos_pendentes.length === 0
 

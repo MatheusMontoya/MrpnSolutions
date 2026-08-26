@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import BotaoExportar from '../components/BotaoExportar'
 import Icone from '../components/Icone'
 import { SkeletonPagina } from '../components/Skeleton'
 import { fmtBRL, fmtBRLExato, fmtData, fmtMes } from '../format'
+import { comAviso, confirmarE } from '../avisos'
 
 const IC_GERAR = ['M23 4v6h-6', 'M1 20v-6h6', 'M3.51 9a9 9 0 0 1 14.85-3.36L23 10', 'M1 14l4.64 4.36A9 9 0 0 0 20.49 15']
 const IC_EMITIR = ['M22 2 11 13', 'M22 2 15 22l-4-9-9-4 20-7z']
@@ -24,6 +26,7 @@ export default function Financeiro({ aba = 'faturamento' }) {
   const [projetos, setProjetos] = useState([])
   const [projetoId, setProjetoId] = useState('') // '' = todos
   const [erro, setErro] = useState(null)
+  const [editandoNF, setEditandoNF] = useState(null) // { id, valor }
 
   const carregar = useCallback(() => {
     const q = projetoId ? `?projeto_id=${projetoId}` : ''
@@ -35,24 +38,39 @@ export default function Financeiro({ aba = 'faturamento' }) {
     api.get('/projetos').then(setProjetos).catch(() => {})
   }, [carregar])
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={carregar} />
   if (!dados) return <SkeletonPagina kpis />
 
   const faturas = receber
     ? dados.faturas.filter((f) => f.status === 'emitida')
     : dados.faturas.filter((f) => f.status !== 'cancelada')
 
-  const gerarPlano = async () => {
-    try {
-      await api.post(`/projetos/${projetoId}/faturas/gerar`, {})
-      carregar()
-    } catch (e) { setErro(e.message) }
-  }
-  const mudarStatus = async (f, status) => {
-    try {
-      await api.patch(`/faturas/${f.id}`, { status })
-      carregar()
-    } catch (e) { setErro(e.message) }
+  const gerarPlano = () => comAviso(
+    async () => { await api.post(`/projetos/${projetoId}/faturas/gerar`, {}); carregar() },
+    { sucesso: 'Plano de faturas atualizado.' },
+  )
+  // o número da nota chega do sistema fiscal DEPOIS da emissão: é edição
+  // solta, sem confirmação — errar aqui se corrige digitando de novo
+  const salvarNumero = (f, numero) => comAviso(
+    async () => {
+      if ((numero || '').trim() !== (f.numero || '')) {
+        await api.patch(`/faturas/${f.id}`, { numero })
+        carregar()
+      }
+      setEditandoNF(null)
+    },
+  )
+
+  // emitir e receber movimentam dinheiro e não têm desfazer na tela
+  const mudarStatus = (f, status) => {
+    const pergunta = {
+      emitida: `Emitir a fatura de ${fmtBRLExato(f.valor)} de ${f.projeto}?`,
+      recebida: `Dar baixa no recebimento de ${fmtBRLExato(f.valor)} de ${f.projeto}?`,
+      cancelada: `Cancelar a fatura de ${fmtBRLExato(f.valor)}?`,
+    }[status]
+    const executar = async () => { await api.patch(`/faturas/${f.id}`, { status }); carregar() }
+    const opcoes = { sucesso: `Fatura marcada como ${status}.` }
+    return pergunta ? confirmarE(pergunta, executar, opcoes) : comAviso(executar, opcoes)
   }
 
   return (
@@ -139,7 +157,16 @@ export default function Financeiro({ aba = 'faturamento' }) {
                         <span className={`badge ${cls}`}>{rotulo}</span>
                         {f.vencida && <span className="badge badge-vermelho" style={{ marginLeft: 6 }}>vencida há {f.dias_vencida}d</span>}
                       </td>
-                      <td className="mono texto-3" style={{ fontSize: 12 }}>{f.numero || '—'}</td>
+                      <td className="mono" style={{ fontSize: 12 }}>
+                        <NumeroNota
+                          fatura={f}
+                          editando={editandoNF?.id === f.id ? editandoNF.valor : null}
+                          aoAbrir={() => setEditandoNF({ id: f.id, valor: f.numero || '' })}
+                          aoDigitar={(v) => setEditandoNF({ id: f.id, valor: v })}
+                          aoCancelar={() => setEditandoNF(null)}
+                          aoSalvar={() => salvarNumero(f, editandoNF?.valor ?? '')}
+                        />
+                      </td>
                       <td className="mono texto-2" style={{ fontSize: 12 }}>
                         {receber
                           ? (f.data_vencimento ? fmtData(f.data_vencimento) : '—')
@@ -173,5 +200,40 @@ export default function Financeiro({ aba = 'faturamento' }) {
         </div>
       </div>
     </>
+  )
+}
+
+/* Número da nota fiscal: texto até clicar, campo depois.
+ *
+ * A coluna existia desde sempre e mostrava "—" para todo mundo, porque o único
+ * momento em que a API aceitava o número era o instante da emissão — e nessa
+ * hora a nota ainda nem saiu do sistema fiscal. */
+function NumeroNota({ fatura, editando, aoAbrir, aoDigitar, aoCancelar, aoSalvar }) {
+  // fatura prevista ainda não tem nota: não há o que preencher
+  if (fatura.status === 'prevista' || fatura.status === 'cancelada') {
+    return <span className="texto-3">—</span>
+  }
+  if (editando === null) {
+    return (
+      <button type="button" className="celula-editavel" onClick={aoAbrir}
+        title="Clique para informar o número da nota">
+        {fatura.numero || <span className="texto-3">informar</span>}
+      </button>
+    )
+  }
+  return (
+    <input
+      className="entrada-celula"
+      autoFocus
+      value={editando}
+      aria-label={`Número da nota da fatura de ${fatura.projeto}`}
+      placeholder="000000"
+      onChange={(e) => aoDigitar(e.target.value)}
+      onBlur={aoSalvar}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') { e.preventDefault(); e.currentTarget.blur() }
+        else if (e.key === 'Escape') { aoCancelar() }
+      }}
+    />
   )
 }

@@ -13,6 +13,7 @@ from sqlmodel import Session, select
 
 from ..models import HORAS_SEMANA_PADRAO, Alocacao, Ausencia, StatusAprovacao
 from .receita import (
+    capacidade_na_semana,
     dias_uteis,
     horas_alocadas_na_semana,
     horas_ausentes_na_semana,
@@ -64,7 +65,7 @@ def detectar_conflitos(
         horas_pedido = horas_alocadas_na_semana(pedido, seg)
         if horas_pedido > 0:
             existentes = sum(horas_alocadas_na_semana(a, seg) for a in alocacoes)
-            capacidade = HORAS_SEMANA_PADRAO - horas_ausentes_na_semana(ausencias, seg)
+            capacidade = capacidade_na_semana(ausencias, seg)
             total = existentes + horas_pedido
             if total > capacidade:
                 semanas_conflito.append({

@@ -33,6 +33,7 @@ from ..models import (
     StatusRisco,
 )
 from .receita import (
+    capacidade_na_semana,
     horas_alocadas_na_semana,
     horas_ausentes_na_semana,
     segunda_da_semana,
@@ -91,9 +92,7 @@ def gerar_insights(session: Session) -> list[dict]:
         seg = base + timedelta(weeks=i)
         demanda = sum(horas_alocadas_na_semana(a, seg) for a in alocacoes)
         capacidade = sum(
-            HORAS_SEMANA_PADRAO - horas_ausentes_na_semana(
-                [x for x in ausencias if x.consultor_id == c.id], seg
-            )
+            capacidade_na_semana([x for x in ausencias if x.consultor_id == c.id], seg)
             for c in consultores
         )
         if demanda > capacidade:

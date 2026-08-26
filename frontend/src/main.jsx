@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 // única: os números usam as figuras tabulares dela, sem monoespaçado nem reserva.
 import '@fontsource-variable/figtree'
 import App from './App'
+import Avisos from './avisos'
 import { SessaoProvider } from './sessao'
 import { SidebarProvider } from './sidebar'
 import { TemaProvider } from './tema'
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <SidebarProvider>
           <SessaoProvider>
             <App />
+            <Avisos />
           </SessaoProvider>
         </SidebarProvider>
       </TemaProvider>

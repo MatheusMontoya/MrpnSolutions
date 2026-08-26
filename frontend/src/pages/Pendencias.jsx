@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import BotaoExportar from '../components/BotaoExportar'
 import Icone from '../components/Icone'
 import Modal from '../components/Modal'
@@ -28,7 +29,7 @@ export default function Pendencias() {
 
   useEffect(carregar, [carregar])
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={carregar} />
   if (!pendencias) return <SkeletonPagina />
 
   const visiveis = filtro === 'abertas' ? pendencias.filter((p) => p.status !== 'resolvida') : pendencias

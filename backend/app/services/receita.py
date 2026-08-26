@@ -12,8 +12,28 @@ from datetime import date, timedelta
 
 from ..models import HORAS_SEMANA_PADRAO
 
+# Parâmetros da consultoria. Editáveis em Configurações e carregados no motor
+# pelo definir_parametros() — antes eram constantes e a tela dizia "Salvo" sem
+# que nada mudasse no cálculo.
 LIMIAR_SUPERALOCADO = 1.0  # >100% da jornada
 LIMIAR_OCIOSO = 0.6  # <60% da jornada
+_JORNADA = HORAS_SEMANA_PADRAO
+
+
+def definir_parametros(jornada: float | None = None, limiar_super: float | None = None,
+                       limiar_ocioso: float | None = None) -> None:
+    """Carrega no motor os parâmetros configurados pela consultoria."""
+    global _JORNADA, LIMIAR_SUPERALOCADO, LIMIAR_OCIOSO
+    if jornada and jornada > 0:
+        _JORNADA = float(jornada)
+    if limiar_super and limiar_super > 0:
+        LIMIAR_SUPERALOCADO = float(limiar_super)
+    if limiar_ocioso and limiar_ocioso > 0:
+        LIMIAR_OCIOSO = float(limiar_ocioso)
+
+
+def jornada_semanal() -> float:
+    return _JORNADA
 
 # Feriados do calendário corporativo (carregados do banco no startup e após
 # edição em Configurações). Mantido como registro de módulo para que TODO o
@@ -103,21 +123,41 @@ def horas_alocadas_na_semana(alocacao, segunda: date) -> float:
     return dias_uteis(inicio, fim) * (alocacao.horas_semana / 5.0)
 
 
-def horas_ausentes_na_semana(ausencias, segunda: date, horas_dia: float = HORAS_SEMANA_PADRAO / 5) -> float:
-    """Horas de capacidade perdidas na semana por ausências APROVADAS.
+def dias_ausentes_na_semana(ausencias, segunda: date) -> set:
+    """Dias ÚTEIS DISTINTOS de ausência aprovada na semana.
 
-    Conta os dias úteis da semana dentro do período de cada ausência × horas/dia.
-    `ausencias` é iterável de objetos com data_inicio, data_fim e status.
+    Conjunto, e não soma, por um motivo concreto: duas ausências aprovadas que
+    se sobrepõem — férias emendada com folga, por exemplo — eram contadas em
+    dobro, a capacidade sumia e a pessoa aparecia como falso 'superalocado'.
     """
     sexta = segunda + timedelta(days=4)
-    total = 0.0
-    for aus in ausencias:
+    dias = set()
+    for aus in ausencias or []:
         if getattr(aus, "status", "aprovada") != "aprovada":  # str-enum compara direto
             continue
-        inicio = max(aus.data_inicio, segunda)
+        d = max(aus.data_inicio, segunda)
         fim = min(aus.data_fim, sexta)
-        total += dias_uteis(inicio, fim) * horas_dia
-    return min(total, HORAS_SEMANA_PADRAO)
+        while d <= fim:
+            if eh_dia_util(d):
+                dias.add(d)
+            d += timedelta(days=1)
+    return dias
+
+
+def horas_ausentes_na_semana(ausencias, segunda: date, horas_dia: float | None = None) -> float:
+    """Horas de capacidade perdidas na semana por ausências APROVADAS."""
+    hd = horas_dia if horas_dia is not None else _JORNADA / 5
+    return len(dias_ausentes_na_semana(ausencias, segunda)) * hd
+
+
+def capacidade_na_semana(ausencias, segunda: date) -> float:
+    """Capacidade REAL da semana: dias úteis (já sem feriado) menos os dias de
+    ausência aprovada, em horas. Ponto único — a fórmula estava repetida em
+    quatro arquivos e o feriado ficou de fora em todos."""
+    horas_dia = _JORNADA / 5
+    uteis = dias_uteis(segunda, segunda + timedelta(days=4))
+    ausentes = len(dias_ausentes_na_semana(ausencias, segunda))
+    return max(0.0, (uteis - ausentes) * horas_dia)
 
 
 def utilizacao_semanal(alocacoes, segunda: date, ausencias=None) -> dict:
@@ -128,12 +168,19 @@ def utilizacao_semanal(alocacoes, segunda: date, ausencias=None) -> dict:
     haja horas alocadas, o que caracteriza superalocação (alocado durante férias).
     """
     horas = sum(horas_alocadas_na_semana(a, segunda) for a in alocacoes)
-    ausentes = horas_ausentes_na_semana(ausencias or [], segunda)
-    capacidade = HORAS_SEMANA_PADRAO - ausentes
+    # O numerador já descontava feriado (horas_alocadas usa dias_uteis); o
+    # denominador usava a jornada cheia. Numa semana com feriado, quem estava
+    # 100% alocado aparecia com 80% — e um dia de férias nessa semana era
+    # descontado duas vezes.
+    horas_dia = _JORNADA / 5
+    uteis = dias_uteis(segunda, segunda + timedelta(days=4))
+    ausentes_dias = len(dias_ausentes_na_semana(ausencias, segunda))
+    ausentes = ausentes_dias * horas_dia
+    capacidade = max(0.0, (uteis - ausentes_dias) * horas_dia)
 
     if capacidade <= 0:
         status = "superalocado" if horas > 0 else "ausente"
-        utilizacao = horas / HORAS_SEMANA_PADRAO if horas > 0 else 0.0
+        utilizacao = horas / _JORNADA if horas > 0 else 0.0
     else:
         utilizacao = horas / capacidade
         if utilizacao > LIMIAR_SUPERALOCADO:

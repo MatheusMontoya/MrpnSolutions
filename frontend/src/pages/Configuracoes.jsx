@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import Icone from '../components/Icone'
 import Modal from '../components/Modal'
 import { SkeletonPagina } from '../components/Skeleton'
 import { corFase, fmtBRLExato } from '../format'
 import { useTema } from '../tema'
+import { confirmarE } from '../avisos'
 
 const ICONES = {
   voltar: ['M19 12H5', 'M12 19l-7-7 7-7'],
@@ -187,7 +189,7 @@ export default function Configuracoes() {
     }, 3200)
   }
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={carregar} />
   if (!form) return <SkeletonPagina />
 
   const pct = (v) => Math.round((v ?? 0) * 100)
@@ -645,13 +647,15 @@ Digite o número:`,
     } catch (err) { setErro(err.message) }
   }
 
-  const redefinirSenha = async (u) => {
+  const redefinirSenha = (u) => {
     const senha = window.prompt(`Nova senha para ${u.nome} (mín. 6 caracteres):`)
     if (!senha) return
-    setErro(null)
-    try {
-      await api.patch(`/usuarios/${u.id}`, { senha })
-    } catch (err) { setErro(err.message) }
+    // sem retorno na tela, o gestor não sabia se a troca valeu — e a senha
+    // antiga já não funcionava mais
+    return comAviso(
+      () => api.patch(`/usuarios/${u.id}`, { senha }),
+      { sucesso: `Senha de ${u.nome} redefinida. As sessões abertas dela foram encerradas.` },
+    )
   }
 
   return (
@@ -833,13 +837,11 @@ function SecaoModelos() {
     } catch (err) { setErro(err.message) }
   }
 
-  const remover = async (m) => {
-    setErro(null)
-    try {
-      await api.del(`/modelos/${m.id}`)
-      carregar()
-    } catch (err) { setErro(err.message) }
-  }
+  const remover = (m) => confirmarE(
+    `Excluir o modelo “${m.nome}”? Projetos já criados a partir dele não mudam.`,
+    async () => { await api.del(`/modelos/${m.id}`); carregar() },
+    { sucesso: 'Modelo excluído.' },
+  )
 
   return (
     <>
@@ -930,7 +932,10 @@ function ModalEditorModelo({ modelo, onFechar }) {
       recarregar()
     } catch (err) { setErro(err.message) }
   }
-  const delEntrega = async (a) => { await api.del(`/modelos/atividades/${a.id}`); recarregar() }
+  const delEntrega = (a) => confirmarE(
+    `Remover a entrega “${a.titulo}” do modelo?`,
+    async () => { await api.del(`/modelos/atividades/${a.id}`); recarregar() },
+  )
   const addGate = async (e) => {
     e.preventDefault()
     setErro(null)
@@ -940,7 +945,10 @@ function ModalEditorModelo({ modelo, onFechar }) {
       recarregar()
     } catch (err) { setErro(err.message) }
   }
-  const delGate = async (g) => { await api.del(`/modelos/gates/${g.id}`); recarregar() }
+  const delGate = (g) => confirmarE(
+    `Remover o gate “${g.codigo}” do modelo?`,
+    async () => { await api.del(`/modelos/gates/${g.id}`); recarregar() },
+  )
 
   return (
     <Modal extraLarga titulo={`Modelo — ${detalhe.nome}`} onFechar={onFechar}
@@ -1026,10 +1034,11 @@ function SecaoFeriados() {
       carregar()
     } catch (err) { setErro(err.message) }
   }
-  const remover = async (f) => {
-    await api.del(`/configuracoes/feriados/${f.id}`)
-    carregar()
-  }
+  const remover = (f) => confirmarE(
+    `Remover o feriado “${f.nome}”? Ele volta a contar como dia útil no cálculo de capacidade.`,
+    async () => { await api.del(`/configuracoes/feriados/${f.id}`); carregar() },
+    { sucesso: 'Feriado removido.' },
+  )
 
   const fmtDia = (iso) => {
     const [ano, mes, dia] = iso.split('-')

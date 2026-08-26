@@ -4,6 +4,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 os.environ["DATABASE_URL"] = "sqlite://"  # em memória, isolado por engine
+# Hash barato SÓ nos testes. Produção usa as 600k da recomendação OWASP; aqui o
+# que interessa é o fluxo de login, não o custo do hash — com 600k a suíte
+# levava 199s contra 77s.
+os.environ.setdefault("RUNRATE_PBKDF2_ITER", "1000")
 
 import pytest
 from sqlmodel import Session, SQLModel, create_engine

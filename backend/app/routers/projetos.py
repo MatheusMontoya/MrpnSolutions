@@ -1,7 +1,7 @@
 from datetime import date
 
 from fastapi import APIRouter, Depends, HTTPException, Request
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from sqlmodel import Session, select
 
 from ..database import get_session
@@ -27,6 +27,11 @@ class ProjetoCreate(BaseModel):
     data_inicio: date
     status: StatusProjeto = StatusProjeto.ativo
     modelo_id: int | None = None  # None = templates padrão do Activate
+
+
+class ProjetoUpdate(BaseModel):
+    nome: str | None = Field(default=None, min_length=1, max_length=200)
+    status: StatusProjeto | None = None
 
 
 class FaseUpdate(BaseModel):
@@ -223,18 +228,35 @@ def evm_do_projeto(projeto_id: int, session: Session = Depends(get_session)):
     if not p:
         raise HTTPException(404, "Projeto não encontrado")
     despesas = session.exec(select(Despesa).where(Despesa.projeto_id == projeto_id)).all()
-    return calcular_evm(p, despesas)
+    # o orçado das rubricas que NÃO são horas entra no BAC, para o CPI comparar
+    # o mesmo escopo de custo que o AC já contabiliza
+    from ..models import CategoriaOrcamento, ItemOrcamento
+
+    orcado_despesas = sum(
+        i.valor_orcado for i in session.exec(
+            select(ItemOrcamento).where(ItemOrcamento.projeto_id == projeto_id)
+        ).all()
+        if i.categoria != CategoriaOrcamento.horas
+    )
+    return calcular_evm(p, despesas, orcamento_despesas=orcado_despesas)
 
 
 @router.patch("/projetos/{projeto_id}", dependencies=[Depends(exigir_ceo)])
-def atualizar_projeto(projeto_id: int, dados: dict, session: Session = Depends(get_session)):
+def atualizar_projeto(
+    projeto_id: int, dados: ProjetoUpdate, session: Session = Depends(get_session)
+):
+    """Renomeia ou muda o status. Só isso — orçamento e datas têm rota própria.
+
+    Recebia `dict` cru: um status inválido virava ValueError (500 na cara do
+    usuário) em vez de 422, e o corpo podia carregar qualquer chave.
+    """
     p = session.get(Projeto, projeto_id)
     if not p:
         raise HTTPException(404, "Projeto não encontrado")
-    if "status" in dados:
-        p.status = StatusProjeto(dados["status"])
-    if "nome" in dados:
-        p.nome = dados["nome"]
+    if dados.status is not None:
+        p.status = dados.status
+    if dados.nome is not None:
+        p.nome = dados.nome
     session.add(p)
     session.commit()
     return {"ok": True}

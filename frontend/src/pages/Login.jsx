@@ -21,10 +21,12 @@ const DEMOS = [
 const DESTINO_POS_LOGIN = { ceo: '/dashboard', rh: '/aprovacoes', consultor: '/apontamento' }
 const SENHA_DEMO = 'psa123'
 
-// O bloco de credenciais fica visível por padrão (é um ambiente de demonstração).
-// Quando isto virar instância de cliente, basta VITE_DEMO=0 nas variáveis da
-// Vercel: some da tela sem mexer em código.
-const MOSTRAR_DEMO = import.meta.env.VITE_DEMO !== '0'
+// O bloco de credenciais é OPT-IN: só aparece com VITE_DEMO=1.
+// Era o contrário — aparecia por padrão e sumia com VITE_DEMO=0 —, o que faz
+// qualquer deploy novo nascer anunciando contas de teste na tela de entrada.
+// Numa instância real essas contas nem existem: o visitante clica, recebe
+// "e-mail ou senha inválidos" e conclui que o sistema está quebrado.
+const MOSTRAR_DEMO = import.meta.env.VITE_DEMO === '1'
 
 export default function Login() {
   const nav = useNavigate()
@@ -88,9 +90,15 @@ export default function Login() {
               value={form.senha}
               onChange={(e) => setForm({ ...form, senha: e.target.value })}
             />
-            {/* não existe autoatendimento de senha: quem redefine é o gestor,
-                em Configurações › Usuários. Dizer isso evita um link morto. */}
-            <p className="campo-ajuda">Esqueceu a senha? O gestor da conta redefine em Configurações.</p>
+            {/* Não há autoatendimento de senha: quem redefine é o CEO, em
+                Configurações › Usuários. Dizer isso evita um link morto — e a
+                segunda frase existe porque o próprio CEO não tem a quem pedir:
+                para ele a saída é `python -m app.redefinir_senha`, documentada
+                no DEPLOY.md. */}
+            <p className="campo-ajuda">
+              Esqueceu a senha? O CEO redefine em Configurações › Usuários.
+              Se você <em>é</em> o CEO, a redefinição é feita pelo servidor — veja o DEPLOY.md.
+            </p>
           </div>
 
           <button

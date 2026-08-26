@@ -89,7 +89,7 @@ e o `dist`.
    | --- | --- |
    | `DATABASE_URL` | a string do pooler do Supabase (porta 6543) |
    | `ANTHROPIC_API_KEY` | opcional — só se quiser o copiloto com IA |
-   | `VITE_DEMO` | opcional — `0` esconde o bloco de credenciais no login |
+   | `VITE_DEMO` | opcional — `1` **mostra** o bloco de credenciais de demonstração no login. Ausente ou qualquer outro valor: escondido, que é o certo para cliente. |
 
 4. **Deploy.**
 
@@ -120,13 +120,44 @@ entregar em serverless.
 
 ## Antes de virar ambiente de cliente
 
-O deploy acima é uma **demonstração**, e por isso mostra as credenciais na tela.
-Para receber dado real de cliente:
-
-1. `VITE_DEMO=0` nas variáveis da Vercel — o bloco de credenciais sai do login.
-2. Troque as senhas dos usuários semeados — CEO, RH e consultores nascem com `psa123` em
-   **Configurações → Usuários**, ou apague os de demonstração e crie os reais.
+1. **Não defina `VITE_DEMO`.** O bloco de credenciais é opt-in: só aparece com
+   `VITE_DEMO=1`. Se ele estiver na tela de um cliente, é porque alguém ligou.
+2. **`RUNRATE_SEM_DEMO=1` ao rodar o bootstrap.** Sem isso o `seed_se_vazio()`
+   injeta 3 projetos fictícios e 8 logins com senha `psa123` em banco vazio —
+   inclusive depois de uma limpeza.
 3. Ative **Deployment Protection** na Vercel se o ambiente não deve ser público.
+
+---
+
+## Perdeu a senha do CEO
+
+Dentro do produto quem redefine senha é o CEO, em **Configurações → Usuários**.
+Só que o próprio CEO não tem a quem pedir: não há autoatendimento e não existe
+outro gestor. A saída é pelo servidor, e exige o `DATABASE_URL` — ou seja, só
+quem já é dono do ambiente consegue.
+
+```bash
+cd backend
+DATABASE_URL="postgresql://...pooler.supabase.com:6543/postgres" \
+    python -m app.redefinir_senha michel@mrpnachbar.com
+```
+
+Ele pede a senha nova no terminal (sem ecoar e sem deixar rastro no histórico),
+encerra todas as sessões abertas daquela conta e reativa o usuário se ele estiver
+desativado — perder a senha e ter sido invadido se parecem muito.
+
+---
+
+## Política de senha
+
+O hash é PBKDF2-SHA256 e **grava o próprio número de iterações**
+(`pbkdf2_sha256$600000$salt$hash`). Isso existe porque o formato antigo não
+gravava: quando o custo subiu de 200k para 600k, toda senha já cadastrada
+deixaria de conferir de uma vez — o CEO incluído.
+
+Hash antigo continua valendo e é **regravado no padrão atual no primeiro login
+bem-sucedido**, sem pedir nada a quem entrou. Para subir o custo de novo, basta
+mudar `RUNRATE_PBKDF2_ITER`: a migração acontece sozinha, login a login.
 
 ## Limitações conhecidas deste alvo
 

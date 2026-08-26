@@ -1,4 +1,5 @@
 """Testes do motor de receita hora-homem (services/receita.py)."""
+import pytest
 from datetime import date
 
 from app.models import Alocacao, Apontamento, FASES_ACTIVATE
@@ -109,3 +110,56 @@ def test_utilizacao_semana_parcial_conta_proporcional(session, projeto, consulto
                  horas_semana=40, taxa_hora_venda=200)
     u = r.utilizacao_semanal([a], date(2026, 1, 5))
     assert u["horas"] == 24  # qua+qui+sex × 8h
+
+
+# ---------------- capacidade: feriado, sobreposição e jornada ----------------
+
+def test_feriado_entra_no_denominador_da_utilizacao():
+    """O numerador já descontava feriado; o denominador usava a jornada cheia.
+    Numa semana com feriado, quem estava 100% alocado aparecia com 80%."""
+    from app.services.receita import definir_feriados, utilizacao_semanal
+
+    seg = date(2026, 3, 2)
+
+    class A:
+        data_inicio, data_fim, horas_semana = date(2026, 1, 1), date(2026, 12, 31), 40.0
+
+    definir_feriados([])
+    assert utilizacao_semanal([A()], seg)["utilizacao"] == pytest.approx(1.0)
+
+    definir_feriados([date(2026, 3, 4)])  # feriado na quarta
+    u = utilizacao_semanal([A()], seg)["utilizacao"]
+    definir_feriados([])
+    assert u == pytest.approx(1.0), "com feriado, 4 dias alocados sobre 4 dias úteis ainda é 100%"
+
+
+def test_ausencias_sobrepostas_nao_contam_em_dobro():
+    """Férias emendada com folga contava o mesmo dia duas vezes: a capacidade
+    sumia e a pessoa virava falso 'superalocado'."""
+    from app.services.receita import dias_ausentes_na_semana
+
+    seg = date(2026, 3, 2)
+
+    class Aus:
+        def __init__(self, i, f):
+            self.data_inicio, self.data_fim, self.status = i, f, "aprovada"
+
+    sobrepostas = [Aus(date(2026, 3, 2), date(2026, 3, 4)), Aus(date(2026, 3, 3), date(2026, 3, 5))]
+    assert len(dias_ausentes_na_semana(sobrepostas, seg)) == 4, "seg a qui = 4 dias distintos"
+
+
+def test_jornada_configurada_muda_o_calculo():
+    """A tela de Configurações dizia 'Salvo' e o motor seguia com 40h fixas."""
+    from app.services.receita import definir_parametros, jornada_semanal, utilizacao_semanal
+
+    seg = date(2026, 3, 2)
+
+    class A:
+        data_inicio, data_fim, horas_semana = date(2026, 1, 1), date(2026, 12, 31), 30.0
+
+    definir_parametros(jornada=40)
+    assert utilizacao_semanal([A()], seg)["utilizacao"] == pytest.approx(0.75)
+    definir_parametros(jornada=30)
+    assert jornada_semanal() == 30
+    assert utilizacao_semanal([A()], seg)["utilizacao"] == pytest.approx(1.0)
+    definir_parametros(jornada=40)

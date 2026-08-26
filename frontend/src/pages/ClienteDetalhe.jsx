@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import Icone from '../components/Icone'
 import { SkeletonPagina } from '../components/Skeleton'
 import { STATUS_PROJETO, corFase, fmtBRL, fmtData, fmtPct, iniciais } from '../format'
@@ -34,7 +35,7 @@ export default function ClienteDetalhe() {
     api.get(`/clientes/${id}`).then(setCliente).catch((e) => setErro(e.message))
   }, [id])
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={() => window.location.reload()} />
   if (!cliente) return <SkeletonPagina />
 
   const par = parAvatar(cliente.nome)

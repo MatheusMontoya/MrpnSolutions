@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import Icone from '../components/Icone'
 import { SkeletonPagina } from '../components/Skeleton'
 import { fmtHoras } from '../format'
@@ -51,7 +52,7 @@ export default function Agenda() {
     return new Date(ano, m - 1, 1).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' })
   }
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={carregar} />
   if (!agenda) return <SkeletonPagina />
 
   // preenche o vazio antes do dia 1 (calendário começa na segunda)

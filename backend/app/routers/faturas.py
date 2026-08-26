@@ -20,8 +20,15 @@ PRAZO_VENCIMENTO_DIAS = 30
 
 
 class FaturaUpdate(BaseModel):
-    status: StatusFatura
-    numero: str = ""
+    """Ou muda o status, ou só corrige o número da nota — os dois são opcionais.
+
+    O número vem do sistema fiscal DEPOIS que a nota sai, então exigir `status`
+    junto tornava a coluna "Nº" da tela um campo eternamente vazio: só dava para
+    informá-la no instante da emissão, e nunca mais corrigi-la.
+    """
+
+    status: StatusFatura | None = None
+    numero: str | None = None
 
 
 def serializar(f: Fatura, hoje: date | None = None) -> dict:
@@ -116,11 +123,23 @@ def atualizar_fatura(fatura_id: int, dados: FaturaUpdate, session: Session = Dep
         raise HTTPException(404, "Fatura não encontrada")
 
     hoje = date.today()
+
+    if dados.status is None:
+        # correção de número, sem mexer no ciclo de vida da fatura
+        if dados.numero is None:
+            raise HTTPException(422, "Informe o status ou o número da nota")
+        if f.status == StatusFatura.prevista:
+            raise HTTPException(409, "Fatura ainda não emitida não tem número de nota")
+        f.numero = dados.numero.strip()
+        session.add(f)
+        session.commit()
+        return serializar(f)
+
     if dados.status == StatusFatura.emitida:
         if f.status != StatusFatura.prevista:
             raise HTTPException(409, "Só faturas previstas podem ser emitidas")
         f.status = StatusFatura.emitida
-        f.numero = dados.numero or f.numero
+        f.numero = (dados.numero or f.numero or "").strip()
         f.data_emissao = hoje
         f.data_vencimento = hoje + timedelta(days=PRAZO_VENCIMENTO_DIAS)
     elif dados.status == StatusFatura.recebida:

@@ -152,3 +152,37 @@ def test_nova_data_fim_invalida(session, projeto):
         simular_reagendamento(
             session, explore.id, explore.data_inicio_prevista - timedelta(days=1)
         )
+
+
+def test_antecipar_fase_com_alocacao_no_fim_e_recusado(session, projeto, consultor_senior):
+    """Cenário real: um consultor alocado só na SEGUNDA METADE da fase, e a fase
+    é puxada para trás. O fim da alocação cai antes do início dela, dias_uteis
+    devolve 0 e a receita some em silêncio — agora a operação é recusada."""
+    from datetime import timedelta
+
+    import pytest
+
+    from app.models import Alocacao
+    from app.services.reagendamento import aplicar_reagendamento
+
+    fase = projeto.fases[1]
+    meio = fase.data_inicio_prevista + (fase.data_fim_prevista - fase.data_inicio_prevista) // 2
+    aloc = Alocacao(
+        consultor_id=consultor_senior.id, fase_id=fase.id, horas_semana=40,
+        taxa_hora_venda=200,
+        data_inicio=meio,                      # começa no meio da fase
+        data_fim=fase.data_fim_prevista,
+    )
+    session.add(aloc)
+    session.commit()
+    fim_original = aloc.data_fim
+
+    # antecipa o fim da fase para logo depois do início: continua válido para a
+    # fase, mas inverte a alocação que só começava no meio
+    nova_fim = fase.data_inicio_prevista + timedelta(days=1)
+    with pytest.raises(ValueError, match="fim antes do início"):
+        aplicar_reagendamento(session, fase.id, nova_fim)
+
+    session.refresh(aloc)
+    assert aloc.data_fim == fim_original, "nada pode ter sido gravado"
+    assert aloc.data_fim >= aloc.data_inicio

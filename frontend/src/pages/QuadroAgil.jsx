@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import Icone from '../components/Icone'
 import Modal from '../components/Modal'
 import { SkeletonPagina } from '../components/Skeleton'
 import { corFase, fmtData, fmtHoras, fmtPct, iniciais } from '../format'
+import { comAviso, confirmarE } from '../avisos'
 
 const IC = {
   voltar: ['M19 12H5', 'M12 19l-7-7 7-7'],
@@ -54,40 +56,33 @@ export default function QuadroAgil() {
 
   useEffect(carregar, [carregar])
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={carregar} />
   if (!quadro) return <SkeletonPagina />
 
   const sprint = quadro.sprints.find((s) => s.id === sprintSel) ?? null
   const sprintAberta = sprint && sprint.status !== 'encerrada'
 
-  const moverStatus = async (a, status) => {
-    try {
-      await api.patch(`/atividades/${a.id}`, { status })
-      carregar()
-    } catch (e) { setErro(e.message) }
-  }
-  const moverSprint = async (a, sprintId) => {
-    try {
-      await api.patch(`/atividades/${a.id}/sprint`, { sprint_id: sprintId })
-      carregar()
-    } catch (e) { setErro(e.message) }
-  }
-  const iniciar = async (s) => {
-    try {
-      await api.post(`/sprints/${s.id}/iniciar`, {})
-      carregar()
-    } catch (e) { setErro(e.message) }
-  }
-  const encerrar = async (s) => {
-    try {
+  const moverStatus = (a, status) => comAviso(
+    async () => { await api.patch(`/atividades/${a.id}`, { status }); carregar() },
+  )
+  const moverSprint = (a, sprintId) => comAviso(
+    async () => { await api.patch(`/atividades/${a.id}/sprint`, { sprint_id: sprintId }); carregar() },
+  )
+  const iniciar = (s) => confirmarE(
+    `Iniciar a sprint "${s.nome}"? O escopo dela passa a valer como compromisso da equipe.`,
+    async () => { await api.post(`/sprints/${s.id}/iniciar`, {}); carregar() },
+    { sucesso: 'Sprint iniciada.' },
+  )
+  const encerrar = (s) => confirmarE(
+    `Encerrar a sprint "${s.nome}"? O que não foi concluído volta para o backlog.`,
+    async () => {
       const r = await api.post(`/sprints/${s.id}/encerrar`, {})
-      setErro(null)
       carregar()
-      if (r.carry_over > 0) {
-        window.alert(`Sprint encerrada — ${r.carry_over} atividade(s) voltou(aram) ao backlog (carry-over).`)
-      }
-    } catch (e) { setErro(e.message) }
-  }
+      avisar.ok(r.carry_over > 0
+        ? `Sprint encerrada — ${r.carry_over} atividade(s) voltou(aram) ao backlog.`
+        : 'Sprint encerrada — tudo concluído.')
+    },
+  )
 
   return (
     <>

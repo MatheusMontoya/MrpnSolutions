@@ -37,7 +37,8 @@ def _progresso_fisico(fase) -> float:
     return min(real / prev, 1.0) if prev > 0 else 0.0
 
 
-def calcular_evm(projeto: Projeto, despesas: list, hoje: date | None = None) -> dict:
+def calcular_evm(projeto: Projeto, despesas: list, hoje: date | None = None,
+                 orcamento_despesas: float = 0.0) -> dict:
     hoje = hoje or date.today()
     pv = ev = ac = bac = 0.0
     fases = []
@@ -68,11 +69,24 @@ def calcular_evm(projeto: Projeto, despesas: list, hoje: date | None = None) -> 
             "ac": round(ac_fase, 2),
         })
 
-    # despesas reembolsáveis entram no custo real do projeto (nível projeto)
+    # Despesa reembolsável entra no custo real (AC) — e o ORÇADO dela precisa
+    # entrar no BAC junto, senão a conta fica torta: com despesa só no AC, o
+    # CPI (EV/AC) saía subestimado e o EAC (BAC/CPI) inflado em TODO projeto
+    # com reembolso. Sem rubrica de despesa no orçamento, o gasto aparece como
+    # estouro — o que é o comportamento correto, não um erro.
     ac += sum(
         d.valor for d in despesas
         if d.status in (StatusDespesa.aprovada, StatusDespesa.reembolsada)
     )
+    if orcamento_despesas:
+        # o PV/EV da rubrica acompanha o avanço físico do trabalho, para o SPI
+        # não ser distorcido por uma linha que não tem cronograma próprio
+        base_trabalho = bac
+        avanco = (ev / base_trabalho) if base_trabalho else 0.0
+        avanco = min(1.0, max(0.0, avanco))
+        bac += orcamento_despesas
+        pv += orcamento_despesas * avanco
+        ev += orcamento_despesas * avanco
 
     spi = round(ev / pv, 4) if pv > 0 else None
     cpi = round(ev / ac, 4) if ac > 0 else None
@@ -90,5 +104,6 @@ def calcular_evm(projeto: Projeto, despesas: list, hoje: date | None = None) -> 
         "cv": round(ev - ac, 2),
         # estimativa no término mantendo a eficiência atual (EAC = BAC/CPI)
         "eac": round(bac / cpi, 2) if cpi else None,
+        "orcamento_despesas": round(orcamento_despesas, 2),
         "fases": fases,
     }

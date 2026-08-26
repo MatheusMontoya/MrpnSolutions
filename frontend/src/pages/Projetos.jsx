@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { api } from '../api'
+import FalhaAoCarregar from '../components/FalhaAoCarregar'
 import Modal from '../components/Modal'
 import Icone from '../components/Icone'
 import { SkeletonPagina } from '../components/Skeleton'
@@ -85,7 +86,7 @@ export default function Projetos() {
   const inicio = (paginaAtual - 1) * POR_PAGINA
   const visiveis = filtrados.slice(inicio, inicio + POR_PAGINA)
 
-  if (erro) return <div className="mensagem-erro">{erro}</div>
+  if (erro) return <FalhaAoCarregar erro={erro} aoTentarDeNovo={carregar} />
   if (!projetos) return <SkeletonPagina />
 
   return (
