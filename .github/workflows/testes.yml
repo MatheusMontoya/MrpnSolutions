@@ -11,6 +11,11 @@ on:
   pull_request:
     branches: [main]
 
+# Push seguido de push cancela a execução anterior: a que importa é a última.
+concurrency:
+  group: testes-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   backend:
     runs-on: ubuntu-latest
@@ -26,6 +31,22 @@ jobs:
         run: python -m pytest backend/tests -q
       - name: Isolamento entre perfis (o que não pode regredir)
         run: python -m pytest backend/tests/test_isolamento_consultor.py -q
+      # Chamado à parte para aparecer com nome próprio no log: quando quebra, é
+      # porque alguém mudou um modelo e não escreveu a migração.
+      - name: Modelos e migrações batem
+        working-directory: backend
+        run: python -m pytest tests/test_migracoes.py -q
+
+  segredos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # gitleaks precisa do histórico inteiro
+      - name: Nenhum segredo no repositório
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   frontend:
     runs-on: ubuntu-latest

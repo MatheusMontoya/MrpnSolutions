@@ -16,7 +16,7 @@ from fastapi.staticfiles import StaticFiles
 from sqlmodel import Session
 
 from . import database
-from .database import USA_SQLITE, criar_tabelas
+from .database import USA_SQLITE, aplicar_migracoes
 from .seguranca import exigir_ceo, exigir_gestao
 from .routers import (
     agil,
@@ -88,7 +88,10 @@ def preparar_banco() -> None:
     subida do processo: em serverless dois cold starts simultâneos correriam no
     CREATE TYPE dos enums e poderiam semear o banco duas vezes.
     """
-    criar_tabelas()
+    # O schema vem das MIGRAÇÕES, não do create_all: create_all cria tabela
+    # nova mas não altera coluna existente, então o primeiro "adicionar um
+    # campo" com dado real dentro não teria caminho seguro.
+    aplicar_migracoes()
     if os.environ.get("RUNRATE_SEM_DEMO") == "1":
         print("[RunRate] RUNRATE_SEM_DEMO=1 — schema criado SEM dados de demonstração.")
     else:

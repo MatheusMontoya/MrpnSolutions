@@ -118,6 +118,49 @@ entregar em serverless.
 
 ---
 
+## Mudou o schema? Migre antes do deploy
+
+O schema é descrito por migrações do Alembic — `create_all` saiu de cena porque
+não altera coluna existente. Todo deploy que mexe em `app/models.py` precisa de:
+
+```bash
+cd backend
+python migrar.py sql   # revise o SQL
+python migrar.py       # aplique
+```
+
+A CI trava o merge se um modelo mudar sem a migração correspondente. O fluxo
+inteiro está em [docs/MIGRACOES.md](docs/MIGRACOES.md).
+
+---
+
+## Rotação de segredos
+
+Estes passos são **seus** — envolvem digitar credencial nos painéis, e é a sua
+conta. O repositório já é varrido por gitleaks a cada push, então o que entrar
+no código é pego; o que precisa de rotação é o que circulou fora dele.
+
+### Senha do Postgres
+
+1. Supabase → **Project Settings → Database → Reset database password**.
+2. Copie a nova. Monte a URL com `cd backend && python configurar_conexao.py`
+   (ele percent-encoda os caracteres reservados, que foi o que quebrou da
+   primeira vez, e apaga os arquivos temporários no fim).
+3. Vercel → **Settings → Environment Variables → DATABASE_URL** → cole a nova em
+   Production, Preview e Development.
+4. **Redeploy** — variável de ambiente só vale a partir do próximo build.
+5. Confira: `curl https://runrate-five.vercel.app/api/saude` deve responder
+   `{"app":"ok","banco":"ok"}`.
+6. Apague `backend/senha.txt` e `backend/conexao.txt` se ainda existirem.
+
+### Chave da Anthropic
+
+1. console.anthropic.com → **API Keys** → crie uma nova, revogue a antiga.
+2. Vercel → `ANTHROPIC_API_KEY` → cole a nova → **Redeploy**.
+3. Ou, se a chave estiver na tela: **Configurações → Copiloto** dentro do app.
+
+---
+
 ## Antes de virar ambiente de cliente
 
 1. **Não defina `VITE_DEMO`.** O bloco de credenciais é opt-in: só aparece com

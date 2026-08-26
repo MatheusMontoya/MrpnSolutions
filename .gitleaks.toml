@@ -1,0 +1,31 @@
+# Varredura de segredo no repositório — roda na CI a cada push e PR.
+#
+# Existe porque a senha do Postgres e a chave da Anthropic já circularam fora do
+# código, e o jeito de garantir que elas nunca entrem NELE é uma máquina
+# olhando, não a memória de quem commita.
+title = "RunRate"
+
+[extend]
+useDefault = true   # herda as ~150 regras padrão do gitleaks
+
+[[allowlists]]
+description = """
+Marcadores de posição da documentação e dos testes. São literalmente as palavras
+que o leitor deve substituir — se um dia virarem um valor de verdade, o padrão
+deixa de casar com esta lista e o alerta dispara.
+"""
+regexes = [
+  '''SUA_SENHA''',
+  '''SEU_REF''',
+  '''\[YOUR-PASSWORD\]''',
+  '''sk-ant-SEGREDO''',
+  '''postgresql://\.\.\.''',
+  '''driver://user:pass@localhost/dbname''',
+]
+
+[[allowlists]]
+description = "Arquivos que nunca carregam segredo real"
+paths = [
+  '''frontend/package-lock\.json''',
+  '''frontend/dist/''',
+]

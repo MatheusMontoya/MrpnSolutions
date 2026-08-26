@@ -4,6 +4,7 @@
 *.db-journal
 
 # Python
+backend/migrations/versions/__pycache__/
 __pycache__/
 *.py[cod]
 .venv/

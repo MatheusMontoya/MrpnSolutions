@@ -73,9 +73,11 @@ outra pergunta, que é a que vaza dado: *"esta linha é sua?"*
 
 ## Dívidas abertas
 
-**D-1 — Sem migrations.** O schema nasce de `create_all`, que cria tabela nova
-mas não altera coluna existente. No primeiro "adicionar um campo" com dado real
-dentro, não há caminho seguro. Adotar Alembic **antes** do primeiro cliente.
+**D-1 — RESOLVIDA em 26/08/2026.** Alembic no lugar do `create_all`. A linha de
+base retrata as 30 tabelas com os enums nativos do Postgres, a produção foi
+marcada no topo depois de conferido que o schema batia com os modelos, e
+`tests/test_migracoes.py` trava o merge quando alguém muda um modelo sem
+escrever a migração. Fluxo em [MIGRACOES.md](MIGRACOES.md).
 
 **D-2 — CI criada, falta tornar obrigatória.** `.github/workflows/testes.yml`
 roda os 200 testes e o build a cada push e a cada PR. Falta **um clique do dono
@@ -84,7 +86,15 @@ do repositório**: GitHub → Settings → Branches → Add rule em `main` → m
 avisa, mas não impede o merge.
 
 **D-3 — Sem backup.** O free tier do Supabase não faz backup automático.
-Enquanto for demonstração, tudo bem. Antes de dado real, plano pago.
+Enquanto for demonstração, tudo bem. Antes de dado real, plano pago. Fica mais
+urgente agora que existe migração: `python migrar.py voltar` desfaz a
+estrutura, nunca o dado que a estrutura levou embora.
+
+**D-4 — Segredos que circularam fora do código.** A senha do Postgres e a chave
+da Anthropic passaram por conversa. O repositório está limpo (varrido, e agora
+com gitleaks na CI a cada push), mas os dois valores devem ser rotacionados nos
+painéis — só quem tem a conta faz isso. Passo a passo na seção "Rotação de
+segredos" do DEPLOY.md.
 
 ---
 
