@@ -13,6 +13,9 @@ backend/.venv/
 backend/requirements-dev.txt
 # migração roda como passo de deploy, de uma estação — nunca em cold start.
 # O alembic nem está no requirements.txt de runtime.
+backend/backups/
+backend/backup.py
+backend/conferir_backup.py
 backend/migrations/
 backend/alembic.ini
 backend/migrar.py

@@ -133,9 +133,10 @@ aprovada; migrações de banco; motor de capacidade, receita e EVM.
 
 **Dívidas abertas, em ordem de urgência:**
 
-- **D-3 — Sem backup.** O free tier do Supabase não faz backup automático.
-  Bloqueante antes do primeiro dado real de cliente. Plano pago ou `pg_dump`
-  agendado.
+- **D-3 — Backup existe, mas depende de alguém rodar.**
+  `cd backend && python backup.py` grava o instantâneo; `restaurar` devolve. O
+  ciclo foi provado ponta a ponta. Não é point-in-time recovery: antes de dado
+  de cliente que não se pode perder, plano pago do Supabase.
 - **D-2 — A CI avisa, mas não trava o merge.** Falta marcar os checks como
   obrigatórios. É clique do dono da conta — está em `O-QUE-DEPENDE-DE-VOCE.md`.
 - **D-4 — Rotacionar a senha do Postgres e a chave da Anthropic.** As duas

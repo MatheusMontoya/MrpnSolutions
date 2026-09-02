@@ -85,10 +85,14 @@ do repositório**: GitHub → Settings → Branches → Add rule em `main` → m
 `backend` e `frontend` como *required status checks*. Sem isso a esteira
 avisa, mas não impede o merge.
 
-**D-3 — Sem backup.** O free tier do Supabase não faz backup automático.
-Enquanto for demonstração, tudo bem. Antes de dado real, plano pago. Fica mais
-urgente agora que existe migração: `python migrar.py voltar` desfaz a
-estrutura, nunca o dado que a estrutura levou embora.
+**D-3 — Backup: coberto para uso interno, não para cliente.**
+`backend/backup.py` grava o instantâneo completo e restaura. O ciclo inteiro foi
+exercitado num schema temporário do Postgres — gravou, apagou, restaurou, e
+acento, decimal, data e sequência voltaram idênticos (`conferir_backup.py`).
+
+O que isto **não** é: point-in-time recovery. Backup de terça, acidente na
+quinta, perde-se quarta e quinta. Depende de alguém rodar o comando. Antes de
+dado de cliente que a consultoria não pode perder, plano pago do Supabase.
 
 **D-4 — Segredos que circularam fora do código.** A senha do Postgres e a chave
 da Anthropic passaram por conversa. O repositório está limpo (varrido, e agora

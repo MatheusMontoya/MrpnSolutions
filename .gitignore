@@ -26,6 +26,11 @@ Thumbs.db
 .DS_Store
 desktop.ini
 
+# Copias de seguranca do banco. NUNCA versionar: um backup carrega TODAS as
+# linhas de producao — hash de senha, token de sessao, dado de cliente. Este
+# repositorio e publico.
+backend/backups/
+
 # senha crua temporaria (configurar_conexao.py apaga depois de usar)
 senha.txt
 conexao.txt

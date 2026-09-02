@@ -175,3 +175,49 @@ def test_aplicar_duas_vezes_nao_muda_nada(monkeypatch, tmp_path):
     db.aplicar_migracoes()
     with engine.connect() as con:
         assert con.execute(text("select version_num from alembic_version")).scalar() == antes
+
+
+# ============ a copia de seguranca ============
+
+def test_ordem_do_backup_respeita_as_chaves_estrangeiras():
+    """Pai antes de filho, senão o insert da restauração é recusado.
+
+    A primeira versão desta ordem era uma lista escrita à mão e já nascia com
+    um nome de tabela que não existia. Agora ela sai do `sorted_tables`, e este
+    teste é a prova de que a derivação está certa — em toda tabela, hoje e nas
+    que vierem depois.
+    """
+    import backup
+
+    ordem = backup._ordem_dependencia()
+    posicao = {nome: i for i, nome in enumerate(ordem)}
+
+    violacoes = [
+        f"{t.name} vem antes de {fk.column.table.name}, que ela referencia"
+        for t in SQLModel.metadata.sorted_tables
+        for fk in t.foreign_keys
+        if fk.column.table.name != t.name
+        and posicao[fk.column.table.name] > posicao[t.name]
+    ]
+    assert violacoes == [], "\n".join(violacoes)
+
+
+def test_backup_cobre_todas_as_tabelas_do_modelo():
+    """Tabela nova sem cobertura é dado que o backup não salva — e ninguém nota
+    até precisar restaurar."""
+    import backup
+
+    assert set(backup._ordem_dependencia()) == set(SQLModel.metadata.tables)
+
+
+def test_backup_nunca_entra_no_repositorio():
+    """Um backup carrega hash de senha e token de sessão, e o repositório é
+    público. Esta é a única linha entre as duas coisas."""
+    import subprocess
+
+    alvo = RAIZ / "backups" / "runrate_teste.json"
+    r = subprocess.run(
+        ["git", "check-ignore", str(alvo)],
+        capture_output=True, cwd=RAIZ.parent,
+    )
+    assert r.returncode == 0, "backend/backups/ PRECISA estar no .gitignore"
