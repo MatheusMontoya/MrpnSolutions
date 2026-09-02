@@ -58,7 +58,7 @@ Logins de demonstração: `ceo@psa.com`, `rh@psa.com`, `ana@psa.com` — senha
 dado de demonstração: foi limpa de propósito.
 
 ```bash
-cd backend && python -m pytest -q     # 209 testes, ~20s
+cd backend && python -m pytest -q     # 212 testes, ~20s
 ```
 
 ---
@@ -110,7 +110,7 @@ backend/app/
   services/          ← o motor determinístico (funções puras)
   main.py            ← middleware de autenticação e auditoria, montagem do SPA
 backend/migrations/  ← Alembic
-backend/tests/       ← 209 testes
+backend/tests/       ← 212 testes
 frontend/src/
   pages/             ← uma por tela
   components/        ← Modal, DicaFlutuante, FalhaAoCarregar…
@@ -175,7 +175,7 @@ em qualquer teste que misture semana com competência mensal.
 
 Antes de propor qualquer coisa:
 
-1. Rode `cd backend && python -m pytest -q` e confirme os 209 passando. Se
+1. Rode `cd backend && python -m pytest -q` e confirme os 212 passando. Se
    falhar algo no primeiro clone, me diga **antes** de mexer em código.
 2. Leia `backend/app/seguranca.py` inteiro.
 3. Leia `docs/PRONTIDAO.md`.
