@@ -10,6 +10,8 @@ camada que estava sem cobertura enquanto 22 vazamentos de dado passavam.
 """
 from datetime import date, timedelta
 
+from conftest import competencia_estavel, segunda_estavel
+
 import pytest
 from fastapi.testclient import TestClient
 from sqlmodel import Session, SQLModel, create_engine
@@ -42,7 +44,7 @@ def h(api):
 
 
 def test_do_cliente_ate_a_fatura_recebida(api, h):
-    hoje = date.today()
+    hoje = competencia_estavel()
 
     # 1. cliente
     cli = api.post("/api/clientes", headers=h, json={"nome": "Aurora", "contato": "a@a.com"})
@@ -95,7 +97,7 @@ def test_do_cliente_ate_a_fatura_recebida(api, h):
     })
     ha = {"Authorization": f"Bearer {api.post('/api/auth/login', json={'email': 'ana@t.com', 'senha': 'segredo1'}).json()['token']}"}
 
-    segunda = hoje - timedelta(days=hoje.weekday())
+    segunda = segunda_estavel()
     for i in range(5):
         r = api.post("/api/apontamentos", headers=ha, json={
             "alocacao_id": alocacao_id, "data": (segunda + timedelta(days=i)).isoformat(),
@@ -142,7 +144,7 @@ def test_do_cliente_ate_a_fatura_recebida(api, h):
 def test_medicao_sem_horas_e_recusada(api, h):
     """Medir um mês sem hora apontada não faz sentido: o produto recusa, e é o
     comportamento certo — foi o teste que estava errado, não o código."""
-    hoje = date.today()
+    hoje = competencia_estavel()
     cli = api.post("/api/clientes", headers=h, json={"nome": "X"}).json()
     proj = api.post("/api/projetos", headers=h, json={
         "nome": "P", "cliente_id": cli["id"], "data_inicio": hoje.isoformat(),
@@ -155,8 +157,8 @@ def test_medicao_sem_horas_e_recusada(api, h):
 
 def test_medicao_contestada_nao_emite_fatura(api, h):
     """O caminho infeliz: o cliente contesta e a medição NÃO vira cobrança."""
-    hoje = date.today()
-    segunda = hoje - timedelta(days=hoje.weekday())
+    hoje = competencia_estavel()
+    segunda = segunda_estavel()
     cli = api.post("/api/clientes", headers=h, json={"nome": "Y"}).json()
     proj = api.post("/api/projetos", headers=h, json={
         "nome": "Q", "cliente_id": cli["id"], "data_inicio": hoje.isoformat(),
@@ -188,8 +190,8 @@ def test_medicao_so_cobra_hora_aprovada(api, h):
     """O achado mais grave da auditoria: a medição — que vira nota fiscal —
     ignorava o EnvioSemana e cobrava rascunho, pendente e REPROVADO igual.
     Todo o fluxo de aprovação era decorativo para o faturamento."""
-    hoje = date.today()
-    segunda = hoje - timedelta(days=hoje.weekday())
+    hoje = competencia_estavel()
+    segunda = segunda_estavel()
     cli = api.post("/api/clientes", headers=h, json={"nome": "Cli"}).json()
     proj = api.post("/api/projetos", headers=h, json={
         "nome": "Proj", "cliente_id": cli["id"], "data_inicio": hoje.isoformat(),

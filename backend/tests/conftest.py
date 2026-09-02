@@ -84,3 +84,28 @@ class RequisicaoFalsa:
 def req():
     """Requisitante padrão dos testes unitários: CEO, que enxerga tudo."""
     return RequisicaoFalsa()
+
+
+# ============ datas estáveis ============
+# Os testes de ponta a ponta lançam hora numa semana e medem a competência do
+# mês. Quando a semana corrente atravessa a virada do mês — segunda em agosto,
+# quarta em setembro — as horas caem de um lado e a competência do outro, e a
+# medição não acha nada para cobrar. O teste passava em 358 dias do ano e
+# quebrava nos outros 7, sempre na máquina de quem clonou o repositório num dia
+# ruim. Estas funções tiram a sorte do caminho.
+
+def segunda_estavel(referencia=None):
+    """Uma segunda cuja semana inteira (seg–sex) cai dentro de um mês só.
+
+    Sai da semana do dia 15: a segunda dela nunca é antes do dia 9, então
+    segunda+4 nunca passa do dia 19. Mês nenhum acaba antes disso.
+    """
+    from datetime import date, timedelta
+
+    base = (referencia or date.today()).replace(day=15)
+    return base - timedelta(days=base.weekday())
+
+
+def competencia_estavel(referencia=None):
+    """A competência do mês onde `segunda_estavel` mora."""
+    return segunda_estavel(referencia).replace(day=1)
